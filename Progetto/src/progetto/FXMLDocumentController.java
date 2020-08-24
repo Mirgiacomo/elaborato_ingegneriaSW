@@ -32,6 +32,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label label;
 
+
     /**
      * Initializes the controller class.
      */
@@ -43,7 +44,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleButtonAction(MouseEvent event) throws IOException {
             Parent root;
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("progetto/FXMLInsertPersonaleContratto.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("progetto/FXMLLogin.fxml"));
             Stage stage = new Stage();
             //stage.setTitle("My New Stage Title");
             stage.setScene(new Scene(root, 1500, 1500));

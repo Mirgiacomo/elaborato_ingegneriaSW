@@ -103,7 +103,7 @@
             </Text>
             <JFXComboBox layoutX="227.0" layoutY="293.0" prefHeight="26.0" prefWidth="284.0" />
             <JFXTextField layoutX="148.0" layoutY="115.0" prefHeight="26.0" prefWidth="278.0" />
-            <JFXCheckBox layoutX="645.0" layoutY="286.0" prefHeight="40.0" prefWidth="121.0" style="-jfx-checked-color: #3ca7d6;" text="Fronte mare">
+            <JFXCheckBox checkedColor="#3ca7d6" layoutX="645.0" layoutY="286.0" prefHeight="40.0" prefWidth="121.0" text="Fronte mare" unCheckedColor="#02010dab">
                <font>
                   <Font size="14.0" />
                </font>
