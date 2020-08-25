@@ -53,7 +53,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #dbf0fa; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
          <children>
             <Text layoutX="189.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE PROVINCIA" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>

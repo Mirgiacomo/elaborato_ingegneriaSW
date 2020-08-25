@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.Icon?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
@@ -55,7 +56,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #dbf0fa; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
          <children>
             <Text layoutX="73.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSERIMENTO PERSONALE  A CONTRATTO" textAlignment="CENTER" wrappingWidth="701.5359497070312">
                <font>
@@ -97,7 +98,7 @@
                </font>
             </Text>
             <JFXDatePicker defaultColor="#3ca7d6" layoutX="347.0" layoutY="232.0" prefHeight="28.0" prefWidth="346.0" />
-            <JFXButton buttonType="RAISED" layoutX="770.0" layoutY="16.0" opacity="0.54" prefHeight="58.0" prefWidth="64.0" text="?">
+            <JFXButton buttonType="RAISED" layoutX="775.0" layoutY="16.0" opacity="0.54" prefHeight="58.0" prefWidth="64.0" text="?">
                <tooltip>
                   <Tooltip opacity="0.51" text="Ogni persona assunta a contratto ha l’autorizzazione ad inserire i dati di un numero predefinito di comuni. Il personale dell’enteinserisce, per ognipersona a contratto, i comuni di cui è responsabile." />
                </tooltip>
@@ -107,5 +108,6 @@
             </JFXButton>
          </children>
     </AnchorPane>
+      <Icon content="HELP_OUTLINE" />
   </children>
 </VBox>

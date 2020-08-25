@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.Icon?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -57,44 +58,40 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #ccd1d1;" VBox.vgrow="ALWAYS">
       <children>
-            <ImageView fitHeight="85.0" fitWidth="131.0" layoutX="275.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/1200px-International_Biohazard_Warning_Symbol.svg.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="93.0" layoutY="29.0" lineSpacing="1.0" prefHeight="56.0" prefWidth="154.0" text="CENTRO">
-               <font>
-                  <Font name="System Bold Italic" size="36.0" />
-               </font>
-            </Label>
-            <Label layoutX="396.0" layoutY="29.0" prefHeight="56.0" prefWidth="188.0" text="MALATTIE">
-               <font>
-                  <Font name="System Bold Italic" size="36.0" />
-               </font>
-            </Label>
-            <JFXTextField layoutX="243.0" layoutY="120.0" prefHeight="26.0" prefWidth="224.0" />
-            <JFXPasswordField layoutX="243.0" layoutY="170.0" prefHeight="26.0" prefWidth="224.0" />
-            <JFXCheckBox checkedColor="#3ca7d6" layoutX="170.0" layoutY="229.0" onAction="showpassword" text="Mostra Password">
+            <Icon content="HELP_OUTLINE" layoutX="626.0" layoutY="350.0" />
+            <JFXButton layoutX="592.0" layoutY="340.0" opacity="0.0" prefHeight="47.0" prefWidth="67.0">
+               <tooltip>
+                  <Tooltip text="TODO: inserire info di login (chi puù accedere etc)" />
+               </tooltip>
+            </JFXButton>
+            <JFXTextField fx:id="usernameInput" layoutX="243.0" layoutY="143.0" prefHeight="26.0" prefWidth="224.0" />
+            <JFXPasswordField fx:id="passwordInput" layoutX="243.0" layoutY="194.0" prefHeight="26.0" prefWidth="224.0" />
+            <JFXCheckBox fx:id="checkpass" checkedColor="BLACK" layoutX="169.0" layoutY="245.0" onAction="#showpassword" text="Mostra Password">
                <font>
                   <Font size="14.0" />
                </font></JFXCheckBox>
-            <Text layoutX="136.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+            <Text layoutX="135.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <Text layoutX="137.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+            <Text layoutX="137.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="255.0" layoutY="308.0" prefHeight="33.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-color: #000000; -fx-background-radius: 15pt;" text="LOGIN" textFill="WHITE">
+            <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="255.0" layoutY="308.0" prefHeight="33.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-color: #000000; -fx-background-radius: 15pt;" text="LOGIN" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
+            <ImageView fitHeight="136.0" fitWidth="546.0" layoutX="57.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo.PNG" />
+               </image>
+            </ImageView>
       </children>
     </AnchorPane>
   </children>

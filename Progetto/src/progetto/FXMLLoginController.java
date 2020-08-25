@@ -5,9 +5,16 @@
  */
 package progetto;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -16,6 +23,18 @@ import javafx.fxml.Initializable;
  */
 public class FXMLLoginController implements Initializable {
 
+    @FXML
+    private JFXCheckBox checkpass;
+    private JFXPasswordField password;
+    
+    private String pwd;
+    @FXML
+    private JFXTextField usernameInput;
+    @FXML
+    private JFXPasswordField passwordInput;
+    @FXML
+    private JFXButton loginButton;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +42,21 @@ public class FXMLLoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
+    // TODO: Da implementare
+    @FXML
+    private void showpassword(ActionEvent event) {
+        checkpass.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            if (checkpass.isSelected()) {
+                pwd = password.getText();
+                password.clear();
+                password.setPromptText(pwd);
+            } else {
+                pwd = password.getText();
+                password.setText(pwd);
+                password.setVisible(true);
+            }
+
+        });
+    }
 }
