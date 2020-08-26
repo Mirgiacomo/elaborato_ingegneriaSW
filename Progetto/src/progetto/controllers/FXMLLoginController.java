@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package progetto;
+package progetto.controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -29,10 +29,6 @@ public class FXMLLoginController implements Initializable {
     
     private String pwd;
     @FXML
-    private JFXTextField usernameInput;
-    @FXML
-    private JFXPasswordField passwordInput;
-    @FXML
     private JFXButton loginButton;
 
     /**
@@ -43,6 +39,11 @@ public class FXMLLoginController implements Initializable {
         // TODO
     }
 
+    @FXML
+    private void showpassword(ActionEvent event) {
+    }
+
+    /**
     // TODO: Da implementare
     @FXML
     private void showpassword(ActionEvent event) {
@@ -58,5 +59,5 @@ public class FXMLLoginController implements Initializable {
             }
 
         });
-    }
+    } */
 }

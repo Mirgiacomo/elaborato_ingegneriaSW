@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progetto.controllers.FXMLLoginController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefWidth="614.0" style="-fx-background-color: e5e7e9;" VBox.vgrow="ALWAYS">
+      <children>
+            <AnchorPane layoutX="-9.0" layoutY="-1.0">
+               <children>
+                  <ImageView fitHeight="420.0" fitWidth="720.0" opacity="0.27" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/wallpaper.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="136.0" fitWidth="546.0" layoutX="82.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/logo.PNG" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="166.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="168.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <JFXCheckBox fx:id="checkpass" checkedColor="BLACK" layoutX="289.0" layoutY="233.0" onAction="#showpassword" text="Mostra Password">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXCheckBox>
+                  <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="290.0" layoutY="305.0" prefHeight="33.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt;" text="LOGIN" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXTextField focusColor="WHITE" layoutX="273.0" layoutY="142.0" prefHeight="26.0" prefWidth="272.0" />
+                  <JFXPasswordField focusColor="WHITE" layoutX="273.0" layoutY="189.0" prefHeight="26.0" prefWidth="272.0" />
+               </children>
+            </AnchorPane>
+            <JFXButton layoutX="592.0" layoutY="340.0" opacity="0.0" prefHeight="47.0" prefWidth="67.0">
+               <tooltip>
+                  <Tooltip text="TODO: inserire info di login (chi puù accedere etc)" />
+               </tooltip>
+            </JFXButton>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
