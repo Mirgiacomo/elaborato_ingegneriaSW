@@ -56,8 +56,14 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #dbf0fa; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #faf0f0; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
          <children>
+            <Icon content="HELP_OUTLINE" layoutX="780.0" layoutY="453.0" />
+            <JFXButton layoutX="750.0" layoutY="444.0" opacity="0.0" prefHeight="44.0" prefWidth="84.0">
+               <tooltip>
+                  <Tooltip text="TODO: aggiungere qualcosa" />
+               </tooltip>
+            </JFXButton>
             <Text layoutX="73.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSERIMENTO PERSONALE  A CONTRATTO" textAlignment="CENTER" wrappingWidth="701.5359497070312">
                <font>
                   <Font name="System Bold" size="33.0" />
@@ -83,31 +89,22 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <JFXComboBox layoutX="347.0" layoutY="331.0" prefHeight="26.0" prefWidth="340.0" />
-            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="331.0" layoutY="400.0" prefHeight="40.0" prefWidth="185.0" ripplerFill="WHITE" style="-fx-background-color: #75c3e7; -fx-background-radius: 15pt;" text="INSERISCI PROVINCIA">
+            <JFXComboBox focusColor="#7c2e2e" layoutX="347.0" layoutY="331.0" prefHeight="26.0" prefWidth="340.0" />
+            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="331.0" layoutY="400.0" prefHeight="40.0" prefWidth="185.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI PERSONA" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
-            <JFXTextField layoutX="347.0" layoutY="129.0" prefHeight="26.0" prefWidth="340.0" />
-            <JFXTextField layoutX="347.0" layoutY="284.0" prefHeight="26.0" prefWidth="340.0" />
-            <JFXTextField layoutX="347.0" layoutY="180.0" prefHeight="26.0" prefWidth="340.0" />
+            <JFXTextField focusColor="#7c2e2e" layoutX="347.0" layoutY="129.0" prefHeight="26.0" prefWidth="340.0" />
+            <JFXTextField focusColor="#7c2e2e" layoutX="347.0" layoutY="284.0" prefHeight="26.0" prefWidth="340.0" />
+            <JFXTextField focusColor="#7c2e2e" layoutX="347.0" layoutY="180.0" prefHeight="26.0" prefWidth="340.0" />
             <Text layoutX="118.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codice Fiscale">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <JFXDatePicker defaultColor="#3ca7d6" layoutX="347.0" layoutY="232.0" prefHeight="28.0" prefWidth="346.0" />
-            <JFXButton buttonType="RAISED" layoutX="775.0" layoutY="16.0" opacity="0.54" prefHeight="58.0" prefWidth="64.0" text="?">
-               <tooltip>
-                  <Tooltip opacity="0.51" text="Ogni persona assunta a contratto ha l’autorizzazione ad inserire i dati di un numero predefinito di comuni. Il personale dell’enteinserisce, per ognipersona a contratto, i comuni di cui è responsabile." />
-               </tooltip>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </JFXButton>
+            <JFXDatePicker defaultColor="#7c2e2e" layoutX="347.0" layoutY="232.0" prefHeight="28.0" prefWidth="346.0" />
          </children>
     </AnchorPane>
-      <Icon content="HELP_OUTLINE" />
   </children>
 </VBox>

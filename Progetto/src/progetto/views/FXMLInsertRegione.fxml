@@ -52,7 +52,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #dbf0fa; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #faf0f0; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
          <children>
             <Text layoutX="189.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE REGIONE" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>
@@ -75,14 +75,14 @@
                </font>
             </Text>
             <Text layoutX="237.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" />
-            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="331.0" layoutY="400.0" prefHeight="40.0" prefWidth="185.0" ripplerFill="WHITE" style="-fx-background-color: #75c3e7; -fx-background-radius: 15pt;" text="INSERISCI REGIONE">
+            <JFXTextField focusColor="#7c2e2e" layoutX="347.0" layoutY="129.0" prefHeight="26.0" prefWidth="340.0" />
+            <JFXTextField focusColor="#7c2e2e" layoutX="347.0" layoutY="259.0" prefHeight="26.0" prefWidth="340.0" />
+            <JFXTextField focusColor="#7c2e2e" layoutX="347.0" layoutY="193.0" prefHeight="26.0" prefWidth="340.0" />
+            <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="328.0" layoutY="397.0" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI REGIONE" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </JFXButton>
-            <JFXTextField layoutX="347.0" layoutY="129.0" prefHeight="26.0" prefWidth="340.0" />
-            <JFXTextField layoutX="347.0" layoutY="259.0" prefHeight="26.0" prefWidth="340.0" />
-            <JFXTextField layoutX="347.0" layoutY="193.0" prefHeight="26.0" prefWidth="340.0" />
          </children>
     </AnchorPane>
   </children>

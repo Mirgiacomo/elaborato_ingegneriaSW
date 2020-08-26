@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.Icon?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
@@ -18,14 +19,10 @@
       <children>
             <AnchorPane layoutX="-9.0" layoutY="-1.0">
                <children>
+                  <Icon content="HELP_OUTLINE" layoutX="665.0" layoutY="357.0" />
                   <ImageView fitHeight="420.0" fitWidth="720.0" opacity="0.27" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/wallpaper.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="136.0" fitWidth="546.0" layoutX="82.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/logo.PNG" />
                      </image>
                   </ImageView>
                   <Text layoutX="166.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="JUSTIFY">
@@ -43,20 +40,35 @@
                         <Font size="14.0" />
                      </font>
                   </JFXCheckBox>
-                  <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="290.0" layoutY="305.0" prefHeight="33.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt;" text="LOGIN" textFill="WHITE">
+                  <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="290.0" layoutY="305.0" prefHeight="33.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="LOGIN" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </JFXButton>
                   <JFXTextField focusColor="WHITE" layoutX="273.0" layoutY="142.0" prefHeight="26.0" prefWidth="272.0" />
                   <JFXPasswordField focusColor="WHITE" layoutX="273.0" layoutY="189.0" prefHeight="26.0" prefWidth="272.0" />
+                  <ImageView fitHeight="112.0" fitWidth="467.0" layoutX="150.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/logo2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="47.0" fitWidth="67.0" layoutX="46.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/1200px-International_Biohazard_Warning_Symbol.svg.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="47.0" fitWidth="67.0" layoutX="627.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/1200px-International_Biohazard_Warning_Symbol.svg.png" />
+                     </image>
+                  </ImageView>
+                  <JFXButton layoutX="622.0" layoutY="342.0" opacity="0.0" prefHeight="57.0" prefWidth="85.0">
+                     <tooltip>
+                        <Tooltip text="TODO: info di login" />
+                     </tooltip>
+                  </JFXButton>
                </children>
             </AnchorPane>
-            <JFXButton layoutX="592.0" layoutY="340.0" opacity="0.0" prefHeight="47.0" prefWidth="67.0">
-               <tooltip>
-                  <Tooltip text="TODO: inserire info di login (chi puù accedere etc)" />
-               </tooltip>
-            </JFXButton>
       </children>
     </AnchorPane>
   </children>
