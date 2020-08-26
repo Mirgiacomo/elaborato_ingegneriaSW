@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package progetto.controllers;
+package elaborato_ingegneriaSW.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author mirgi
  */
-public class FXMLInsertRegioneController implements Initializable {
+public class InsertPersonaleContrattoController implements Initializable {
 
     /**
      * Initializes the controller class.

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Icon?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
@@ -13,13 +12,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progetto.controllers.FXMLLoginController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.LoginController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefWidth="614.0" style="-fx-background-color: e5e7e9;" VBox.vgrow="ALWAYS">
       <children>
             <AnchorPane layoutX="-9.0" layoutY="-1.0">
                <children>
-                  <Icon content="HELP_OUTLINE" layoutX="665.0" layoutY="357.0" />
                   <ImageView fitHeight="420.0" fitWidth="720.0" opacity="0.27" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/wallpaper.jpg" />

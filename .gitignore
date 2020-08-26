@@ -24,3 +24,5 @@ hs_err_pid*
 /Progetto/nbproject/private/
 /Progetto/build/
 /Progetto/dist/
+
+.DS_Store

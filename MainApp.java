@@ -3,25 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package progetto;
+package elaborato_ingegneriaSW;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 
 /**
  *
  * @author mirgi
  */
-public class Progetto extends Application {
+public class MainApp extends Application {
 
    @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("views/FXMLInsertPersonaleContratto.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/Login.fxml"));
         
         Scene scene = new Scene(root);
         
