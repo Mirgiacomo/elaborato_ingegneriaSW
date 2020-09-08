@@ -1,0 +1,8 @@
+package elaborato_ingegneriaSW.models;
+
+public enum RuoloUtente {
+    ADMIN,
+    PERSONALE_MONITORAGGIO,
+    PERSONALE_CONTRATTO,
+    RICERCATORE_ANALISTA,
+}
