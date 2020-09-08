@@ -16,9 +16,7 @@ public class Regione {
         this.superficie = superficie;
     }
 
-    public Regione() {
-
-    }
+    public Regione() { }
 
     public String getNome() {
         return nome;

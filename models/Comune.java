@@ -1,39 +1,42 @@
 package elaborato_ingegneriaSW.models;
 
 public class Comune {
-    private String codice;
+    private String codiceISTAT;
     private String nome;
-    private String data_istituzione;
+    private String dataIstituzione;
     private double superficie;
-    private String territorio; // TODO: definire ENUM Territorio con i tre tipi di territorio
-    private boolean mare;
+    private String territorio;
+    private boolean fronteMare;
     private Provincia provincia;
 
     /**
-     * @param codice codice ISTAT univoco
-     * @param nome nome del comune
-     * @param data_istituzione data di istituzione
-     * @param superficie superficie in chilometri quadrati
-     * @param territorio tipo di territorio
-     * @param mare indicazione del fatto che il comune si affacci sul mare
-     * @param provincia provincia a cui appartiene il comune
+     * @param codiceISTAT     codice ISTAT univoco
+     * @param nome             nome del comune
+     * @param dataIstituzione data di istituzione
+     * @param superficie       superficie in chilometri quadrati
+     * @param territorio       tipo di territorio
+     * @param fronteMare      indicazione del fatto che il comune si affacci sul mare
+     * @param provincia        provincia a cui appartiene il comune
      */
-    public Comune(String codice, String nome, String data_istituzione, double superficie, String territorio, boolean mare, Provincia provincia) {
-        this.codice = codice;
+    public Comune(String codiceISTAT, String nome, String dataIstituzione, double superficie, String territorio, boolean fronteMare, Provincia provincia) {
+        this.codiceISTAT = codiceISTAT;
         this.nome = nome;
-        this.data_istituzione = data_istituzione;
+        this.dataIstituzione = dataIstituzione;
         this.superficie = superficie;
         this.territorio = territorio;
-        this.mare = mare;
+        this.fronteMare = fronteMare;
         this.provincia = provincia;
     }
 
-    public String getCodice() {
-        return codice;
+    public Comune() {
     }
 
-    public void setCodice(String codice) {
-        this.codice = codice;
+    public String getCodice_ISTAT() {
+        return codiceISTAT;
+    }
+
+    public void setCodice_ISTAT(String codiceISTAT) {
+        this.codiceISTAT = codiceISTAT;
     }
 
     public String getNome() {
@@ -45,11 +48,11 @@ public class Comune {
     }
 
     public String getData_istituzione() {
-        return data_istituzione;
+        return dataIstituzione;
     }
 
-    public void setData_istituzione(String data_istituzione) {
-        this.data_istituzione = data_istituzione;
+    public void setData_istituzione(String dataIstituzione) {
+        this.dataIstituzione = dataIstituzione;
     }
 
     public double getSuperficie() {
@@ -68,12 +71,12 @@ public class Comune {
         this.territorio = territorio;
     }
 
-    public boolean isMare() {
-        return mare;
+    public boolean isFronte_mare() {
+        return fronteMare;
     }
 
-    public void setMare(boolean mare) {
-        this.mare = mare;
+    public void setFronte_mare(boolean fronteMare) {
+        this.fronteMare = fronteMare;
     }
 
     public Provincia getProvincia() {

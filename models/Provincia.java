@@ -16,6 +16,8 @@ public class Provincia {
         this.regione = regione;
     }
 
+    public Provincia() { }
+
     public String getNome() {
         return nome;
     }
