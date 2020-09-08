@@ -12,13 +12,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.LoginController">
-  <children>
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="561.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.LoginController">
+   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefWidth="614.0" style="-fx-background-color: e5e7e9;" VBox.vgrow="ALWAYS">
       <children>
-            <AnchorPane layoutX="-9.0" layoutY="-1.0">
+            <AnchorPane layoutX="-9.0" layoutY="-1.0" prefHeight="561.0" prefWidth="893.0">
                <children>
-                  <ImageView fitHeight="420.0" fitWidth="720.0" opacity="0.27" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="614.0" fitWidth="906.0" layoutX="8.0" layoutY="-4.0" opacity="0.27" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/wallpaper.jpg" />
                      </image>
@@ -65,9 +65,10 @@
                         <Tooltip text="TODO: info di login" />
                      </tooltip>
                   </JFXButton>
+                  <ImageView pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
       </children>
     </AnchorPane>
   </children>
-</VBox>
+</AnchorPane>

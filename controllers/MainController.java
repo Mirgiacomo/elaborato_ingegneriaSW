@@ -16,8 +16,10 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -88,7 +90,7 @@ public class MainController implements Initializable, ColorChangeCallback {
 
             fadeOut.setOnFinished((e) -> {
                 try {
-//                    AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("/elaborato_ingegneriaSW/views/Login.fxml")));
+                    AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("/elaborato_ingegneriaSW/views/Login.fxml")));
                     root.getChildren().setAll(parentContent);
                 } catch (IOException ex) {
                     Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
