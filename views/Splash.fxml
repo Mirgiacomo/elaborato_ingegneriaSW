@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.SplashController">
+    <children>
+        <ImageView fitHeight="561.0" fitWidth="882.0" opacity="0.29" pickOnBounds="true">
+            <image>
+                <Image url="@img/wallpaper.jpg" />
+            </image>
+        </ImageView>
+        <Pane prefHeight="561.0" prefWidth="882.0">
+         <children>
+            <JFXSpinner layoutX="340.0" layoutY="281.0" prefHeight="146.0" prefWidth="202.0" style="-fx-body-color: white;" />
+              <Text fill="#010000" layoutX="108.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARICAMENTO APPLICAZIONE..." wrappingWidth="693.0034790039062">
+                  <font>
+                      <Font name="System Bold" size="43.0" />
+                  </font>
+              </Text>
+            <Text fill="#010000" layoutX="204.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright© - 2020 - Davide Tonin - Giacomo Mirandola" wrappingWidth="500.2034912109375">
+               <font>
+                  <Font name="System Italic" size="20.0" />
+               </font>
+            </Text>
+         </children></Pane>
+    </children>
+</StackPane>
