@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,54 +19,55 @@
       <children>
             <AnchorPane layoutX="-9.0" layoutY="-1.0" prefHeight="561.0" prefWidth="893.0">
                <children>
-                  <ImageView fitHeight="614.0" fitWidth="906.0" layoutX="8.0" layoutY="-4.0" opacity="0.27" pickOnBounds="true" preserveRatio="true">
+                  <FontAwesomeIcon iconName="QUESTION" layoutX="971.0" layoutY="542.0" size="2em" />
+                  <ImageView fitHeight="583.0" fitWidth="1004.0" layoutX="8.0" layoutY="-4.0" opacity="0.27" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/wallpaper.jpg" />
                      </image>
                   </ImageView>
-                  <Text layoutX="166.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="JUSTIFY">
+                  <Text layoutX="141.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="JUSTIFY">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text layoutX="168.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                  <Text layoutX="143.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <JFXCheckBox fx:id="checkpass" checkedColor="BLACK" layoutX="289.0" layoutY="233.0" onAction="#showpassword" text="Mostra Password">
+                  <JFXCheckBox fx:id="checkpass" checkedColor="BLACK" layoutX="305.0" layoutY="366.0" onAction="#showpassword" text="Mostra Password">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="20.0" />
                      </font>
                   </JFXCheckBox>
-                  <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="290.0" layoutY="305.0" prefHeight="33.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="LOGIN" textFill="WHITE">
+                  <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="357.0" layoutY="471.0" prefHeight="47.0" prefWidth="177.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="LOGIN" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="21.0" />
                      </font>
                   </JFXButton>
-                  <JFXTextField focusColor="WHITE" layoutX="273.0" layoutY="142.0" prefHeight="26.0" prefWidth="272.0" />
-                  <JFXPasswordField focusColor="WHITE" layoutX="273.0" layoutY="189.0" prefHeight="26.0" prefWidth="272.0" />
-                  <ImageView fitHeight="112.0" fitWidth="467.0" layoutX="150.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                  <JFXTextField focusColor="WHITE" layoutX="305.0" layoutY="219.0" prefHeight="26.0" prefWidth="441.0" />
+                  <JFXPasswordField focusColor="WHITE" layoutX="303.0" layoutY="285.0" prefHeight="26.0" prefWidth="445.0" />
+                  <ImageView fitHeight="177.0" fitWidth="590.0" layoutX="159.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/logo2.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="47.0" fitWidth="67.0" layoutX="46.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/1200px-International_Biohazard_Warning_Symbol.svg.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="47.0" fitWidth="67.0" layoutX="627.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/1200px-International_Biohazard_Warning_Symbol.svg.png" />
-                     </image>
-                  </ImageView>
-                  <JFXButton layoutX="622.0" layoutY="342.0" opacity="0.0" prefHeight="57.0" prefWidth="85.0">
+                  <JFXButton layoutX="899.0" layoutY="456.0" opacity="0.0" prefHeight="83.0" prefWidth="97.0">
                      <tooltip>
                         <Tooltip text="TODO: info di login" />
                      </tooltip>
                   </JFXButton>
                   <ImageView pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="64.0" fitWidth="67.0" layoutX="37.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/1200px-International_Biohazard_Warning_Symbol.svg.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="83.0" fitWidth="67.0" layoutX="774.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/1200px-International_Biohazard_Warning_Symbol.svg.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
       </children>
