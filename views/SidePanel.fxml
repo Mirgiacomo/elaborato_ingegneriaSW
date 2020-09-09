@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -13,21 +14,40 @@
                 <Image url="@img/logo2.png" />
             </image>
         </ImageView>
-        <JFXButton fx:id="b1" buttonType="RAISED" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #f1f1f1;" text="LOGIN">
+        <JFXButton fx:id="b1" buttonType="RAISED" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #353535; -fx-font-size: 17px;" text="LOGIN" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font></JFXButton>
+        <JFXButton fx:id="b2" buttonType="RAISED" layoutX="10.0" layoutY="123.0" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #444444; -fx-font-size: 17px;" text="INSERISCI PROVINCIA">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></JFXButton>
+        <JFXButton fx:id="b3" buttonType="RAISED" layoutX="10.0" layoutY="197.0" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #353535; -fx-font-size: 17px;" text="INSERISCI COMUNE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXButton>
-        <JFXButton fx:id="b2" buttonType="RAISED" layoutX="10.0" layoutY="123.0" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #f1f1f1;" text="INSERISCI PROVINCIA">
+        <JFXButton fx:id="exit" buttonType="RAISED" layoutX="10.0" layoutY="271.0" onAction="#exit" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #444444; -fx-font-size: 17px;" text="INSERISCI REGIONE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></JFXButton>
-        <JFXButton fx:id="b3" buttonType="RAISED" layoutX="10.0" layoutY="197.0" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #f1f1f1;" text="INSERISCI COMUNE">
+      <JFXButton fx:id="b31" buttonType="RAISED" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #353535; -fx-font-size: 17px;" text="INSERISCI COMUNE">
          <font>
             <Font name="System Bold" size="14.0" />
-         </font></JFXButton>
-        <JFXButton fx:id="exit" buttonType="RAISED" layoutX="10.0" layoutY="271.0" onAction="#exit" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #f1f1f1;" text="INSERISCI REGIONE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></JFXButton>
+         </font>
+      </JFXButton>
+      <Pane prefHeight="81.0" prefWidth="251.0">
+         <children>
+            <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="7.0" layoutY="7.0" onAction="#loginAction" prefHeight="27.0" prefWidth="62.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 5pt; -fx-border-radius: 5pt; -fx-font-size: 11px;" text="LOGOUT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="loginButton1" buttonType="RAISED" defaultButton="true" layoutX="175.0" layoutY="7.0" onAction="#loginAction" prefHeight="27.0" prefWidth="62.0" ripplerFill="WHITE" style="-fx-background-color: #d7a000; -fx-background-radius: 5pt; -fx-border-radius: 5pt; -fx-font-size: 11px;" text="INFO">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
     </children>
 </VBox>
