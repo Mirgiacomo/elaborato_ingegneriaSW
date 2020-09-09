@@ -27,7 +27,6 @@ public class SidePanelPersonaleMonitoraggioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
     }
-
     public void setCallback(ColorChangeCallback callback) {
         this.callback = callback;
     }

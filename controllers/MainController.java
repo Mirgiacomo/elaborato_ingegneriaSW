@@ -1,6 +1,5 @@
 package elaborato_ingegneriaSW.controllers;
 
-
 import elaborato_ingegneriaSW.MainApp;
 import elaborato_ingegneriaSW.models.ColorChangeCallback;
 import com.jfoenix.controls.JFXDrawer;
@@ -16,10 +15,8 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -42,10 +39,9 @@ public class MainController implements Initializable, ColorChangeCallback {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/elaborato_ingegneriaSW/views/SidePanel.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/elaborato_ingegneriaSW/views/SidePanelRicercatoreAnalista.fxml"));
             VBox box = loader.load();
-            SidePanelController controller = loader.getController();
-            controller.setCallback(this);
+            SidePanelRicercatoreAnalistaController controller = loader.getController();
             drawer.setSidePane(box);
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);

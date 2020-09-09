@@ -12,12 +12,20 @@ import com.jfoenix.controls.JFXPasswordField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import sun.applet.Main;
 
 /**
  * FXML Controller class
@@ -30,6 +38,8 @@ public class LoginController implements Initializable {
     private JFXCheckBox checkpass;
     @FXML
     private JFXPasswordField password;
+    @FXML
+    private JFXTextField username;
     @FXML
     private JFXButton loginButton;
     @FXML
@@ -49,13 +59,23 @@ public class LoginController implements Initializable {
     private void showpassword(ActionEvent event) {
     }
     @FXML
-    private void loginAction(ActionEvent event) {
-//        try {
-//            AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("/elaborato_ingegneriaSW/views/InsertComune.fxml")));
-//            root.getChildren().setAll(parentContent);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    private void loginAction(ActionEvent event) throws IOException {
+        if(username.getText().equalsIgnoreCase("mirgiacomo") && password.getText().equalsIgnoreCase("mirgiacomo")){
+            System.out.println("LOGIN");
+            Stage stage = new Stage();
+            VBox box = new VBox();
+            stage.setTitle("My New Stage Title");
+
+            Parent root = FXMLLoader.load(getClass().getResource("/elaborato_ingegneriaSW/views/Main.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            // Per nascondere la finestra di login sotto
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+        } else {
+            System.out.println("LOGOUT");
+        }
     }
 
     /**

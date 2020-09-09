@@ -21,15 +21,9 @@ public class SidePanelPersonaleContrattoController implements Initializable {
     @FXML
     private JFXButton exit;
 
-    private ColorChangeCallback callback;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-    }
-
-    public void setCallback(ColorChangeCallback callback) {
-        this.callback = callback;
     }
 
     @FXML
@@ -38,13 +32,10 @@ public class SidePanelPersonaleContrattoController implements Initializable {
         System.out.println(btn.getText());
         switch (btn.getText()) {
             case "Color 1":
-                callback.updateColor("#00FF00");
                 break;
             case "Color 2":
-                callback.updateColor("#0000FF");
                 break;
             case "Color 3":
-                callback.updateColor("#FF0000");
                 break;
         }
     }
