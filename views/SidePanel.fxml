@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -48,6 +49,9 @@
                </font>
             </JFXButton>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </Pane>
     </children>
 </VBox>
