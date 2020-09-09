@@ -77,7 +77,7 @@ public class MainController implements Initializable, ColorChangeCallback {
             fadeIn.setToValue(1);
             fadeIn.setCycleCount(1);
 
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), pane);
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), pane);
             fadeOut.setFromValue(1);
             fadeOut.setToValue(0);
             fadeOut.setCycleCount(1);
