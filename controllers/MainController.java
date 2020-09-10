@@ -41,7 +41,7 @@ public class MainController implements Initializable, ColorChangeCallback {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/elaborato_ingegneriaSW/views/SidePanelRicercatoreAnalista.fxml"));
             VBox box = loader.load();
-            SidePanelRicercatoreAnalistaController controller = loader.getController();
+            // SidePanelController controller = loader.getController();
             drawer.setSidePane(box);
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
