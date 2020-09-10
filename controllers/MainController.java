@@ -1,7 +1,7 @@
 package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.MainApp;
-import elaborato_ingegneriaSW.models.ColorChangeCallback;
+import elaborato_ingegneriaSW.utils.ColorChangeCallback;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;

@@ -2,7 +2,7 @@ package elaborato_ingegneriaSW.controllers;
 
 
 import com.jfoenix.controls.JFXButton;
-import elaborato_ingegneriaSW.models.ColorChangeCallback;
+import elaborato_ingegneriaSW.utils.ColorChangeCallback;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
