@@ -8,5 +8,4 @@ public interface Dao<T> {
     public boolean addItem(T item);
     public boolean updateItem(T item);
     public boolean deleteItem(T item);
-    public boolean updateSource();
 }
