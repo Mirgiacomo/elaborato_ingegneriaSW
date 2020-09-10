@@ -32,6 +32,7 @@ public class MainApp extends Application {
     /**
      * @param args the command line arguments
      */
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         launch(args);
     }
