@@ -18,14 +18,14 @@
         <Pane prefHeight="561.0" prefWidth="882.0">
          <children>
             <JFXSpinner layoutX="399.0" layoutY="236.0" prefHeight="146.0" prefWidth="202.0" style="-fx-body-color: white;" />
-              <Text fill="#010000" layoutX="200.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARICAMENTO APPLICAZIONE..." wrappingWidth="599.0034790039062">
+              <Text fill="#010000" layoutX="163.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARICAMENTO APPLICAZIONE..." textAlignment="CENTER" wrappingWidth="674.2034912109375">
                   <font>
-                      <Font name="PT Sans" size="43.0" />
+                      <Font name="System Bold" size="43.0" />
                   </font>
               </Text>
-            <Text fill="#010000" layoutX="260.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright© - 2020 - Davide Tonin - Giacomo Mirandola" wrappingWidth="479.2034912109375">
+            <Text fill="#010000" layoutX="246.0" layoutY="543.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright© - 2020 - Davide Tonin - Giacomo Mirandola" textAlignment="CENTER" wrappingWidth="508.00347900390625">
                <font>
-                  <Font name="PT Sans" size="20.0" />
+                  <Font name="System Italic" size="16.0" />
                </font>
             </Text>
          </children></Pane>
