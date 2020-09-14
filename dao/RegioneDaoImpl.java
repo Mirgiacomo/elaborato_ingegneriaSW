@@ -2,14 +2,9 @@ package elaborato_ingegneriaSW.dao;
 
 import java.util.List;
 
-public class RegioneDaoImpl<Regione> extends DaoImpl<Regione> {
-
-    public RegioneDaoImpl() {
-        super();
-    }
-
+public class RegioneDaoImpl<Regione> implements Dao<Regione> {
     @Override
-    public List getAllItems() {
+    public List<Regione> getAllItems() {
         return null;
     }
 
@@ -19,17 +14,17 @@ public class RegioneDaoImpl<Regione> extends DaoImpl<Regione> {
     }
 
     @Override
-    public boolean addItem(Object item) {
+    public boolean addItem(Regione item) {
         return false;
     }
 
     @Override
-    public boolean updateItem(Object item) {
+    public boolean updateItem(Regione item) {
         return false;
     }
 
     @Override
-    public boolean deleteItem(Object item) {
+    public boolean deleteItem(Regione item) {
         return false;
     }
 }
