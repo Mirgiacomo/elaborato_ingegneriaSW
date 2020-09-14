@@ -8,7 +8,7 @@ public class Utente {
     private String nome;
     private String username;
     private String password;
-    private RuoloUtente tipoUtente;
+    private RuoloUtente ruolo;
     private String cf;
 
     HashMap<String, List> comuniAssociati;
@@ -45,12 +45,12 @@ public class Utente {
         this.password = password;
     }
 
-    public RuoloUtente getTipoUtente() {
-        return tipoUtente;
+    public RuoloUtente getRuolo() {
+        return ruolo;
     }
 
-    public void setTipoUtente(RuoloUtente tipoUtente) {
-        this.tipoUtente = tipoUtente;
+    public void setRuolo(RuoloUtente ruolo) {
+        this.ruolo = ruolo;
     }
 
     public String getCf() {
