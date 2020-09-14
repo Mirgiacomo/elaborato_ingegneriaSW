@@ -20,7 +20,7 @@
             <JFXSpinner layoutX="399.0" layoutY="236.0" prefHeight="146.0" prefWidth="202.0" style="-fx-body-color: white;" />
               <Text fill="#010000" layoutX="163.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARICAMENTO APPLICAZIONE..." textAlignment="CENTER" wrappingWidth="674.2034912109375">
                   <font>
-                      <Font name="System Bold" size="43.0" />
+                      <Font name="PT Sans" size="43.0" />
                   </font>
               </Text>
             <Text fill="#010000" layoutX="246.0" layoutY="543.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright© - 2020 - Davide Tonin - Giacomo Mirandola" textAlignment="CENTER" wrappingWidth="508.00347900390625">
