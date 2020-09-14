@@ -31,7 +31,7 @@
                   <Font name="PT Sans" size="20.0" />
                </font>
             </Text>
-            <JFXCheckBox fx:id="checkpass" checkedColor="BLACK" layoutX="337.0" layoutY="362.0" onAction="#showpassword" text="Mostra Password">
+            <JFXCheckBox fx:id="showPassword" checkedColor="BLACK" layoutX="337.0" layoutY="362.0" onAction="#showPassword" text="Mostra Password">
                <font>
                   <Font name="PT Sans" size="15.0" />
                </font>
@@ -41,16 +41,21 @@
                   <Font name="PT Sans" size="21.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="username" focusColor="WHITE" layoutX="338.0" layoutY="216.0" prefHeight="26.0" prefWidth="441.0">
+            <JFXTextField fx:id="usernameTextField" focusColor="WHITE" layoutX="338.0" layoutY="216.0" prefHeight="26.0" prefWidth="441.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="password" focusColor="WHITE" layoutX="336.0" layoutY="288.0" prefHeight="26.0" prefWidth="445.0">
+            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" layoutX="336.0" layoutY="288.0" prefHeight="26.0" prefWidth="445.0">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXPasswordField>
+            <JFXTextField fx:id="passwordField_hidden" focusColor="WHITE" layoutX="336.0" layoutY="288.0" prefHeight="26.0" prefWidth="445.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
             <ImageView fitHeight="177.0" fitWidth="590.0" layoutX="226.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/logo2.png" />
