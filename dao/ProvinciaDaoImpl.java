@@ -2,29 +2,29 @@ package elaborato_ingegneriaSW.dao;
 
 import java.util.List;
 
-public class ProvinciaDaoImpl extends DaoImpl {
+public class ProvinciaDaoImpl<Provincia> implements Dao<Provincia> {
     @Override
-    public List getAllItems() {
+    public List<Provincia> getAllItems() {
         return null;
     }
 
     @Override
-    public Object getItem(String itemId) {
+    public Provincia getItem(String itemId) {
         return null;
     }
 
     @Override
-    public boolean addItem(Object item) {
+    public boolean addItem(Provincia item) {
         return false;
     }
 
     @Override
-    public boolean updateItem(Object item) {
+    public boolean updateItem(Provincia item) {
         return false;
     }
 
     @Override
-    public boolean deleteItem(Object item) {
+    public boolean deleteItem(Provincia item) {
         return false;
     }
 }

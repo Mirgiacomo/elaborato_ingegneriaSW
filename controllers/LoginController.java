@@ -9,11 +9,16 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 
 import com.jfoenix.controls.JFXTextField;
+import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
+import elaborato_ingegneriaSW.models.Utente;
+import elaborato_ingegneriaSW.utils.AlertUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +26,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -33,36 +39,44 @@ import javafx.stage.Stage;
 public class LoginController implements Initializable {
 
     @FXML
-    private JFXCheckBox checkpass;
+    private JFXCheckBox showPassword;
     @FXML
-    private JFXPasswordField password;
+    private JFXPasswordField passwordField;
     @FXML
-    private JFXTextField username;
+    private JFXTextField passwordField_hidden;
+    @FXML
+    private JFXTextField usernameTextField;
     @FXML
     private JFXButton loginButton;
     @FXML
     private AnchorPane root;
 
-    private String pwd;
+    private final UtenteDaoImpl userDao = new UtenteDaoImpl();
+
+    public LoginController() {
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       showPassword(null);
     }
 
     @FXML
-    private void showpassword(ActionEvent event) {
-    }
-    @FXML
-    private void loginAction(ActionEvent event) throws IOException {
-        if(username.getText().equalsIgnoreCase("mirgiacomo") && password.getText().equalsIgnoreCase("mirgiacomo")){
-            System.out.println("LOGIN");
+    private void loginAction(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
+        String username = usernameTextField.getText();
+        String password = passwordField.getText();
+
+        Utente user = userDao.getUtenteByUsername(username);
+
+        if (user == null || password.equals("")) {
+            AlertUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null);
+        } else if (user.getPassword().equals(password)) {
             Stage stage = new Stage();
             VBox box = new VBox();
-            stage.setTitle("My New Stage Title");
+            stage.setTitle("Centro malattie infettive");
 
             Parent root = FXMLLoader.load(getClass().getResource("/elaborato_ingegneriaSW/views/Main.fxml"));
             Scene scene = new Scene(root);
@@ -72,25 +86,20 @@ public class LoginController implements Initializable {
             // Per nascondere la finestra di login sotto
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } else {
-            System.out.println("LOGOUT");
+            AlertUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null);
         }
     }
 
-    /**
-    // TODO: Da implementare
     @FXML
-    private void showpassword(ActionEvent event) {
-        checkpass.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            if (checkpass.isSelected()) {
-                pwd = password.getText();
-                password.clear();
-                password.setPromptText(pwd);
-            } else {
-                pwd = password.getText();
-                password.setText(pwd);
-                password.setVisible(true);
-            }
-
-        });
-    } */
+    private void showPassword(ActionEvent event) {
+        if (showPassword.isSelected()) {
+            passwordField_hidden.setText(passwordField.getText());
+            passwordField_hidden.setVisible(true);
+            passwordField.setVisible(false);
+        } else {
+            passwordField.setText(passwordField_hidden.getText());
+            passwordField.setVisible(true);
+            passwordField_hidden.setVisible(false);
+        }
+    }
 }

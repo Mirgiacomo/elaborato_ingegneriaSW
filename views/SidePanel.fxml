@@ -8,37 +8,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="178.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.SidePanelController">
+<VBox prefWidth="178.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.SidePanelController">
     <children>
-        <ImageView fitHeight="133.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="133.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@img/logo2.png" />
             </image>
         </ImageView>
-        <JFXButton fx:id="b1" buttonType="RAISED" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #353535; -fx-font-size: 17px;" text="LOGIN" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font></JFXButton>
-        <JFXButton fx:id="b2" buttonType="RAISED" layoutX="10.0" layoutY="123.0" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #444444; -fx-font-size: 17px;" text="INSERISCI PROVINCIA">
+        <JFXButton fx:id="b2" buttonType="RAISED" layoutX="10.0" layoutY="123.0" onAction="#changeColor" prefHeight="100.0" prefWidth="250.0" ripplerFill="#fc0000" style="-fx-background-color: #444444; -fx-font-size: 17px;" text="INSERISCI PROVINCIA" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></JFXButton>
-        <JFXButton fx:id="b3" buttonType="RAISED" layoutX="10.0" layoutY="197.0" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #353535; -fx-font-size: 17px;" text="INSERISCI COMUNE">
+        <JFXButton fx:id="b3" buttonType="RAISED" layoutX="10.0" layoutY="197.0" onAction="#changeColor" prefHeight="100.0" prefWidth="250.0" ripplerFill="#fc0000" style="-fx-background-color: #353535; -fx-font-size: 17px;" text="INSERISCI COMUNE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXButton>
-        <JFXButton fx:id="exit" buttonType="RAISED" layoutX="10.0" layoutY="271.0" onAction="#exit" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #444444; -fx-font-size: 17px;" text="INSERISCI REGIONE">
+        <JFXButton fx:id="exit" buttonType="RAISED" layoutX="10.0" layoutY="271.0" onAction="#exit" prefHeight="100.0" prefWidth="250.0" ripplerFill="#fc0000" style="-fx-background-color: #444444; -fx-font-size: 17px;" text="INSERISCI REGIONE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></JFXButton>
-      <JFXButton fx:id="b31" buttonType="RAISED" onAction="#changeColor" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" style="-fx-background-color: #353535; -fx-font-size: 17px;" text="INSERISCI COMUNE">
+      <JFXButton fx:id="b31" buttonType="RAISED" onAction="#changeColor" prefHeight="100.0" prefWidth="250.0" ripplerFill="#fc0000" style="-fx-background-color: #353535; -fx-font-size: 17px;" text="INSERISCI COMUNE" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <Pane prefHeight="81.0" prefWidth="251.0">
+      <Pane prefHeight="81.0" prefWidth="286.0">
          <children>
-            <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="7.0" layoutY="7.0" prefHeight="27.0" prefWidth="62.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 5pt; -fx-border-radius: 5pt; -fx-font-size: 11px;" text="LOGOUT" textFill="WHITE">
+            <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="7.0" layoutY="7.0" prefHeight="27.0" prefWidth="75.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 5pt; -fx-border-radius: 5pt; -fx-font-size: 11px;" text="LOGOUT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>

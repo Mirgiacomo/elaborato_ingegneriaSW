@@ -4,6 +4,7 @@ import com.google.cloud.firestore.Firestore;
 import elaborato_ingegneriaSW.utils.FirebaseConnection;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public abstract class DaoImpl<T> implements Dao<T> {
     protected Firestore firestore;
@@ -16,7 +17,7 @@ public abstract class DaoImpl<T> implements Dao<T> {
     public abstract List getAllItems();
 
     @Override
-    public abstract T getItem(String itemId);
+    public abstract T getItem(String itemId) throws ExecutionException, InterruptedException;
 
     @Override
     public abstract boolean addItem(T item);
