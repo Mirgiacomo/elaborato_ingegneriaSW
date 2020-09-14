@@ -1,11 +1,16 @@
 package elaborato_ingegneriaSW.dao;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.WriteResult;
+import elaborato_ingegneriaSW.models.Provincia;
+
 import java.util.List;
 
-public class ProvinciaDaoImpl<Provincia> implements Dao<Provincia> {
-    @Override
-    public List<Provincia> getAllItems() {
-        return null;
+public class ProvinciaDaoImpl extends DaoImpl<Provincia> {
+
+    public ProvinciaDaoImpl() {
+        super();
     }
 
     @Override
@@ -14,13 +19,19 @@ public class ProvinciaDaoImpl<Provincia> implements Dao<Provincia> {
     }
 
     @Override
-    public boolean addItem(Provincia item) {
-        return false;
+    public Provincia addItem(Provincia item) {
+        DocumentReference documentReference = firestore.collection("province").document();
+
+        RegioneDaoImpl regioneDao = new RegioneDaoImpl();
+
+        ApiFuture<WriteResult> writeResult = documentReference.set(item);
+
+        return null;
     }
 
     @Override
-    public boolean updateItem(Provincia item) {
-        return false;
+    public Provincia updateItem(Provincia item) {
+        return null;
     }
 
     @Override

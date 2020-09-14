@@ -11,12 +11,12 @@ public class Comune {
 
     /**
      * @param codiceISTAT     codice ISTAT univoco
-     * @param nome             nome del comune
+     * @param nome            nome del comune
      * @param dataIstituzione data di istituzione
-     * @param superficie       superficie in chilometri quadrati
-     * @param territorio       tipo di territorio
+     * @param superficie      superficie in chilometri quadrati
+     * @param territorio      tipo di territorio
      * @param fronteMare      indicazione del fatto che il comune si affacci sul mare
-     * @param provincia        provincia a cui appartiene il comune
+     * @param provincia       provincia a cui appartiene il comune
      */
     public Comune(String codiceISTAT, String nome, String dataIstituzione, double superficie, String territorio, boolean fronteMare, Provincia provincia) {
         this.codiceISTAT = codiceISTAT;

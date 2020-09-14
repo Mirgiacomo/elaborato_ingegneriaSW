@@ -15,11 +15,6 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
     }
 
     @Override
-    public List<Utente> getAllItems() {
-        return null;
-    }
-
-    @Override
     public Utente getItem(String itemId) throws ExecutionException, InterruptedException {
         DocumentReference documentReference = firestore.collection(collectionName).document(itemId);
         DocumentSnapshot document = documentReference.get().get();
@@ -46,13 +41,13 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
     }
 
     @Override
-    public boolean addItem(Utente item) {
-        return false;
+    public Utente addItem(Utente item) {
+        return null;
     }
 
     @Override
-    public boolean updateItem(Utente item) {
-        return false;
+    public Utente updateItem(Utente item) {
+        return null;
     }
 
     @Override

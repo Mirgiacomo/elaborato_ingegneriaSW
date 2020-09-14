@@ -1,11 +1,16 @@
 package elaborato_ingegneriaSW.dao;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.WriteResult;
+import elaborato_ingegneriaSW.models.Regione;
+
 import java.util.List;
 
-public class RegioneDaoImpl<Regione> implements Dao<Regione> {
-    @Override
-    public List<Regione> getAllItems() {
-        return null;
+public class RegioneDaoImpl extends DaoImpl<Regione> {
+
+    public RegioneDaoImpl() {
+        super();
     }
 
     @Override
@@ -14,13 +19,16 @@ public class RegioneDaoImpl<Regione> implements Dao<Regione> {
     }
 
     @Override
-    public boolean addItem(Regione item) {
-        return false;
+    public Regione addItem(Regione item) {
+        DocumentReference documentReference = firestore.collection("regioni").document();
+        ApiFuture<WriteResult> writeResult = documentReference.set(item);
+
+        return null;
     }
 
     @Override
-    public boolean updateItem(Regione item) {
-        return false;
+    public Regione updateItem(Regione item) {
+        return null;
     }
 
     @Override

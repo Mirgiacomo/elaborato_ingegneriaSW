@@ -1,5 +1,9 @@
 package elaborato_ingegneriaSW.dao;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.Query;
+import com.google.cloud.firestore.QuerySnapshot;
 import elaborato_ingegneriaSW.models.Comune;
 
 import java.util.List;
@@ -20,14 +24,18 @@ public class ComuneDaoImpl extends DaoImpl<Comune> {
         return null;
     }
 
-    @Override
-    public boolean addItem(Comune item) {
-        return false;
+    public Comune getItemByCodiceISTAT(String codiceISTAT) {
+        return null;
     }
 
     @Override
-    public boolean updateItem(Comune item) {
-        return false;
+    public Comune addItem(Comune item) {
+        return null;
+    }
+
+    @Override
+    public Comune updateItem(Comune item) {
+        return null;
     }
 
     @Override

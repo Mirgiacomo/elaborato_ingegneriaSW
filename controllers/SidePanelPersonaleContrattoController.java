@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SidePanelPersonaleContrattoController implements Initializable {
+public class SidePanelPersonaleContrattoController extends SidePanelController implements Initializable {
 
     @FXML
     private JFXButton b1;

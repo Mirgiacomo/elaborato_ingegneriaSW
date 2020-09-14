@@ -1,12 +1,14 @@
 package elaborato_ingegneriaSW.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public interface Dao<T> {
-    public List<T> getAllItems();
+    public List<T> getAllItems(String collectionName, Class classType) throws ExecutionException, InterruptedException;
     public T getItem(String itemId) throws ExecutionException, InterruptedException;
-    public boolean addItem(T item);
-    public boolean updateItem(T item);
+    public List<T> getItemsByQuery(String collectionName, HashMap<String,T> conditions, Class classType) throws ExecutionException, InterruptedException;
+    public T addItem(T item);
+    public T updateItem(T item);
     public boolean deleteItem(T item);
 }

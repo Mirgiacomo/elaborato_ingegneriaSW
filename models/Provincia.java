@@ -1,5 +1,7 @@
 package elaborato_ingegneriaSW.models;
 
+import java.util.Objects;
+
 public class Provincia {
     private String nome;
     private double superficie;
@@ -40,5 +42,19 @@ public class Provincia {
 
     public void setRegione(Regione regione) {
         this.regione = regione;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Provincia provincia = (Provincia) o;
+        return Objects.equals(nome, provincia.nome) &&
+                Objects.equals(regione, provincia.regione);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, regione);
     }
 }
