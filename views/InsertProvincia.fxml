@@ -65,11 +65,6 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Text layoutX="110.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comune capoluogo">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
             <Text layoutX="122.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Superficie [ km  ]">
                <font>
                   <Font size="18.0" />
@@ -81,11 +76,10 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <JFXComboBox focusColor="#7c2e2e" layoutX="347.0" layoutY="325.0" prefHeight="26.0" prefWidth="340.0" />
-            <JFXTextField focusColor="#7c2e2e" layoutX="347.0" layoutY="129.0" prefHeight="26.0" prefWidth="340.0" />
-            <JFXTextField focusColor="#7c2e2e" layoutX="347.0" layoutY="259.0" prefHeight="26.0" prefWidth="340.0" />
-            <JFXTextField focusColor="#7c2e2e" layoutX="347.0" layoutY="193.0" prefHeight="26.0" prefWidth="340.0" />
-            <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="329.0" layoutY="400.0" prefHeight="42.0" prefWidth="190.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI PROVINCIA" textFill="WHITE">
+            <JFXComboBox fx:id="regioneComboBox" focusColor="#7c2e2e" layoutX="347.0" layoutY="325.0" prefHeight="26.0" prefWidth="340.0" />
+            <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" layoutX="347.0" layoutY="129.0" prefHeight="26.0" prefWidth="340.0" />
+            <JFXTextField fx:id="superficieTextField" focusColor="#7c2e2e" layoutX="347.0" layoutY="259.0" prefHeight="26.0" prefWidth="340.0" />
+            <JFXButton fx:id="insertProvinciaButton" buttonType="RAISED" defaultButton="true" layoutX="329.0" layoutY="400.0" onAction="#insertProvinciaAction" prefHeight="42.0" prefWidth="190.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI PROVINCIA" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

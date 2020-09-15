@@ -47,11 +47,11 @@ public abstract class DaoImpl<T> implements Dao<T> {
             query = collectionReference.whereEqualTo(key, conditions.get(key));
         }
 
-        ApiFuture<QuerySnapshot> querySnapshot = Objects.requireNonNullElse(query, collectionReference).get();
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
 
         List result = null;
 
-        for (QueryDocumentSnapshot document : querySnapshot.get().getDocuments()) {
+        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
             result.add(document.toObject(classType));
         }
 
