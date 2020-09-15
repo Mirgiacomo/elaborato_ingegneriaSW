@@ -7,6 +7,11 @@ package elaborato_ingegneriaSW.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+
+import com.jfoenix.controls.JFXTextField;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -15,6 +20,12 @@ import javafx.fxml.Initializable;
  * @author mirgi
  */
 public class InsertRegioneController implements Initializable {
+    @FXML
+    private JFXTextField nomeTextField;
+    @FXML
+    private JFXTextField comuneCapoluogoTextField;
+    @FXML
+    private JFXTextField superficieTextField;
 
     /**
      * Initializes the controller class.
@@ -22,6 +33,11 @@ public class InsertRegioneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    @FXML
+    private void insertRegioneAction(ActionEvent event) throws ExecutionException, InterruptedException {
+        System.out.println(nomeTextField.getText());
+    }
     
 }
