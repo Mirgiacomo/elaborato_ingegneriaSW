@@ -71,7 +71,7 @@
                </font>
             </Text>
             <JFXDatePicker fx:id="dataIstituzioneDataPicker" defaultColor="#7c2e2e" layoutX="634.0" layoutY="103.0" prefHeight="40.0" prefWidth="186.0" />
-            <JFXTextField fx:id="nomeComuneTextField" focusColor="#7c2e2e" layoutX="225.0" layoutY="182.0" prefHeight="26.0" prefWidth="214.0">
+            <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" layoutX="225.0" layoutY="182.0" prefHeight="26.0" prefWidth="214.0">
                <font>
                   <Font name="Open Sans" size="18.0" />
                </font></JFXTextField>

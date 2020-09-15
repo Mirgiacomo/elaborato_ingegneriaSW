@@ -27,7 +27,7 @@ public class InsertComuneController implements Initializable {
     @FXML
     private JFXDatePicker dataIstituzioneDataPicker;
     @FXML
-    private JFXTextField nomeComuneTextField;
+    private JFXTextField nomeTextField;
     @FXML
     private JFXTextField superficieTextField;
     @FXML
