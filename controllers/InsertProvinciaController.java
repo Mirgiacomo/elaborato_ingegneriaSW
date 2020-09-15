@@ -37,7 +37,7 @@ public class InsertProvinciaController implements Initializable {
     @FXML
     private JFXTextField superficieTextField;
     @FXML
-    private JFXComboBox regioneComboBox;
+    private JFXComboBox regioneCollegataComboBox;
 
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
     private final ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
@@ -61,8 +61,7 @@ public class InsertProvinciaController implements Initializable {
         for (Regione regione: regioni) {
             //TODO: popolare combobox
         }*/
-        RegioneDaoImpl regioneDao = new RegioneDaoImpl();
-        //TODO: poplare combobox e associare il giusto nome
+        RegioneDaoImpl regioneCollegataComboBox = new RegioneDaoImpl();
         HashMap filter = new HashMap();
         filter.put("nome", "Veneto");
         Regione regioneCollegata = (Regione)(regioneDao.getItemsByQuery(RegioneDaoImpl.getCollectionName(), filter, Regione.class).get(0));
