@@ -1,5 +1,8 @@
 package elaborato_ingegneriaSW.models;
 
+import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
+
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Regione {
@@ -42,6 +45,14 @@ public class Regione {
 
     public void setSuperficie(double superficie) {
         this.superficie = superficie;
+    }
+
+    /**
+     * Ritorna l'id univoco per il record nel database
+     * @return nome
+     */
+    public String generateId() {
+        return nome.toLowerCase();
     }
 
     @Override

@@ -1,5 +1,8 @@
 package elaborato_ingegneriaSW.models;
 
+import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
+
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Provincia {
@@ -42,6 +45,27 @@ public class Provincia {
 
     public void setRegione(Regione regione) {
         this.regione = regione;
+    }
+
+    public void setRegione(String reference) {
+
+    }
+
+    /**
+     * Ritorna l'id univoco per il record nel database
+     * @return nome_regione.id
+     */
+    public String generateId() {
+        return (nome + "_" + regione.generateId()).toLowerCase();
+    }
+
+    public HashMap<String, Object> getFirebaseObject() {
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        result.put("nome", nome);
+        result.put("superficie", superficie);
+        result.put("regione", RegioneDaoImpl.getCollectionName() + "/" + regione.generateId());
+
+        return result;
     }
 
     @Override
