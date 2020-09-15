@@ -62,7 +62,7 @@ public abstract class DaoImpl<T> implements Dao<T> {
     public abstract T getItem(String itemId) throws ExecutionException, InterruptedException;
 
     @Override
-    public abstract T addItem(T item);
+    public abstract T addItem(T item) throws ExecutionException, InterruptedException;
 
     @Override
     public abstract T updateItem(T item);

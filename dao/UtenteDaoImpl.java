@@ -4,7 +4,6 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.models.Utente;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class UtenteDaoImpl extends DaoImpl<Utente>{
@@ -12,6 +11,10 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
 
     public UtenteDaoImpl() {
         super();
+    }
+
+    public static String getCollectionName() {
+        return collectionName;
     }
 
     @Override

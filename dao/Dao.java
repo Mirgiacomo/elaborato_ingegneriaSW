@@ -8,7 +8,7 @@ public interface Dao<T> {
     public List<T> getAllItems(String collectionName, Class classType) throws ExecutionException, InterruptedException;
     public T getItem(String itemId) throws ExecutionException, InterruptedException;
     public List<T> getItemsByQuery(String collectionName, HashMap<String,T> conditions, Class classType) throws ExecutionException, InterruptedException;
-    public T addItem(T item);
+    public T addItem(T item) throws ExecutionException, InterruptedException;
     public T updateItem(T item);
     public boolean deleteItem(T item);
 }

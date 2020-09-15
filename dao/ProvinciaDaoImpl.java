@@ -2,31 +2,56 @@ package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.WriteResult;
 import elaborato_ingegneriaSW.models.Provincia;
+import elaborato_ingegneriaSW.models.Regione;
 
-import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 public class ProvinciaDaoImpl extends DaoImpl<Provincia> {
+    private static final String collectionName = "province";
 
     public ProvinciaDaoImpl() {
         super();
     }
 
-    @Override
-    public Provincia getItem(String itemId) {
-        return null;
+    public static String getCollectionName() {
+        return collectionName;
     }
 
     @Override
-    public Provincia addItem(Provincia item) {
-        DocumentReference documentReference = firestore.collection("province").document();
+    public Provincia getItem(String itemId) throws ExecutionException, InterruptedException {
+        DocumentReference documentReference = firestore.collection(collectionName).document(itemId);
+        DocumentSnapshot document = documentReference.get().get();
+
+        Provincia result = new Provincia();
+        if (document.exists()) {
+            DocumentReference regioneDocument = firestore.document(Objects.requireNonNull(document.get("regione", String.class)));
+
+            result.setNome(document.get("nome", String.class));
+            result.setSuperficie(document.get("superficie", Double.class));
+            result.setRegione(regioneDocument.get().get().toObject(Regione.class));
+        }
+
+        return result;
+    }
+
+    @Override
+    public Provincia addItem(Provincia item) throws ExecutionException, InterruptedException {
+        DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
 
         RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
-        ApiFuture<WriteResult> writeResult = documentReference.set(item);
+        if (regioneDao.getItem(item.getRegione().generateId()) == null) {
+            regioneDao.addItem(item.getRegione());
+        }
 
-        return null;
+        ApiFuture<WriteResult> writeResult = documentReference.set(item.getFirebaseObject());
+
+        DocumentSnapshot documentSnapshot = documentReference.get().get();
+        return getItem(documentSnapshot.getId());
     }
 
     @Override
