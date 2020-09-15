@@ -61,7 +61,7 @@ public class LoginController implements Initializable {
         Utente user = userDao.getUtenteByUsername(username);
 
         if (user == null || password.equals("")) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null);
+            AlertUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null, event);
         } else if (user.getPassword().equals(password)) {
             Stage stage = new Stage();
             VBox box = new VBox();
@@ -75,7 +75,7 @@ public class LoginController implements Initializable {
             // Per nascondere la finestra di login sotto
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } else {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null);
+            AlertUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null, event);
         }
     }
 
