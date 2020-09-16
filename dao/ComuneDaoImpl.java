@@ -5,8 +5,7 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.WriteResult;
 import elaborato_ingegneriaSW.models.Comune;
-import elaborato_ingegneriaSW.models.Provincia;
-import elaborato_ingegneriaSW.models.Regione;
+
 import elaborato_ingegneriaSW.models.Territorio;
 
 import java.util.Objects;

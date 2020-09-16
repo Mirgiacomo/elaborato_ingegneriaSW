@@ -4,9 +4,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.utils.FirebaseConnection;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public abstract class DaoImpl<T> implements Dao<T> {
@@ -17,12 +15,12 @@ public abstract class DaoImpl<T> implements Dao<T> {
     }
 
     @Override
-    public List getAllItems(String collectionName, Class classType) throws ExecutionException, InterruptedException {
+    public Set getAllItems(String collectionName, Class classType) throws ExecutionException, InterruptedException {
         ApiFuture<QuerySnapshot> querySnapshot = firestore.collection(collectionName).get();
 
         List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
 
-        List result = null;
+        Set result = new TreeSet();
 
         for (QueryDocumentSnapshot document : documents) {
             result.add(document.toObject(classType));

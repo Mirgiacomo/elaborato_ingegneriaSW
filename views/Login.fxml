@@ -11,6 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.Cursor?>
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="564.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.LoginController">
    <children>
       <AnchorPane prefHeight="564.0" prefWidth="1001.0">
@@ -40,6 +41,9 @@
                <font>
                   <Font name="PT Sans" size="21.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXTextField fx:id="usernameTextField" focusColor="WHITE" layoutX="338.0" layoutY="216.0" prefHeight="26.0" prefWidth="441.0">
                <font>

@@ -81,4 +81,9 @@ public class Provincia {
     public int hashCode() {
         return Objects.hash(nome, regione);
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import com.jfoenix.controls.JFXComboBox;
@@ -12,24 +13,12 @@ import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Regione;
-import elaborato_ingegneriaSW.models.Utente;
 import elaborato_ingegneriaSW.utils.AlertUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author mirgi
- */
 public class InsertProvinciaController implements Initializable {
 
     @FXML
@@ -37,7 +26,7 @@ public class InsertProvinciaController implements Initializable {
     @FXML
     private JFXTextField superficieTextField;
     @FXML
-    private JFXComboBox regioneCollegataComboBox;
+    private JFXComboBox regioneComboBox;
 
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
     private final ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
@@ -47,38 +36,34 @@ public class InsertProvinciaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName(), Regione.class);
+
+            for (Regione regione: regioni) {
+                regioneComboBox.getItems().add(regione);
+            }
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void insertProvinciaAction(ActionEvent event) throws ExecutionException, InterruptedException {
         String nomeProvincia = nomeTextField.getText();
         Double superficieProvincia = Double.parseDouble(superficieTextField.getText());
+        Regione regione = (Regione) regioneComboBox.getValue();
 
-        /*RegioneDaoImpl regioneDao = new RegioneDaoImpl();
-        List<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName(), Regione.class);
-
-        for (Regione regione: regioni) {
-            //TODO: popolare combobox
-        }*/
-        RegioneDaoImpl regioneCollegataComboBox = new RegioneDaoImpl();
-        HashMap filter = new HashMap();
-        filter.put("nome", "Veneto");
-        Regione regioneCollegata = (Regione)(regioneDao.getItemsByQuery(RegioneDaoImpl.getCollectionName(), filter, Regione.class).get(0));
-        System.out.println("ok 3");
-
-        if (nomeProvincia == null || superficieProvincia == null || regioneCollegata == null) {
-            //AlertUtil.Alert(Alert.AlertType.ERROR, "INSERT FALLITO", "Dati non validi!", null);
-            System.err.println("insert fallito! dati non validi");
+        if (nomeProvincia == null || superficieProvincia == null || regione == null) {
+            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
         }
-        System.out.println("ok 4");
 
-        Provincia newProvincia = new Provincia(nomeProvincia, superficieProvincia, regioneCollegata);
-        System.out.println("ok 5");
+        Provincia newProvincia = new Provincia(nomeProvincia, superficieProvincia, regione);
         if (provinciaDao.addItem(newProvincia) == null) {
-            System.err.println("insert fallito");
+            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
-            System.out.println("insert provincia " + newProvincia.getNome() + " ok!");
+            System.out.println("ok");
         }
     }
 

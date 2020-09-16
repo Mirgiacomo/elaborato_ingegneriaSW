@@ -1,11 +1,8 @@
 package elaborato_ingegneriaSW.models;
 
-import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
-
-import java.util.HashMap;
 import java.util.Objects;
 
-public class Regione {
+public class Regione implements Comparable<Regione> {
     private String nome;
     private String capoluogo;
     private double superficie;
@@ -66,5 +63,15 @@ public class Regione {
     @Override
     public int hashCode() {
         return Objects.hash(nome);
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+
+    @Override
+    public int compareTo(Regione other) {
+        return nome.compareTo(other.getNome());
     }
 }
