@@ -5,7 +5,7 @@ import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Provincia {
+public class Provincia implements Comparable<Provincia> {
     private String nome;
     private double superficie;
     private Regione regione;
@@ -47,10 +47,6 @@ public class Provincia {
         this.regione = regione;
     }
 
-    public void setRegione(String reference) {
-
-    }
-
     /**
      * Ritorna l'id univoco per il record nel database
      * @return nome_regione.id
@@ -85,5 +81,10 @@ public class Provincia {
     @Override
     public String toString() {
         return nome;
+    }
+
+    @Override
+    public int compareTo(Provincia other) {
+        return nome.compareTo(other.getNome());
     }
 }

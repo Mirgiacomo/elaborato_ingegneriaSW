@@ -39,7 +39,8 @@ public class RegioneDaoImpl extends DaoImpl<Regione> {
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
         ApiFuture<WriteResult> writeResult = documentReference.set(item, SetOptions.merge());
 
-        return documentReference.get().get().toObject(Regione.class);
+        DocumentSnapshot documentSnapshot = documentReference.get().get();
+        return getItem(documentSnapshot.getId());
     }
 
     @Override

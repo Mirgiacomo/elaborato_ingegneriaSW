@@ -15,7 +15,7 @@ public abstract class DaoImpl<T> implements Dao<T> {
     }
 
     @Override
-    public Set getAllItems(String collectionName, Class classType) throws ExecutionException, InterruptedException {
+    public Set getAllItems(String collectionName) throws ExecutionException, InterruptedException {
         ApiFuture<QuerySnapshot> querySnapshot = firestore.collection(collectionName).get();
 
         List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
@@ -23,7 +23,7 @@ public abstract class DaoImpl<T> implements Dao<T> {
         Set result = new TreeSet();
 
         for (QueryDocumentSnapshot document : documents) {
-            result.add(document.toObject(classType));
+            result.add(getItem(document.getId()));
         }
 
         return result;

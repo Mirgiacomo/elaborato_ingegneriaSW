@@ -37,7 +37,7 @@ public class InsertProvinciaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName(), Regione.class);
+            Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
 
             for (Regione regione: regioni) {
                 regioneComboBox.getItems().add(regione);
@@ -51,15 +51,15 @@ public class InsertProvinciaController implements Initializable {
 
     @FXML
     private void insertProvinciaAction(ActionEvent event) throws ExecutionException, InterruptedException {
-        String nomeProvincia = nomeTextField.getText();
-        Double superficieProvincia = Double.parseDouble(superficieTextField.getText());
+        String nome = nomeTextField.getText();
+        Double superficie = Double.parseDouble(superficieTextField.getText());
         Regione regione = (Regione) regioneComboBox.getValue();
 
-        if (nomeProvincia == null || superficieProvincia == null || regione == null) {
+        if (nome == null || superficie == null || regione == null) {
             AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
         }
 
-        Provincia newProvincia = new Provincia(nomeProvincia, superficieProvincia, regione);
+        Provincia newProvincia = new Provincia(nome, superficie, regione);
         if (provinciaDao.addItem(newProvincia) == null) {
             AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {

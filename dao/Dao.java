@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public interface Dao<T> {
-    public Set<T> getAllItems(String collectionName, Class classType) throws ExecutionException, InterruptedException;
+    public Set<T> getAllItems(String collectionName) throws ExecutionException, InterruptedException;
     public T getItem(String itemId) throws ExecutionException, InterruptedException;
     public List<T> getItemsByQuery(String collectionName, HashMap<String,T> conditions, Class classType) throws ExecutionException, InterruptedException;
     public T addItem(T item) throws ExecutionException, InterruptedException;
