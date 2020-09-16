@@ -4,9 +4,9 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.utils.FirebaseConnection;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public abstract class DaoImpl<T> implements Dao<T> {
@@ -49,7 +49,7 @@ public abstract class DaoImpl<T> implements Dao<T> {
 
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
 
-        List result = null;
+        List result = new ArrayList();
 
         for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
             result.add(document.toObject(classType));
