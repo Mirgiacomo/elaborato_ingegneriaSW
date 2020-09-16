@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -21,18 +22,18 @@
             </Text>
             <Text layoutX="69.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISTAT">
                <font>
-                  <Font name="Open Sans" size="20.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
             <Text layoutX="474.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Superficie [ km  ]">
                <font>
-                  <Font name="Open Sans" size="20.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
             <Text layoutX="611.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" />
             <Text layoutX="71.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Provincia collegata">
                <font>
-                  <Font name="Open Sans" size="20.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
             <JFXButton fx:id="insertComuneButton" buttonType="RAISED" defaultButton="true" layoutX="332.0" layoutY="421.0" onAction="#insertComuneAction" prefHeight="40.0" prefWidth="185.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI COMUNE" textFill="WHITE">
@@ -40,40 +41,44 @@
                   <Font name="Open Sans Semibold" size="17.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="ProvinciaCollegataComboBox" focusColor="#7c2e2e" layoutX="270.0" layoutY="336.0" prefHeight="26.0" prefWidth="538.0" />
+            <JFXComboBox fx:id="provinciaComboBox" focusColor="#7c2e2e" layoutX="270.0" layoutY="336.0" prefHeight="26.0" prefWidth="538.0" />
             <JFXTextField fx:id="superficieTextField" focusColor="#7c2e2e" layoutX="638.0" layoutY="181.0" prefHeight="39.0" prefWidth="174.0">
                <font>
                   <Font size="18.0" />
                </font></JFXTextField>
             <Text layoutX="69.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Comune">
                <font>
-                  <Font name="Open Sans" size="20.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
             <Text layoutX="71.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo territorio" wrappingWidth="137.06054687500023">
                <font>
-                  <Font name="Open Sans" size="20.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <JFXComboBox fx:id="tipoTerritorioComboBox" focusColor="#7c2e2e" layoutX="225.0" layoutY="259.0" prefHeight="26.0" prefWidth="284.0" />
-            <JFXTextField fx:id="ISTATTextField" focusColor="#7c2e2e" layoutX="140.0" layoutY="108.0" prefHeight="26.0" prefWidth="278.0">
+            <JFXComboBox fx:id="territorioComboBox" focusColor="#7c2e2e" layoutX="225.0" layoutY="259.0" prefHeight="26.0" prefWidth="284.0" />
+            <JFXTextField fx:id="codiceISTATTextField" focusColor="#7c2e2e" layoutX="140.0" layoutY="108.0" prefHeight="26.0" prefWidth="278.0">
                <font>
                   <Font size="18.0" />
                </font></JFXTextField>
             <JFXCheckBox fx:id="fronteMareCheckBox" checkedColor="#7c2e2e" layoutX="611.0" layoutY="252.0" prefHeight="40.0" prefWidth="121.0" text="Fronte mare" unCheckedColor="#02010dab">
                <font>
-                  <Font name="Open Sans" size="20.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </JFXCheckBox>
             <Text layoutX="479.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data istituzione">
                <font>
-                  <Font name="Open Sans" size="20.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <JFXDatePicker fx:id="dataIstituzioneDataPicker" defaultColor="#7c2e2e" layoutX="634.0" layoutY="103.0" prefHeight="40.0" prefWidth="186.0" />
+            <JFXDatePicker fx:id="dataIstituzioneDataPicker" defaultColor="#7c2e2e" layoutX="634.0" layoutY="103.0" prefHeight="40.0" prefWidth="186.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXDatePicker>
             <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" layoutX="225.0" layoutY="182.0" prefHeight="26.0" prefWidth="214.0">
                <font>
-                  <Font name="Open Sans" size="18.0" />
+                  <Font name="Open Sans Regular" size="18.0" />
                </font></JFXTextField>
          </children>
     </AnchorPane>
