@@ -5,10 +5,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -20,101 +17,69 @@
          <children>
             <Text layoutX="186.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE COMUNE" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>
-                  <Font name="System Bold" size="38.0" />
+                  <Font name="Open Sans Semibold" size="38.0" />
                </font>
             </Text>
-            <Text layoutX="71.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISTAT">
+            <Text layoutX="69.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISTAT">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="70.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comune capoluogo">
+            <Text layoutX="474.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Superficie [ km  ]">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="479.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Superficie [ km  ]">
+            <Text layoutX="611.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" />
+            <Text layoutX="71.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Provincia collegata">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="596.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" />
-            <Text layoutX="70.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Provincia collegata">
+            <JFXButton fx:id="insertComuneButton" buttonType="RAISED" defaultButton="true" layoutX="332.0" layoutY="421.0" onAction="#insertComuneAction" prefHeight="40.0" prefWidth="185.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI COMUNE" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <JFXButton buttonType="RAISED" defaultButton="true" layoutX="332.0" layoutY="421.0" prefHeight="40.0" prefWidth="185.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI COMUNE" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="Open Sans Semibold" size="17.0" />
                </font>
             </JFXButton>
-            <JFXComboBox focusColor="#7c2e2e" layoutX="274.0" layoutY="350.0" prefHeight="26.0" prefWidth="538.0" />
-            <JFXTextField focusColor="#7c2e2e" layoutX="635.0" layoutY="177.0" prefHeight="26.0" prefWidth="178.0" />
-            <JFXTextField focusColor="#7c2e2e" layoutX="280.0" layoutY="234.0" prefHeight="26.0" prefWidth="537.0" />
-            <Text layoutX="71.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Comune">
+            <JFXComboBox fx:id="provinciaComboBox" focusColor="#7c2e2e" layoutX="270.0" layoutY="336.0" prefHeight="26.0" prefWidth="538.0" />
+            <JFXTextField fx:id="superficieTextField" focusColor="#7c2e2e" layoutX="638.0" layoutY="181.0" prefHeight="39.0" prefWidth="174.0">
                <font>
                   <Font size="18.0" />
+               </font></JFXTextField>
+            <Text layoutX="69.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Comune">
+               <font>
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="71.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo territorio" wrappingWidth="120.8408203125">
+            <Text layoutX="71.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo territorio" wrappingWidth="137.06054687500023">
+               <font>
+                  <Font name="Open Sans Regular" size="20.0" />
+               </font>
+            </Text>
+            <JFXComboBox fx:id="territorioComboBox" focusColor="#7c2e2e" layoutX="225.0" layoutY="259.0" prefHeight="26.0" prefWidth="284.0" />
+            <JFXTextField fx:id="codiceISTATTextField" focusColor="#7c2e2e" layoutX="140.0" layoutY="108.0" prefHeight="26.0" prefWidth="278.0">
                <font>
                   <Font size="18.0" />
-               </font>
-            </Text>
-            <JFXComboBox focusColor="#7c2e2e" layoutX="227.0" layoutY="293.0" prefHeight="26.0" prefWidth="284.0" />
-            <JFXTextField focusColor="#7c2e2e" layoutX="148.0" layoutY="115.0" prefHeight="26.0" prefWidth="278.0" />
-            <JFXCheckBox checkedColor="#7c2e2e" layoutX="645.0" layoutY="286.0" prefHeight="40.0" prefWidth="121.0" text="Fronte mare" unCheckedColor="#02010dab">
+               </font></JFXTextField>
+            <JFXCheckBox fx:id="fronteMareCheckBox" checkedColor="#7c2e2e" layoutX="611.0" layoutY="252.0" prefHeight="40.0" prefWidth="121.0" text="Fronte mare" unCheckedColor="#02010dab">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </JFXCheckBox>
             <Text layoutX="479.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data istituzione">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <JFXDatePicker defaultColor="#7c2e2e" layoutX="634.0" layoutY="103.0" prefHeight="40.0" prefWidth="186.0" />
-            <JFXTextField focusColor="#7c2e2e" layoutX="217.0" layoutY="176.0" prefHeight="26.0" prefWidth="214.0" />
-          <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="850.0">
-            <menus>
-              <Menu mnemonicParsing="false" text="File">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="New" />
-                  <MenuItem mnemonicParsing="false" text="Open…" />
-                  <Menu mnemonicParsing="false" text="Open Recent" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save As…" />
-                  <MenuItem mnemonicParsing="false" text="Revert" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Preferences…" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Quit" />
-                </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Edit">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="Undo" />
-                  <MenuItem mnemonicParsing="false" text="Redo" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Cut" />
-                  <MenuItem mnemonicParsing="false" text="Copy" />
-                  <MenuItem mnemonicParsing="false" text="Paste" />
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Select All" />
-                  <MenuItem mnemonicParsing="false" text="Unselect All" />
-                </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Help">
-                <items>
-                  <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-                </items>
-              </Menu>
-            </menus>
-          </MenuBar>
+            <JFXDatePicker fx:id="dataIstituzioneDataPicker" defaultColor="#7c2e2e" layoutX="634.0" layoutY="103.0" prefHeight="40.0" prefWidth="186.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXDatePicker>
+            <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" layoutX="225.0" layoutY="182.0" prefHeight="26.0" prefWidth="214.0">
+               <font>
+                  <Font name="Open Sans Regular" size="18.0" />
+               </font></JFXTextField>
          </children>
     </AnchorPane>
   </children>

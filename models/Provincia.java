@@ -1,8 +1,11 @@
 package elaborato_ingegneriaSW.models;
 
+import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
+
+import java.util.HashMap;
 import java.util.Objects;
 
-public class Provincia {
+public class Provincia implements Comparable<Provincia> {
     private String nome;
     private double superficie;
     private Regione regione;
@@ -44,6 +47,23 @@ public class Provincia {
         this.regione = regione;
     }
 
+    /**
+     * Ritorna l'id univoco per il record nel database
+     * @return nome_regione.id
+     */
+    public String generateId() {
+        return (nome + "_" + regione.generateId()).toLowerCase();
+    }
+
+    public HashMap<String, Object> getFirebaseObject() {
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        result.put("nome", nome);
+        result.put("superficie", superficie);
+        result.put("regione", RegioneDaoImpl.getCollectionName() + "/" + regione.generateId());
+
+        return result;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,5 +76,15 @@ public class Provincia {
     @Override
     public int hashCode() {
         return Objects.hash(nome, regione);
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+
+    @Override
+    public int compareTo(Provincia other) {
+        return nome.compareTo(other.getNome());
     }
 }

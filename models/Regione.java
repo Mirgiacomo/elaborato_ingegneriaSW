@@ -2,7 +2,7 @@ package elaborato_ingegneriaSW.models;
 
 import java.util.Objects;
 
-public class Regione {
+public class Regione implements Comparable<Regione> {
     private String nome;
     private String capoluogo;
     private double superficie;
@@ -44,6 +44,14 @@ public class Regione {
         this.superficie = superficie;
     }
 
+    /**
+     * Ritorna l'id univoco per il record nel database
+     * @return nome
+     */
+    public String generateId() {
+        return nome.toLowerCase();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,5 +63,15 @@ public class Regione {
     @Override
     public int hashCode() {
         return Objects.hash(nome);
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+
+    @Override
+    public int compareTo(Regione other) {
+        return nome.compareTo(other.getNome());
     }
 }

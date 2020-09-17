@@ -4,9 +4,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.utils.FirebaseConnection;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public abstract class DaoImpl<T> implements Dao<T> {
@@ -17,15 +15,15 @@ public abstract class DaoImpl<T> implements Dao<T> {
     }
 
     @Override
-    public List getAllItems(String collectionName, Class classType) throws ExecutionException, InterruptedException {
+    public Set getAllItems(String collectionName) throws ExecutionException, InterruptedException {
         ApiFuture<QuerySnapshot> querySnapshot = firestore.collection(collectionName).get();
 
         List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
 
-        List result = null;
+        Set result = new TreeSet();
 
         for (QueryDocumentSnapshot document : documents) {
-            result.add(document.toObject(classType));
+            result.add(getItem(document.getId()));
         }
 
         return result;
@@ -47,11 +45,11 @@ public abstract class DaoImpl<T> implements Dao<T> {
             query = collectionReference.whereEqualTo(key, conditions.get(key));
         }
 
-        ApiFuture<QuerySnapshot> querySnapshot = Objects.requireNonNullElse(query, collectionReference).get();
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
 
-        List result = null;
+        List result = new ArrayList();
 
-        for (QueryDocumentSnapshot document : querySnapshot.get().getDocuments()) {
+        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
             result.add(document.toObject(classType));
         }
 
@@ -62,7 +60,7 @@ public abstract class DaoImpl<T> implements Dao<T> {
     public abstract T getItem(String itemId) throws ExecutionException, InterruptedException;
 
     @Override
-    public abstract T addItem(T item);
+    public abstract T addItem(T item) throws ExecutionException, InterruptedException;
 
     @Override
     public abstract T updateItem(T item);

@@ -1,36 +1,63 @@
 package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.Query;
-import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.WriteResult;
 import elaborato_ingegneriaSW.models.Comune;
 
-import java.util.List;
+import elaborato_ingegneriaSW.models.Territorio;
+
+import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 public class ComuneDaoImpl extends DaoImpl<Comune> {
+    private static final String collectionName = "comuni";
 
     public ComuneDaoImpl() {
         super();
     }
 
-    @Override
-    public List getAllItems() {
-        return null;
+    public static String getCollectionName() {
+        return collectionName;
     }
 
     @Override
-    public Comune getItem(String itemId) {
-        return null;
-    }
+    public Comune getItem(String itemId) throws ExecutionException, InterruptedException {
+        DocumentReference documentReference = firestore.collection(collectionName).document(itemId);
+        DocumentSnapshot document = documentReference.get().get();
 
-    public Comune getItemByCodiceISTAT(String codiceISTAT) {
-        return null;
+        Comune result = new Comune();
+        if (document.exists()) {
+            DocumentReference provinciaDocument = firestore.document(Objects.requireNonNull(document.get("provincia", String.class)));
+            ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
+
+            result.setCodiceISTAT(document.get("codiceISTAT", String.class));
+            result.setNome(document.get("nome", String.class));
+            result.setDataIstituzione(document.get("dataIstituzione", String.class));
+            result.setSuperficie(document.get("superficie", Double.class));
+            result.setTerritorio(Territorio.valueOf(document.get("territorio", String.class)));
+            result.setFronteMare(document.get("fronteMare", Boolean.class));
+            result.setProvincia(provinciaDao.getItem(provinciaDocument.getId()));
+        }
+
+        return result;
     }
 
     @Override
-    public Comune addItem(Comune item) {
-        return null;
+    public Comune addItem(Comune item) throws ExecutionException, InterruptedException {
+        DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
+
+        ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
+
+        if (provinciaDao.getItem(item.getProvincia().generateId()) == null) {
+            provinciaDao.addItem(item.getProvincia());
+        }
+
+        ApiFuture<WriteResult> writeResult = documentReference.set(item.getFirebaseObject());
+
+        DocumentSnapshot documentSnapshot = documentReference.get().get();
+        return getItem(documentSnapshot.getId());
     }
 
     @Override

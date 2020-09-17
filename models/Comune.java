@@ -1,11 +1,15 @@
 package elaborato_ingegneriaSW.models;
 
+import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
+
+import java.util.HashMap;
+
 public class Comune {
     private String codiceISTAT;
     private String nome;
     private String dataIstituzione;
     private double superficie;
-    private String territorio;
+    private Territorio territorio;
     private boolean fronteMare;
     private Provincia provincia;
 
@@ -18,7 +22,7 @@ public class Comune {
      * @param fronteMare      indicazione del fatto che il comune si affacci sul mare
      * @param provincia       provincia a cui appartiene il comune
      */
-    public Comune(String codiceISTAT, String nome, String dataIstituzione, double superficie, String territorio, boolean fronteMare, Provincia provincia) {
+    public Comune(String codiceISTAT, String nome, String dataIstituzione, double superficie, Territorio territorio, boolean fronteMare, Provincia provincia) {
         this.codiceISTAT = codiceISTAT;
         this.nome = nome;
         this.dataIstituzione = dataIstituzione;
@@ -31,11 +35,11 @@ public class Comune {
     public Comune() {
     }
 
-    public String getCodice_ISTAT() {
+    public String getCodiceISTAT() {
         return codiceISTAT;
     }
 
-    public void setCodice_ISTAT(String codiceISTAT) {
+    public void setCodiceISTAT(String codiceISTAT) {
         this.codiceISTAT = codiceISTAT;
     }
 
@@ -47,11 +51,11 @@ public class Comune {
         this.nome = nome;
     }
 
-    public String getData_istituzione() {
+    public String getDataIstituzione() {
         return dataIstituzione;
     }
 
-    public void setData_istituzione(String dataIstituzione) {
+    public void setDataIstituzione(String dataIstituzione) {
         this.dataIstituzione = dataIstituzione;
     }
 
@@ -63,19 +67,19 @@ public class Comune {
         this.superficie = superficie;
     }
 
-    public String getTerritorio() {
+    public Territorio getTerritorio() {
         return territorio;
     }
 
-    public void setTerritorio(String territorio) {
+    public void setTerritorio(Territorio territorio) {
         this.territorio = territorio;
     }
 
-    public boolean isFronte_mare() {
+    public boolean isFronteMare() {
         return fronteMare;
     }
 
-    public void setFronte_mare(boolean fronteMare) {
+    public void setFronteMare(boolean fronteMare) {
         this.fronteMare = fronteMare;
     }
 
@@ -85,5 +89,26 @@ public class Comune {
 
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
+    }
+
+    /**
+     * Ritorna l'id univoco per il record nel database
+     * @return nome_regione.id
+     */
+    public String generateId() {
+        return (codiceISTAT).toLowerCase();
+    }
+
+    public HashMap<String, Object> getFirebaseObject() {
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        result.put("codiceISTAT", codiceISTAT);
+        result.put("nome", nome);
+        result.put("dataIstituzione", dataIstituzione);
+        result.put("superficie", superficie);
+        result.put("territorio", territorio);
+        result.put("fronteMare", fronteMare);
+        result.put("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId());
+
+        return result;
     }
 }

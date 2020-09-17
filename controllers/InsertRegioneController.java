@@ -1,20 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package elaborato_ingegneriaSW.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import java.util.concurrent.ExecutionException;
 
-/**
- * FXML Controller class
- *
- * @author mirgi
- */
+import com.jfoenix.controls.JFXTextField;
+import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
+import elaborato_ingegneriaSW.models.Regione;
+import elaborato_ingegneriaSW.utils.AlertUtil;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+
 public class InsertRegioneController implements Initializable {
+    @FXML
+    private JFXTextField nomeTextField;
+    @FXML
+    private JFXTextField capoluogoTextField;
+    @FXML
+    private JFXTextField superficieTextField;
+
+    private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
     /**
      * Initializes the controller class.
@@ -22,6 +29,24 @@ public class InsertRegioneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    @FXML
+    private void insertRegioneAction(ActionEvent event) throws ExecutionException, InterruptedException {
+        String nome = nomeTextField.getText();
+        String capoluogo = capoluogoTextField.getText();
+        Double superficie = Double.parseDouble(superficieTextField.getText());
+
+        if (nome == null || capoluogo == null || superficie == null) {
+            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
+        }
+
+        Regione newRegione = new Regione(nome, capoluogo, superficie);
+        if (regioneDao.addItem(newRegione) == null) {
+            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
+        } else {
+            System.out.println("ok");
+        }
+    }
     
 }
