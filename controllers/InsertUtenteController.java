@@ -15,18 +15,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-public class InsertPersonaleContrattoController implements Initializable {
+public class InsertUtenteController implements Initializable {
 
     @FXML
     private JFXTextField nomeTextField;
     @FXML
     private JFXTextField cognomeTextField;
     @FXML
-    private JFXDatePicker dataNascitaDatePicker;
-    @FXML
     private JFXTextField cfTextField;
     @FXML
-    private JFXComboBox comuneAssociatoComboBox;
+    private JFXTextField usernameTextField;
+    @FXML
+    private JFXTextField passwordTextField;
+    @FXML
+    private JFXComboBox tipoComboBox;
 
     /**
      * Initializes the controller class.
@@ -37,7 +39,7 @@ public class InsertPersonaleContrattoController implements Initializable {
     }
 
     @FXML
-    private void insertPersonaleAction(ActionEvent event) throws ExecutionException, InterruptedException {
+    private void insertUtenteAction(ActionEvent event) throws ExecutionException, InterruptedException {
         System.out.println(cognomeTextField.getText());
     }
 }
