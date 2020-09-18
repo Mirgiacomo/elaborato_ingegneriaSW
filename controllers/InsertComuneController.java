@@ -93,7 +93,7 @@ public class InsertComuneController implements Initializable {
         if (comuneDao.addItem(newComune) == null) {
             AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
-            System.out.println("ok");
+            System.out.println("Comune inserito correttamente!");
         }
     }
     
