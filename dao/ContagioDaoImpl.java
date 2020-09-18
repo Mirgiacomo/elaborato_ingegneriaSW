@@ -4,6 +4,7 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import elaborato_ingegneriaSW.models.Contagio;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public class ContagioDaoImpl extends DaoImpl<Contagio> {
@@ -22,17 +23,28 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
         DocumentReference documentReference = firestore.collection(collectionName).document(itemId);
         DocumentSnapshot document = documentReference.get().get();
 
-        Contagio result = null;
-        if (document.exists()) {
-            result = document.toObject(Contagio.class);
-        }
-
-        return result;
+        return getItem(document);
     }
 
     @Override
-    public Contagio getItem(DocumentSnapshot document) {
-        return null;
+    public Contagio getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException, NullPointerException {
+        Contagio result = new Contagio();
+        if (document.exists()) {
+            ComuneDaoImpl comuneDao = new ComuneDaoImpl();
+            MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
+
+            DocumentReference comuneDocument = firestore.document(Objects.requireNonNull(document.get("comune", String.class)));
+            DocumentReference malattiaContagiosaDocument = firestore.document(Objects.requireNonNull(document.get("malattiaContagiosa", String.class)));
+
+            result.setComune(comuneDao.getItem(comuneDocument.getId()));
+            result.setMalattiaContagiosa(malattiaContagiosaDao.getItem(malattiaContagiosaDocument.getId()));
+            result.setNumeroMedicoBase(document.get("numeroMedicoBase", Integer.class));
+            result.setNumeroTerapiaIntensiva(document.get("numeroTerapiaIntensiva", Integer.class));
+            result.setWeek(document.get("week", Integer.class));
+            result.setYear(document.get("year", Integer.class));
+        }
+
+        return result;
     }
 
     @Override

@@ -50,6 +50,8 @@ public class Contagio {
         this.year = date.getYear();
     }
 
+    public Contagio() { }
+
     public Comune getComune() {
         return comune;
     }
