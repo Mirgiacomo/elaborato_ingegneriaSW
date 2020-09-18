@@ -11,7 +11,7 @@
 
 <VBox prefHeight="519.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertProvinciaController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #faf0f0; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #f5f5f5; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
          <children>
             <Text layoutX="186.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE PROVINCIA" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>
