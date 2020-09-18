@@ -1,8 +1,6 @@
 package elaborato_ingegneriaSW.controllers;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -13,7 +11,8 @@ import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Regione;
-import elaborato_ingegneriaSW.utils.AlertUtil;
+import elaborato_ingegneriaSW.utils.FXUtil;
+import elaborato_ingegneriaSW.utils.AutoCompleteBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,6 +41,7 @@ public class InsertProvinciaController implements Initializable {
             for (Regione regione: regioni) {
                 regioneComboBox.getItems().add(regione);
             }
+            new AutoCompleteBox(regioneComboBox);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -53,15 +53,15 @@ public class InsertProvinciaController implements Initializable {
     private void insertProvinciaAction(ActionEvent event) throws ExecutionException, InterruptedException {
         String nome = nomeTextField.getText();
         Double superficie = Double.parseDouble(superficieTextField.getText());
-        Regione regione = (Regione) regioneComboBox.getValue();
+        Regione regione = (Regione) FXUtil.getComboBoxItemFromString(regioneComboBox);
 
         if (nome == null || superficie == null || regione == null) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
         }
 
         Provincia newProvincia = new Provincia(nome, superficie, regione);
         if (provinciaDao.addItem(newProvincia) == null) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
             System.out.println("ok");
         }

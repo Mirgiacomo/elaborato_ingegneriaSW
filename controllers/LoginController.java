@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
 import elaborato_ingegneriaSW.models.Utente;
-import elaborato_ingegneriaSW.utils.AlertUtil;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,7 +61,7 @@ public class LoginController implements Initializable {
         Utente user = userDao.getUtenteByUsername(username);
 
         if (user == null || password.equals("")) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null, event);
         } else if (user.getPassword().equals(password)) {
             Stage stage = new Stage();
             VBox box = new VBox();
@@ -75,7 +75,7 @@ public class LoginController implements Initializable {
             // Per nascondere la finestra di login sotto
             ((Node)(event.getSource())).getScene().getWindow().hide();
         } else {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null, event);
         }
     }
 

@@ -11,12 +11,11 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
-import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Provincia;
-import elaborato_ingegneriaSW.models.Regione;
 import elaborato_ingegneriaSW.models.Territorio;
-import elaborato_ingegneriaSW.utils.AlertUtil;
+import elaborato_ingegneriaSW.utils.AutoCompleteBox;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -52,6 +51,7 @@ public class InsertComuneController implements Initializable {
             for (Provincia provincia: province) {
                 provinciaComboBox.getItems().add(provincia);
             }
+            new AutoCompleteBox(provinciaComboBox);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -61,6 +61,7 @@ public class InsertComuneController implements Initializable {
         for (Territorio territorio: Territorio.values()) {
             territorioComboBox.getItems().add(territorio);
         }
+        new AutoCompleteBox(territorioComboBox);
     }
 
     @FXML
@@ -69,17 +70,17 @@ public class InsertComuneController implements Initializable {
         String nome = nomeTextField.getText();
         String dataIstituzione = dataIstituzioneDataPicker.getValue().toString();
         Double superficie = Double.parseDouble(superficieTextField.getText());
-        Territorio territorio = (Territorio) territorioComboBox.getValue();
+        Territorio territorio = (Territorio) FXUtil.getComboBoxItemFromString(territorioComboBox);
         Boolean fronteMare = fronteMareCheckBox.isSelected();
-        Provincia provincia = (Provincia) provinciaComboBox.getValue();
+        Provincia provincia = (Provincia) FXUtil.getComboBoxItemFromString(provinciaComboBox);
 
         if (codiceISTAT == null || nome == null || dataIstituzione == null || superficie == null || territorio == null || fronteMare == null || provincia == null) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
         }
 
         Comune newComune = new Comune(codiceISTAT, nome, dataIstituzione, superficie, territorio, fronteMare, provincia);
         if (comuneDao.addItem(newComune) == null) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
             System.out.println("ok");
         }
