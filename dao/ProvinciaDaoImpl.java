@@ -31,8 +31,9 @@ public class ProvinciaDaoImpl extends DaoImpl<Provincia> {
 
     @Override
     public Provincia getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException {
-        Provincia result = new Provincia();
+        Provincia result = null;
         if (document.exists()) {
+            result = new Provincia();
             DocumentReference regioneDocument = firestore.document(Objects.requireNonNull(document.get("regione", String.class)));
             RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
