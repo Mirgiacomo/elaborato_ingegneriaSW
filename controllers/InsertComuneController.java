@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -66,23 +68,33 @@ public class InsertComuneController implements Initializable {
 
     @FXML
     private void insertComuneAction(ActionEvent event) throws ExecutionException, InterruptedException {
+        Double superficie = null;
+        try {
+            superficie = Double.parseDouble(superficieTextField.getText());
+        } catch (NumberFormatException e) {
+            AlertUtil.Alert(Alert.AlertType.ERROR, "SUPERFICIE ERRATA", "Errore durante l'inserimento della superficie! Prova con il punto al posto della virgola", null, event);
+            return;
+        }
+        // Controllo se il codice ISTAT è valido
+        Pattern pattern = Pattern.compile("^[0-9]{6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(codiceISTATTextField.getText());
+        boolean matchFound = matcher.find();
+        if(codiceISTATTextField.getText().isBlank() || nomeTextField.getText().isBlank() ||  superficie <= 0 || superficieTextField.getText().isBlank() || !(matchFound)){
+            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
+            return;
+        }
         String codiceISTAT = codiceISTATTextField.getText();
         String nome = nomeTextField.getText();
         String dataIstituzione = dataIstituzioneDataPicker.getValue().toString();
-        Double superficie = Double.parseDouble(superficieTextField.getText());
         Territorio territorio = (Territorio) FXUtil.getComboBoxItemFromString(territorioComboBox);
         Boolean fronteMare = fronteMareCheckBox.isSelected();
         Provincia provincia = (Provincia) FXUtil.getComboBoxItemFromString(provinciaComboBox);
-
-        if (codiceISTAT == null || nome == null || dataIstituzione == null || superficie == null || territorio == null || fronteMare == null || provincia == null) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
-        }
 
         Comune newComune = new Comune(codiceISTAT, nome, dataIstituzione, superficie, territorio, fronteMare, provincia);
         if (comuneDao.addItem(newComune) == null) {
             FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
-            System.out.println("ok");
+            System.out.println("Comune inserito correttamente!");
         }
     }
     

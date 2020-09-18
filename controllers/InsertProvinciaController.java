@@ -51,19 +51,26 @@ public class InsertProvinciaController implements Initializable {
 
     @FXML
     private void insertProvinciaAction(ActionEvent event) throws ExecutionException, InterruptedException {
-        String nome = nomeTextField.getText();
-        Double superficie = Double.parseDouble(superficieTextField.getText());
-        Regione regione = (Regione) FXUtil.getComboBoxItemFromString(regioneComboBox);
-
-        if (nome == null || superficie == null || regione == null) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
+        Double superficie = null;
+        try {
+            superficie = Double.parseDouble(superficieTextField.getText());
+        } catch (NumberFormatException e) {
+            AlertUtil.Alert(Alert.AlertType.ERROR, "SUPERFICIE ERRATA", "Errore durante l'inserimento della superficie! Prova con il punto al posto della virgola", null, event);
+            return;
+        }
+        if(nomeTextField.getText().isBlank() || superficieTextField.getText().isBlank() || superficie <= 0){
+            AlertUtil.Alert(Alert.AlertType.ERROR, "ERRORE NEI DATI!", "Dati non validi!", null, event);
+            return;
         }
 
+        String nome = nomeTextField.getText();
+        Regione regione = (Regione) FXUtil.getComboBoxItemFromString(regioneComboBox);
+      
         Provincia newProvincia = new Provincia(nome, superficie, regione);
         if (provinciaDao.addItem(newProvincia) == null) {
             FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
-            System.out.println("ok");
+            System.out.println("Provincia inserita correttamente!");
         }
     }
 
