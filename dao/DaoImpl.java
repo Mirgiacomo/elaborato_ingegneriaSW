@@ -23,7 +23,7 @@ public abstract class DaoImpl<T> implements Dao<T> {
         Set result = new TreeSet();
 
         for (QueryDocumentSnapshot document : documents) {
-            result.add(getItem(document.getId()));
+            result.add(getItem(document));
         }
 
         return result;
@@ -50,21 +50,9 @@ public abstract class DaoImpl<T> implements Dao<T> {
         List result = new ArrayList();
 
         for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
-            result.add(document.toObject(classType));
+            result.add(getItem(document));
         }
 
         return result;
     }
-
-    @Override
-    public abstract T getItem(String itemId) throws ExecutionException, InterruptedException;
-
-    @Override
-    public abstract T addItem(T item) throws ExecutionException, InterruptedException;
-
-    @Override
-    public abstract T updateItem(T item);
-
-    @Override
-    public abstract boolean deleteItem(T item);
 }
