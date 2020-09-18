@@ -18,6 +18,7 @@ import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
 import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.AlertUtil;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,7 +59,7 @@ public class InsertUtenteController implements Initializable {
         Matcher matcher = pattern.matcher(cfTextField.getText());
         boolean matchFound = matcher.find();
         if(nomeTextField.getText().isBlank() || cognomeTextField.getText().isBlank() || usernameTextField.getText().isBlank() || passwordTextField.getText().isBlank() || cfTextField.getText().isBlank() || !(matchFound)){
-            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
             return;
         }
 
@@ -73,7 +74,7 @@ public class InsertUtenteController implements Initializable {
 
         Utente newUtente = new Utente(cognome, nome, username, password, ruolo, cf);
         if (utenteDao.addItem(newUtente) == null) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO UTENTE FALLITO", "Errore durante l'inserimento dell'utente!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO UTENTE FALLITO", "Errore durante l'inserimento dell'utente!", null, event);
         } else {
             System.out.println("Utente inserito correttamente.");
         }

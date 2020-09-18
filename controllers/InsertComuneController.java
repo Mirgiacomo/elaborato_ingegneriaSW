@@ -72,7 +72,7 @@ public class InsertComuneController implements Initializable {
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
         } catch (NumberFormatException e) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "SUPERFICIE ERRATA", "Errore durante l'inserimento della superficie! Prova con il punto al posto della virgola", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "SUPERFICIE ERRATA", "Errore durante l'inserimento della superficie! Prova con il punto al posto della virgola", null, event);
             return;
         }
         // Controllo se il codice ISTAT è valido
@@ -80,7 +80,7 @@ public class InsertComuneController implements Initializable {
         Matcher matcher = pattern.matcher(codiceISTATTextField.getText());
         boolean matchFound = matcher.find();
         if(codiceISTATTextField.getText().isBlank() || nomeTextField.getText().isBlank() ||  superficie <= 0 || superficieTextField.getText().isBlank() || !(matchFound)){
-            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
             return;
         }
         String codiceISTAT = codiceISTATTextField.getText();

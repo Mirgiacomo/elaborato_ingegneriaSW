@@ -55,11 +55,11 @@ public class InsertProvinciaController implements Initializable {
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
         } catch (NumberFormatException e) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "SUPERFICIE ERRATA", "Errore durante l'inserimento della superficie! Prova con il punto al posto della virgola", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "SUPERFICIE ERRATA", "Errore durante l'inserimento della superficie! Prova con il punto al posto della virgola", null, event);
             return;
         }
         if(nomeTextField.getText().isBlank() || superficieTextField.getText().isBlank() || superficie <= 0){
-            AlertUtil.Alert(Alert.AlertType.ERROR, "ERRORE NEI DATI!", "Dati non validi!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE NEI DATI!", "Dati non validi!", null, event);
             return;
         }
 
