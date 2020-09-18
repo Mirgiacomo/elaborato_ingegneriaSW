@@ -33,26 +33,19 @@ public class InsertRegioneController implements Initializable {
 
     @FXML
     private void insertRegioneAction(ActionEvent event) throws ExecutionException, InterruptedException {
-        Double superficie = null;
-        try {
-            superficie = Double.parseDouble(superficieTextField.getText());
-        } catch (NumberFormatException e) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "SUPERFICIE ERRATA", "Errore durante l'inserimento della superficie! Prova con il punto al posto della virgola", null, event);
-            return;
-        }
-        if(nomeTextField.getText().isBlank() || capoluogoTextField.getText().isBlank() || superficieTextField.getText().isBlank() || superficie <= 0){
-            AlertUtil.Alert(Alert.AlertType.ERROR, "ERRORE NEI DATI!", "Dati non validi!", null, event);
-            return;
-        }
         String nome = nomeTextField.getText();
         String capoluogo = capoluogoTextField.getText();
+        Double superficie = Double.parseDouble(superficieTextField.getText());
 
+        if (nome == null || capoluogo == null || superficie == null) {
+            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
+        }
 
         Regione newRegione = new Regione(nome, capoluogo, superficie);
         if (regioneDao.addItem(newRegione) == null) {
             AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
-            System.out.println("Regione inserita correttamente.");
+            System.out.println("ok");
         }
     }
     

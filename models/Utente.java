@@ -11,25 +11,6 @@ public class Utente {
     private RuoloUtente ruolo;
     private String cf;
 
-    // TODO: aggiungere nel costruttore anche i comuni
-    public Utente(String cognome, String nome, String username, String password, RuoloUtente ruolo, String cf) {
-        this.cognome = cognome;
-        this.nome = nome;
-        this.username = username;
-        this.password = password;
-        this.ruolo = ruolo;
-        this.cf = cf;
-//        this.comuniAssociati = comuniAssociati;
-    }
-
-    /**
-     * Ritorna l'id univoco per il record nel database
-     * @return username.id
-     */
-    public String generateId() {
-        return (username).toLowerCase();
-    }
-
     HashMap<String, List> comuniAssociati;
 
     public String getCognome() {
