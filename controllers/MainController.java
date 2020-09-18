@@ -34,6 +34,8 @@ public class MainController extends AbstractController implements Initializable,
     @FXML
     private AnchorPane contentPane;
 
+    private HamburgerBackArrowBasicTransition transition;
+
     public MainController() { }
 
     @Override
@@ -55,7 +57,7 @@ public class MainController extends AbstractController implements Initializable,
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+            transition = new HamburgerBackArrowBasicTransition(hamburger);
             transition.setRate(-1);
             hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
                 transition.setRate(transition.getRate() * -1);
@@ -114,5 +116,10 @@ public class MainController extends AbstractController implements Initializable,
 
         contentPane.getChildren().clear();
         contentPane.getChildren().add(content);
+
+        transition.setRate(transition.getRate() * -1);
+        transition.play();
+
+        drawer.close();
     }
 }

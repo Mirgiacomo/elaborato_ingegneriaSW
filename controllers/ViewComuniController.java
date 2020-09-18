@@ -2,15 +2,21 @@ package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.models.Comune;
+import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -57,7 +63,15 @@ public class ViewComuniController implements Initializable {
         }
     }
 
-    public void showInsertComune(ActionEvent event) {
+    public void showInsertComune(ActionEvent event) throws IOException {
+        ShowView showView = new ShowView();
+        FXMLLoader loader = showView.getLoader("InsertComune.fxml");
 
+        Parent view = loader.load();
+        Scene scene = new Scene(view);
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }

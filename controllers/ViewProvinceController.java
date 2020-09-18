@@ -2,15 +2,21 @@ package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.models.Provincia;
+import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -44,7 +50,15 @@ public class ViewProvinceController implements Initializable {
         }
     }
 
-    public void showInsertProvincia(ActionEvent event) {
+    public void showInsertProvincia(ActionEvent event) throws IOException {
+        ShowView showView = new ShowView();
+        FXMLLoader loader = showView.getLoader("InsertProvincia.fxml");
 
+        Parent view = loader.load();
+        Scene scene = new Scene(view);
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }
