@@ -24,7 +24,7 @@
                   <Font name="System Bold" size="33.0" />
                </font>
             </Text>
-            <Text layoutX="45.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome">
+            <Text layoutX="28.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome">
                <font>
                   <Font name="Open Sans" size="20.0" />
                </font>
@@ -44,12 +44,12 @@
                   <Font name="Open Sans Semibold" size="15.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" layoutX="116.0" layoutY="109.0" prefHeight="28.0" prefWidth="254.0">
+            <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" layoutX="102.0" layoutY="109.0" prefHeight="38.0" prefWidth="268.0">
                <font>
                   <Font name="Open Sans" size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="cfTextField" focusColor="#7c2e2e" layoutX="205.0" layoutY="229.0" prefHeight="28.0" prefWidth="171.0">
+            <JFXTextField fx:id="cfTextField" focusColor="#7c2e2e" layoutX="175.0" layoutY="224.0" prefHeight="38.0" prefWidth="254.0">
                <font>
                   <Font name="Open Sans" size="18.0" />
                </font>
@@ -59,17 +59,17 @@
                   <Font name="Open Sans" size="18.0" />
                </font>
             </JFXTextField>
-            <Text layoutX="45.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codice Fiscale">
+            <Text layoutX="28.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codice Fiscale">
                <font>
                   <Font name="Open Sans" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="45.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+            <Text layoutX="25.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
                <font>
                   <Font name="Open Sans" size="20.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="usernameTextField" focusColor="#7c2e2e" layoutX="160.0" layoutY="170.0" prefHeight="28.0" prefWidth="214.0">
+            <JFXTextField fx:id="usernameTextField" focusColor="#7c2e2e" layoutX="141.0" layoutY="170.0" prefHeight="38.0" prefWidth="233.0">
                <font>
                   <Font name="Open Sans" size="18.0" />
                </font>
@@ -86,12 +86,12 @@
             </JFXTextField>
             <CheckBox layoutX="160.0" layoutY="302.0" mnemonicParsing="false" text="CheckBox" />
             <CheckBox layoutX="160.0" layoutY="337.0" mnemonicParsing="false" text="CheckBox" />
-            <Text layoutX="448.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo">
+            <Text layoutX="459.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo">
                <font>
                   <Font name="Open Sans" size="20.0" />
                </font>
             </Text>
-            <JFXComboBox fx:id="tipoComboBox" layoutX="528.0" layoutY="231.0" prefHeight="28.0" prefWidth="254.0" />
+            <JFXComboBox fx:id="ruoloComboBox" layoutX="528.0" layoutY="231.0" prefHeight="28.0" prefWidth="254.0" />
          </children>
       </AnchorPane>
   </children>

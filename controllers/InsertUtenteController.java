@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Regione;
+import elaborato_ingegneriaSW.models.RuoloUtente;
+import elaborato_ingegneriaSW.models.Territorio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,15 +30,19 @@ public class InsertUtenteController implements Initializable {
     @FXML
     private JFXTextField passwordTextField;
     @FXML
-    private JFXComboBox tipoComboBox;
+    private JFXComboBox ruoloComboBox;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        for (RuoloUtente ruolo: RuoloUtente.values()) {
+            ruoloComboBox.getItems().add(ruolo);
+        }
     }
+
+
 
     @FXML
     private void insertUtenteAction(ActionEvent event) throws ExecutionException, InterruptedException {
