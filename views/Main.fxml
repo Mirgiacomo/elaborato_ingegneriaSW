@@ -4,8 +4,13 @@
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.layout.HBox?>
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="564.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.MainController">
     <children>
+
+        <HBox alignment="CENTER">
+            <AnchorPane fx:id="contentPane" prefHeight="564.0" prefWidth="1000.0" />
+        </HBox>
         <JFXDrawer fx:id="drawer" alignment="CENTER_LEFT" defaultDrawerSize="250.0" prefHeight="562.0" prefWidth="250.0" />
         <JFXHamburger fx:id="hamburger" layoutX="911.0" layoutY="24.0" prefHeight="42.0" prefWidth="57.0" />
     </children>

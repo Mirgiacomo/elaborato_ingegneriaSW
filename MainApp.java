@@ -1,12 +1,12 @@
 package elaborato_ingegneriaSW;
 
+import elaborato_ingegneriaSW.controllers.MainController;
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
-import elaborato_ingegneriaSW.models.Comune;
-import elaborato_ingegneriaSW.models.Provincia;
-import elaborato_ingegneriaSW.models.Regione;
-import elaborato_ingegneriaSW.models.Territorio;
+import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
+import elaborato_ingegneriaSW.models.*;
+import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,12 +19,16 @@ public class MainApp extends Application {
 
     public static Boolean isSplashLoaded = false;
 
-   @Override
+    @Override
     public void start(Stage stage) throws Exception {
-        // Parent root = FXMLLoader.load(getClass().getResource("views/Login.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("views/Main.fxml"));
-        Scene scene = new Scene(root);
-        
+        ShowView showView = new ShowView();
+        FXMLLoader loader = showView.getLoader("Main.fxml");
+
+        Parent view = loader.load();
+        MainController controller = loader.getController();
+        controller.loadView();
+
+        Scene scene = new Scene(view);
         stage.setScene(scene);
         stage.show();
     }

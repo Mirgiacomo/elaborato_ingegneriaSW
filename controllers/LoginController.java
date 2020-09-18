@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
 import elaborato_ingegneriaSW.models.Utente;
 import elaborato_ingegneriaSW.utils.FXUtil;
+import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,17 +59,24 @@ public class LoginController implements Initializable {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
 
-        Utente user = userDao.getUtenteByUsername(username);
+        Utente user = userDao.getItem(username);
 
         if (user == null || password.equals("")) {
             FXUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null, event);
         } else if (user.getPassword().equals(password)) {
-            Stage stage = new Stage();
-            VBox box = new VBox();
-            stage.setTitle("Centro malattie infettive");
+            ShowView showView = new ShowView();
+            FXMLLoader loader = showView.getLoader("Main.fxml");
 
-            Parent root = FXMLLoader.load(getClass().getResource("/elaborato_ingegneriaSW/views/Main.fxml"));
-            Scene scene = new Scene(root);
+            Parent view = loader.load();
+
+            MainController controller = loader.getController();
+            controller.setLoggedUser(user);
+            controller.loadView();
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(view);
+
+            stage.setTitle("Centro malattie infettive");
             stage.setScene(scene);
             stage.show();
 

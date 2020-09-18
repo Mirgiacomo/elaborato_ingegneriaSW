@@ -2,11 +2,12 @@ package elaborato_ingegneriaSW.controllers;
 
 
 import com.jfoenix.controls.JFXButton;
-import elaborato_ingegneriaSW.utils.ColorChangeCallback;
+import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,29 +22,29 @@ public class SidePanelPersonaleMonitoraggioController implements Initializable {
     @FXML
     private JFXButton exit;
 
-    private ColorChangeCallback callback;
+    private SelectViewCallback callback;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
-    public void setCallback(ColorChangeCallback callback) {
+    public void setCallback(SelectViewCallback callback) {
         this.callback = callback;
     }
 
     @FXML
-    private void changeColor(ActionEvent event) {
+    private void changeColor(ActionEvent event) throws IOException {
         JFXButton btn = (JFXButton) event.getSource();
         System.out.println(btn.getText());
         switch (btn.getText()) {
             case "Color 1":
-                callback.updateColor("#00FF00");
+                callback.selectView("#00FF00");
                 break;
             case "Color 2":
-                callback.updateColor("#0000FF");
+                callback.selectView("#0000FF");
                 break;
             case "Color 3":
-                callback.updateColor("#FF0000");
+                callback.selectView("#FF0000");
                 break;
         }
     }

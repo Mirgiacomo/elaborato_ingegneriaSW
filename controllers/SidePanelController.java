@@ -1,56 +1,36 @@
 package elaborato_ingegneriaSW.controllers;
 
-
-import com.jfoenix.controls.JFXButton;
-import elaborato_ingegneriaSW.utils.ColorChangeCallback;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-public class SidePanelController implements Initializable {
+public abstract class SidePanelController extends AbstractController implements Initializable {
+    private SelectViewCallback callback;
 
-    @FXML
-    private JFXButton b1;
-    @FXML
-    private JFXButton b2;
-    @FXML
-    private JFXButton b3;
-    @FXML
-    private JFXButton exit;
-
-    private ColorChangeCallback callback;
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-    }
-
-    public void setCallback(ColorChangeCallback callback) {
+    public void setCallback(SelectViewCallback callback) {
         this.callback = callback;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) { }
+
     @FXML
-    private void changeColor(ActionEvent event) {
-        JFXButton btn = (JFXButton) event.getSource();
-        System.out.println(btn.getText());
-        switch (btn.getText()) {
-            case "Color 1":
-                callback.updateColor("#00FF00");
-                break;
-            case "Color 2":
-                callback.updateColor("#0000FF");
-                break;
-            case "Color 3":
-                callback.updateColor("#FF0000");
-                break;
-        }
+    public void viewRegioniAction(ActionEvent event) throws IOException {
+        callback.selectView("viewRegioni.fxml");
     }
 
     @FXML
-    private void exit(ActionEvent event) {
-        System.exit(0);
+    public void viewProvinceAction(ActionEvent event) throws IOException {
+        callback.selectView("viewProvince.fxml");
     }
 
+    @FXML
+    public void viewComuniAction(ActionEvent event) throws IOException {
+        callback.selectView("viewComuni.fxml");
+    }
 }

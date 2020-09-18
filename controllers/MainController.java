@@ -1,7 +1,7 @@
 package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.MainApp;
-import elaborato_ingegneriaSW.utils.ColorChangeCallback;
+import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
@@ -21,7 +21,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class MainController implements Initializable, ColorChangeCallback {
+public class MainController extends AbstractController implements Initializable, SelectViewCallback {
 
     @FXML
     private JFXDrawer drawer;
@@ -31,37 +31,46 @@ public class MainController implements Initializable, ColorChangeCallback {
 
     @FXML
     private AnchorPane root;
+    @FXML
+    private AnchorPane contentPane;
+
+    public MainController() { }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        if (!MainApp.isSplashLoaded) {
-            loadSplashScreen();
-        }
+    public void initialize(URL url, ResourceBundle rb) { }
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/elaborato_ingegneriaSW/views/SidePanelPersonaleContratto.fxml"));
-            VBox box = loader.load();
-            // SidePanelController controller = loader.getController();
-            drawer.setSidePane(box);
-        } catch (IOException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void loadView() {
+        if (loggedUser == null) {
+            showLogin();
+        } else {
+            try {
+                FXMLLoader loader = showView.getLoader("SidePanelPersonaleContagi.fxml");
+                VBox box = loader.load();
 
-        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
-        transition.setRate(-1);
-        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-            transition.setRate(transition.getRate() * -1);
-            transition.play();
+                SidePanelController controller = loader.getController();
+                controller.setCallback(this);
 
-            if (drawer.isOpened()) {
-                drawer.close();
-            } else {
-                drawer.open();
+                drawer.setSidePane(box);
+            } catch (IOException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
+
+            HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+            transition.setRate(-1);
+            hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+                transition.setRate(transition.getRate() * -1);
+                transition.play();
+
+                if (drawer.isOpened()) {
+                    drawer.close();
+                } else {
+                    drawer.open();
+                }
+            });
+        }
     }
 
-    private void loadSplashScreen() {
+    private void showLogin() {
         try {
             MainApp.isSplashLoaded = true;
 
@@ -99,7 +108,11 @@ public class MainController implements Initializable, ColorChangeCallback {
     }
 
     @Override
-    public void updateColor(String newColor) {
-        root.setStyle("-fx-background-color:" + newColor);
+    public void selectView(String view) throws IOException {
+        FXMLLoader loader = showView.getLoader(view);
+        AnchorPane content = loader.load();
+
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(content);
     }
 }
