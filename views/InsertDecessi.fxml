@@ -38,12 +38,12 @@
                   <Font name="Open Sans Semibold" size="38.0" />
                </font>
             </Text>
-            <Text fx:id="provinciaTextField" layoutX="52.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Provincia">
+            <Text layoutX="52.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Provincia">
                <font>
                   <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <Text fx:id="provinciaTextField" layoutX="442.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Anno">
+            <Text fx:id="" layoutX="442.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Anno">
                <font>
                   <Font name="Open Sans Regular" size="20.0" />
                </font>
@@ -82,11 +82,6 @@
                   <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <ToggleButtonGroup layoutX="312.0" layoutY="529.0" selectionType="SINGLE">
-                <toggles>
-                    <ToggleButton />
-                </toggles>
-            </ToggleButtonGroup>
             <JFXButton layoutX="788.0" layoutY="218.0" opacity="0.0" prefHeight="52.0" prefWidth="63.0" text="Button">
                <tooltip>
                   <Tooltip text="Incidenti Stradali: moto, auto, bicicletta.">
