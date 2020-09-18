@@ -35,19 +35,6 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
         return result;
     }
 
-    public Utente getUtenteByUsername(String username) throws ExecutionException, InterruptedException {
-        CollectionReference users = firestore.collection(collectionName);
-        Query query = users.whereEqualTo("username", username);
-        ApiFuture<QuerySnapshot> querySnapshot = query.get();
-
-        Utente result = null;
-        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
-            result = document.toObject(Utente.class);
-        }
-
-        return result;
-    }
-
     @Override
     public Utente addItem(Utente item) throws ExecutionException, InterruptedException {
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());

@@ -4,7 +4,7 @@ import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 
 import java.util.HashMap;
 
-public class Comune {
+public class Comune implements Comparable<Comune> {
     private String codiceISTAT;
     private String nome;
     private String dataIstituzione;
@@ -110,5 +110,10 @@ public class Comune {
         result.put("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId());
 
         return result;
+    }
+
+    @Override
+    public int compareTo(Comune other) {
+        return codiceISTAT.compareTo(other.getCodiceISTAT());
     }
 }
