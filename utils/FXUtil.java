@@ -4,8 +4,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.ComboBox;
 
-public class AlertUtil {
+public class FXUtil {
 
     public static void Alert(Alert.AlertType alertType, String title, String headerText, String contentText, ActionEvent event) {
         Alert alert = new Alert(alertType);
@@ -14,5 +15,9 @@ public class AlertUtil {
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
         alert.showAndWait();
+    }
+
+    public static Object getComboBoxItemFromString(ComboBox comboBox) {
+        return comboBox.getItems().stream().filter(item -> comboBox.getValue().equals(item.toString())).findFirst().orElse(null);
     }
 }

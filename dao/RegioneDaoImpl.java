@@ -26,6 +26,11 @@ public class RegioneDaoImpl extends DaoImpl<Regione> {
         DocumentReference documentReference = firestore.collection(collectionName).document(itemId);
         DocumentSnapshot document = documentReference.get().get();
 
+        return getItem(document);
+    }
+
+    @Override
+    public Regione getItem(DocumentSnapshot document) {
         Regione result = null;
         if (document.exists()) {
             result = document.toObject(Regione.class);

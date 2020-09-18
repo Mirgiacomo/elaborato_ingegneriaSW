@@ -22,6 +22,11 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
         DocumentReference documentReference = firestore.collection(collectionName).document(itemId);
         DocumentSnapshot document = documentReference.get().get();
 
+        return getItem(document);
+    }
+
+    @Override
+    public Utente getItem(DocumentSnapshot document) {
         Utente result = null;
         if (document.exists()) {
             result = document.toObject(Utente.class);

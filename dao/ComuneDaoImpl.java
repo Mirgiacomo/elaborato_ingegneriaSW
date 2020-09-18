@@ -27,8 +27,14 @@ public class ComuneDaoImpl extends DaoImpl<Comune> {
         DocumentReference documentReference = firestore.collection(collectionName).document(itemId);
         DocumentSnapshot document = documentReference.get().get();
 
-        Comune result = new Comune();
+        return getItem(document);
+    }
+
+    @Override
+    public Comune getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException {
+        Comune result = null;
         if (document.exists()) {
+            result = new Comune();
             DocumentReference provinciaDocument = firestore.document(Objects.requireNonNull(document.get("provincia", String.class)));
             ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
 

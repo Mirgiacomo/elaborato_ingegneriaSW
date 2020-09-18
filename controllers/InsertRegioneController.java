@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.Regione;
-import elaborato_ingegneriaSW.utils.AlertUtil;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,10 +47,9 @@ public class InsertRegioneController implements Initializable {
         String nome = nomeTextField.getText();
         String capoluogo = capoluogoTextField.getText();
 
-
         Regione newRegione = new Regione(nome, capoluogo, superficie);
         if (regioneDao.addItem(newRegione) == null) {
-            AlertUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
             System.out.println("Regione inserita correttamente.");
         }
