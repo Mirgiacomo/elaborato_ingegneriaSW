@@ -2,13 +2,13 @@
 
 >Introduzione
 
-L'applicazione che abbiamo sviluppato è un'applicazione java desktop sviluppata tramite la libreria JavaFX e JFoenix.
+Il progetto che è stato realizzato è un'applicazione java desktop sviluppata tramite la libreria JavaFX e JFoenix.
 
-Per sviluppare il software abbiamo usato [Intellij Idea](https://www.jetbrains.com/idea/) come ambiente di sviluppo e [SceneBuilder](https://gluonhq.com/products/scene-builder/) per aiutarci con lo sviluppo dell'interfaccia grafica.
+Per sviluppare tale software è stato usato [Intellij Idea](https://www.jetbrains.com/idea/) come ambiente di sviluppo e [SceneBuilder](https://gluonhq.com/products/scene-builder/) per aiutarci con la progettazione dell'interfaccia grafica.
 
-Il processo di sviluppo è stato organizzato secondo il metodo AGILE e SCRUM.
+Il processo di sviluppo è stato coordinato secondo il metodo AGILE e SCRUM.
 Il gruppo, in questo caso formato da due persone, si trovava quotidianamente per meeting di media/breve durante, nei quali lo scopo principale era quello di individuare le criticità del sistema testandolo al momento.
-Inoltre durante questi *daily scrum* il secondo obiettivo era quello di pianificare il "*daily sprint*" con le modifiche e le nuove implementazioni al sistema.
+Inoltre durante questi *daily scrum* il secondo obiettivo era quello di pianificare il "*daily sprint*" con le modifiche e le nuove implementazioni del sistema.
 Il gruppo, vista la situazione attuale legata al COVID-19, ha optato per *scrum-meeting* sulle piattaforme ZOOM ed AnyDesk.
 Essendo il progetto stato sviluppato in circa due settimane, si è vista la necessità di organizzarci e discutere anche più di una volta al giorno sull'implementazione e la realizzazione dell'elaborato.
 La teoria alla base del metodo utilizzato è quella del **controllo empirico dei processi**, secondo la quale, da un lato, la conoscenza deriva dall’esperienza e, dall’altro lato, le decisioni si basano su ciò che si conosce. Per questo motivo si prevede un processo iterativo con un approccio incrementale che ottimizza, passo dopo passo (e sprint dopo sprint), la prevedibilità ed il controllo del rischio.
@@ -96,4 +96,20 @@ Il prototipo è strutturato in circa 2 sezioni principali:
 ![N|Solid](https://i.ibb.co/4fvyskH/login.png)
 La prima pagina dell'applicazione è quella di Login: permette l'autenticazione di diversi tipi di utenti (ADMIN, Ricercatori Analisti, Personale dell'ente etc), i quali, una volta loggati, potranno avere accesso alle funzioni che spetta ai loro ruoli.
 C'è la possibilità inoltre, di registrare un nuovo utente con un determinato ruolo.
+
+> #### Dashboard
+In base al ruolo dell'utente che effettua il login, verrà proposta una dashboard differente per ogni tipologia di privilegi:		
+		
+ - PERSONALE MONITORAGGIO
+	 - Inserimento Regione
+	 - Inserimento Provincia
+	 - Inserimento Comune
+ - PERSONALE CONTAGI
+	 - Inserimento mensile contagi dei comuni di competenza
+ - PERSONALE DECESSI
+	 - Inserimento annuale decessi avvenuti per provincia
+ - RICERCATORE ANALISTA
+	 - Visualizzazione grafici vari
+ - ADMIN
+	 - Tutte le operazioni sono permesse
 
