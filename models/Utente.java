@@ -22,6 +22,8 @@ public class Utente {
 //        this.comuniAssociati = comuniAssociati;
     }
 
+    public Utente() { }
+
     /**
      * Ritorna l'id univoco per il record nel database
      * @return username.id
