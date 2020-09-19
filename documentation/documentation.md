@@ -1,4 +1,4 @@
-## Sviluppo: collaborazione team, progettazione e pattern, scelte progettuali
+# Sviluppo: collaborazione team, progettazione e pattern, scelte progettuali
 
 >Introduzione
 
@@ -15,10 +15,10 @@ La teoria alla base del metodo utilizzato è quella del **controllo empirico dei
 Anche se nel caso di questo progetto è stato talvolta questo ragionamento.
 Infatti è stato manifestato dagli sviluppatori anche il volere collettivo di sperimentare nuove piattaforme e librerie per ampliare le proprie conoscenze.
 
-### Collaborazione team di sviluppo
+## Collaborazione team di sviluppo
 > Git & Github
 
-[![N|Solid](https://dpsvdv74uwwos.cloudfront.net/statics/img/drive/4mlufcgifby062lx9zsbpsuebeidold3k1n.jpeg)](https://nodesource.com/products/nsolid)
+![N|Solid](https://dpsvdv74uwwos.cloudfront.net/statics/img/drive/4mlufcgifby062lx9zsbpsuebeidold3k1n.jpeg)
 Per la condivisione, collaborazione e gestione del versionamento del software abbiamo scelto git,
 in particolare abbiamo creato una repository ospitata su **Github** 
 LINK: https://github.com/Mirgiacomo/elaborato_ingegneriaSW
@@ -48,11 +48,13 @@ incoerenze
 Come accennato precedentemente i daily scrum sono stati svolti sulla piattaforma online Zoom con incontri a cadenza quotidiana per confrontarci, fare il punto della situazione e decidere a cosa dare priorità nella parte di sviluppo.
 Inoltre, un altro strumento utilizzato è stato AnyDesk, per fare una sorta di *pair-programming* che risulta essere molto interessante ed importante, in quanto da la possibilità di aiutare gli sviluppatori a vicenda nella scrittura o spiegazione del codice.
 
-### Documentazione
+## Documentazione
+> StackEdit.io
+![N|Solid](https://stackedit.io/res-min/img/logo.svg)
+
 Per quanto riguarda la documentazione, è stata scritta in formato Markdown con l'aiuto di [stackedit.io](https://stackedit.io/app#), un tool esterno per editare Markdown con più facilità. 
 
-
-### Progettazione e pattern usati
+## Progettazione e pattern usati
 > #### Perchè JAVA?
 Il team ha deciso di utilizzare come linguaggio di programmazione per lo sviluppo di tale elaborato, JAVA in quanto, come detto precedentemente, si aveva già una dimestichezza ma al tempo stesso si voleva studiare ed usare nuove piattaforme e/o librerie agganciate a JAVA.
 La seconda idea era quella di sviluppare l'intero progetto mediante linguaggio PHP, appoggiandosi al framework Yii, ma poi, vista la poca coerenza con il corso di Programmazione II, è stata scartata tale idea.
@@ -66,10 +68,32 @@ Il team, avendo già avuto modo di studiare precedentemente Java e SeneBuilder, 
 
 > Pattern DAO
 
-### Scelte progettuali
+## Scelte progettuali
 
 > #### Perchè JAVA?
 Il team ha deciso di utilizzare come linguaggio di programmazione per lo sviluppo di tale elaborato, JAVA in quanto, come detto precedentemente, si aveva già una dimestichezza ma al tempo stesso si voleva studiare ed usare nuove piattaforme e/o librerie agganciate a JAVA.
 La seconda idea era quella di sviluppare l'intero progetto mediante linguaggio PHP, appoggiandosi al framework Yii, ma poi, vista la poca coerenza con il corso di Programmazione II, è stata scartata tale idea.
 
+## Gestione dei dati
+> Firebase
+![N|Solid](https://felgo.com/doc/images/logo-firebase.png)
+
+Visto l'intento di voler creare un prototipo di applicazione il più dinamo possibile, il team aveva diverse possibilità di salvataggio dati, come ad esempio la serializzazione su file o il salvataggio su database locale.
+Dopo varie discussioni si è scelto di utilizzare un sistemi software dove la persistenza dei dati è in generale caratterizzata dal fatto di non utilizzare il modello relazionale, di solito usato dalle basi di dati tradizionali come ad esempio MySQL o PostgreSQL.
+La scelta è ricaduta infatti nell'uso di **Firebase**: un **Realtime Database NoSQL** ospitato nel cloud Google che ti consente di archiviare e sincronizzare i dati tra i tuoi utenti in tempo reale.
+Non vi sono tabelle né record, nessuna traccia dell’approccio relazionale. Tutti i dati inseriti in Firebase vanno a costituire un **albero JSON**. I dati al suo interno potranno essere strutturati secondo questo formato: si potranno inserire mappe, liste, stringhe, tipi numerici e booleani.
+
+Link alla nostro Dashboard per il [progetto di Firebase](https://console.firebase.google.com/u/0/project/elaborato-ingegneria/firestore/data~2Fusers~2FZ1hRKCsQ5xkWJnRA0HTK)
+
+*Immagine di come si presenta la struttura dati in Firebase:*
+
+![N|Solid](https://i.ibb.co/5nqYpw1/dashboard-firebase.png)
+
+# Organizzazione della GUI
+Il prototipo è strutturato in circa 2 sezioni principali:
+> #### 1. Login page
+
+![N|Solid](https://i.ibb.co/4fvyskH/login.png)
+La prima pagina dell'applicazione è quella di Login: permette l'autenticazione di diversi tipi di utenti (ADMIN, Ricercatori Analisti, Personale dell'ente etc), i quali, una volta loggati, potranno avere accesso alle funzioni che spetta ai loro ruoli.
+C'è la possibilità inoltre, di registrare un nuovo utente con un determinato ruolo.
 
