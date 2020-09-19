@@ -17,7 +17,6 @@ import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
 import elaborato_ingegneriaSW.models.*;
-import elaborato_ingegneriaSW.utils.AlertUtil;
 import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
