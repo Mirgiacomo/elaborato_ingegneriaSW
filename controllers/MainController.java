@@ -46,7 +46,7 @@ public class MainController extends AbstractController implements Initializable,
             showLogin();
         } else {
             try {
-                FXMLLoader loader = showView.getLoader("SidePanelPersonaleContagi.fxml");
+                FXMLLoader loader = showView.getLoader("SidePanelRicercatoreAnalista.fxml");
                 VBox box = loader.load();
 
                 SidePanelController controller = loader.getController();
