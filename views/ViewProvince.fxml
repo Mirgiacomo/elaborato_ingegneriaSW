@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="550.0" prefWidth="1000.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ViewProvinceController">
+   <children>
+      <Text layoutX="429.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROVINCE" textAlignment="CENTER">
+         <font>
+            <Font name="Open Sans Bold" size="28.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="insertProvincia" layoutX="453.0" layoutY="88.0" onAction="#showInsertProvincia" ripplerFill="WHITE" style="-fx-background-color: #7b241c;" text="INSERISCI" textFill="#f8f8f8">
+         <font>
+            <Font name="Open Sans Regular" size="16.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tableProvince" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+        <columns>
+           <TableColumn fx:id="nomeCol" prefWidth="300.0" text="NOME" />
+           <TableColumn fx:id="superficieCol" prefWidth="300.0" text="SUPERFICIE" />
+           <TableColumn fx:id="regioneCol" prefWidth="300.0" text="REGIONE" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

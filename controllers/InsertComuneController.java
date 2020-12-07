@@ -23,7 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
-public class InsertComuneController implements Initializable {
+public class InsertComuneController extends AbstractController implements Initializable {
     @FXML
     private JFXTextField codiceISTATTextField;
     @FXML

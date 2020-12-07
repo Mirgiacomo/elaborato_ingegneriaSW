@@ -11,13 +11,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SidePanelPersonaleMonitoraggioController extends SidePanelController implements Initializable {
+public class SidePanelPersonaleContagiController extends SidePanelController implements Initializable {
 
     @FXML
     private JFXButton b1;
@@ -27,15 +29,19 @@ public class SidePanelPersonaleMonitoraggioController extends SidePanelControlle
     private JFXButton b3;
     @FXML
     private JFXButton exit;
+    @FXML
+    private AnchorPane root;
+    @FXML
+    private JFXButton logoutButton;
 
     private SelectViewCallback callback;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) { }
 
-    }
-    public void setCallback(SelectViewCallback callback) {
-        this.callback = callback;
+    @FXML
+    private void exit(ActionEvent event) {
+        System.exit(0);
     }
 
     @FXML
@@ -52,11 +58,6 @@ public class SidePanelPersonaleMonitoraggioController extends SidePanelControlle
         stage.show();
 
         ((Node)(event.getSource())).getScene().getWindow().hide();
-    }
-
-    @FXML
-    private void exit(ActionEvent event) {
-        System.exit(0);
     }
 
 }

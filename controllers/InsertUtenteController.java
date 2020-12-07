@@ -1,20 +1,14 @@
 package elaborato_ingegneriaSW.controllers;
 
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.jfoenix.controls.JFXCheckBox;
+
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
-import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
-import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
 import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.FXUtil;
@@ -23,7 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
-public class InsertUtenteController implements Initializable {
+public class InsertUtenteController extends AbstractController implements Initializable {
 
     @FXML
     private JFXTextField nomeTextField;

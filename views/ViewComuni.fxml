@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="550.0" prefWidth="1000.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ViewComuniController">
+   <children>
+      <Text layoutX="440.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMUNI" textAlignment="CENTER">
+         <font>
+            <Font name="Open Sans Bold" size="28.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="insertComune" layoutX="453.0" layoutY="88.0" onAction="#showInsertComune" ripplerFill="WHITE" style="-fx-background-color: #7b241c;" text="INSERISCI" textFill="#f8f8f8">
+         <font>
+            <Font name="Open Sans Regular" size="16.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tableComuni" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+        <columns>
+           <TableColumn fx:id="codiceISTATCol" prefWidth="150.0" text="CODICE ISTAT" />
+           <TableColumn fx:id="nomeCol" prefWidth="150.0" text="NOME" />
+           <TableColumn fx:id="dataIstituzioneCol" prefWidth="150.0" text="DATA ISTITUZIONE" />
+           <TableColumn fx:id="superficieCol" prefWidth="150.0" text="SUPERFICIE" />
+           <TableColumn fx:id="territorioCol" prefWidth="150.0" text="TERRITORIO" />
+           <TableColumn fx:id="fronteMareCol" prefWidth="100.0" text="FRONTE MARE" />
+           <TableColumn fx:id="provinciaCol" prefWidth="150.0" text="PROVINCIA" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
