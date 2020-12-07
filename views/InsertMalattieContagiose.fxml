@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="684.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertMalattieContagioseController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="518.0" prefWidth="922.0" style="-fx-background-color: #f5f5f5; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
+         <children>
+            <FontAwesomeIcon iconName="QUESTION" layoutX="808.0" layoutY="303.0" opacity="0.42" size="2em" text="" wrappingWidth="23.59999990463257">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </FontAwesomeIcon>
+            <FontAwesomeIcon iconName="QUESTION" layoutX="808.0" layoutY="255.0" opacity="0.42" size="2em" text="" wrappingWidth="23.59999990463257">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </FontAwesomeIcon>
+            <Text layoutX="98.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE MALATTIE CONTAGIOSE" textAlignment="CENTER" wrappingWidth="735.9357604980469">
+               <font>
+                  <Font name="Open Sans Semibold" size="38.0" />
+               </font>
+            </Text>
+            <Text layoutX="52.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comune">
+               <font>
+                  <Font name="Open Sans Regular" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="433.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mese">
+               <font>
+                  <Font name="Open Sans Regular" size="20.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="insertMalattieButton" buttonType="RAISED" defaultButton="true" layoutX="325.0" layoutY="626.0" onAction="#insertMalattieAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans Semibold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXComboBox fx:id="comuneComboBox" layoutX="155.0" layoutY="124.0" prefHeight="26.0" prefWidth="226.0" />
+            <JFXButton fx:id="ricercaButton" buttonType="RAISED" defaultButton="true" layoutX="737.0" layoutY="118.0" onAction="#searchMalattieContagioseAction" prefHeight="32.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #717584; -fx-border-color: #4b4b4b;" text="RICERCA" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans Semibold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Separator layoutY="194.0" prefHeight="0.0" prefWidth="884.0" />
+            <Text layoutX="66.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INCIDENTE STRADALE" wrappingWidth="201.98590087890625">
+               <font>
+                  <Font name="Open Sans Regular" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="66.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MALATTIA TUMORALE" wrappingWidth="201.98590087890625">
+               <font>
+                  <Font name="Open Sans Regular" size="20.0" />
+               </font>
+            </Text>
+            <JFXButton layoutX="788.0" layoutY="218.0" opacity="0.0" prefHeight="52.0" prefWidth="63.0" text="Button">
+               <tooltip>
+                  <Tooltip text="Incidenti Stradali: moto, auto, bicicletta.">
+                     <graphic>
+                        <FontAwesomeIcon iconName="QUESTION" size="2em" text="" wrappingWidth="23.59999990463257">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </FontAwesomeIcon>
+                     </graphic>
+                  </Tooltip>
+               </tooltip>
+            </JFXButton>
+            <JFXButton layoutX="788.0" layoutY="268.0" opacity="0.0" prefHeight="52.0" prefWidth="63.0" text="Button">
+               <tooltip>
+                  <Tooltip text="Tumore ai polmponi, cervello, etc" />
+               </tooltip>
+            </JFXButton>
+            <JFXTextField layoutX="421.0" layoutY="231.0" />
+            <JFXTextField layoutX="421.0" layoutY="281.0" />
+            <DatePicker fx:id="meseDatePicker" layoutX="489.0" layoutY="122.0" prefHeight="30.0" prefWidth="202.0" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
