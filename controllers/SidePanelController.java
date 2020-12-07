@@ -41,18 +41,24 @@ public abstract class SidePanelController extends AbstractController implements 
     }
 
     @FXML
-    private void logout(ActionEvent event) throws IOException {
+    public void logoutAction(ActionEvent event) throws IOException {
+        loggedUser = null;
+
+        // close window
+        Stage source = (Stage)(((Node)(event.getSource())).getScene().getWindow());
+        source.close();
+
+        // open new window
         ShowView showView = new ShowView();
-        FXMLLoader loader = showView.getLoader("Login.fxml");
+        FXMLLoader loader = showView.getLoader("Main.fxml");
 
-        Parent view = loader.load();
         Stage stage = new Stage();
-        Scene scene = new Scene(view);
+        Parent view = loader.load();
+        MainController controller = loader.getController();
+        controller.loadView();
 
-        stage.setTitle("Centro malattie infettive");
+        Scene scene = new Scene(view);
         stage.setScene(scene);
         stage.show();
-
-        ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 }

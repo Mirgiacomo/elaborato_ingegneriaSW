@@ -1,3 +1,10 @@
+.main-wallpaper {
+    -fx-background-image: url("../img/wallpaper2.png");
+    -fx-background-position: left top, center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
+}
+
 .button {
     -fx-background-color:   "#7b241c";
     -fx-font-family:        "System";

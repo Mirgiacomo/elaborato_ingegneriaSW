@@ -38,8 +38,6 @@ public class LoginController implements Initializable {
     private JFXTextField usernameTextField;
     @FXML
     private JFXButton loginButton;
-    @FXML
-    private AnchorPane root;
 
     private final UtenteDaoImpl userDao = new UtenteDaoImpl();
 

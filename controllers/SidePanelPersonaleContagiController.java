@@ -40,24 +40,7 @@ public class SidePanelPersonaleContagiController extends SidePanelController imp
     public void initialize(URL url, ResourceBundle rb) { }
 
     @FXML
-    private void exit(ActionEvent event) {
+    public void exit(ActionEvent event) {
         System.exit(0);
     }
-
-    @FXML
-    private void logoutAction(ActionEvent event) throws IOException {
-        ShowView showView = new ShowView();
-        FXMLLoader loader = showView.getLoader("Login.fxml");
-
-        Parent view = loader.load();
-        Stage stage = new Stage();
-        Scene scene = new Scene(view);
-
-        stage.setTitle("Centro malattie infettive");
-        stage.setScene(scene);
-        stage.show();
-
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-    }
-
 }

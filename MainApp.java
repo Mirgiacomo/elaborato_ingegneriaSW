@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MainApp extends Application {
 
-    public static Boolean isSplashLoaded = false;
+    public static Boolean isInitLoaded = false;
 
     @Override
     public void start(Stage stage) throws Exception {
