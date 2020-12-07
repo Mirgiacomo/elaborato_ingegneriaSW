@@ -6,6 +6,8 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -76,6 +78,11 @@
                   <Image url="@img/1200px-International_Biohazard_Warning_Symbol.svg.png" />
                </image>
             </ImageView>
+            <Button layoutX="950.0" layoutY="512.0" mnemonicParsing="false" opacity="0.0" prefHeight="47.0" prefWidth="67.0" text="Button">
+               <tooltip>
+                  <Tooltip text="Copyright 2021 - Developed by Davide Tonin &amp; Giacomo Mirandola" />
+               </tooltip>
+            </Button>
          </children>
       </AnchorPane>
   </children>
