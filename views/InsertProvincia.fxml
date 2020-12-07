@@ -11,7 +11,7 @@
 
 <VBox prefHeight="519.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertProvinciaController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #f5f5f5; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
          <children>
             <Text layoutX="186.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE PROVINCIA" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>
@@ -46,7 +46,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXComboBox>
-            <JFXButton fx:id="insertProvinciaButton" buttonType="RAISED" defaultButton="true" layoutX="329.0" layoutY="414.0" onAction="#insertProvinciaAction" prefHeight="42.0" prefWidth="190.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI PROVINCIA" textFill="WHITE">
+            <JFXButton fx:id="insertProvinciaButton" buttonType="RAISED" defaultButton="true" layoutX="329.0" layoutY="414.0" onAction="#insertProvinciaAction" prefHeight="42.0" prefWidth="190.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI PROVINCIA" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="16.0" />
                </font>

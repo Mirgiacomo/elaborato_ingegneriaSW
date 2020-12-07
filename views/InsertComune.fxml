@@ -13,7 +13,7 @@
 
 <VBox prefHeight="519.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertComuneController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #f5f5f5; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 30, 0, 0, 0);" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
          <children>
             <Text layoutX="186.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE COMUNE" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>
@@ -36,7 +36,7 @@
                   <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <JFXButton fx:id="insertComuneButton" buttonType="RAISED" defaultButton="true" layoutX="332.0" layoutY="421.0" onAction="#insertComuneAction" prefHeight="40.0" prefWidth="185.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI COMUNE" textFill="WHITE">
+            <JFXButton fx:id="insertComuneButton" buttonType="RAISED" defaultButton="true" layoutX="332.0" layoutY="421.0" onAction="#insertComuneAction" prefHeight="40.0" prefWidth="185.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI COMUNE" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="17.0" />
                </font>

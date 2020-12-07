@@ -5,13 +5,13 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.Cursor?>
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="564.0" prefWidth="1003.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.LoginController">
    <children>
       <AnchorPane prefHeight="564.0" prefWidth="1001.0">
@@ -21,7 +21,7 @@
                   <Image url="@img/wallpaper.jpg" />
                </image>
             </ImageView>
-            <FontAwesomeIcon iconName="QUESTION" layoutX="943.0" layoutY="530.0" size="2em" wrappingWidth="43.0" />
+            <FontAwesomeIcon iconName="COPYRIGHT" layoutX="975.0" layoutY="546.0" size="2em" wrappingWidth="43.0" />
             <Text layoutX="220.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="JUSTIFY">
                <font>
                   <Font name="PT Sans" size="20.0" />
@@ -52,7 +52,7 @@
                   <Font name="PT Sans" size="15.0" />
                </font>
             </JFXCheckBox>
-            <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="433.0" layoutY="446.0" onAction="#loginAction" prefHeight="47.0" prefWidth="177.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="LOGIN" textFill="WHITE">
+            <JFXButton fx:id="loginButton" buttonType="RAISED" defaultButton="true" layoutX="433.0" layoutY="446.0" onAction="#loginAction" prefHeight="47.0" prefWidth="177.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="LOGIN" textFill="WHITE">
                <font>
                   <Font name="PT Sans" size="21.0" />
                </font>

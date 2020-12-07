@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.ToggleButtonGroup?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -16,7 +14,7 @@
 
 <VBox prefHeight="684.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertDecessiController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="518.0" prefWidth="922.0" style="-fx-background-color: #f5f5f5; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="518.0" prefWidth="922.0" styleClass="anchorPane" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
          <children>
             <FontAwesomeIcon iconName="QUESTION" layoutX="808.0" layoutY="351.0" opacity="0.42" size="2em" text="" wrappingWidth="23.59999990463257">
                <font>
@@ -48,7 +46,7 @@
                   <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <JFXButton fx:id="insertDecessiButton" buttonType="RAISED" defaultButton="true" layoutX="325.0" layoutY="626.0" onAction="#insertDecessiAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI" textFill="WHITE">
+            <JFXButton fx:id="insertDecessiButton" buttonType="RAISED" defaultButton="true" layoutX="325.0" layoutY="626.0" onAction="#insertDecessiAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="17.0" />
                </font>
@@ -58,7 +56,7 @@
             </JFXButton>
             <JFXComboBox fx:id="provinciaComboBox" layoutX="155.0" layoutY="124.0" prefHeight="26.0" prefWidth="226.0" />
             <JFXComboBox fx:id="annoComboBox" layoutX="502.0" layoutY="124.0" prefHeight="26.0" prefWidth="126.0" />
-            <JFXButton fx:id="ricercaButton" buttonType="RAISED" defaultButton="true" layoutX="737.0" layoutY="118.0" onAction="#searchDecessiAction" prefHeight="32.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #717584; -fx-border-color: #4b4b4b;" text="RICERCA" textFill="WHITE">
+            <JFXButton fx:id="ricercaButton" buttonType="RAISED" layoutX="737.0" layoutY="118.0" onAction="#searchDecessiAction" prefHeight="43.0" prefWidth="102.0" ripplerFill="WHITE" styleClass="button-ricerca" stylesheets="@css/style.css" text="RICERCA" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="17.0" />
                </font>

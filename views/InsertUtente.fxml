@@ -12,7 +12,7 @@
 
 <VBox prefHeight="519.0" prefWidth="848.0" style="-fx-background-color: trasparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertUtenteController">
   <children>
-      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #f5f5f5; -fx-border-radius: 20px; -fx-background-radius: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
          <children>
             <JFXButton layoutX="750.0" layoutY="444.0" opacity="0.0" prefHeight="44.0" prefWidth="84.0">
                <tooltip>
@@ -39,7 +39,7 @@
                   <Font name="Open Sans" size="20.0" />
                </font>
             </Text>
-            <JFXButton fx:id="insertUtenteButton" buttonType="RAISED" defaultButton="true" layoutX="331.0" layoutY="434.0" onAction="#insertUtenteAction" prefHeight="40.0" prefWidth="198.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI UTENTE" textFill="WHITE">
+            <JFXButton fx:id="insertUtenteButton" buttonType="RAISED" defaultButton="true" layoutX="331.0" layoutY="434.0" onAction="#insertUtenteAction" prefHeight="40.0" prefWidth="198.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI UTENTE" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="15.0" />
                </font>

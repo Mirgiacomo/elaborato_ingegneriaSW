@@ -15,7 +15,7 @@
 
 <VBox prefHeight="684.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertMalattieContagioseController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="518.0" prefWidth="922.0" style="-fx-background-color: #f5f5f5; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="518.0" prefWidth="922.0" styleClass="anchorPane" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
          <children>
             <FontAwesomeIcon iconName="QUESTION" layoutX="808.0" layoutY="303.0" opacity="0.42" size="2em" text="" wrappingWidth="23.59999990463257">
                <font>
@@ -42,7 +42,7 @@
                   <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <JFXButton fx:id="insertMalattieButton" buttonType="RAISED" defaultButton="true" layoutX="325.0" layoutY="626.0" onAction="#insertMalattieAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI" textFill="WHITE">
+            <JFXButton fx:id="insertMalattieButton" buttonType="RAISED" defaultButton="true" layoutX="325.0" layoutY="626.0" onAction="#insertMalattieAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="17.0" />
                </font>

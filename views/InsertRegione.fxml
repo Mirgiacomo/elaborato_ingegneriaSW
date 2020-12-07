@@ -10,7 +10,7 @@
 
 <VBox prefHeight="519.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertRegioneController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" style="-fx-background-color: #f5f5f5; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 5, 0, 0, 0);" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
          <children>
             <Text layoutX="189.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE REGIONE" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>
@@ -45,7 +45,7 @@
                <font>
                   <Font name="Open Sans" size="18.0" />
                </font></JFXTextField>
-            <JFXButton fx:id="insertRegioneButton" buttonType="RAISED" defaultButton="true" layoutX="328.0" layoutY="397.0" onAction="#insertRegioneAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 15pt; -fx-border-radius: 15pt; -fx-border-color: black;" text="INSERISCI REGIONE" textFill="WHITE">
+            <JFXButton fx:id="insertRegioneButton" buttonType="RAISED" defaultButton="true" layoutX="328.0" layoutY="397.0" onAction="#insertRegioneAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI REGIONE" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="17.0" />
                </font>

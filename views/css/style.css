@@ -1,0 +1,25 @@
+.button {
+    -fx-background-color:   "#7b241c";
+    -fx-font-family:        "System";
+    -fx-font-size:          17px;
+    -fx-background-radius:  4px;
+}
+
+.button:hover{
+    -fx-background-color: "#580c0c";
+}
+
+.button-ricerca {
+    -fx-background-color:   "#717584";
+    -fx-font-family:        "System";
+    -fx-font-size:          16px;
+    -fx-border-color:       "#4b4b4b";
+}
+.button-ricerca:hover{
+    -fx-background-color: "#504c4c";
+}
+
+.anchorPane {
+    -fx-background-color:   "#f5f5f5";
+    -fx-effect:             "dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 30, 0, 0, 0)"
+}
