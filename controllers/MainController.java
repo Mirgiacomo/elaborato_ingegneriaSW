@@ -17,7 +17,6 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -37,7 +36,7 @@ public class MainController extends AbstractController implements Initializable,
     @FXML
     private AnchorPane contentPane;
 
-    private HamburgerBackArrowBasicTransition transition;
+    //private HamburgerBackArrowBasicTransition transition;
 
     public MainController() { }
 
@@ -48,8 +47,8 @@ public class MainController extends AbstractController implements Initializable,
         if (loggedUser == null) {
             showLogin();
         } else {
-            transition = new HamburgerBackArrowBasicTransition(hamburger);
-            transition.setRate(1);
+            /*transition = new HamburgerBackArrowBasicTransition(hamburger);
+            transition.setRate(1);*/
 
             try {
                 FXMLLoader loader = showView.getLoader("SidePanelPersonaleContagi.fxml");
@@ -60,12 +59,11 @@ public class MainController extends AbstractController implements Initializable,
 
                 drawer.setSidePane(box);
                 drawer.open();
-                transition.play();
             } catch (IOException ex) {
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            /*hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
                 transition.setRate(transition.getRate() * -1);
                 transition.play();
 
@@ -74,7 +72,7 @@ public class MainController extends AbstractController implements Initializable,
                 } else {
                     drawer.open();
                 }
-            });
+            });*/
         }
     }
 

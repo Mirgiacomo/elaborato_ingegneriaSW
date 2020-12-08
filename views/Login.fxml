@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="main-wallpaper" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.LoginController">
+<AnchorPane id="AnchorPane" fx:id="loginRoot" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="main-wallpaper" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.LoginController">
    <children>
       <FontAwesomeIcon iconName="COPYRIGHT" size="2em" text="" textAlignment="CENTER" wrappingWidth="43.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
       <VBox alignment="CENTER" prefHeight="455.0" prefWidth="800.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -29,7 +29,7 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="75.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/1200px-International_Biohazard_Warning_Symbol.svg.png" />
+                        <Image url="@img/warning_symbol.svg.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="25.0" />
@@ -42,7 +42,7 @@
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="75.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/1200px-International_Biohazard_Warning_Symbol.svg.png" />
+                        <Image url="@img/warning_symbol.svg.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="25.0" />
