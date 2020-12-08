@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.event.ActionEvent;
@@ -13,9 +14,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public abstract class SidePanelController extends AbstractController implements Initializable {
+public class SidePanelController extends AbstractController implements Initializable {
+    @FXML
+    private JFXButton regioniButton;
+    @FXML
+    private JFXButton provinceButton;
+    @FXML
+    private JFXButton comuniButton;
+    @FXML
+    private JFXButton logoutButton;
+
     private SelectViewCallback callback;
 
     public void setCallback(SelectViewCallback callback) {
@@ -61,4 +72,9 @@ public abstract class SidePanelController extends AbstractController implements 
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    private void exit(ActionEvent event) {
+        System.exit(0);
+    }
 }
+

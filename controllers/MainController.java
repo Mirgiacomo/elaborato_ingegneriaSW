@@ -1,6 +1,7 @@
 package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.MainApp;
+import elaborato_ingegneriaSW.models.RuoloUtente;
 import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
@@ -44,14 +45,24 @@ public class MainController extends AbstractController implements Initializable,
     public void initialize(URL url, ResourceBundle rb) { }
 
     public void loadView() {
+        System.out.println(loggedUser);
         if (loggedUser == null) {
             showLogin();
         } else {
             /*transition = new HamburgerBackArrowBasicTransition(hamburger);
             transition.setRate(1);*/
 
+            RuoloUtente ruoloUtente = loggedUser.getRuolo();
+            switch (ruoloUtente){
+                case ADMIN:
+                    System.out.println("ADMIN");
+                    break;
+                default:
+                    System.out.println("Sto cazzo");
+                    break;
+            }
             try {
-                FXMLLoader loader = showView.getLoader("SidePanelPersonaleContagi.fxml");
+                FXMLLoader loader = showView.getLoader("SidePanel.fxml");
                 VBox box = loader.load();
 
                 SidePanelController controller = loader.getController();
