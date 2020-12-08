@@ -3,58 +3,98 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="519.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertProvinciaController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertProvinciaController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="-5.0" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text layoutX="186.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE PROVINCIA" textAlignment="CENTER" wrappingWidth="519.9358825683594">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE PROVINCIA" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>
                   <Font name="Open Sans Semibold" size="38.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
             </Text>
-            <Text layoutX="164.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Provincia">
-               <font>
-                  <Font name="Open Sans Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="157.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Superficie [ km  ]">
-               <font>
-                  <Font name="Open Sans Regular" size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="276.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" />
-            <Text layoutX="230.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regione">
-               <font>
-                  <Font name="Open Sans Regular" size="18.0" />
-               </font>
-            </Text>
-            <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" layoutX="347.0" layoutY="133.0" prefHeight="26.0" prefWidth="340.0">
-               <font>
-                  <Font name="Open Sans Regular" size="18.0" />
-               </font></JFXTextField>
-            <JFXTextField fx:id="superficieTextField" focusColor="#7c2e2e" layoutX="347.0" layoutY="202.0" prefHeight="26.0" prefWidth="340.0">
-               <font>
-                  <Font name="Open Sans Regular" size="18.0" />
-               </font></JFXTextField>
-            <JFXComboBox fx:id="regioneComboBox" focusColor="#7c2e2e" layoutX="347.0" layoutY="295.0" prefHeight="26.0" prefWidth="340.0">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></JFXComboBox>
-            <JFXButton fx:id="insertProvinciaButton" buttonType="RAISED" defaultButton="true" layoutX="329.0" layoutY="414.0" onAction="#insertProvinciaAction" prefHeight="42.0" prefWidth="190.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI PROVINCIA" textFill="WHITE">
-               <font>
-                  <Font name="Open Sans Semibold" size="16.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
+            <GridPane prefHeight="487.0" prefWidth="684.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.59999084472656" minWidth="10.0" prefWidth="297.6" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="611.2000366210938" minWidth="10.0" prefWidth="493.6" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Provincia" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" prefHeight="39.0" prefWidth="537.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Regione" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="superficieTextField" focusColor="#7c2e2e" prefHeight="26.0" prefWidth="340.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Open Sans" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Superficie [ km^2  ]" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXButton fx:id="insertProvinciaButton" defaultButton="true" onAction="#insertProvinciaAction" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI PROVINCIA" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Open Sans Semibold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </JFXButton>
+                  <JFXComboBox fx:id="regioneComboBox" focusColor="#7c2e2e" prefHeight="26.0" prefWidth="422.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </JFXComboBox>
+               </children>
+               <padding>
+                  <Insets left="50.0" right="50.0" />
+               </padding>
+            </GridPane>
          </children>
-    </AnchorPane>
-  </children>
-</VBox>
+      </VBox>
+   </children>
+</AnchorPane>

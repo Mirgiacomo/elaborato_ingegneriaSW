@@ -5,82 +5,160 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="519.0" prefWidth="848.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertComuneController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertComuneController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="-5.0" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text layoutX="186.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE COMUNE" textAlignment="CENTER" wrappingWidth="519.9358825683594">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE COMUNE" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>
                   <Font name="Open Sans Semibold" size="38.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
             </Text>
-            <Text layoutX="69.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISTAT">
-               <font>
-                  <Font name="Open Sans Regular" size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="474.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Superficie [ km  ]">
-               <font>
-                  <Font name="Open Sans Regular" size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="611.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" />
-            <Text layoutX="71.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Provincia collegata">
-               <font>
-                  <Font name="Open Sans Regular" size="20.0" />
-               </font>
-            </Text>
-            <JFXButton fx:id="insertComuneButton" buttonType="RAISED" defaultButton="true" layoutX="332.0" layoutY="421.0" onAction="#insertComuneAction" prefHeight="40.0" prefWidth="185.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI COMUNE" textFill="WHITE">
-               <font>
-                  <Font name="Open Sans Semibold" size="17.0" />
-               </font>
-            </JFXButton>
-            <JFXComboBox fx:id="provinciaComboBox" focusColor="#7c2e2e" layoutX="270.0" layoutY="336.0" prefHeight="26.0" prefWidth="538.0" />
-            <JFXTextField fx:id="superficieTextField" focusColor="#7c2e2e" layoutX="638.0" layoutY="181.0" prefHeight="39.0" prefWidth="174.0">
-               <font>
-                  <Font size="18.0" />
-               </font></JFXTextField>
-            <Text layoutX="69.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Comune">
-               <font>
-                  <Font name="Open Sans Regular" size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="71.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo territorio" wrappingWidth="137.06054687500023">
-               <font>
-                  <Font name="Open Sans Regular" size="20.0" />
-               </font>
-            </Text>
-            <JFXComboBox fx:id="territorioComboBox" focusColor="#7c2e2e" layoutX="225.0" layoutY="259.0" prefHeight="26.0" prefWidth="284.0" />
-            <JFXTextField fx:id="codiceISTATTextField" focusColor="#7c2e2e" layoutX="140.0" layoutY="108.0" prefHeight="26.0" prefWidth="278.0">
-               <font>
-                  <Font size="18.0" />
-               </font></JFXTextField>
-            <JFXCheckBox fx:id="fronteMareCheckBox" checkedColor="#7c2e2e" layoutX="611.0" layoutY="252.0" prefHeight="40.0" prefWidth="121.0" text="Fronte mare" unCheckedColor="#02010dab">
-               <font>
-                  <Font name="Open Sans Regular" size="20.0" />
-               </font>
-            </JFXCheckBox>
-            <Text layoutX="479.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data istituzione">
-               <font>
-                  <Font name="Open Sans Regular" size="20.0" />
-               </font>
-            </Text>
-            <JFXDatePicker fx:id="dataIstituzioneDataPicker" defaultColor="#7c2e2e" layoutX="634.0" layoutY="103.0" prefHeight="40.0" prefWidth="186.0">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXDatePicker>
-            <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" layoutX="225.0" layoutY="182.0" prefHeight="26.0" prefWidth="214.0">
-               <font>
-                  <Font name="Open Sans Regular" size="18.0" />
-               </font></JFXTextField>
+            <GridPane prefHeight="396.0" prefWidth="790.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.59999084472656" minWidth="10.0" prefWidth="189.40001220703124" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.59999084472656" minWidth="10.0" prefWidth="234.9999877929687" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="611.2000366210938" minWidth="10.0" prefWidth="204.39998779296877" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="85.60000991821289" minHeight="10.0" prefHeight="85.60000991821289" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="76.2" minHeight="10.0" prefHeight="58.40001220703127" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="144.79996032714845" minHeight="10.0" prefHeight="55.199987792968756" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="161.00001831054686" minHeight="10.0" prefHeight="75.19998779296878" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="118.20000915527345" minHeight="10.0" prefHeight="92.80001220703122" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome Comune" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Superficie [ km^2  ]" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXComboBox fx:id="territorioComboBox" focusColor="#7c2e2e" prefHeight="47.0" prefWidth="245.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </JFXComboBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ISTAT">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="codiceISTATTextField" focusColor="#7c2e2e" prefHeight="39.0" prefWidth="153.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </padding>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo territorio" wrappingWidth="137.06054687500023" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data istituzione" wrappingWidth="152.2605595588684" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="60.0" left="40.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <JFXDatePicker fx:id="dataIstituzioneDataPicker" defaultColor="#7c2e2e" prefHeight="40.0" prefWidth="229.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </JFXDatePicker>
+                  <JFXTextField fx:id="superficieTextField" focusColor="#7c2e2e" prefHeight="39.0" prefWidth="270.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXCheckBox fx:id="fronteMareCheckBox" checkedColor="#7c2e2e" prefHeight="40.0" prefWidth="121.0" text="Fronte mare" unCheckedColor="#02010dab" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="50.0" />
+                     </GridPane.margin>
+                  </JFXCheckBox>
+                  <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" prefHeight="39.0" prefWidth="153.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </padding>
+                  </JFXTextField>
+               </children>
+               <padding>
+                  <Insets left="50.0" right="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="-60.0" />
+               </VBox.margin>
+            </GridPane>
+            <HBox alignment="CENTER" prefHeight="89.0" prefWidth="790.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Provincia collegata" wrappingWidth="230.96136754751205">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXComboBox fx:id="provinciaComboBox" focusColor="#7c2e2e" prefHeight="26.0" prefWidth="480.0">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+               </children>
+               <padding>
+                  <Insets left="50.0" right="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="-50.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="101.0" prefWidth="790.0">
+               <children>
+                  <JFXButton fx:id="insertComuneButton" defaultButton="true" onAction="#insertComuneAction" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI COMUNE" textFill="WHITE">
+                     <font>
+                        <Font name="Open Sans Semibold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </HBox>
          </children>
-    </AnchorPane>
-  </children>
-</VBox>
+      </VBox>
+   </children>
+</AnchorPane>
