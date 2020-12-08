@@ -1,3 +1,7 @@
+.root{
+    -fx-font-family: "Open Sans";
+}
+
 .main-wallpaper {
     -fx-background-image: url("../img/wallpaper2.png");
     -fx-background-position: left top, center;
@@ -7,7 +11,6 @@
 
 .button {
     -fx-background-color:   "#7b241c";
-    -fx-font-family:        "System";
     -fx-font-size:          17px;
     -fx-background-radius:  4px;
 }
@@ -18,7 +21,6 @@
 
 .button-ricerca {
     -fx-background-color:   "#717584";
-    -fx-font-family:        "System";
     -fx-font-size:          16px;
     -fx-border-color:       "#4b4b4b";
 }
@@ -38,5 +40,13 @@
 
 .anchorPane {
     -fx-background-color:   "#f5f5f5";
-    -fx-effect:             "dropshadow(three-pass-box, rgba(0, 0, 0, 1.2), 30, 0, 0, 0)"
+}
+
+.bg-lightorange {
+    -fx-background-color: "#fff1d4";
+}
+
+.form-box {
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-radius: 10px;
 }
