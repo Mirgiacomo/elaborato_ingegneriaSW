@@ -24,7 +24,7 @@ public class MainApp extends Application {
         } else if (SystemUtils.IS_OS_MAC) {
             java.net.URL iconURL = getClass().getResource("/elaborato_ingegneriaSW/views/img/warning_symbol.svg.png");
             if (iconURL != null) {
-                com.apple.eawt.Application.getApplication().setDockIconImage(new ImageIcon(iconURL, "icon").getImage());
+                //com.apple.eawt.Application.getApplication().setDockIconImage(new ImageIcon(iconURL, "icon").getImage());
             }
         }
 
