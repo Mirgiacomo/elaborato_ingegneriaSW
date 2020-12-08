@@ -1,18 +1,16 @@
 package elaborato_ingegneriaSW;
 
 import elaborato_ingegneriaSW.controllers.MainController;
-import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
-import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
-import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
-import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
-import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.apache.commons.lang3.SystemUtils;
 
+import javax.swing.*;
 import java.util.concurrent.ExecutionException;
 
 public class MainApp extends Application {
@@ -21,6 +19,15 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        if (SystemUtils.IS_OS_WINDOWS || SystemUtils.IS_OS_LINUX) {
+            stage.getIcons().add(new Image("elaborato_ingegneriaSW/views/img/warning_symbol.svg.png"));
+        } else if (SystemUtils.IS_OS_MAC) {
+            java.net.URL iconURL = getClass().getResource("/elaborato_ingegneriaSW/views/img/warning_symbol.svg.png");
+            if (iconURL != null) {
+                com.apple.eawt.Application.getApplication().setDockIconImage(new ImageIcon(iconURL, "icon").getImage());
+            }
+        }
+
         ShowView showView = new ShowView();
         FXMLLoader loader = showView.getLoader("Main.fxml");
 
