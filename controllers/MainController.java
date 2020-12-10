@@ -18,7 +18,7 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -29,8 +29,8 @@ public class MainController extends AbstractController implements Initializable,
     @FXML
     private JFXDrawer drawer;
 
-    @FXML
-    private JFXHamburger hamburger;
+    // @FXML
+    // private JFXHamburger hamburger;
 
     @FXML
     private AnchorPane root;
@@ -52,7 +52,7 @@ public class MainController extends AbstractController implements Initializable,
             /*transition = new HamburgerBackArrowBasicTransition(hamburger);
             transition.setRate(1);*/
 
-            RuoloUtente ruoloUtente = loggedUser.getRuolo();
+            /*RuoloUtente ruoloUtente = loggedUser.getRuolo();
             switch (ruoloUtente){
                 case ADMIN:
                     System.out.println("ADMIN");
@@ -60,7 +60,7 @@ public class MainController extends AbstractController implements Initializable,
                 default:
                     System.out.println("Sto cazzo");
                     break;
-            }
+            }*/
             try {
                 FXMLLoader loader = showView.getLoader("SidePanel.fxml");
                 VBox box = loader.load();
@@ -132,9 +132,8 @@ public class MainController extends AbstractController implements Initializable,
     @Override
     public void selectView(String view) throws IOException {
         FXMLLoader loader = showView.getLoader(view);
-        AnchorPane content = loader.load();
+        Parent content = loader.load();
 
-        contentPane.getChildren().clear();
-        contentPane.getChildren().add(content);
+        contentPane.getChildren().setAll(content);
     }
 }
