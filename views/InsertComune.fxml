@@ -20,12 +20,12 @@
    <children>
       <VBox alignment="CENTER" layoutX="-5.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE COMUNE" textAlignment="CENTER" wrappingWidth="519.9358825683594">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE COMUNE" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>
                   <Font name="Open Sans Semibold" size="38.0" />
                </font>
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
             </Text>
             <GridPane alignment="CENTER" maxWidth="1000.0" styleClass="form-box">
@@ -46,7 +46,7 @@
                   <RowConstraints minHeight="75.0" />
                </rowConstraints>
                <padding>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ISTAT">
@@ -190,7 +190,7 @@
          </children>
          <styleClass>
             <String fx:value="anchorPane" />
-            <String fx:value="bg-lightorange" />
+            <String fx:value="insert-bg" />
          </styleClass>
       </VBox>
    </children>
