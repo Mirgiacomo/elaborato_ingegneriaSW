@@ -12,7 +12,7 @@
     <children>
         <ImageView fitHeight="133.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@img/logo2.png" />
+                <Image url="@../resources/img/logo2.png" />
             </image>
         </ImageView>
         <JFXButton fx:id="regioniButton" buttonType="RAISED" layoutX="10.0" layoutY="123.0" onAction="#viewRegioniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="REGIONI" textFill="WHITE">

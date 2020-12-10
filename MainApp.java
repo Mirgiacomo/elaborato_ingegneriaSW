@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.apache.commons.lang3.SystemUtils;
 
-import javax.swing.*;
 import java.util.concurrent.ExecutionException;
 
 public class MainApp extends Application {
@@ -20,9 +19,9 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         if (SystemUtils.IS_OS_WINDOWS || SystemUtils.IS_OS_LINUX) {
-            stage.getIcons().add(new Image("elaborato_ingegneriaSW/views/img/warning_symbol.svg.png"));
+            stage.getIcons().add(new Image("elaborato_ingegneriaSW/resources/img/warning_symbol.svg.png"));
         } else if (SystemUtils.IS_OS_MAC) {
-            java.net.URL iconURL = getClass().getResource("/elaborato_ingegneriaSW/views/img/warning_symbol.svg.png");
+            java.net.URL iconURL = getClass().getResource("/elaborato_ingegneriaSW/resources/img/warning_symbol.svg.png");
             if (iconURL != null) {
                 //com.apple.eawt.Application.getApplication().setDockIconImage(new ImageIcon(iconURL, "icon").getImage());
             }
