@@ -3,8 +3,10 @@ package elaborato_ingegneriaSW.controllers;
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.utils.ShowView;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,22 +49,36 @@ public class ViewComuniController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
-            ObservableList<Comune> data = FXCollections.observableArrayList(comuni);
+        Task<Void> task = new Task<>() {
 
-            codiceISTATCol.setCellValueFactory(new PropertyValueFactory<>("codiceISTAT"));
-            nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            dataIstituzioneCol.setCellValueFactory(new PropertyValueFactory<>("dataIstituzione"));
-            superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
-            territorioCol.setCellValueFactory(new PropertyValueFactory<>("territorio"));
-            fronteMareCol.setCellValueFactory(new PropertyValueFactory<>("fronteMare"));
-            provinciaCol.setCellValueFactory(new PropertyValueFactory<>("provincia"));
+            @Override
+            protected Void call() {
+                Platform.runLater(() -> {
+                    try {
+                        Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
+                        ObservableList<Comune> data = FXCollections.observableArrayList(comuni);
 
-            tableComuni.setItems(data);
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
+                        codiceISTATCol.setCellValueFactory(new PropertyValueFactory<>("codiceISTAT"));
+                        nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
+                        dataIstituzioneCol.setCellValueFactory(new PropertyValueFactory<>("dataIstituzione"));
+                        superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
+                        territorioCol.setCellValueFactory(new PropertyValueFactory<>("territorio"));
+                        fronteMareCol.setCellValueFactory(new PropertyValueFactory<>("fronteMare"));
+                        provinciaCol.setCellValueFactory(new PropertyValueFactory<>("provincia"));
+
+                        tableComuni.setItems(data);
+                    } catch (ExecutionException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                return null;
+            }
+        };
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
+
     }
 
     public void showInsertComune(ActionEvent event) throws IOException {

@@ -3,8 +3,10 @@ package elaborato_ingegneriaSW.controllers;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.utils.ShowView;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,18 +40,31 @@ public class ViewProvinceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            Set<Provincia> province = provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName());
-            ObservableList<Provincia> data = FXCollections.observableArrayList(province);
+        Task<Void> task = new Task<>() {
 
-            nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
-            regioneCol.setCellValueFactory(new PropertyValueFactory<>("regione"));
+            @Override
+            protected Void call() {
+                Platform.runLater(() -> {
+                    try {
+                        Set<Provincia> province = provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName());
+                        ObservableList<Provincia> data = FXCollections.observableArrayList(province);
 
-            tableProvince.setItems(data);
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
+                        nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
+                        superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
+                        regioneCol.setCellValueFactory(new PropertyValueFactory<>("regione"));
+
+                        tableProvince.setItems(data);
+                    } catch (ExecutionException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                return null;
+            }
+        };
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
     }
 
     public void showInsertProvincia(ActionEvent event) throws IOException {

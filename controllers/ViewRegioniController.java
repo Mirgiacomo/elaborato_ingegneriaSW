@@ -3,8 +3,10 @@ package elaborato_ingegneriaSW.controllers;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.Regione;
 import elaborato_ingegneriaSW.utils.ShowView;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,18 +40,31 @@ public class ViewRegioniController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
-            ObservableList<Regione> data = FXCollections.observableArrayList(regioni);
+        Task<Void> task = new Task<>() {
 
-            nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
-            capoluogoCol.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
+            @Override
+            protected Void call() {
+                Platform.runLater(() -> {
+                    try {
+                        Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
+                        ObservableList<Regione> data = FXCollections.observableArrayList(regioni);
 
-            tableRegioni.setItems(data);
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
+                        nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
+                        superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
+                        capoluogoCol.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
+
+                        tableRegioni.setItems(data);
+                    } catch (ExecutionException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                return null;
+            }
+        };
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
     }
 
     public void showInsertRegione(ActionEvent event) throws IOException {
