@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="178.0" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.SidePanelController">
+<VBox fx:id="vbox" prefHeight="400.0" prefWidth="178.0" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.SidePanelController">
     <children>
         <ImageView fitHeight="133.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -27,7 +27,12 @@
             <font>
                 <Font name="System Bold" size="14.0" />
             </font></JFXButton>
-        <Pane prefHeight="81.0" prefWidth="251.0">
+      <JFXButton fx:id="grafico1Button" buttonType="RAISED" onAction="#viewComuniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="GRAFICO 1" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+        <Pane fx:id="footerPane" prefHeight="81.0" prefWidth="251.0">
             <children>
                 <JFXButton fx:id="logoutButton" buttonType="RAISED" defaultButton="true" layoutX="14.0" layoutY="13.0" onAction="#logoutAction" prefHeight="27.0" prefWidth="73.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 5pt; -fx-border-radius: 5pt; -fx-font-size: 11px;" text="LOGOUT" textFill="WHITE">
                     <font>
@@ -41,7 +46,7 @@
                 </JFXButton>
             </children>
             <VBox.margin>
-                <Insets top="70.0" />
+                <Insets />
             </VBox.margin>
         </Pane>
     </children>

@@ -66,6 +66,7 @@ public class MainController extends AbstractController implements Initializable,
                 VBox box = loader.load();
 
                 SidePanelController controller = loader.getController();
+                controller.addButton(loggedUser);
                 controller.setCallback(this);
 
                 drawer.setSidePane(box);

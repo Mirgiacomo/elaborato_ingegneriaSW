@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import elaborato_ingegneriaSW.models.RuoloUtente;
+import elaborato_ingegneriaSW.models.Utente;
 import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.event.ActionEvent;
@@ -15,6 +17,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SidePanelController extends AbstractController implements Initializable {
@@ -25,7 +29,11 @@ public class SidePanelController extends AbstractController implements Initializ
     @FXML
     private JFXButton comuniButton;
     @FXML
-    private JFXButton logoutButton;
+    private JFXButton grafico1Button;
+    @FXML
+    private VBox vbox;
+    @FXML
+    private Pane footerPane;
 
     private SelectViewCallback callback;
 
@@ -75,6 +83,32 @@ public class SidePanelController extends AbstractController implements Initializ
     @FXML
     private void exit(ActionEvent event) {
         System.exit(0);
+    }
+
+    @FXML
+    public void addButton(Utente utente) {
+        vbox.getChildren().remove(provinceButton);
+        vbox.getChildren().remove(comuniButton);
+        vbox.getChildren().remove(regioniButton);
+        vbox.getChildren().remove(grafico1Button);
+        vbox.getChildren().remove(footerPane);
+
+        RuoloUtente ruoloUtente = utente.getRuolo();
+        // TODO: da finire
+        switch (ruoloUtente){
+            case ADMIN:
+                vbox.getChildren().add(comuniButton);
+                vbox.getChildren().add(provinceButton);
+                vbox.getChildren().add(regioniButton);
+                break;
+            case RICERCATORE_ANALISTA:
+                vbox.getChildren().add(grafico1Button);
+                break;
+            default:
+                System.out.println("Errore. Riprovare ad accedere!\n");
+                break;
+        }
+        vbox.getChildren().add(footerPane);
     }
 }
 
