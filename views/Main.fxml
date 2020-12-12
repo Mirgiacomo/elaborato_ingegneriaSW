@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane id="AnchorPane" fx:id="root" minHeight="500.0" minWidth="1050.0" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.MainController">
+<AnchorPane id="AnchorPane" fx:id="root" minHeight="500.0" minWidth="1050.0" prefHeight="576.0" prefWidth="1179.0" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.MainController">
     <children>
         <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
            <JFXDrawer fx:id="drawer" alignment="CENTER_LEFT" defaultDrawerSize="250.0" prefWidth="250.0">
             <HBox.margin>
                <Insets right="10.0" />
             </HBox.margin></JFXDrawer>
-            <AnchorPane fx:id="contentPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="750.0" HBox.hgrow="ALWAYS">
+            <AnchorPane fx:id="contentPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="750.0" prefWidth="1035.0" HBox.hgrow="ALWAYS">
             <HBox.margin>
                <Insets />
             </HBox.margin></AnchorPane>
