@@ -1,5 +1,6 @@
 package elaborato_ingegneriaSW.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.utils.ShowView;
@@ -14,11 +15,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,10 +53,47 @@ public class ViewProvinceController implements Initializable {
                         Set<Provincia> province = provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName());
                         ObservableList<Provincia> data = FXCollections.observableArrayList(province);
 
+                        TableColumn actionCol = new TableColumn("ACTION");
+
+                        Callback<TableColumn<Provincia, String>, TableCell<Provincia, String>> cellFactory
+                                = //
+                                new Callback<TableColumn<Provincia, String>, TableCell<Provincia, String>>() {
+                                    @Override
+                                    public TableCell call(final TableColumn<Provincia, String> param) {
+                                        final TableCell<Provincia, String> cell = new TableCell<Provincia, String>() {
+
+                                            JFXButton btn = new JFXButton("Modifica");
+                                            @Override
+                                            public void updateItem(String item, boolean empty) {
+
+                                                // Setto il CSS al bottone della tabella
+                                                btn.setId("button-table");
+                                                btn.setTextFill(Paint.valueOf("white"));
+                                                super.updateItem(item, empty);
+                                                if (empty) {
+                                                    setGraphic(null);
+                                                    setText(null);
+                                                } else {
+                                                    btn.setOnAction(event -> {
+                                                        //Provincia provincia = getTableView().getItems().get(getIndex());
+                                                        //System.out.println(provincia.getNome());
+                                                    });
+
+
+
+                                                    setGraphic(btn);
+                                                    setText(null);
+                                                }
+                                            }
+                                        };
+                                        return cell;
+                                    }
+                                };
+                        actionCol.setCellFactory(cellFactory);
+                        tableProvince.getColumns().addAll(actionCol);
                         nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                         superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
                         regioneCol.setCellValueFactory(new PropertyValueFactory<>("regione"));
-
                         tableProvince.setItems(data);
                     } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
