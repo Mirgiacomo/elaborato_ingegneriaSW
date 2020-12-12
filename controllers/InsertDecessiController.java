@@ -54,7 +54,6 @@ public class InsertDecessiController implements Initializable {
     private JFXTextField malattieContagioseNumeroTextField;
 
     private final ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
-    private final DecessoDaoImpl decessoDao = new DecessoDaoImpl();
 
     /**
      * Initializes the controller class.
@@ -69,11 +68,10 @@ public class InsertDecessiController implements Initializable {
             }
             new AutoCompleteBox(provinciaFilterComboBox);
 
-            Set<Decesso> decessi = decessoDao.getAllItems(DecessoDaoImpl.getCollectionName());
-            for (Decesso decesso: decessi) {
-                System.out.println(decesso.getNumeroMorti());
-                //annoFilterComboBox.getItems().add(decesso.getYear());
-            }
+            // TODO: lasciarlo statico oppure caricare dinamicamente gli anni prendendoli dalla tabella decessi
+            annoFilterComboBox.getItems().add("2019");
+            annoFilterComboBox.getItems().add("2020");
+            annoFilterComboBox.getItems().add("2021");
             new AutoCompleteBox(annoFilterComboBox);
 
         } catch (ExecutionException e) {
@@ -99,8 +97,19 @@ public class InsertDecessiController implements Initializable {
         stage.showAndWait();
     }
     @FXML
-    private void searchDecessiAction(ActionEvent event) {
+    private void searchDecessiAction(ActionEvent event) throws ExecutionException, InterruptedException {
+        /*
+        DecessoDaoImpl decessoDao = new DecessoDaoImpl();
+        Provincia prov = new Provincia();
+        Set<Provincia> province = provinciaDao.getItem();
 
+        for (Provincia provincia: province) {
+            provinciaFilterComboBox.getItems().add(provincia);
+        }
+        Provincia provincia = provinciaDao.getItem((Provincia)provinciaFilterComboBox.getValue());
+        System.out.println(provincia.getNome());
+        Set<Decesso> decessi = (Set<Decesso>) decessoDao.getItem(provincia);
+        */
     }
 
     @FXML
