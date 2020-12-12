@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SidePanelController extends AbstractController implements Initializable {
@@ -87,11 +88,6 @@ public class SidePanelController extends AbstractController implements Initializ
     public void viewExportReport(ActionEvent event) throws IOException {
         // TODO: fix con giusto fxml
         callback.selectView("viewComuni.fxml");
-    }
-
-    @FXML
-    public void viewinfo(ActionEvent event) throws IOException {
-        callback.selectView("ViewInfo.fxml");
     }
 
     @FXML
@@ -175,6 +171,22 @@ public class SidePanelController extends AbstractController implements Initializ
                 break;
         }
         vbox.getChildren().add(footerPane);
+    }
+
+    public void infoAction(ActionEvent event) throws IOException {
+        ShowView showView = new ShowView();
+        FXMLLoader loader = showView.getLoader("ViewInfo.fxml");
+
+        Parent view = loader.load();
+        Scene scene = new Scene(view);
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node)event.getSource()).getScene().getWindow() );
+
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }
 

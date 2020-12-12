@@ -59,7 +59,7 @@
                         <Font name="System Bold" size="11.0" />
                     </font>
                 </JFXButton>
-                <JFXButton fx:id="loginButton1" buttonType="RAISED" defaultButton="true" layoutX="175.0" layoutY="13.0" prefHeight="27.0" prefWidth="62.0" ripplerFill="WHITE" style="-fx-background-color: #d7a000; -fx-background-radius: 5pt; -fx-border-radius: 5pt; -fx-font-size: 11px;" text="INFO">
+                <JFXButton fx:id="showInfo" buttonType="RAISED" defaultButton="true" layoutX="175.0" layoutY="13.0" onAction="#infoAction" prefHeight="27.0" prefWidth="62.0" ripplerFill="WHITE" style="-fx-background-color: #d7a000; -fx-background-radius: 5pt; -fx-border-radius: 5pt; -fx-font-size: 11px;" text="INFO">
                     <font>
                         <Font name="System Bold" size="11.0" />
                     </font>
