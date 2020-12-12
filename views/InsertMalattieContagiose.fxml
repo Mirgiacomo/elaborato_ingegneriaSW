@@ -4,45 +4,40 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="684.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertMalattieContagioseController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="518.0" prefWidth="922.0" styleClass="anchorPane" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
-         <children>
-            <FontAwesomeIcon iconName="QUESTION" layoutX="808.0" layoutY="303.0" opacity="0.42" size="2em" text="" wrappingWidth="23.59999990463257">
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertMalattieContagioseController">
+   <children>
+      <VBox layoutX="15.0">
+        <children>
+            <FontAwesomeIcon iconName="QUESTION" opacity="0.42" size="2em" text="" wrappingWidth="23.59999990463257">
                <font>
                   <Font size="17.0" />
                </font>
             </FontAwesomeIcon>
-            <FontAwesomeIcon iconName="QUESTION" layoutX="808.0" layoutY="255.0" opacity="0.42" size="2em" text="" wrappingWidth="23.59999990463257">
+            <FontAwesomeIcon iconName="QUESTION" opacity="0.42" size="2em" text="" wrappingWidth="23.59999990463257">
                <font>
                   <Font size="17.0" />
                </font>
             </FontAwesomeIcon>
-            <Text layoutX="98.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE MALATTIE CONTAGIOSE" textAlignment="CENTER" wrappingWidth="735.9357604980469">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE MALATTIE CONTAGIOSE" textAlignment="CENTER" wrappingWidth="735.9357604980469">
                <font>
                   <Font name="Open Sans Semibold" size="38.0" />
                </font>
             </Text>
-            <Text layoutX="52.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comune">
-               <font>
-                  <Font name="Open Sans Regular" size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="433.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mese">
-               <font>
-                  <Font name="Open Sans Regular" size="20.0" />
-               </font>
-            </Text>
-            <JFXButton fx:id="insertMalattieButton" buttonType="RAISED" defaultButton="true" layoutX="325.0" layoutY="626.0" onAction="#insertMalattieAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI" textFill="WHITE">
+            <JFXButton fx:id="insertMalattieButton" buttonType="RAISED" defaultButton="true" onAction="#insertMalattieAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="17.0" />
                </font>
@@ -50,27 +45,18 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXComboBox fx:id="comuneComboBox" layoutX="155.0" layoutY="124.0" prefHeight="26.0" prefWidth="226.0" />
-            <JFXButton fx:id="ricercaButton" buttonType="RAISED" defaultButton="true" layoutX="737.0" layoutY="118.0" onAction="#searchMalattieContagioseAction" prefHeight="32.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #717584; -fx-border-color: #4b4b4b;" text="RICERCA" textFill="WHITE">
-               <font>
-                  <Font name="Open Sans Semibold" size="17.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Separator layoutY="194.0" prefHeight="0.0" prefWidth="884.0" />
-            <Text layoutX="66.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INCIDENTE STRADALE" wrappingWidth="201.98590087890625">
+            <Separator prefHeight="0.0" prefWidth="884.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="INCIDENTE STRADALE" wrappingWidth="201.98590087890625">
                <font>
                   <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="66.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MALATTIA TUMORALE" wrappingWidth="201.98590087890625">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MALATTIA TUMORALE" wrappingWidth="201.98590087890625">
                <font>
                   <Font name="Open Sans Regular" size="20.0" />
                </font>
             </Text>
-            <JFXButton layoutX="788.0" layoutY="218.0" opacity="0.0" prefHeight="52.0" prefWidth="63.0" text="Button">
+            <JFXButton opacity="0.0" prefHeight="52.0" prefWidth="63.0" text="Button">
                <tooltip>
                   <Tooltip text="Incidenti Stradali: moto, auto, bicicletta.">
                      <graphic>
@@ -83,15 +69,56 @@
                   </Tooltip>
                </tooltip>
             </JFXButton>
-            <JFXButton layoutX="788.0" layoutY="268.0" opacity="0.0" prefHeight="52.0" prefWidth="63.0" text="Button">
+            <JFXButton opacity="0.0" prefHeight="52.0" prefWidth="63.0" text="Button">
                <tooltip>
                   <Tooltip text="Tumore ai polmponi, cervello, etc" />
                </tooltip>
             </JFXButton>
-            <JFXTextField layoutX="421.0" layoutY="231.0" />
-            <JFXTextField layoutX="421.0" layoutY="281.0" />
-            <DatePicker fx:id="meseDatePicker" layoutX="489.0" layoutY="122.0" prefHeight="30.0" prefWidth="202.0" />
-         </children>
-    </AnchorPane>
-  </children>
-</VBox>
+            <JFXTextField />
+            <JFXTextField />
+            <GridPane prefHeight="91.0" prefWidth="835.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.2" minWidth="10.0" prefWidth="315.2" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.99998779296874" minWidth="10.0" prefWidth="331.2" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comune" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mese" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXComboBox fx:id="comuneComboBox" prefHeight="26.0" prefWidth="265.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets right="30.0" />
+                     </padding>
+                  </JFXComboBox>
+                  <JFXButton fx:id="ricercaButton" buttonType="RAISED" defaultButton="true" onAction="#searchMalattieContagioseAction" prefHeight="32.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #717584; -fx-border-color: #4b4b4b;" text="RICERCA" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Semibold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <DatePicker fx:id="meseDatePicker" prefHeight="30.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                  </DatePicker>
+               </children>
+            </GridPane>
+        </children>
+      </VBox>
+   </children>
+</AnchorPane>
