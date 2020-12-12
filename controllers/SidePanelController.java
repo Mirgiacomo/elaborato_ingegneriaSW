@@ -35,7 +35,7 @@ public class SidePanelController extends AbstractController implements Initializ
     @FXML
     private JFXButton decessiProvinciaButton;
     @FXML
-    private JFXButton respComuniButton;
+    private JFXButton associaComuniButton;
     @FXML
     private JFXButton exportReportButton;
     @FXML
@@ -64,6 +64,28 @@ public class SidePanelController extends AbstractController implements Initializ
 
     @FXML
     public void viewComuniAction(ActionEvent event) throws IOException {
+        callback.selectView("viewComuni.fxml");
+    }
+
+    @FXML
+    public void viewDecessiProvinciaAction(ActionEvent event) throws IOException {
+        callback.selectView("InsertDecessi.fxml");
+    }
+
+    @FXML
+    public void viewContagiComuniAction(ActionEvent event) throws IOException {
+        callback.selectView("InsertDecessi.fxml");
+    }
+
+    @FXML
+    public void viewAssociaComuniAction(ActionEvent event) throws IOException {
+        // TODO: fix con giusto fxml
+        callback.selectView("viewComuni.fxml");
+    }
+
+    @FXML
+    public void viewExportReport(ActionEvent event) throws IOException {
+        // TODO: fix con giusto fxml
         callback.selectView("viewComuni.fxml");
     }
 
@@ -102,7 +124,7 @@ public class SidePanelController extends AbstractController implements Initializ
         vbox.getChildren().remove(grafico1Button);
         vbox.getChildren().remove(contagiComuniButton);
         vbox.getChildren().remove(decessiProvinciaButton);
-        vbox.getChildren().remove(respComuniButton);
+        vbox.getChildren().remove(associaComuniButton);
         vbox.getChildren().remove(exportReportButton);
         vbox.getChildren().remove(footerPane);
 
@@ -115,7 +137,7 @@ public class SidePanelController extends AbstractController implements Initializ
                 vbox.getChildren().add(comuniButton);
                 vbox.getChildren().add(regioniButton);
                 vbox.getChildren().add(grafico1Button);
-                vbox.getChildren().add(respComuniButton);
+                vbox.getChildren().add(associaComuniButton);
                 vbox.getChildren().add(exportReportButton);
                 break;
 

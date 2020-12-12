@@ -32,22 +32,22 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="contagiComuniButton" buttonType="RAISED" onAction="#viewComuniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="CONTAGI COMUNI" textFill="WHITE">
+      <JFXButton fx:id="contagiComuniButton" buttonType="RAISED" onAction="#viewContagiComuniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="CONTAGI COMUNI" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="respComuniButton" buttonType="RAISED" onAction="#viewComuniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="RESPONSABILI COMUNI" textFill="WHITE">
+      <JFXButton fx:id="associaComuniButton" buttonType="RAISED" onAction="#viewAssociaComuniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="ASSOCIA COMUNI" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="decessiProvinciaButton" buttonType="RAISED" onAction="#viewComuniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="DECESSI PROVINCIA" textFill="WHITE">
+      <JFXButton fx:id="decessiProvinciaButton" buttonType="RAISED" onAction="#showInsertDecessi" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="DECESSI PROVINCIA" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="exportReportButton" buttonType="RAISED" onAction="#viewComuniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="EXPORT REPORT" textFill="WHITE">
+      <JFXButton fx:id="exportReportButton" buttonType="RAISED" onAction="#viewExportReport" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="EXPORT REPORT" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
