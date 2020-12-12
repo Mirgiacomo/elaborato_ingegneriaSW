@@ -90,6 +90,11 @@ public class SidePanelController extends AbstractController implements Initializ
     }
 
     @FXML
+    public void viewinfo(ActionEvent event) throws IOException {
+        callback.selectView("ViewInfo.fxml");
+    }
+
+    @FXML
     public void logoutAction(ActionEvent event) throws IOException {
         loggedUser = null;
 
