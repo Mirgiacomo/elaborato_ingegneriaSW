@@ -59,7 +59,7 @@ public class ViewInfoController implements Initializable {
                 }
             }
         });
-        mirandolaMailLink.setOnAction(e -> {
+        mirandolaLinkedinLink.setOnAction(e -> {
             if(Desktop.isDesktopSupported())
             {
                 try {
