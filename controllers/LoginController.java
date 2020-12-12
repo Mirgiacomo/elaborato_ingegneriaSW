@@ -57,7 +57,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void loginAction(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
-        String username = usernameTextField.getText();
+        String username = usernameTextField.getText().toLowerCase();
         String password = passwordField.getText();
 
         Utente user = userDao.getItem(username);
