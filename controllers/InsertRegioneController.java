@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.Regione;
@@ -12,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 public class InsertRegioneController extends AbstractController implements Initializable {
     @FXML
@@ -20,6 +22,8 @@ public class InsertRegioneController extends AbstractController implements Initi
     private JFXTextField capoluogoTextField;
     @FXML
     private JFXTextField superficieTextField;
+    @FXML
+    public JFXButton insertRegioneButton;
 
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
@@ -52,6 +56,10 @@ public class InsertRegioneController extends AbstractController implements Initi
             FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
             System.out.println("Regione inserita correttamente.");
+
+            // Chiudo la pagina di insert dopo l'avvenuto inserimento
+            Stage stage = (Stage) insertRegioneButton.getScene().getWindow();
+            stage.close();
         }
     }
     

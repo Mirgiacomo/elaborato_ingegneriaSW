@@ -77,6 +77,8 @@ public class InsertProvinciaController extends AbstractController implements Ini
             FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
             System.out.println("Provincia inserita correttamente!");
+
+            // Chiudo la pagina di insert dopo l'avvenuto inserimento
             Stage stage = (Stage) insertProvinciaButton.getScene().getWindow();
             stage.close();
         }

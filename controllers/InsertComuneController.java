@@ -7,10 +7,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.models.Comune;
@@ -22,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 public class InsertComuneController extends AbstractController implements Initializable {
     @FXML
@@ -38,6 +36,8 @@ public class InsertComuneController extends AbstractController implements Initia
     private JFXCheckBox fronteMareCheckBox;
     @FXML
     private JFXComboBox provinciaComboBox;
+    @FXML
+    public JFXButton insertComuneButton;
 
     private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
     private final ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
@@ -95,6 +95,10 @@ public class InsertComuneController extends AbstractController implements Initia
             FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
             System.out.println("Comune inserito correttamente!");
+
+            // Chiudo la pagina di insert dopo l'avvenuto inserimento
+            Stage stage = (Stage) insertComuneButton.getScene().getWindow();
+            stage.close();
         }
     }
     
