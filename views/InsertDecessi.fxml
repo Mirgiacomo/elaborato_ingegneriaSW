@@ -7,7 +7,6 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -45,7 +44,7 @@
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anno" GridPane.columnIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Anno" textAlignment="CENTER" wrappingWidth="85.65588760375977" GridPane.columnIndex="1">
                      <font>
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
@@ -63,11 +62,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <DatePicker fx:id="annoFilterDatePicker" prefHeight="30.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
-                     <GridPane.margin>
+                  <JFXComboBox fx:id="annoFilterComboBox" prefHeight="30.0" prefWidth="211.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                     <padding>
                         <Insets right="30.0" />
-                     </GridPane.margin>
-                  </DatePicker>
+                     </padding>
+                  </JFXComboBox>
                </children>
                <VBox.margin>
                   <Insets />
@@ -143,7 +142,7 @@
                         <Insets left="35.0" />
                      </padding>
                   </Label>
-                  <JFXCheckBox fx:id="ComplicanzeRespiratorieCheckBox" prefHeight="20.0" prefWidth="70.0" text="Altro" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <JFXCheckBox fx:id="ComplicanzeRespiratorieCheckBox" prefHeight="20.0" prefWidth="70.0" text="something" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="100.0" />
                      </GridPane.margin>
@@ -163,31 +162,22 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="incidenteStradaleNumeroTextField" alignment="CENTER" prefHeight="28.0" prefWidth="274.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets left="80.0" right="80.0" />
-                     </padding>
-                     <GridPane.margin>
-                        <Insets left="100.0" right="100.0" />
-                     </GridPane.margin>
-                  </JFXTextField>
                   <JFXTextField fx:id="malattieTumoraliNumeroTextField" alignment="CENTER" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="100.0" right="100.0" />
                      </GridPane.margin>
                   </JFXTextField>
                   <JFXTextField fx:id="malattieCardiovascolariNumeroTextField" alignment="CENTER" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <padding>
-                        <Insets left="80.0" right="80.0" />
-                     </padding>
+                     <GridPane.margin>
+                        <Insets left="100.0" right="100.0" />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <JFXTextField fx:id="incidenteStradaleNumeroTextField" alignment="CENTER" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="100.0" right="100.0" />
                      </GridPane.margin>
                   </JFXTextField>
                   <JFXTextField fx:id="malattieContagioseNumeroTextField" alignment="CENTER" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <padding>
-                        <Insets left="80.0" right="80.0" />
-                     </padding>
                      <GridPane.margin>
                         <Insets left="100.0" right="100.0" />
                      </GridPane.margin>
