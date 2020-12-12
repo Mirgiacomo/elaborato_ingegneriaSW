@@ -32,6 +32,21 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </JFXButton>
+      <JFXButton fx:id="contagiComuniButton" buttonType="RAISED" onAction="#viewComuniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="CONTAGI COMUNI" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="respComuniButton" buttonType="RAISED" onAction="#viewComuniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="RESPONSABILI COMUNI" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="decessiProvinciaButton" buttonType="RAISED" onAction="#viewComuniAction" prefHeight="100.0" prefWidth="500.0" ripplerFill="#fc0000" styleClass="button-menu" stylesheets="@css/style.css" text="DECESSI PROVINCIA" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
         <Pane fx:id="footerPane" prefHeight="81.0" prefWidth="251.0">
             <children>
                 <JFXButton fx:id="logoutButton" buttonType="RAISED" defaultButton="true" layoutX="14.0" layoutY="13.0" onAction="#logoutAction" prefHeight="27.0" prefWidth="73.0" ripplerFill="WHITE" style="-fx-background-color: #7b241c; -fx-background-radius: 5pt; -fx-border-radius: 5pt; -fx-font-size: 11px;" text="LOGOUT" textFill="WHITE">

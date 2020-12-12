@@ -31,6 +31,14 @@ public class SidePanelController extends AbstractController implements Initializ
     @FXML
     private JFXButton grafico1Button;
     @FXML
+    private JFXButton contagiComuniButton;
+    @FXML
+    private JFXButton decessiProvinciaButton;
+    @FXML
+    private JFXButton respComuniButton;
+    @FXML
+    private JFXButton exportReportButton;
+    @FXML
     private VBox vbox;
     @FXML
     private Pane footerPane;
@@ -87,22 +95,53 @@ public class SidePanelController extends AbstractController implements Initializ
 
     @FXML
     public void addButton(Utente utente) {
+        // All'inizio tolgo tutti i bottoni in modo tale da inserirli nella sequenza giusta
         vbox.getChildren().remove(provinceButton);
         vbox.getChildren().remove(comuniButton);
         vbox.getChildren().remove(regioniButton);
         vbox.getChildren().remove(grafico1Button);
+        vbox.getChildren().remove(contagiComuniButton);
+        vbox.getChildren().remove(decessiProvinciaButton);
+        vbox.getChildren().remove(respComuniButton);
+        vbox.getChildren().remove(exportReportButton);
         vbox.getChildren().remove(footerPane);
 
+        // Mi prendo il ruole dell'utente loggato e carico le sezioni a lui visibili
         RuoloUtente ruoloUtente = utente.getRuolo();
-        // TODO: da finire
         switch (ruoloUtente){
+            // ADMIN ha permessi di visualizzare tutto
             case ADMIN:
+                vbox.getChildren().add(provinceButton);
+                vbox.getChildren().add(comuniButton);
+                vbox.getChildren().add(regioniButton);
+                vbox.getChildren().add(grafico1Button);
+                vbox.getChildren().add(respComuniButton);
+                vbox.getChildren().add(exportReportButton);
+                break;
+
+            // Il personale dell’ente incaricato del monitoraggio può inserire  nuove regioni, province e comuni
+            case PERSONALE_MONITORAGGIO:
                 vbox.getChildren().add(comuniButton);
                 vbox.getChildren().add(provinceButton);
                 vbox.getChildren().add(regioniButton);
                 break;
+
+            // Ogni persona assunta a contratto ha l’autorizzazione ad inserire i dati di un numero predefinito di comuni.
+            // Il personale dell’ente inserisce, per ogni persona a contratto, i comuni di cui è responsabile.
+            case PERSONALE_CONTAGI:
+                vbox.getChildren().add(contagiComuniButton);
+                break;
+
+            // L'apposito personale dell’ente registra annualmente per ogni provincia il numero di decessi
+            case PERSONALE_DECESSI:
+                // TODO: valutare se aggiungere un altro bottone per la visualizzazione di tali dati sotto forma di report
+                vbox.getChildren().add(decessiProvinciaButton);
+                break;
+
+            // Visualizzazione report
             case RICERCATORE_ANALISTA:
                 vbox.getChildren().add(grafico1Button);
+                vbox.getChildren().add(exportReportButton);
                 break;
             default:
                 System.out.println("Errore. Riprovare ad accedere!\n");
