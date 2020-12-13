@@ -75,7 +75,7 @@ public class SidePanelController extends AbstractController implements Initializ
 
     @FXML
     public void viewContagiComuniAction(ActionEvent event) throws IOException {
-        callback.selectView("InsertDecessi.fxml");
+        callback.selectView("InsertMalattieContagiose.fxml");
     }
 
     @FXML
@@ -137,9 +137,9 @@ public class SidePanelController extends AbstractController implements Initializ
                 vbox.getChildren().add(provinceButton);
                 vbox.getChildren().add(comuniButton);
                 vbox.getChildren().add(regioniButton);
-                vbox.getChildren().add(grafico1Button);
+                vbox.getChildren().add(contagiComuniButton);
                 vbox.getChildren().add(associaComuniButton);
-                vbox.getChildren().add(exportReportButton);
+                vbox.getChildren().add(decessiProvinciaButton);
                 break;
 
             // Il personale dell’ente incaricato del monitoraggio può inserire  nuove regioni, province e comuni
