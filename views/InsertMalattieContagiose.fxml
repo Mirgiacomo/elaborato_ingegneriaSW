@@ -189,7 +189,7 @@
                         <Insets left="35.0" />
                      </padding>
                   </Label>
-                  <JFXCheckBox fx:id="ComplicanzeRespiratorieCheckBox" text="Complicanze respiratorie" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <JFXCheckBox fx:id="complicanzeRespiratorieCheckBox" text="Complicanze respiratorie" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
