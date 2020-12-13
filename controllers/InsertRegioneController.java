@@ -1,9 +1,5 @@
 package elaborato_ingegneriaSW.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
@@ -15,17 +11,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+
 public class InsertRegioneController extends AbstractController implements Initializable {
+    private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
+    @FXML
+    public JFXButton insertRegioneButton;
     @FXML
     private JFXTextField nomeTextField;
     @FXML
     private JFXTextField capoluogoTextField;
     @FXML
     private JFXTextField superficieTextField;
-    @FXML
-    public JFXButton insertRegioneButton;
-
-    private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
     /**
      * Initializes the controller class.
@@ -44,7 +43,7 @@ public class InsertRegioneController extends AbstractController implements Initi
             FXUtil.Alert(Alert.AlertType.ERROR, "SUPERFICIE ERRATA", "Errore durante l'inserimento della superficie! Prova con il punto al posto della virgola", null, event);
             return;
         }
-        if(nomeTextField.getText().isBlank() || capoluogoTextField.getText().isBlank() || superficieTextField.getText().isBlank() || superficie <= 0){
+        if (nomeTextField.getText().isBlank() || capoluogoTextField.getText().isBlank() || superficieTextField.getText().isBlank() || superficie <= 0) {
             FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE NEI DATI!", "Dati non validi!", null, event);
             return;
         }
@@ -52,15 +51,41 @@ public class InsertRegioneController extends AbstractController implements Initi
         String capoluogo = capoluogoTextField.getText();
 
         Regione newRegione = new Regione(nome, capoluogo, superficie);
-        if (regioneDao.addItem(newRegione) == null) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
-        } else {
-            System.out.println("Regione inserita correttamente.");
 
-            // Chiudo la pagina di insert dopo l'avvenuto inserimento
-            Stage stage = (Stage) insertRegioneButton.getScene().getWindow();
-            stage.close();
+        // Controllo se c'è una regione con lo stesso nome
+        if(regioneDao.getItem(newRegione.getNome().toLowerCase()) == null) {
+            if (regioneDao.addItem(newRegione) == null) {
+                FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
+            } else {
+                System.out.println("Regione inserita correttamente.");
+
+                // Chiudo la pagina di insert dopo l'avvenuto inserimento
+                Stage stage = (Stage) insertRegioneButton.getScene().getWindow();
+                stage.close();
+            }
+        } else{
+            if (regioneDao.updateItem(newRegione) == null) {
+                FXUtil.Alert(Alert.AlertType.ERROR, "AGGIORNAMENTO FALLITO", "Errore durante l'aggiornamento!", null, event);
+            } else {
+                System.out.println("Regione aggiornata correttamente.");
+
+                // Chiudo la pagina di insert dopo l'avvenuto inserimento
+                Stage stage = (Stage) insertRegioneButton.getScene().getWindow();
+                stage.close();
+            }
         }
+        /**
+        */
     }
-    
+
+    /**
+     * Popolo il form di insertRegione con i dati della tabella
+     * @param regione
+     */
+    public void updateRegione(Regione regione) {
+        nomeTextField.setText(regione.getNome());
+        capoluogoTextField.setText(regione.getCapoluogo());
+        superficieTextField.setText(String.valueOf(regione.getSuperficie()));
+    }
+
 }
