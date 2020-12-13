@@ -1,7 +1,9 @@
 package elaborato_ingegneriaSW.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.models.Comune;
+import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -14,11 +16,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,7 +63,43 @@ public class ViewComuniController implements Initializable {
                         Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
                         ObservableList<Comune> data = FXCollections.observableArrayList(comuni);
 
-                        codiceISTATCol.setCellValueFactory(new PropertyValueFactory<>("codiceISTAT"));
+                        TableColumn actionCol = new TableColumn("ACTION");
+
+                        Callback<TableColumn<Comune, String>, TableCell<Comune, String>> cellFactory
+                                = //
+                                new Callback<TableColumn<Comune, String>, TableCell<Comune, String>>() {
+                                    @Override
+                                    public TableCell call(final TableColumn<Comune, String> param) {
+                                        final TableCell<Comune, String> cell = new TableCell<Comune, String>() {
+
+                                            JFXButton btn = new JFXButton("Modifica");
+
+                                            @Override
+                                            public void updateItem(String item, boolean empty) {
+
+                                                // Setto il CSS al bottone della tabella
+                                                btn.setId("button-table");
+                                                btn.setTextFill(Paint.valueOf("white"));
+                                                super.updateItem(item, empty);
+                                                if (empty) {
+                                                    setGraphic(null);
+                                                    setText(null);
+                                                } else {
+                                                    btn.setOnAction(event -> {
+                                                        //Comune comune = getTableView().getItems().get(getIndex());
+                                                        //System.out.println(comune.getNome());
+                                                    });
+                                                    setGraphic(btn);
+                                                    setText(null);
+                                                }
+                                            }
+                                        };
+                                        return cell;
+                                    }
+                                };
+                        actionCol.setCellFactory(cellFactory);
+                        tableComuni.getColumns().addAll(actionCol);
+                        codiceISTATCol .setCellValueFactory(new PropertyValueFactory<>("codiceISTAT"));
                         nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                         dataIstituzioneCol.setCellValueFactory(new PropertyValueFactory<>("dataIstituzione"));
                         superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));

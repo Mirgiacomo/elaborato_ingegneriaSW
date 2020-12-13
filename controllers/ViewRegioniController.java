@@ -1,5 +1,6 @@
 package elaborato_ingegneriaSW.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.Regione;
 import elaborato_ingegneriaSW.utils.ShowView;
@@ -14,11 +15,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +31,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class ViewRegioniController implements Initializable {
+    private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
     @FXML
     public TableColumn<Regione, String> nomeCol;
     @FXML
@@ -35,8 +40,6 @@ public class ViewRegioniController implements Initializable {
     public TableColumn<Regione, Double> superficieCol;
     @FXML
     private TableView<Regione> tableRegioni;
-
-    private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -48,6 +51,61 @@ public class ViewRegioniController implements Initializable {
                     try {
                         Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
                         ObservableList<Regione> data = FXCollections.observableArrayList(regioni);
+
+                        TableColumn actionCol = new TableColumn("ACTION");
+
+                        Callback<TableColumn<Regione, String>, TableCell<Regione, String>> cellFactory
+                                = //
+                                new Callback<TableColumn<Regione, String>, TableCell<Regione, String>>() {
+                                    @Override
+                                    public TableCell call(final TableColumn<Regione, String> param) {
+                                        final TableCell<Regione, String> cell = new TableCell<Regione, String>() {
+
+                                            JFXButton btn = new JFXButton("Modifica");
+
+                                            @Override
+                                            public void updateItem(String item, boolean empty) {
+
+                                                // Setto il CSS al bottone della tabella
+                                                btn.setId("button-table");
+                                                btn.setTextFill(Paint.valueOf("white"));
+                                                super.updateItem(item, empty);
+                                                if (empty) {
+                                                    setGraphic(null);
+                                                    setText(null);
+                                                } else {
+                                                    btn.setOnAction(event -> {
+
+                                                        // Apro la pagina di insert ma in modalità edit
+                                                        ShowView showView = new ShowView();
+                                                        FXMLLoader loader = showView.getLoader("InsertRegione.fxml");
+
+                                                        Parent view = null;
+                                                        try {
+                                                            view = loader.load();
+                                                        } catch (IOException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                        Scene scene = new Scene(view);
+
+                                                        Stage stage = new Stage();
+                                                        stage.initModality(Modality.WINDOW_MODAL);
+                                                        stage.initOwner(
+                                                                ((Node)event.getSource()).getScene().getWindow() );
+
+                                                        stage.setScene(scene);
+                                                        stage.showAndWait();
+                                                    });
+                                                    setGraphic(btn);
+                                                    setText(null);
+                                                }
+                                            }
+                                        };
+                                        return cell;
+                                    }
+                                };
+                        actionCol.setCellFactory(cellFactory);
+                        tableRegioni.getColumns().addAll(actionCol);
 
                         nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                         superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
@@ -77,7 +135,7 @@ public class ViewRegioniController implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(
-                ((Node)event.getSource()).getScene().getWindow() );
+                ((Node) event.getSource()).getScene().getWindow());
 
         stage.setScene(scene);
         stage.showAndWait();

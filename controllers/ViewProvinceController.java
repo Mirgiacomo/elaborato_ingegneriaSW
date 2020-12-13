@@ -31,6 +31,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class ViewProvinceController implements Initializable {
+    private final ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
     @FXML
     public TableColumn<Provincia, String> nomeCol;
     @FXML
@@ -39,8 +40,6 @@ public class ViewProvinceController implements Initializable {
     public TableColumn<Provincia, String> regioneCol;
     @FXML
     private TableView<Provincia> tableProvince;
-
-    private final ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -63,6 +62,7 @@ public class ViewProvinceController implements Initializable {
                                         final TableCell<Provincia, String> cell = new TableCell<Provincia, String>() {
 
                                             JFXButton btn = new JFXButton("Modifica");
+
                                             @Override
                                             public void updateItem(String item, boolean empty) {
 
@@ -78,9 +78,6 @@ public class ViewProvinceController implements Initializable {
                                                         //Provincia provincia = getTableView().getItems().get(getIndex());
                                                         //System.out.println(provincia.getNome());
                                                     });
-
-
-
                                                     setGraphic(btn);
                                                     setText(null);
                                                 }
@@ -118,7 +115,7 @@ public class ViewProvinceController implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(
-                ((Node)event.getSource()).getScene().getWindow() );
+                ((Node) event.getSource()).getScene().getWindow());
 
         stage.setScene(scene);
         stage.showAndWait();
