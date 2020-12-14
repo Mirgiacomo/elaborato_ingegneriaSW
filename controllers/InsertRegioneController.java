@@ -63,7 +63,7 @@ public class InsertRegioneController extends AbstractController implements Initi
                 Stage stage = (Stage) insertRegioneButton.getScene().getWindow();
                 stage.close();
             }
-        } else{
+        } else {
             if (regioneDao.updateItem(newRegione) == null) {
                 FXUtil.Alert(Alert.AlertType.ERROR, "AGGIORNAMENTO FALLITO", "Errore durante l'aggiornamento!", null, event);
             } else {
