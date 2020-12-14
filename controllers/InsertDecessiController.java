@@ -70,24 +70,6 @@ public class InsertDecessiController implements Initializable {
         }
     }
 
-    public void showInsertDecessi(ActionEvent event) throws IOException {
-        /*
-        ShowView showView = new ShowView();
-        FXMLLoader loader = showView.getLoader("InsertDecessi.fxml");
-
-        Parent view = loader.load();
-        Scene scene = new Scene(view);
-
-        Stage stage = new Stage();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(
-                ((Node)event.getSource()).getScene().getWindow() );
-
-        stage.setScene(scene);
-        stage.showAndWait();
-        */
-    }
-
     @FXML
     private void searchDecessiAction(ActionEvent event) throws ExecutionException, InterruptedException {
         /*

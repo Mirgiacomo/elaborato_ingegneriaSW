@@ -74,8 +74,6 @@ public class InsertRegioneController extends AbstractController implements Initi
                 stage.close();
             }
         }
-        /**
-        */
     }
 
     /**
