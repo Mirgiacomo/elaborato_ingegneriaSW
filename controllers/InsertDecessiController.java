@@ -17,17 +17,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
-import javax.swing.*;
-import java.awt.event.KeyAdapter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -82,6 +71,7 @@ public class InsertDecessiController implements Initializable {
     }
 
     public void showInsertDecessi(ActionEvent event) throws IOException {
+        /*
         ShowView showView = new ShowView();
         FXMLLoader loader = showView.getLoader("InsertDecessi.fxml");
 
@@ -95,7 +85,9 @@ public class InsertDecessiController implements Initializable {
 
         stage.setScene(scene);
         stage.showAndWait();
+        */
     }
+
     @FXML
     private void searchDecessiAction(ActionEvent event) throws ExecutionException, InterruptedException {
         /*
