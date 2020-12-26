@@ -30,7 +30,7 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Text>
-            <GridPane alignment="CENTER" prefHeight="91.0" prefWidth="835.0">
+            <GridPane alignment="CENTER" maxWidth="1000.0">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.2" minWidth="10.0" prefWidth="315.2" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.99998779296874" minWidth="10.0" prefWidth="331.2" />
@@ -38,27 +38,29 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comune" GridPane.rowIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comune">
                      <font>
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mese" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Open Sans Regular" size="20.0" />
-                     </font>
-                  </Text>
-                  <JFXComboBox fx:id="comuneFilterComboBox" prefHeight="26.0" prefWidth="267.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                  <JFXComboBox fx:id="comuneFilterComboBox" GridPane.halignment="RIGHT">
                      <padding>
                         <Insets right="30.0" />
                      </padding>
                   </JFXComboBox>
-                  <JFXButton fx:id="ricercaFilterButton" buttonType="RAISED" defaultButton="true" onAction="#searchMalattieContagioseAction" prefHeight="32.0" prefWidth="102.0" ripplerFill="WHITE" styleClass="button-ricerca" stylesheets="@css/style.css" text="RICERCA" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mese" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="meseFilterDataPicker" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                  </DatePicker>
+                  <JFXButton fx:id="ricercaFilterButton" buttonType="RAISED" defaultButton="true" onAction="#searchMalattieContagioseAction" prefHeight="32.0" prefWidth="102.0" ripplerFill="WHITE" styleClass="button-ricerca" stylesheets="@css/style.css" text="RICERCA" textFill="WHITE" GridPane.columnIndex="2">
                      <font>
                         <Font name="Open Sans Semibold" size="17.0" />
                      </font>
@@ -66,17 +68,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <DatePicker fx:id="meseFilterDataPicker" prefHeight="30.0" prefWidth="222.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets right="30.0" />
-                     </GridPane.margin>
-                  </DatePicker>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="20.0" />
                </VBox.margin>
                <padding>
-                  <Insets left="20.0" right="20.0" top="10.0" />
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                </padding>
             </GridPane>
             <Separator prefWidth="200.0" />
@@ -88,16 +85,41 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="172.80007324218752" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="70.0" />
+                <RowConstraints minHeight="70.0" />
+                  <RowConstraints minHeight="70.0" />
+                  <RowConstraints minHeight="70.0" />
+                  <RowConstraints minHeight="70.0" />
+                  <RowConstraints minHeight="70.0" />
+                <RowConstraints minHeight="70.0" />
+                <RowConstraints minHeight="70.0" />
               </rowConstraints>
                <children>
+                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="MALATTIA">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="309.0" text="IN CURA PR. MEDICO CURANTE" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="254.0" text="TERAPIA INTENSIVA" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="166.0" text="SEGNALAZIONI" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIcon iconName="CIRCLE" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </FontAwesomeIcon>
                   <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="176.0" stylesheets="@css/style.css" text="Episodi Influenzali" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
@@ -106,11 +128,21 @@
                         <Insets left="35.0" />
                      </GridPane.margin>
                   </Label>
-                  <FontAwesomeIcon iconName="CIRCLE" GridPane.rowIndex="1">
+                  <JFXTextField fx:id="episodiInfluenzaliMedicoCuranteTextField" alignment="CENTER" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="80.0" right="80.0" />
+                     </padding>
+                  </JFXTextField>
+                  <JFXTextField fx:id="episodiInfluenzaliTerapiaIntensivaTextField" alignment="CENTER" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="80.0" right="80.0" />
+                     </padding>
+                  </JFXTextField>
+                  <JFXCheckBox fx:id="complicanzeRespiratorieCheckBox" text="Complicanze respiratorie" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets />
                      </GridPane.margin>
-                  </FontAwesomeIcon>
+                  </JFXCheckBox>
                   <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="223.0" text="Polmonite" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
@@ -189,42 +221,7 @@
                         <Insets left="35.0" />
                      </padding>
                   </Label>
-                  <JFXCheckBox fx:id="complicanzeRespiratorieCheckBox" text="Complicanze respiratorie" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </JFXCheckBox>
-                  <JFXTextField fx:id="episodiInfluenzaliTerapiaIntensivaTextField" alignment="CENTER" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets left="80.0" right="80.0" />
-                     </padding>
-                  </JFXTextField>
-                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="274.0" text="MALATTIA">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="254.0" text="TERAPIA INTENSIVA" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="309.0" text="IN CURA PR. MEDICO CURANTE" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
                   <JFXCheckBox text="altro" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="166.0" text="SEGNALAZIONI" GridPane.columnIndex="3">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <JFXTextField fx:id="episodiInfluenzaliMedicoCuranteTextField" alignment="CENTER" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <padding>
-                        <Insets left="80.0" right="80.0" />
-                     </padding>
-                  </JFXTextField>
                   <JFXTextField fx:id="polmoniteMedicoCuranteTextField" alignment="CENTER" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <padding>
                         <Insets left="80.0" right="80.0" />

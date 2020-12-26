@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ViewRegioniController">
+<AnchorPane maxHeight="1.7976931348623157E308" styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ViewRegioniController">
    <children>
       <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -29,8 +29,9 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
             </JFXButton>
-            <TableView fx:id="tableRegioni" editable="true" tableMenuButtonVisible="true">
+            <TableView fx:id="tableRegioni" editable="true" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
               <columns>
+                 <TableColumn fx:id="actionCol" minWidth="-1.0" prefWidth="-1.0" text="ACTION" />
                  <TableColumn fx:id="nomeCol" minWidth="-1.0" prefWidth="-1.0" text="NOME" />
                  <TableColumn fx:id="capoluogoCol" minWidth="-1.0" prefWidth="-1.0" text="CAPOLUOGO" />
                  <TableColumn fx:id="superficieCol" minWidth="-1.0" prefWidth="-1.0" text="SUPERFICIE" />

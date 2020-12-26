@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane styleClass="anchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ViewComuniController">
+<AnchorPane styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ViewComuniController">
    <children>
       <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,8 +29,9 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
             </JFXButton>
-            <TableView fx:id="tableComuni" editable="true" tableMenuButtonVisible="true">
+            <TableView fx:id="tableComuni" editable="true" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
               <columns>
+                 <TableColumn fx:id="actionCol" minWidth="-1.0" prefWidth="-1.0" text="ACTION" />
                  <TableColumn fx:id="codiceISTATCol" prefWidth="150.0" text="CODICE ISTAT" />
                  <TableColumn fx:id="nomeCol" prefWidth="150.0" text="NOME" />
                  <TableColumn fx:id="dataIstituzioneCol" prefWidth="150.0" text="DATA ISTITUZIONE" />
