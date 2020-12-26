@@ -1,9 +1,9 @@
 package elaborato_ingegneriaSW.controllers;
 
-import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
+import elaborato_ingegneriaSW.models.AbstractTableModel;
 import elaborato_ingegneriaSW.models.Comune;
-import elaborato_ingegneriaSW.models.Provincia;
+import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -20,7 +20,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -31,8 +30,13 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewComuniController implements Initializable {
+public class ViewComuniController implements Initializable, AbstractViewController {
+    private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
 
+    @FXML
+    private TableView<Comune> tableComuni;
+    @FXML
+    public TableColumn<AbstractTableModel, String> actionCol;
     @FXML
     public TableColumn<Comune, String> codiceISTATCol;
     @FXML
@@ -47,10 +51,6 @@ public class ViewComuniController implements Initializable {
     public TableColumn<Comune, String> fronteMareCol;
     @FXML
     public TableColumn<Comune, String> provinciaCol;
-    @FXML
-    private TableView<Comune> tableComuni;
-
-    private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -58,62 +58,29 @@ public class ViewComuniController implements Initializable {
 
             @Override
             protected Void call() {
-                Platform.runLater(() -> {
-                    try {
-                        Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
-                        ObservableList<Comune> data = FXCollections.observableArrayList(comuni);
+            Platform.runLater(() -> {
+                try {
+                    Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
+                    ObservableList<Comune> data = FXCollections.observableArrayList(comuni);
 
-                        TableColumn actionCol = new TableColumn("ACTION");
+                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableComuni, ViewComuniController.this, "InsertComune");
 
-                        Callback<TableColumn<Comune, String>, TableCell<Comune, String>> cellFactory
-                                = //
-                                new Callback<TableColumn<Comune, String>, TableCell<Comune, String>>() {
-                                    @Override
-                                    public TableCell call(final TableColumn<Comune, String> param) {
-                                        final TableCell<Comune, String> cell = new TableCell<Comune, String>() {
+                    actionCol.setCellFactory(cellFactory);
+                    codiceISTATCol.setCellValueFactory(new PropertyValueFactory<>("codiceISTAT"));
+                    nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
+                    dataIstituzioneCol.setCellValueFactory(new PropertyValueFactory<>("dataIstituzione"));
+                    superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
+                    territorioCol.setCellValueFactory(new PropertyValueFactory<>("territorio"));
+                    fronteMareCol.setCellValueFactory(new PropertyValueFactory<>("fronteMare"));
+                    provinciaCol.setCellValueFactory(new PropertyValueFactory<>("provincia"));
 
-                                            JFXButton btn = new JFXButton("Modifica");
+                    tableComuni.setItems(data);
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
 
-                                            @Override
-                                            public void updateItem(String item, boolean empty) {
-
-                                                // Setto il CSS al bottone della tabella
-                                                btn.setId("button-table");
-                                                btn.setTextFill(Paint.valueOf("white"));
-                                                super.updateItem(item, empty);
-                                                if (empty) {
-                                                    setGraphic(null);
-                                                    setText(null);
-                                                } else {
-                                                    btn.setOnAction(event -> {
-                                                        //Comune comune = getTableView().getItems().get(getIndex());
-                                                        //System.out.println(comune.getNome());
-                                                    });
-                                                    setGraphic(btn);
-                                                    setText(null);
-                                                }
-                                            }
-                                        };
-                                        return cell;
-                                    }
-                                };
-                        actionCol.setCellFactory(cellFactory);
-                        tableComuni.getColumns().addAll(actionCol);
-                        codiceISTATCol .setCellValueFactory(new PropertyValueFactory<>("codiceISTAT"));
-                        nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
-                        dataIstituzioneCol.setCellValueFactory(new PropertyValueFactory<>("dataIstituzione"));
-                        superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
-                        territorioCol.setCellValueFactory(new PropertyValueFactory<>("territorio"));
-                        fronteMareCol.setCellValueFactory(new PropertyValueFactory<>("fronteMare"));
-                        provinciaCol.setCellValueFactory(new PropertyValueFactory<>("provincia"));
-
-                        tableComuni.setItems(data);
-                    } catch (ExecutionException | InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                });
-
-                return null;
+            return null;
             }
         };
         Thread th = new Thread(task);
