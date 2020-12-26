@@ -1,6 +1,7 @@
 package elaborato_ingegneriaSW.controllers;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -21,7 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-public class InsertComuneController extends AbstractController implements Initializable {
+public class InsertComuneController extends AbstractController implements Initializable, EditView<Comune> {
     @FXML
     private JFXTextField codiceISTATTextField;
     @FXML
@@ -101,5 +102,14 @@ public class InsertComuneController extends AbstractController implements Initia
             stage.close();
         }
     }
-    
+
+    @Override
+    public void populateForm(Comune model) {
+        codiceISTATTextField.setText(model.getCodiceISTAT());
+        nomeTextField.setText(model.getNome());
+        // TODO: trasformare le date in LocalDate al posto di String
+        //dataIstituzioneDataPicker.setValue();
+        superficieTextField.setText(String.valueOf(model.getSuperficie()));
+        // TODO: finire il populate form
+    }
 }

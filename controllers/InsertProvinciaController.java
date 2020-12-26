@@ -21,7 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class InsertProvinciaController extends AbstractController implements Initializable {
+public class InsertProvinciaController extends AbstractController implements Initializable, EditView<Provincia> {
 
     @FXML
     private JFXTextField nomeTextField;
@@ -84,4 +84,8 @@ public class InsertProvinciaController extends AbstractController implements Ini
         }
     }
 
+    @Override
+    public void populateForm(Provincia model) {
+        
+    }
 }

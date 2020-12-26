@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
-public class InsertRegioneController extends AbstractController implements Initializable {
+public class InsertRegioneController extends AbstractController implements Initializable, EditView<Regione> {
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
     @FXML
     public JFXButton insertRegioneButton;
@@ -76,14 +76,10 @@ public class InsertRegioneController extends AbstractController implements Initi
         }
     }
 
-    /**
-     * Popolo il form di insertRegione con i dati della tabella
-     * @param regione
-     */
-    public void updateRegione(Regione regione) {
-        nomeTextField.setText(regione.getNome());
-        capoluogoTextField.setText(regione.getCapoluogo());
-        superficieTextField.setText(String.valueOf(regione.getSuperficie()));
+    @Override
+    public void populateForm(Regione model) {
+        nomeTextField.setText(model.getNome());
+        capoluogoTextField.setText(model.getCapoluogo());
+        superficieTextField.setText(String.valueOf(model.getSuperficie()));
     }
-
 }
