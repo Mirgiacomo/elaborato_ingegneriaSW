@@ -2,10 +2,9 @@ package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.MainApp;
 import elaborato_ingegneriaSW.models.RuoloUtente;
+import elaborato_ingegneriaSW.models.Utente;
 import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +23,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class MainController extends AbstractController implements Initializable, SelectViewCallback {
+public class MainController implements Initializable, SelectViewCallback {
+    private final ShowView showView = new ShowView();
+    private Utente loggedUser = new Utente("mirandola", "giacomo", "mirgiacomo", "", RuoloUtente.ADMIN , "");
 
     @FXML
     private JFXDrawer drawer;
@@ -44,8 +45,9 @@ public class MainController extends AbstractController implements Initializable,
     @Override
     public void initialize(URL url, ResourceBundle rb) { }
 
-    public void loadView() {
-        System.out.println(loggedUser);
+    public void loadView()
+    {
+        // System.out.println(loggedUser);
         if (loggedUser == null) {
             showLogin();
         } else {
@@ -66,7 +68,7 @@ public class MainController extends AbstractController implements Initializable,
                 VBox box = loader.load();
 
                 SidePanelController controller = loader.getController();
-                controller.addButton(loggedUser);
+                controller.createSidePanel(loggedUser);
                 controller.setCallback(this);
 
                 drawer.setSidePane(box);
@@ -88,7 +90,8 @@ public class MainController extends AbstractController implements Initializable,
         }
     }
 
-    private void showLogin() {
+    private void showLogin()
+    {
         try {
             AnchorPane loginPane = FXMLLoader.load(getClass().getResource(("/elaborato_ingegneriaSW/views/Login.fxml")));
 
@@ -131,10 +134,21 @@ public class MainController extends AbstractController implements Initializable,
     }
 
     @Override
-    public void selectView(String view) throws IOException {
+    public void selectView(String view) throws IOException
+    {
         FXMLLoader loader = showView.getLoader(view);
         Parent content = loader.load();
 
         contentPane.getChildren().setAll(content);
+    }
+
+    public void setLoggedUser(Utente user)
+    {
+        this.loggedUser = user;
+    }
+
+    public Utente getLoggedUser()
+    {
+        return loggedUser;
     }
 }

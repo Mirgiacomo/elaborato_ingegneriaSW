@@ -16,13 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class SidePanelController extends AbstractController implements Initializable {
+public class SidePanelController implements Initializable {
     @FXML
     private JFXButton regioniButton;
     @FXML
@@ -92,8 +91,6 @@ public class SidePanelController extends AbstractController implements Initializ
 
     @FXML
     public void logoutAction(ActionEvent event) throws IOException {
-        loggedUser = null;
-
         // close window
         Stage source = (Stage)(((Node)(event.getSource())).getScene().getWindow());
         source.close();
@@ -105,6 +102,7 @@ public class SidePanelController extends AbstractController implements Initializ
         Stage stage = new Stage();
         Parent view = loader.load();
         MainController controller = loader.getController();
+        controller.setLoggedUser(null);
         controller.loadView();
 
         Scene scene = new Scene(view);
@@ -117,7 +115,7 @@ public class SidePanelController extends AbstractController implements Initializ
     }
 
     @FXML
-    public void addButton(Utente utente) {
+    public void createSidePanel(Utente utente) {
         // All'inizio tolgo tutti i bottoni in modo tale da inserirli nella sequenza giusta
         vbox.getChildren().remove(provinceButton);
         vbox.getChildren().remove(comuniButton);
