@@ -73,8 +73,8 @@ public class SidePanelController implements Initializable {
     }
 
     @FXML
-    public void viewContagiComuniAction(ActionEvent event) throws IOException {
-        callback.selectView("insertMalattieContagiose.fxml");
+    public void editContagiComuniAction(ActionEvent event) throws IOException {
+        callback.selectView("editContagiComuni.fxml");
     }
 
     @FXML

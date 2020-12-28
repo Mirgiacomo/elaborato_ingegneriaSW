@@ -2,8 +2,10 @@ package elaborato_ingegneriaSW.controllers;
 
 import com.jfoenix.controls.*;
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
+import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.models.Comune;
+import elaborato_ingegneriaSW.models.MalattiaContagiosa;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Regione;
 import elaborato_ingegneriaSW.utils.AutoCompleteBox;
@@ -21,7 +23,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 
-public class EditContagiController implements Initializable {
+public class EditContagiComuniController implements Initializable {
     @FXML
     private JFXComboBox comuneFilterComboBox;
 
@@ -71,6 +73,17 @@ public class EditContagiController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
+        try {
+            Set<MalattiaContagiosa> malattieContagiose = (Set<MalattiaContagiosa>) malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
+            for (MalattiaContagiosa m: malattieContagiose) {
+                // TODO: caricamento interfaccia dinamicamente
+                System.out.println(m);
+            }
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // TODO: Ogni persona avrà solo certi comuni associati, non tutti
         try {
             Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
