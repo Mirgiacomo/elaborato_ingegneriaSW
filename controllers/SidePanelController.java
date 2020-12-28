@@ -39,7 +39,7 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton exportReportButton;
     @FXML
-    private VBox vbox;
+    private VBox sidebar;
     @FXML
     private Pane footerPane;
 
@@ -117,58 +117,58 @@ public class SidePanelController implements Initializable {
     @FXML
     public void createSidePanel(Utente utente) {
         // All'inizio tolgo tutti i bottoni in modo tale da inserirli nella sequenza giusta
-        vbox.getChildren().remove(provinceButton);
-        vbox.getChildren().remove(comuniButton);
-        vbox.getChildren().remove(regioniButton);
-        vbox.getChildren().remove(grafico1Button);
-        vbox.getChildren().remove(contagiComuniButton);
-        vbox.getChildren().remove(decessiProvinciaButton);
-        vbox.getChildren().remove(associaComuniButton);
-        vbox.getChildren().remove(exportReportButton);
-        vbox.getChildren().remove(footerPane);
+        sidebar.getChildren().remove(provinceButton);
+        sidebar.getChildren().remove(comuniButton);
+        sidebar.getChildren().remove(regioniButton);
+        sidebar.getChildren().remove(grafico1Button);
+        sidebar.getChildren().remove(contagiComuniButton);
+        sidebar.getChildren().remove(decessiProvinciaButton);
+        sidebar.getChildren().remove(associaComuniButton);
+        sidebar.getChildren().remove(exportReportButton);
+        sidebar.getChildren().remove(footerPane);
 
         // Mi prendo il ruole dell'utente loggato e carico le sezioni a lui visibili
         RuoloUtente ruoloUtente = utente.getRuolo();
         switch (ruoloUtente){
             // ADMIN ha permessi di visualizzare tutto
             case ADMIN:
-                vbox.getChildren().add(provinceButton);
-                vbox.getChildren().add(comuniButton);
-                vbox.getChildren().add(regioniButton);
-                vbox.getChildren().add(contagiComuniButton);
-                vbox.getChildren().add(decessiProvinciaButton);
-                vbox.getChildren().add(associaComuniButton);
+                sidebar.getChildren().add(provinceButton);
+                sidebar.getChildren().add(comuniButton);
+                sidebar.getChildren().add(regioniButton);
+                sidebar.getChildren().add(contagiComuniButton);
+                sidebar.getChildren().add(decessiProvinciaButton);
+                sidebar.getChildren().add(associaComuniButton);
                 break;
 
             // Il personale dell’ente incaricato del monitoraggio può inserire  nuove regioni, province e comuni
             case PERSONALE_MONITORAGGIO:
-                vbox.getChildren().add(comuniButton);
-                vbox.getChildren().add(provinceButton);
-                vbox.getChildren().add(regioniButton);
+                sidebar.getChildren().add(comuniButton);
+                sidebar.getChildren().add(provinceButton);
+                sidebar.getChildren().add(regioniButton);
                 break;
 
             // Ogni persona assunta a contratto ha l’autorizzazione ad inserire i dati di un numero predefinito di comuni.
             // Il personale dell’ente inserisce, per ogni persona a contratto, i comuni di cui è responsabile.
             case PERSONALE_CONTAGI:
-                vbox.getChildren().add(contagiComuniButton);
+                sidebar.getChildren().add(contagiComuniButton);
                 break;
 
             // L'apposito personale dell’ente registra annualmente per ogni provincia il numero di decessi
             case PERSONALE_DECESSI:
                 // TODO: valutare se aggiungere un altro bottone per la visualizzazione di tali dati sotto forma di report
-                vbox.getChildren().add(decessiProvinciaButton);
+                sidebar.getChildren().add(decessiProvinciaButton);
                 break;
 
             // Visualizzazione report
             case RICERCATORE_ANALISTA:
-                vbox.getChildren().add(grafico1Button);
-                vbox.getChildren().add(exportReportButton);
+                sidebar.getChildren().add(grafico1Button);
+                sidebar.getChildren().add(exportReportButton);
                 break;
             default:
                 System.out.println("Errore. Riprovare ad accedere!\n");
                 break;
         }
-        vbox.getChildren().add(footerPane);
+        sidebar.getChildren().add(footerPane);
     }
 
     public void infoAction(ActionEvent event) throws IOException {
