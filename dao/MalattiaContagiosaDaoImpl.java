@@ -5,11 +5,14 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import elaborato_ingegneriaSW.models.Contagio;
 import elaborato_ingegneriaSW.models.MalattiaContagiosa;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class MalattiaContagiosaDaoImpl extends DaoImpl<MalattiaContagiosa> {
-    private static final String collectionName = "malattia_contagiose";
+    private static final String collectionName = "malattie_contagiose";
 
     public MalattiaContagiosaDaoImpl() {
         super();
@@ -28,17 +31,23 @@ public class MalattiaContagiosaDaoImpl extends DaoImpl<MalattiaContagiosa> {
     }
 
     @Override
-    public MalattiaContagiosa getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException {
+    public MalattiaContagiosa getItem(DocumentSnapshot document) {
         MalattiaContagiosa result = null;
         if (document.exists()) {
-            result = document.toObject(MalattiaContagiosa.class);
-        }
+            result = new MalattiaContagiosa(document.getString("nome"));
 
+            List<String> complications = (List<String>)document.get("complications");
+            if (complications != null) {
+                for(String c: complications) {
+                    result.addComplication(c);
+                }
+            }
+        }
         return result;
     }
 
     @Override
-    public MalattiaContagiosa addItem(MalattiaContagiosa item) throws ExecutionException, InterruptedException {
+    public MalattiaContagiosa addItem(MalattiaContagiosa item) {
         return null;
     }
 
