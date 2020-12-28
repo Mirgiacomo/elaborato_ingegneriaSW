@@ -21,7 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class InsertProvinciaController implements Initializable, EditView<Provincia> {
+public class EditProvinciaController implements Initializable, EditView<Provincia> {
 
     @FXML
     private JFXTextField nomeTextField;

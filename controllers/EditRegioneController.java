@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
-public class InsertRegioneController implements Initializable, EditView<Regione> {
+public class EditRegioneController implements Initializable, EditView<Regione> {
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
     @FXML
     public JFXButton insertRegioneButton;

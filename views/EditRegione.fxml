@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertRegioneController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.EditRegioneController">
    <children>
       <VBox alignment="CENTER" layoutX="5.0" layoutY="10.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -93,7 +93,7 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </JFXTextField>
-                  <JFXButton fx:id="insertRegioneButton" buttonType="RAISED" defaultButton="true" onAction="#insertRegioneAction" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI REGIONE" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <JFXButton fx:id="insertRegioneButton" buttonType="RAISED" defaultButton="true" onAction="#insertRegioneAction" ripplerFill="WHITE" stylesheets="@css/style.css" text="SALVA REGIONE" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <font>
                         <Font name="Open Sans Semibold" size="17.0" />
                      </font>

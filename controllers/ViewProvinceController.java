@@ -55,7 +55,7 @@ public class ViewProvinceController implements Initializable, AbstractViewContro
                     Set<Provincia> province = provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName());
                     ObservableList<Provincia> data = FXCollections.observableArrayList(province);
 
-                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableProvince, ViewProvinceController.this, "InsertProvincia");
+                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableProvince, ViewProvinceController.this, "EditProvincia");
 
                     actionCol.setCellFactory(cellFactory);
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -77,6 +77,6 @@ public class ViewProvinceController implements Initializable, AbstractViewContro
     }
 
     public void showInsertProvincia(ActionEvent event) throws IOException {
-        showInsertView(event, "InsertProvincia");
+        showInsertView(event, "EditProvincia");
     }
 }

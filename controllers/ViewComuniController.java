@@ -63,7 +63,7 @@ public class ViewComuniController implements Initializable, AbstractViewControll
                     Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
                     ObservableList<Comune> data = FXCollections.observableArrayList(comuni);
 
-                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableComuni, ViewComuniController.this, "InsertComune");
+                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableComuni, ViewComuniController.this, "EditComune");
 
                     actionCol.setCellFactory(cellFactory);
                     codiceISTATCol.setCellValueFactory(new PropertyValueFactory<>("codiceISTAT"));
@@ -90,18 +90,6 @@ public class ViewComuniController implements Initializable, AbstractViewControll
     }
 
     public void showInsertComune(ActionEvent event) throws IOException {
-        ShowView showView = new ShowView();
-        FXMLLoader loader = showView.getLoader("InsertComune.fxml");
-
-        Parent view = loader.load();
-        Scene scene = new Scene(view);
-
-        Stage stage = new Stage();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(
-                ((Node)event.getSource()).getScene().getWindow() );
-
-        stage.setScene(scene);
-        stage.showAndWait();
+        showInsertView(event, "EditComune");
     }
 }

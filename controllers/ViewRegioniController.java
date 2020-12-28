@@ -48,7 +48,7 @@ public class ViewRegioniController implements Initializable, AbstractViewControl
                     Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
                     ObservableList<Regione> data = FXCollections.observableArrayList(regioni);
 
-                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableRegioni, ViewRegioniController.this, "InsertRegione");
+                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableRegioni, ViewRegioniController.this, "EditRegione");
 
                     actionCol.setCellFactory(cellFactory);
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -73,6 +73,6 @@ public class ViewRegioniController implements Initializable, AbstractViewControl
     }
 
     public void showInsertRegione(ActionEvent event) throws IOException {
-        showInsertView(event, "InsertRegione");
+        showInsertView(event, "EditRegione");
     }
 }

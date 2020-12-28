@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertProvinciaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.EditProvinciaController">
    <children>
       <VBox alignment="CENTER" layoutX="-5.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -86,7 +86,7 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </JFXComboBox>
-                  <JFXButton fx:id="insertProvinciaButton" buttonType="RAISED" defaultButton="true" onAction="#insertProvinciaAction" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI PROVINCIA" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <JFXButton fx:id="insertProvinciaButton" buttonType="RAISED" defaultButton="true" onAction="#insertProvinciaAction" ripplerFill="WHITE" stylesheets="@css/style.css" text="SALVA PROVINCIA" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Open Sans Semibold" size="17.0" />
                      </font>
