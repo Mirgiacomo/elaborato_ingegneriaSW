@@ -21,7 +21,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 
-public class InsertMalattieContagioseController implements Initializable {
+public class EditContagiController implements Initializable {
     @FXML
     private JFXComboBox comuneFilterComboBox;
 
