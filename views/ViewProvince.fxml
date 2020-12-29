@@ -1,30 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="550.0" prefWidth="1000.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ViewProvinceController">
+<AnchorPane styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ViewProvinceController">
    <children>
-      <Text layoutX="429.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROVINCE" textAlignment="CENTER">
-         <font>
-            <Font name="Open Sans Bold" size="28.0" />
-         </font>
-      </Text>
-      <JFXButton fx:id="insertProvincia" layoutX="453.0" layoutY="88.0" onAction="#showInsertProvincia" ripplerFill="WHITE" style="-fx-background-color: #7b241c;" text="INSERISCI" textFill="#f8f8f8">
-         <font>
-            <Font name="Open Sans Regular" size="16.0" />
-         </font>
-      </JFXButton>
-      <TableView fx:id="tableProvince" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
-        <columns>
-           <TableColumn fx:id="nomeCol" prefWidth="300.0" text="NOME" />
-           <TableColumn fx:id="superficieCol" prefWidth="300.0" text="SUPERFICIE" />
-           <TableColumn fx:id="regioneCol" prefWidth="300.0" text="REGIONE" />
-        </columns>
-      </TableView>
+      <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PROVINCE" textAlignment="CENTER" wrappingWidth="144.029296875">
+               <font>
+                  <Font name="Open Sans Bold" size="28.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Text>
+            <JFXButton fx:id="insertProvincia" buttonType="RAISED" onAction="#showInsertProvincia" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI" textFill="#f8f8f8" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font name="Open Sans Regular" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </VBox.margin>
+            </JFXButton>
+            <TableView fx:id="tableProvince" editable="true" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <columns>
+                  <TableColumn fx:id="actionCol" minWidth="-1.0" prefWidth="-1.0" text="ACTION" />
+                  <TableColumn fx:id="nomeCol" prefWidth="300.0" text="NOME" />
+                  <TableColumn fx:id="superficieCol" prefWidth="300.0" text="SUPERFICIE" />
+                  <TableColumn fx:id="regioneCol" prefWidth="300.0" text="REGIONE" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

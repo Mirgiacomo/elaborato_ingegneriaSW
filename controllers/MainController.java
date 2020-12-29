@@ -1,65 +1,83 @@
 package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.MainApp;
+import elaborato_ingegneriaSW.models.RuoloUtente;
+import elaborato_ingegneriaSW.models.Utente;
 import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class MainController extends AbstractController implements Initializable, SelectViewCallback {
+public class MainController implements Initializable, SelectViewCallback {
+    private final ShowView showView = new ShowView();
+    private Utente loggedUser = new Utente("mirandola", "giacomo", "mirgiacomo", "", RuoloUtente.ADMIN , "");
 
     @FXML
     private JFXDrawer drawer;
 
-    @FXML
-    private JFXHamburger hamburger;
+    // @FXML
+    // private JFXHamburger hamburger;
 
     @FXML
     private AnchorPane root;
     @FXML
     private AnchorPane contentPane;
 
-    private HamburgerBackArrowBasicTransition transition;
+    //private HamburgerBackArrowBasicTransition transition;
 
     public MainController() { }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) { }
 
-    public void loadView() {
+    public void loadView()
+    {
+        // System.out.println(loggedUser);
         if (loggedUser == null) {
             showLogin();
         } else {
+            /*transition = new HamburgerBackArrowBasicTransition(hamburger);
+            transition.setRate(1);*/
+
+            /*RuoloUtente ruoloUtente = loggedUser.getRuolo();
+            switch (ruoloUtente){
+                case ADMIN:
+                    System.out.println("ADMIN");
+                    break;
+                default:
+                    System.out.println("Sto cazzo");
+                    break;
+            }*/
             try {
-                FXMLLoader loader = showView.getLoader("SidePanelRicercatoreAnalista.fxml");
+                FXMLLoader loader = showView.getLoader("SidePanel.fxml");
                 VBox box = loader.load();
 
                 SidePanelController controller = loader.getController();
+                controller.createSidePanel(loggedUser);
                 controller.setCallback(this);
 
                 drawer.setSidePane(box);
+                drawer.open();
             } catch (IOException ex) {
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            transition = new HamburgerBackArrowBasicTransition(hamburger);
-            transition.setRate(-1);
-            hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            /*hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
                 transition.setRate(transition.getRate() * -1);
                 transition.play();
 
@@ -68,58 +86,69 @@ public class MainController extends AbstractController implements Initializable,
                 } else {
                     drawer.open();
                 }
-            });
+            });*/
         }
     }
 
-    private void showLogin() {
+    private void showLogin()
+    {
         try {
-            MainApp.isSplashLoaded = true;
+            AnchorPane loginPane = FXMLLoader.load(getClass().getResource(("/elaborato_ingegneriaSW/views/Login.fxml")));
 
-            StackPane pane = FXMLLoader.load(getClass().getResource(("/elaborato_ingegneriaSW/views/Splash.fxml")));
-            root.getChildren().setAll(pane);
+            if (!MainApp.isInitLoaded) {
+                MainApp.isInitLoaded = true;
 
-            FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
-            fadeIn.setFromValue(0);
-            fadeIn.setToValue(1);
-            fadeIn.setCycleCount(1);
+                ShowView showView = new ShowView();
+                Pane loadingPane = showView.getLoader("Loading.fxml").load();
 
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), pane);
-            fadeOut.setFromValue(1);
-            fadeOut.setToValue(0);
-            fadeOut.setCycleCount(1);
+                root.getChildren().clear();
+                root.getChildren().add(loadingPane);
 
-            fadeIn.play();
+                FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), loadingPane);
+                fadeIn.setFromValue(0);
+                fadeIn.setToValue(1);
+                fadeIn.setCycleCount(1);
 
-            fadeIn.setOnFinished((e) -> {
-                fadeOut.play();
-            });
+                FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), loadingPane);
+                fadeOut.setFromValue(1);
+                fadeOut.setToValue(0);
+                fadeOut.setCycleCount(1);
 
-            fadeOut.setOnFinished((e) -> {
-                try {
-                    AnchorPane parentContent = FXMLLoader.load(getClass().getResource(("/elaborato_ingegneriaSW/views/Login.fxml")));
-                    root.getChildren().setAll(parentContent);
-                } catch (IOException ex) {
-                    Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
+                fadeIn.play();
 
+                fadeIn.setOnFinished((e) -> {
+                    fadeOut.play();
+                });
+
+                fadeOut.setOnFinished((e) -> {
+                    root.getChildren().clear();
+                    root.getChildren().add(loginPane);
+                });
+            } else {
+                root.getChildren().clear();
+                root.getChildren().add(loginPane);
+            }
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void selectView(String view) throws IOException {
+    public void selectView(String view) throws IOException
+    {
         FXMLLoader loader = showView.getLoader(view);
-        AnchorPane content = loader.load();
+        Parent content = loader.load();
 
-        contentPane.getChildren().clear();
-        contentPane.getChildren().add(content);
+        contentPane.getChildren().setAll(content);
+    }
 
-        transition.setRate(transition.getRate() * -1);
-        transition.play();
+    public void setLoggedUser(Utente user)
+    {
+        this.loggedUser = user;
+    }
 
-        drawer.close();
+    public Utente getLoggedUser()
+    {
+        return loggedUser;
     }
 }

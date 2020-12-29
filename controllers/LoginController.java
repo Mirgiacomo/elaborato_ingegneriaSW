@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
 import com.jfoenix.controls.JFXTextField;
+import elaborato_ingegneriaSW.MainApp;
 import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
 import elaborato_ingegneriaSW.models.Utente;
 import elaborato_ingegneriaSW.utils.FXUtil;
@@ -31,6 +32,8 @@ import javafx.stage.Stage;
 public class LoginController implements Initializable {
 
     @FXML
+    public AnchorPane loginRoot;
+    @FXML
     private JFXCheckBox showPassword;
     @FXML
     private JFXPasswordField passwordField;
@@ -40,8 +43,6 @@ public class LoginController implements Initializable {
     private JFXTextField usernameTextField;
     @FXML
     private JFXButton loginButton;
-    @FXML
-    private AnchorPane root;
 
     private final UtenteDaoImpl userDao = new UtenteDaoImpl();
 
@@ -66,24 +67,28 @@ public class LoginController implements Initializable {
         if (user == null || password.equals("")) {
             FXUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi o mancanti!", null, event);
         } else if (user.getPassword().equals(password)) {
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.hide();
+
             ShowView showView = new ShowView();
             FXMLLoader loader = showView.getLoader("Main.fxml");
 
+            // NOTA: fare prima loader.load(), e poi loader.getController(), altrimenti controller = null
             Parent view = loader.load();
+            Scene scene = new Scene(view);
+            stage.setTitle("Centro malattie infettive");
+            stage.setScene(scene);
 
             MainController controller = loader.getController();
             controller.setLoggedUser(user);
             controller.loadView();
 
-            Stage stage = new Stage();
-            Scene scene = new Scene(view);
-
-            stage.setTitle("Centro malattie infettive");
-            stage.setScene(scene);
             stage.show();
 
+
             // Per nascondere la finestra di login sotto
-            ((Node)(event.getSource())).getScene().getWindow().hide();
+            //((Node)(event.getSource())).getScene().getWindow().hide();
         } else {
             FXUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null, event);
         }

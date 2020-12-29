@@ -2,7 +2,7 @@ package elaborato_ingegneriaSW.models;
 
 import java.util.Objects;
 
-public class Regione implements Comparable<Regione> {
+public class Regione extends AbstractTableModel implements Comparable<Regione> {
     private String nome;
     private String capoluogo;
     private double superficie;

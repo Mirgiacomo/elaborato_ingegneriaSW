@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
+import elaborato_ingegneriaSW.models.RuoloUtente;
+import elaborato_ingegneriaSW.models.Utente;
 import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.event.ActionEvent;
@@ -13,9 +16,33 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public abstract class SidePanelController extends AbstractController implements Initializable {
+public class SidePanelController implements Initializable {
+    @FXML
+    private JFXButton regioniButton;
+    @FXML
+    private JFXButton provinceButton;
+    @FXML
+    private JFXButton comuniButton;
+    @FXML
+    private JFXButton grafico1Button;
+    @FXML
+    private JFXButton contagiComuniButton;
+    @FXML
+    private JFXButton decessiProvinciaButton;
+    @FXML
+    private JFXButton associaComuniButton;
+    @FXML
+    private JFXButton exportReportButton;
+    @FXML
+    private VBox sidebar;
+    @FXML
+    private Pane footerPane;
+
     private SelectViewCallback callback;
 
     public void setCallback(SelectViewCallback callback) {
@@ -41,18 +68,123 @@ public abstract class SidePanelController extends AbstractController implements 
     }
 
     @FXML
-    private void logout(ActionEvent event) throws IOException {
+    public void viewDecessiProvinciaAction(ActionEvent event) throws IOException {
+        callback.selectView("insertDecessi.fxml");
+    }
+
+    @FXML
+    public void editContagiComuniAction(ActionEvent event) throws IOException {
+        callback.selectView("editContagiComuni.fxml");
+    }
+
+    @FXML
+    public void viewAssociaComuniAction(ActionEvent event) throws IOException {
+        // TODO: fix con giusto fxml
+        callback.selectView("viewComuni.fxml");
+    }
+
+    @FXML
+    public void viewExportReport(ActionEvent event) throws IOException {
+        // TODO: fix con giusto fxml
+        callback.selectView("viewComuni.fxml");
+    }
+
+    @FXML
+    public void logoutAction(ActionEvent event) throws IOException {
+        // close window
+        Stage source = (Stage)(((Node)(event.getSource())).getScene().getWindow());
+        source.close();
+
+        // open new window
         ShowView showView = new ShowView();
-        FXMLLoader loader = showView.getLoader("Login.fxml");
+        FXMLLoader loader = showView.getLoader("Main.fxml");
 
-        Parent view = loader.load();
         Stage stage = new Stage();
-        Scene scene = new Scene(view);
+        Parent view = loader.load();
+        MainController controller = loader.getController();
+        controller.setLoggedUser(null);
+        controller.loadView();
 
-        stage.setTitle("Centro malattie infettive");
+        Scene scene = new Scene(view);
         stage.setScene(scene);
         stage.show();
+    }
+    @FXML
+    private void exit(ActionEvent event) {
+        System.exit(0);
+    }
 
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+    @FXML
+    public void createSidePanel(Utente utente) {
+        // All'inizio tolgo tutti i bottoni in modo tale da inserirli nella sequenza giusta
+        sidebar.getChildren().remove(provinceButton);
+        sidebar.getChildren().remove(comuniButton);
+        sidebar.getChildren().remove(regioniButton);
+        sidebar.getChildren().remove(grafico1Button);
+        sidebar.getChildren().remove(contagiComuniButton);
+        sidebar.getChildren().remove(decessiProvinciaButton);
+        sidebar.getChildren().remove(associaComuniButton);
+        sidebar.getChildren().remove(exportReportButton);
+        sidebar.getChildren().remove(footerPane);
+
+        // Mi prendo il ruole dell'utente loggato e carico le sezioni a lui visibili
+        RuoloUtente ruoloUtente = utente.getRuolo();
+        switch (ruoloUtente){
+            // ADMIN ha permessi di visualizzare tutto
+            case ADMIN:
+                sidebar.getChildren().add(provinceButton);
+                sidebar.getChildren().add(comuniButton);
+                sidebar.getChildren().add(regioniButton);
+                sidebar.getChildren().add(contagiComuniButton);
+                sidebar.getChildren().add(decessiProvinciaButton);
+                sidebar.getChildren().add(associaComuniButton);
+                break;
+
+            // Il personale dell’ente incaricato del monitoraggio può inserire  nuove regioni, province e comuni
+            case PERSONALE_MONITORAGGIO:
+                sidebar.getChildren().add(comuniButton);
+                sidebar.getChildren().add(provinceButton);
+                sidebar.getChildren().add(regioniButton);
+                break;
+
+            // Ogni persona assunta a contratto ha l’autorizzazione ad inserire i dati di un numero predefinito di comuni.
+            // Il personale dell’ente inserisce, per ogni persona a contratto, i comuni di cui è responsabile.
+            case PERSONALE_CONTAGI:
+                sidebar.getChildren().add(contagiComuniButton);
+                break;
+
+            // L'apposito personale dell’ente registra annualmente per ogni provincia il numero di decessi
+            case PERSONALE_DECESSI:
+                // TODO: valutare se aggiungere un altro bottone per la visualizzazione di tali dati sotto forma di report
+                sidebar.getChildren().add(decessiProvinciaButton);
+                break;
+
+            // Visualizzazione report
+            case RICERCATORE_ANALISTA:
+                sidebar.getChildren().add(grafico1Button);
+                sidebar.getChildren().add(exportReportButton);
+                break;
+            default:
+                System.out.println("Errore. Riprovare ad accedere!\n");
+                break;
+        }
+        sidebar.getChildren().add(footerPane);
+    }
+
+    public void infoAction(ActionEvent event) throws IOException {
+        ShowView showView = new ShowView();
+        FXMLLoader loader = showView.getLoader("ViewInfo.fxml");
+
+        Parent view = loader.load();
+        Scene scene = new Scene(view);
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(
+                ((Node)event.getSource()).getScene().getWindow() );
+
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 }
+

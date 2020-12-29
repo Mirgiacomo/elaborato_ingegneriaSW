@@ -5,14 +5,14 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.SetOptions;
 import com.google.cloud.firestore.WriteResult;
-import elaborato_ingegneriaSW.models.Regione;
+import elaborato_ingegneriaSW.models.Decesso;
 
 import java.util.concurrent.ExecutionException;
 
-public class RegioneDaoImpl extends DaoImpl<Regione> {
-    private static final String collectionName = "regioni";
+public class DecessoDaoImpl extends DaoImpl<Decesso> {
+    private static final String collectionName = "decessi";
 
-    public RegioneDaoImpl() {
+    public DecessoDaoImpl() {
         super();
     }
 
@@ -21,7 +21,7 @@ public class RegioneDaoImpl extends DaoImpl<Regione> {
     }
 
     @Override
-    public Regione getItem(String itemId) throws ExecutionException, InterruptedException {
+    public Decesso getItem(String itemId) throws ExecutionException, InterruptedException {
         DocumentReference documentReference = firestore.collection(collectionName).document(itemId);
         DocumentSnapshot document = documentReference.get().get();
 
@@ -29,17 +29,17 @@ public class RegioneDaoImpl extends DaoImpl<Regione> {
     }
 
     @Override
-    public Regione getItem(DocumentSnapshot document) {
-        Regione result = null;
+    public Decesso getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException {
+        Decesso result = null;
         if (document.exists()) {
-            result = document.toObject(Regione.class);
+            result = document.toObject(Decesso.class);
         }
 
         return result;
     }
 
     @Override
-    public Regione addItem(Regione item) throws ExecutionException, InterruptedException {
+    public Decesso addItem(Decesso item) throws ExecutionException, InterruptedException {
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
         ApiFuture<WriteResult> writeResult = documentReference.set(item, SetOptions.merge());
 
@@ -48,12 +48,12 @@ public class RegioneDaoImpl extends DaoImpl<Regione> {
     }
 
     @Override
-    public Regione updateItem(Regione item) {
+    public Decesso updateItem(Decesso item) {
         return null;
     }
 
     @Override
-    public boolean deleteItem(Regione item) {
+    public boolean deleteItem(Decesso item) {
         return false;
     }
 }

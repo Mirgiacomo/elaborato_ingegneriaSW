@@ -1,20 +1,21 @@
 package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
+import elaborato_ingegneriaSW.models.AbstractTableModel;
 import elaborato_ingegneriaSW.models.Regione;
-import elaborato_ingegneriaSW.utils.ShowView;
+import elaborato_ingegneriaSW.utils.EditButtonCell;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,43 +23,56 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewRegioniController implements Initializable {
+public class ViewRegioniController implements Initializable, AbstractViewController {
+    private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
+
+    @FXML
+    private TableView<Regione> tableRegioni;
+    @FXML
+    public TableColumn<AbstractTableModel, String> actionCol;
     @FXML
     public TableColumn<Regione, String> nomeCol;
     @FXML
     public TableColumn<Regione, String> capoluogoCol;
     @FXML
     public TableColumn<Regione, Double> superficieCol;
-    @FXML
-    private TableView<Regione> tableRegioni;
-
-    private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
-            ObservableList<Regione> data = FXCollections.observableArrayList(regioni);
+        Task<Void> task = new Task<>() {
 
-            nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
-            capoluogoCol.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
+            @Override
+            protected Void call() {
+            Platform.runLater(() -> {
+                try {
+                    Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
+                    ObservableList<Regione> data = FXCollections.observableArrayList(regioni);
 
-            tableRegioni.setItems(data);
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
+                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableRegioni, ViewRegioniController.this, "EditRegione");
+
+                    actionCol.setCellFactory(cellFactory);
+                    nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
+                    superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
+                    capoluogoCol.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
+
+                    tableRegioni.setItems(data);
+
+
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            return null;
+            }
+        };
+
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
     }
 
     public void showInsertRegione(ActionEvent event) throws IOException {
-        ShowView showView = new ShowView();
-        FXMLLoader loader = showView.getLoader("InsertRegione.fxml");
-
-        Parent view = loader.load();
-        Scene scene = new Scene(view);
-
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.showAndWait();
+        showInsertView(event, "EditRegione");
     }
 }

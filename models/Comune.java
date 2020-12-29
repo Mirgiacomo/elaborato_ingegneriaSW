@@ -4,7 +4,7 @@ import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 
 import java.util.HashMap;
 
-public class Comune implements Comparable<Comune> {
+public class Comune extends AbstractTableModel implements Comparable<Comune> {
     private String codiceISTAT;
     private String nome;
     private String dataIstituzione;

@@ -1,0 +1,54 @@
+.root{
+    -fx-font-family: "Open Sans";
+}
+
+.main-wallpaper {
+    -fx-background-image: url("../../resources/img/wallpaper2.png");
+    -fx-background-position: left top, center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
+}
+
+.button {
+    -fx-background-color:   "#7b241c";
+    -fx-font-size:          17px;
+    -fx-background-radius:  4px;
+    -fx-font-color:         "504c4c";
+}
+
+.button:hover{
+    -fx-background-color: "#580c0c";
+}
+
+.button-ricerca {
+    -fx-background-color:   "#717584";
+    -fx-font-size:          16px;
+    -fx-border-color:       "#4b4b4b";
+}
+
+.button-ricerca:hover{
+    -fx-background-color: "#504c4c";
+}
+
+.button-menu {
+    -fx-background-color:   "#444444";
+    -fx-font-size:          17px;
+    -fx-background-radius:  0px;
+}
+
+.button-menu:hover{
+    -fx-background-color: "#580c0c";
+}
+
+.anchorPane {
+    -fx-background-color:   "#f5f5f5";
+}
+
+.insert-bg {
+    -fx-background-color: "#272626";
+}
+
+.form-box {
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-radius: 10px;
+}

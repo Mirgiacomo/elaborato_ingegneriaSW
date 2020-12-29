@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
@@ -17,8 +18,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class InsertProvinciaController extends AbstractController implements Initializable {
+public class EditProvinciaController implements Initializable, EditView<Provincia> {
 
     @FXML
     private JFXTextField nomeTextField;
@@ -26,6 +29,9 @@ public class InsertProvinciaController extends AbstractController implements Ini
     private JFXTextField superficieTextField;
     @FXML
     private JFXComboBox regioneComboBox;
+    @FXML
+    public JFXButton insertProvinciaButton;
+
 
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
     private final ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
@@ -71,7 +77,15 @@ public class InsertProvinciaController extends AbstractController implements Ini
             FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
             System.out.println("Provincia inserita correttamente!");
+
+            // Chiudo la pagina di insert dopo l'avvenuto inserimento
+            Stage stage = (Stage) insertProvinciaButton.getScene().getWindow();
+            stage.close();
         }
     }
 
+    @Override
+    public void populateForm(Provincia model) {
+        
+    }
 }
