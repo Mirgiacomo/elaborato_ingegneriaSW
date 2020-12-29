@@ -1,11 +1,13 @@
 package elaborato_ingegneriaSW.controllers;
 
+import com.google.common.hash.Hashing;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
@@ -57,13 +59,13 @@ public class LoginController implements Initializable {
 
     @FXML
     private void loginAction(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
-        String username = usernameTextField.getText().toLowerCase();
-        String password = passwordField.getText();
-
+        String username = usernameTextField.getText();
+        // Encripto la password e confronto l'hash generato con quello su firebase
+        String password = Hashing.sha256().hashString(passwordField.getText(), StandardCharsets.UTF_8).toString();
         Utente user = userDao.getItem(username);
 
         if (user == null || password.equals("")) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "LOGIN FALLITO", "Dati non validi o mancanti!", null, event);
         } else if (user.getPassword().equals(password)) {
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
