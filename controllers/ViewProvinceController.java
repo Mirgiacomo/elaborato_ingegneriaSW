@@ -58,6 +58,8 @@ public class ViewProvinceController implements Initializable, AbstractViewContro
                     Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableProvince, ViewProvinceController.this, "EditProvincia");
 
                     actionCol.setCellFactory(cellFactory);
+                    actionCol.prefWidthProperty().bind(tableProvince.widthProperty().multiply(0.055));
+                    actionCol.setResizable(false);
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
                     regioneCol.setCellValueFactory(new PropertyValueFactory<>("regione"));

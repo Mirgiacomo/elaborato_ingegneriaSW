@@ -66,6 +66,8 @@ public class ViewComuniController implements Initializable, AbstractViewControll
                     Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableComuni, ViewComuniController.this, "EditComune");
 
                     actionCol.setCellFactory(cellFactory);
+                    actionCol.prefWidthProperty().bind(tableComuni.widthProperty().multiply(0.055));
+                    actionCol.setResizable(false);
                     codiceISTATCol.setCellValueFactory(new PropertyValueFactory<>("codiceISTAT"));
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                     dataIstituzioneCol.setCellValueFactory(new PropertyValueFactory<>("dataIstituzione"));

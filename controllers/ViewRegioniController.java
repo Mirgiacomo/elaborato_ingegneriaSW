@@ -51,6 +51,8 @@ public class ViewRegioniController implements Initializable, AbstractViewControl
                     Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableRegioni, ViewRegioniController.this, "EditRegione");
 
                     actionCol.setCellFactory(cellFactory);
+                    actionCol.prefWidthProperty().bind(tableRegioni.widthProperty().multiply(0.055));
+                    actionCol.setResizable(false);
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
                     capoluogoCol.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
