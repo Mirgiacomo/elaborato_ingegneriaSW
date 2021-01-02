@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -21,14 +22,26 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <JFXButton fx:id="insertProvincia" buttonType="RAISED" onAction="#showInsertProvincia" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI" textFill="#f8f8f8" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font name="Open Sans Regular" size="16.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" />
-               </VBox.margin>
-            </JFXButton>
+            <HBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="30.0" prefWidth="1012.0">
+               <children>
+                  <JFXButton fx:id="insertProvincia" buttonType="RAISED" contentDisplay="RIGHT" onAction="#showInsertProvincia" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI" textAlignment="RIGHT" textFill="#f8f8f8">
+                     <font>
+                        <Font name="Open Sans Regular" size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="exportProvincia" buttonType="RAISED" contentDisplay="RIGHT" onAction="#exportProvincia" ripplerFill="WHITE" styleClass="button-export" stylesheets="@css/style.css" text="EXPORT" textAlignment="RIGHT" textFill="#f8f8f8">
+                     <font>
+                        <Font name="Open Sans Regular" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="50.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </HBox>
             <TableView fx:id="tableProvince" editable="true" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
