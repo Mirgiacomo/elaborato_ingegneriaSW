@@ -2,13 +2,16 @@ package elaborato_ingegneriaSW.models;
 
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class Contagio {
     private Comune comune;
     private int numeroTerapiaIntensiva;
     private int numeroMedicoBase;
     private MalattiaContagiosa malattiaContagiosa;
+    private Map<String, Integer> complications;
 
     // identifica univocamente la settimana in base all'anno
     private int week;
@@ -17,7 +20,7 @@ public class Contagio {
     /**
      *
      * @param comune
-     * @param numeroTerapiaIntensiva numero di pazienti in terapia intensiva
+     * @param numeroTerapiaIntensiva numero di pazienti in terapia intensiv
      * @param numeroMedicoBase       numero di pazienti in cura presso il medico di base
      * @param malattiaContagiosa
      * @param week                   numero della settimana nell'anno scelto
@@ -50,7 +53,9 @@ public class Contagio {
         this.year = date.getYear();
     }
 
-    public Contagio() { }
+    public Contagio() {
+        this.complications = new HashMap<>();
+    }
 
     public Comune getComune() {
         return comune;
@@ -84,6 +89,10 @@ public class Contagio {
         this.malattiaContagiosa = malattiaContagiosa;
     }
 
+    public void addComplication(String complication, int value) {
+        this.complications.put(complication, value);
+    }
+
     public int getWeek() {
         return week;
     }
@@ -98,5 +107,18 @@ public class Contagio {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    public String toString() {
+        return "Contagio{" +
+                "comune=" + comune +
+                ", numeroTerapiaIntensiva=" + numeroTerapiaIntensiva +
+                ", numeroMedicoBase=" + numeroMedicoBase +
+                ", malattiaContagiosa=" + malattiaContagiosa +
+                ", complications=" + complications +
+                ", week=" + week +
+                ", year=" + year +
+                '}';
     }
 }

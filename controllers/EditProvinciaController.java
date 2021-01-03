@@ -28,7 +28,7 @@ public class EditProvinciaController implements Initializable, EditView<Provinci
     @FXML
     private JFXTextField superficieTextField;
     @FXML
-    private JFXComboBox regioneComboBox;
+    private JFXComboBox<Regione> regioneComboBox;
     @FXML
     public JFXButton insertProvinciaButton;
 
@@ -48,9 +48,7 @@ public class EditProvinciaController implements Initializable, EditView<Provinci
                 regioneComboBox.getItems().add(regione);
             }
             new AutoCompleteBox(regioneComboBox);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
     }

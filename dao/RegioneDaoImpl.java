@@ -48,8 +48,15 @@ public class RegioneDaoImpl extends DaoImpl<Regione> {
     }
 
     @Override
-    public Regione updateItem(Regione item) {
-        return null;
+    public Regione updateItem(Regione item) throws ExecutionException, InterruptedException {
+        Regione regione = this.getItem(item.generateId());
+        Regione result = null;
+        if (regione != null) {
+            // TODO: udpate item
+        } else {
+            result = addItem(item);
+        }
+        return result;
     }
 
     @Override

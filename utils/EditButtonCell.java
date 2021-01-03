@@ -33,12 +33,12 @@ public class EditButtonCell extends TableCell<AbstractTableModel, String> {
 
     @Override
     public void updateItem(String item, boolean empty) {
-        super.updateItem(item, empty);
-        if (empty) {
-            setGraphic(null);
-        } else {
-            setGraphic(editButton);
-        }
-        setText(null);
+            super.updateItem(item, empty);
+            if (empty) {
+                setGraphic(null);
+            } else {
+                setGraphic(editButton);
+            }
+            setText(null);
     }
 }
