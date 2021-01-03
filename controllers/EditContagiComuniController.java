@@ -4,69 +4,44 @@ import com.jfoenix.controls.*;
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
-import elaborato_ingegneriaSW.models.Comune;
-import elaborato_ingegneriaSW.models.MalattiaContagiosa;
-import elaborato_ingegneriaSW.models.Provincia;
-import elaborato_ingegneriaSW.models.Regione;
+import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.AutoCompleteBox;
 import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 
 public class EditContagiComuniController implements Initializable {
-    @FXML
-    private JFXComboBox comuneFilterComboBox;
-
     // TODO: Fix JFXDatePicker, da errore
     //@FXML
     //private JFXDatePicker meseFilterDataPicker;
-
     @FXML
     private JFXButton ricercaFilterButton;
     @FXML
-    private JFXTextField episodiInfluenzaliMedicoCuranteTextField;
+    private JFXComboBox<Comune> comuneFilterComboBox;
     @FXML
-    private JFXTextField polmoniteMedicoCuranteTextField;
+    private GridPane contagiGridPane;
     @FXML
-    private JFXTextField meningiteMedicoCuranteTextField;
-    @FXML
-    private JFXTextField epatiteMedicoCuranteTextField;
-    @FXML
-    private JFXTextField morbilloMedicoCuranteTextField;
-    @FXML
-    private JFXTextField tubercolosiMedicoCuranteTextField;
-    @FXML
-    private JFXTextField gastroenteriteMedicoCuranteTextField;
-    @FXML
-    private JFXTextField episodiInfluenzaliTerapiaIntensivaTextField;
-    @FXML
-    private JFXTextField polmoniteTerapiaIntensivaTextField;
-    @FXML
-    private JFXTextField meningiteTerapiaIntensivaTextField;
-    @FXML
-    private JFXTextField epatiteTerapiaIntensivaTextField;
-    @FXML
-    private JFXTextField morbilloTerapiaIntensivaTextField;
-    @FXML
-    private JFXTextField tubercolosiTerapiaIntensivaTextField;
-    @FXML
-    private JFXTextField gastroenteriteTerapiaIntensivaTextField;
-    @FXML
-    private JFXCheckBox complicanzeRespiratorieCheckBox;
-    @FXML
-    private JFXButton insertMalattieButton;
+    private JFXButton saveButton;
 
     private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
+
+    private Map<String, Set<JFXTextField>> form = new HashMap<>();
+
+    private Map<String, Set<JFXTextField>> formComplications = new HashMap<>();
 
     /**
      * Initializes the controller class.
@@ -76,9 +51,40 @@ public class EditContagiComuniController implements Initializable {
         MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
         try {
             Set<MalattiaContagiosa> malattieContagiose = (Set<MalattiaContagiosa>) malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
+
+            int row = 1;
+
             for (MalattiaContagiosa m: malattieContagiose) {
-                // TODO: caricamento interfaccia dinamicamente
-                System.out.println(m);
+                Label label = new Label(m.getNome());
+                JFXTextField terapiaIntensiva = new JFXTextField();
+                terapiaIntensiva.setId("terapiaIntensiva");
+                JFXTextField medicoBase = new JFXTextField();
+                medicoBase.setId("medicoBase");
+
+                Set<JFXTextField> inputs = new HashSet<>();
+                inputs.add(terapiaIntensiva);
+                inputs.add(medicoBase);
+
+                GridPane complications = new GridPane();
+
+                if (!m.getComplications().isEmpty()) {
+                    int complicationsRow = 0;
+                    Set<JFXTextField> inputsComplications = new HashSet<>();
+
+                    for (String c: m.getComplications()) {
+                        Label cLabel = new Label(c);
+                        JFXTextField valueInput = new JFXTextField();
+                        valueInput.setId(c);
+                        inputsComplications.add(valueInput);
+
+                        complications.addRow(complicationsRow, cLabel, valueInput);
+                        complicationsRow++;
+                    }
+                    formComplications.put(m.getNome(), inputsComplications);
+                }
+                form.put(m.getNome(), inputs);
+                contagiGridPane.addRow(row++, label, terapiaIntensiva, medicoBase, complications);
+                // TODO: stile tabella
             }
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -89,13 +95,11 @@ public class EditContagiComuniController implements Initializable {
             Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
 
             for (Comune comune: comuni) {
-                comuneFilterComboBox.getItems().add(comune.getNome());
+                comuneFilterComboBox.getItems().add(comune);
             }
             new AutoCompleteBox(comuneFilterComboBox);
 
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -106,42 +110,37 @@ public class EditContagiComuniController implements Initializable {
     }
 
     @FXML
-    private void insertMalattieContagioseAction(ActionEvent event) {
-        Integer numeroEpisodiInfluenzaliMedicoCurante = null;
-        Integer numeroPolmoniteMedicoCurante = null;
-        Integer numeroMeningiteMedicoCurante = null;
-        Integer numeroEpatiteMedicoCurante = null;
-        Integer numeroMorbilloMedicoCurante = null;
-        Integer numeroTubercolosiMedicoCurante = null;
-        Integer numeroGastroenteriteMedicoCurante = null;
-
-        Integer numeroEpisodiInfluenzaliTerapiaIntensiva = null;
-        Integer numeroPolmoniteTerapiaIntensiva = null;
-        Integer numeroMeningiteTerapiaIntensiva = null;
-        Integer numeroEpatiteTerapiaIntensiva = null;
-        Integer numeroMorbilloTerapiaIntensiva = null;
-        Integer numeroTubercolosiTerapiaIntensiva = null;
-        Integer numeroGastroenteriteTerapiaIntensiva = null;
-
+    private void saveAction(ActionEvent event) {
         try {
-            numeroEpisodiInfluenzaliMedicoCurante = Integer.parseInt(episodiInfluenzaliMedicoCuranteTextField.getText());
-            numeroPolmoniteMedicoCurante = Integer.parseInt(polmoniteMedicoCuranteTextField.getText());
-            numeroMeningiteMedicoCurante = Integer.parseInt(meningiteMedicoCuranteTextField.getText());
-            numeroEpatiteMedicoCurante = Integer.parseInt(epatiteMedicoCuranteTextField.getText());
-            numeroMorbilloMedicoCurante = Integer.parseInt(morbilloMedicoCuranteTextField.getText());
-            numeroTubercolosiMedicoCurante = Integer.parseInt(tubercolosiMedicoCuranteTextField.getText());
-            numeroGastroenteriteMedicoCurante = Integer.parseInt(gastroenteriteMedicoCuranteTextField.getText());
+            for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
+                Contagio newContagio = new Contagio();
+                newContagio.setMalattiaContagiosa(new MalattiaContagiosa(entry.getKey()));
 
-            numeroEpisodiInfluenzaliTerapiaIntensiva = Integer.parseInt(episodiInfluenzaliTerapiaIntensivaTextField.getText());
-            numeroPolmoniteTerapiaIntensiva = Integer.parseInt(polmoniteTerapiaIntensivaTextField.getText());
-            numeroMeningiteTerapiaIntensiva = Integer.parseInt(meningiteTerapiaIntensivaTextField.getText());
-            numeroEpatiteTerapiaIntensiva = Integer.parseInt(epatiteTerapiaIntensivaTextField.getText());
-            numeroMorbilloTerapiaIntensiva = Integer.parseInt(morbilloTerapiaIntensivaTextField.getText());
-            numeroTubercolosiTerapiaIntensiva = Integer.parseInt(tubercolosiTerapiaIntensivaTextField.getText());
-            numeroGastroenteriteTerapiaIntensiva = Integer.parseInt(gastroenteriteTerapiaIntensivaTextField.getText());
+                for (JFXTextField input: entry.getValue()) {
+                    if (input.getId().equals("terapiaIntensiva")) {
+                        String value = input.getText();
+                        if (value != null && !value.equals("")) {
+                            newContagio.setNumeroTerapiaIntensiva(Integer.parseInt(value));
+                        }
+                    } else if (input.getId().equals("medicoBase")) {
+                        String value = input.getText();
+                        if (value != null && !value.equals("")) {
+                            newContagio.setNumeroMedicoBase(Integer.parseInt(value));
+                        }
+                    }
+                }
+                if (formComplications.containsKey(entry.getKey())) {
+                    for (JFXTextField complication: formComplications.get(entry.getKey())) {
+                        String value = complication.getText();
+                        if (value != null) {
+                            newContagio.addComplication(complication.getId(), Integer.parseInt(value));
+                        }
+                    }
+                }
+                System.out.println(newContagio);
+            }
         } catch (NumberFormatException e) {
             FXUtil.Alert(Alert.AlertType.ERROR, "VALORI ERRATA", "Errore durante l'inserimento di alcuni dati! Prova con il punto al posto della virgola", null, event);
-            return;
         }
           /*
         Regione newRegione = new Regione(nome, capoluogo, superficie);
