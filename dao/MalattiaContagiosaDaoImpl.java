@@ -1,7 +1,10 @@
 package elaborato_ingegneriaSW.dao;
 
+import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.SetOptions;
+import com.google.cloud.firestore.WriteResult;
 import elaborato_ingegneriaSW.models.Contagio;
 import elaborato_ingegneriaSW.models.MalattiaContagiosa;
 
@@ -47,8 +50,12 @@ public class MalattiaContagiosaDaoImpl extends DaoImpl<MalattiaContagiosa> {
     }
 
     @Override
-    public MalattiaContagiosa addItem(MalattiaContagiosa item) {
-        return null;
+    public MalattiaContagiosa addItem(MalattiaContagiosa item) throws ExecutionException, InterruptedException {
+        DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
+        documentReference.set(item, SetOptions.merge());
+
+        DocumentSnapshot documentSnapshot = documentReference.get().get();
+        return getItem(documentSnapshot.getId());
     }
 
     @Override

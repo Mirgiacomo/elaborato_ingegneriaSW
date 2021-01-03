@@ -1,10 +1,12 @@
 package elaborato_ingegneriaSW.dao;
 
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.*;
+import com.google.firebase.database.GenericTypeIndicator;
+import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Contagio;
 
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class ContagioDaoImpl extends DaoImpl<Contagio> {
@@ -42,6 +44,25 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
             result.setNumeroTerapiaIntensiva(document.get("numeroTerapiaIntensiva", Integer.class));
             result.setWeek(document.get("week", Integer.class));
             result.setYear(document.get("year", Integer.class));
+            result.setComplications((Map<String, Integer>) document.get("complications"));
+        }
+
+        return result;
+    }
+
+    public List<Contagio> getFilteredItems(Comune comune, int week, int year) throws ExecutionException, InterruptedException {
+        CollectionReference collectionReference = firestore.collection(getCollectionName());
+        List<Contagio> result;
+
+        Query query = collectionReference.whereEqualTo("comune", ComuneDaoImpl.getCollectionName() + "/" + comune.generateId())
+                                    .whereEqualTo("week", week)
+                                    .whereEqualTo("year", year);
+
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+        result = new ArrayList<>();
+
+        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+            result.add(getItem(document));
         }
 
         return result;
@@ -49,7 +70,21 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
 
     @Override
     public Contagio addItem(Contagio item) throws ExecutionException, InterruptedException {
-        return null;
+        Contagio result = null;
+
+        DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
+
+        MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
+        ComuneDaoImpl comuneDao = new ComuneDaoImpl();
+
+        if (malattiaContagiosaDao.getItem(item.getMalattiaContagiosa().generateId()) != null
+            && comuneDao.getItem(item.getComune().generateId()) != null) {
+            documentReference.set(item.getFirebaseObject());
+
+            DocumentSnapshot documentSnapshot = documentReference.get().get();
+            result = getItem(documentSnapshot.getId());
+        }
+        return  result;
     }
 
     @Override
