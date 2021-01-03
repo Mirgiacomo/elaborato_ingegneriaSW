@@ -1,5 +1,9 @@
 package elaborato_ingegneriaSW.models;
 
+import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
+import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
+import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
+
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
 import java.util.HashMap;
@@ -33,6 +37,7 @@ public class Contagio {
         this.malattiaContagiosa = malattiaContagiosa;
         this.week = week;
         this.year = year;
+        this.complications = new HashMap<>();
     }
 
     /**
@@ -51,6 +56,7 @@ public class Contagio {
 
         this.week = date.get(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear());
         this.year = date.getYear();
+        this.complications = new HashMap<>();
     }
 
     public Contagio() {
@@ -89,8 +95,16 @@ public class Contagio {
         this.malattiaContagiosa = malattiaContagiosa;
     }
 
+    public void setComplications(Map<String, Integer> complications) {
+        this.complications = complications;
+    }
+
     public void addComplication(String complication, int value) {
         this.complications.put(complication, value);
+    }
+
+    public Map<String, Integer> getComplications() {
+        return complications;
     }
 
     public int getWeek() {
@@ -107,6 +121,27 @@ public class Contagio {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    /**
+     * Ritorna l'id univoco per il record nel database
+     * @return comune.id_week_year
+     */
+    public String generateId() {
+        return (comune.generateId() + "_" + week + "_" + year + "_" + malattiaContagiosa.generateId()).toLowerCase();
+    }
+
+    public HashMap<String, Object> getFirebaseObject() {
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        result.put("comune", ComuneDaoImpl.getCollectionName() + "/" + comune.generateId());
+        result.put("numeroTerapiaIntensiva", numeroTerapiaIntensiva);
+        result.put("numeroMedicoBase", numeroMedicoBase);
+        result.put("week", week);
+        result.put("year", year);
+        result.put("malattiaContagiosa", MalattiaContagiosaDaoImpl.getCollectionName() + "/" + malattiaContagiosa.generateId());
+        result.put("complications", complications);
+
+        return result;
     }
 
     @Override
