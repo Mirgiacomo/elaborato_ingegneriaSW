@@ -21,7 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-public class EditComuneController implements Initializable, EditView<Comune> {
+public class EditComuneController implements Initializable, EditController<Comune> {
     @FXML
     private JFXTextField codiceISTATTextField;
     @FXML

@@ -18,10 +18,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EditProvinciaController implements Initializable, EditView<Provincia> {
+public class EditProvinciaController implements Initializable, EditController<Provincia> {
 
     @FXML
     private JFXTextField nomeTextField;

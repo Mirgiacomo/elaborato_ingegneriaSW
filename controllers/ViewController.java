@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public interface AbstractViewController {
+public interface ViewController {
     default void showInsertView(ActionEvent event, String viewName) throws IOException {
         ShowView showView = new ShowView();
         FXMLLoader loader = showView.getLoader(viewName + ".fxml");
@@ -35,7 +35,7 @@ public interface AbstractViewController {
         Parent view = loader.load();
         Scene scene = new Scene(view);
 
-        EditView controller = loader.getController();
+        EditController controller = loader.getController();
         controller.populateForm(model);
 
         Stage stage = new Stage();
