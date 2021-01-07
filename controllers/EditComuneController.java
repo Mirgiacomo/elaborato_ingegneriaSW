@@ -1,7 +1,6 @@
 package elaborato_ingegneriaSW.controllers;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -38,7 +37,7 @@ public class EditComuneController implements Initializable, EditView<Comune> {
     @FXML
     private JFXComboBox provinciaComboBox;
     @FXML
-    public JFXButton insertComuneButton;
+    public JFXButton saveButton;
 
     private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
     private final ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
@@ -68,7 +67,8 @@ public class EditComuneController implements Initializable, EditView<Comune> {
     }
 
     @FXML
-    private void insertComuneAction(ActionEvent event) throws ExecutionException, InterruptedException {
+    @Override
+    public void saveAction(ActionEvent event) throws ExecutionException, InterruptedException {
         Double superficie = null;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
@@ -98,7 +98,7 @@ public class EditComuneController implements Initializable, EditView<Comune> {
             System.out.println("Comune inserito correttamente!");
 
             // Chiudo la pagina di insert dopo l'avvenuto inserimento
-            Stage stage = (Stage) insertComuneButton.getScene().getWindow();
+            Stage stage = (Stage) saveButton.getScene().getWindow();
             stage.close();
         }
     }

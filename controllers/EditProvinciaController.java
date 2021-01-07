@@ -54,7 +54,7 @@ public class EditProvinciaController implements Initializable, EditView<Provinci
     }
 
     @FXML
-    private void insertProvinciaAction(ActionEvent event) throws ExecutionException, InterruptedException {
+    public void saveAction(ActionEvent event) throws ExecutionException, InterruptedException {
         Double superficie = null;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
