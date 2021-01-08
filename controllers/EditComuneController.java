@@ -37,7 +37,7 @@ public class EditComuneController implements Initializable, EditView<Comune> {
     @FXML
     private JFXCheckBox fronteMareCheckBox;
     @FXML
-    private JFXComboBox provinciaComboBox;
+    private JFXComboBox<Provincia> provinciaComboBox;
     @FXML
     public JFXButton insertComuneButton;
 
@@ -117,6 +117,6 @@ public class EditComuneController implements Initializable, EditView<Comune> {
         superficieTextField.setText(String.valueOf(model.getSuperficie()));
         territorioComboBox.getSelectionModel().select(model.getTerritorio().ordinal());
         fronteMareCheckBox.setSelected(model.isFronteMare());
-        // TODO: provincia collegata
+        provinciaComboBox.getSelectionModel().select(model.getProvincia());
     }
 }
