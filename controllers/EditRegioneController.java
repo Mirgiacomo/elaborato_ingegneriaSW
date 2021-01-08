@@ -53,27 +53,14 @@ public class EditRegioneController implements Initializable, EditController<Regi
 
         Regione newRegione = new Regione(nome, capoluogo, superficie);
 
-        // Controllo se c'è una regione con lo stesso nome
-        if(regioneDao.getItem(newRegione.getNome().toLowerCase()) == null) {
-            if (regioneDao.addItem(newRegione) == null) {
-                FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
-            } else {
-                System.out.println("Regione inserita correttamente.");
-
-                // Chiudo la pagina di insert dopo l'avvenuto inserimento
-                Stage stage = (Stage) saveButton.getScene().getWindow();
-                stage.close();
-            }
+        if (regioneDao.addItem(newRegione) == null) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
-            if (regioneDao.updateItem(newRegione) == null) {
-                FXUtil.Alert(Alert.AlertType.ERROR, "AGGIORNAMENTO FALLITO", "Errore durante l'aggiornamento!", null, event);
-            } else {
-                System.out.println("Regione aggiornata correttamente.");
+            System.out.println("Regione salvata correttamente.");
 
-                // Chiudo la pagina di insert dopo l'avvenuto inserimento
-                Stage stage = (Stage) saveButton.getScene().getWindow();
-                stage.close();
-            }
+            // Chiudo la pagina di insert dopo l'avvenuto inserimento
+            Stage stage = (Stage) saveButton.getScene().getWindow();
+            stage.close();
         }
     }
 
