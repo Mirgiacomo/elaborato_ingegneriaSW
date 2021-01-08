@@ -50,6 +50,14 @@ public class MalattiaContagiosa implements Comparable<MalattiaContagiosa> {
         this.complications.add(complication);
     }
 
+    /**
+     * Ritorna l'id univoco per il record nel database
+     * @return nome
+     */
+    public String generateId() {
+        return (nome).toLowerCase();
+    }
+
     @Override
     public int compareTo(MalattiaContagiosa other) {
         return nome.compareTo(other.getNome());

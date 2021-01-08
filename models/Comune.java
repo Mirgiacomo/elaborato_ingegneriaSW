@@ -116,4 +116,9 @@ public class Comune extends AbstractTableModel implements Comparable<Comune> {
     public int compareTo(Comune other) {
         return codiceISTAT.compareTo(other.getCodiceISTAT());
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

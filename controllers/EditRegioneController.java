@@ -15,10 +15,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
-public class EditRegioneController implements Initializable, EditView<Regione> {
+public class EditRegioneController implements Initializable, EditController<Regione> {
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
     @FXML
-    public JFXButton insertRegioneButton;
+    public JFXButton saveButton;
     @FXML
     private JFXTextField nomeTextField;
     @FXML
@@ -35,7 +35,8 @@ public class EditRegioneController implements Initializable, EditView<Regione> {
     }
 
     @FXML
-    private void insertRegioneAction(ActionEvent event) throws ExecutionException, InterruptedException {
+    @Override
+    public void saveAction(ActionEvent event) throws ExecutionException, InterruptedException {
         Double superficie = null;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
@@ -60,7 +61,7 @@ public class EditRegioneController implements Initializable, EditView<Regione> {
                 System.out.println("Regione inserita correttamente.");
 
                 // Chiudo la pagina di insert dopo l'avvenuto inserimento
-                Stage stage = (Stage) insertRegioneButton.getScene().getWindow();
+                Stage stage = (Stage) saveButton.getScene().getWindow();
                 stage.close();
             }
         } else {
@@ -70,7 +71,7 @@ public class EditRegioneController implements Initializable, EditView<Regione> {
                 System.out.println("Regione aggiornata correttamente.");
 
                 // Chiudo la pagina di insert dopo l'avvenuto inserimento
-                Stage stage = (Stage) insertRegioneButton.getScene().getWindow();
+                Stage stage = (Stage) saveButton.getScene().getWindow();
                 stage.close();
             }
         }

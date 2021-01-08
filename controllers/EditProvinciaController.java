@@ -18,10 +18,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EditProvinciaController implements Initializable, EditView<Provincia> {
+public class EditProvinciaController implements Initializable, EditController<Provincia> {
 
     @FXML
     private JFXTextField nomeTextField;
@@ -48,15 +47,13 @@ public class EditProvinciaController implements Initializable, EditView<Provinci
                 regioneComboBox.getItems().add(regione);
             }
             new AutoCompleteBox(regioneComboBox);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    private void insertProvinciaAction(ActionEvent event) throws ExecutionException, InterruptedException {
+    public void saveAction(ActionEvent event) throws ExecutionException, InterruptedException {
         Double superficie = null;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());

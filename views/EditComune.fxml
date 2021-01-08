@@ -171,7 +171,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </JFXDatePicker>
-                  <JFXButton fx:id="insertComuneButton" buttonType="RAISED" defaultButton="true" onAction="#insertComuneAction" ripplerFill="WHITE" stylesheets="@css/style.css" text="SALVA COMUNE" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                  <JFXButton fx:id="saveButton" buttonType="RAISED" defaultButton="true" onAction="#saveAction" ripplerFill="WHITE" stylesheets="@css/style.css" text="SALVA COMUNE" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
                      <font>
                         <Font name="Open Sans Semibold" size="17.0" />
                      </font>

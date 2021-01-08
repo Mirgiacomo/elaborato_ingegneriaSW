@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewRegioniController implements Initializable, AbstractViewController {
+public class ViewRegioniController implements Initializable, ViewController {
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
     @FXML

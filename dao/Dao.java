@@ -13,6 +13,6 @@ public interface Dao<T> {
     T getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException;
     List<T> getItemsByQuery(String collectionName, HashMap<String, T> conditions, Class classType) throws ExecutionException, InterruptedException;
     T addItem(T item) throws ExecutionException, InterruptedException;
-    T updateItem(T item);
+    T updateItem(T item) throws ExecutionException, InterruptedException;
     boolean deleteItem(T item);
 }
