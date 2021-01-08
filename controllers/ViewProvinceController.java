@@ -4,6 +4,7 @@ import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.models.AbstractTableModel;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.utils.EditButtonCell;
+import elaborato_ingegneriaSW.utils.Export;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -58,6 +59,8 @@ public class ViewProvinceController implements Initializable, AbstractViewContro
                     Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableProvince, ViewProvinceController.this, "EditProvincia");
 
                     actionCol.setCellFactory(cellFactory);
+                    actionCol.prefWidthProperty().bind(tableProvince.widthProperty().multiply(0.055));
+                    actionCol.setResizable(false);
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
                     regioneCol.setCellValueFactory(new PropertyValueFactory<>("regione"));
@@ -78,5 +81,9 @@ public class ViewProvinceController implements Initializable, AbstractViewContro
 
     public void showInsertProvincia(ActionEvent event) throws IOException {
         showInsertView(event, "EditProvincia");
+    }
+
+    public void exportProvincia(ActionEvent event) throws Exception {
+        Export.exportData(provinciaDao.getAllItems(provinciaDao.getCollectionName()));
     }
 }

@@ -4,6 +4,7 @@ import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.AbstractTableModel;
 import elaborato_ingegneriaSW.models.Regione;
 import elaborato_ingegneriaSW.utils.EditButtonCell;
+import elaborato_ingegneriaSW.utils.Export;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,10 +48,11 @@ public class ViewRegioniController implements Initializable, AbstractViewControl
                 try {
                     Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
                     ObservableList<Regione> data = FXCollections.observableArrayList(regioni);
-
                     Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableRegioni, ViewRegioniController.this, "EditRegione");
 
                     actionCol.setCellFactory(cellFactory);
+                    actionCol.prefWidthProperty().bind(tableRegioni.widthProperty().multiply(0.055));
+                    actionCol.setResizable(false);
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
                     capoluogoCol.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
@@ -59,6 +61,8 @@ public class ViewRegioniController implements Initializable, AbstractViewControl
 
 
                 } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
@@ -74,5 +78,9 @@ public class ViewRegioniController implements Initializable, AbstractViewControl
 
     public void showInsertRegione(ActionEvent event) throws IOException {
         showInsertView(event, "EditRegione");
+    }
+
+    public void exportRegione(ActionEvent event) throws Exception {
+        Export.exportData(regioneDao.getAllItems(regioneDao.getCollectionName()));
     }
 }

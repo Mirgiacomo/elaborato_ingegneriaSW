@@ -28,7 +28,7 @@ public class EditProvinciaController implements Initializable, EditView<Provinci
     @FXML
     private JFXTextField superficieTextField;
     @FXML
-    private JFXComboBox regioneComboBox;
+    private JFXComboBox<Regione> regioneComboBox;
     @FXML
     public JFXButton insertProvinciaButton;
 
@@ -86,6 +86,8 @@ public class EditProvinciaController implements Initializable, EditView<Provinci
 
     @Override
     public void populateForm(Provincia model) {
-        
+        nomeTextField.setText(model.getNome());
+        superficieTextField.setText(String.valueOf(model.getSuperficie()));
+        regioneComboBox.getSelectionModel().select(model.getRegione());
     }
 }
