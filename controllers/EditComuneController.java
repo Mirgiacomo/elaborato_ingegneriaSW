@@ -1,6 +1,8 @@
 package elaborato_ingegneriaSW.controllers;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -35,7 +37,7 @@ public class EditComuneController implements Initializable, EditController<Comun
     @FXML
     private JFXCheckBox fronteMareCheckBox;
     @FXML
-    private JFXComboBox provinciaComboBox;
+    private JFXComboBox<Provincia> provinciaComboBox;
     @FXML
     public JFXButton saveButton;
 
@@ -107,9 +109,15 @@ public class EditComuneController implements Initializable, EditController<Comun
     public void populateForm(Comune model) {
         codiceISTATTextField.setText(model.getCodiceISTAT());
         nomeTextField.setText(model.getNome());
-        // TODO: trasformare le date in LocalDate al posto di String
-        //dataIstituzioneDataPicker.setValue();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+        String date = model.getDataIstituzione();
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        dataIstituzioneDataPicker.setValue(localDate);
+
         superficieTextField.setText(String.valueOf(model.getSuperficie()));
-        // TODO: finire il populate form
+        territorioComboBox.getSelectionModel().select(model.getTerritorio().ordinal());
+        fronteMareCheckBox.setSelected(model.isFronteMare());
+        provinciaComboBox.getSelectionModel().select(model.getProvincia());
     }
 }

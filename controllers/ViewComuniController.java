@@ -1,9 +1,12 @@
 package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
+import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.AbstractTableModel;
 import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.utils.EditButtonCell;
+import elaborato_ingegneriaSW.utils.Export;
+import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -59,6 +62,8 @@ public class ViewComuniController implements Initializable, ViewController {
                     Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableComuni, ViewComuniController.this, "EditComune");
 
                     actionCol.setCellFactory(cellFactory);
+                    actionCol.prefWidthProperty().bind(tableComuni.widthProperty().multiply(0.055));
+                    actionCol.setResizable(false);
                     codiceISTATCol.setCellValueFactory(new PropertyValueFactory<>("codiceISTAT"));
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                     dataIstituzioneCol.setCellValueFactory(new PropertyValueFactory<>("dataIstituzione"));
@@ -84,5 +89,9 @@ public class ViewComuniController implements Initializable, ViewController {
 
     public void showInsertComune(ActionEvent event) throws IOException {
         showInsertView(event, "EditComune");
+    }
+
+    public void exportComune(ActionEvent event) throws Exception {
+        Export.exportData(comuneDao.getAllItems(comuneDao.getCollectionName()));
     }
 }

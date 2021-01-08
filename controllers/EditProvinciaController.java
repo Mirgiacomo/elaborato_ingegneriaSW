@@ -83,6 +83,8 @@ public class EditProvinciaController implements Initializable, EditController<Pr
 
     @Override
     public void populateForm(Provincia model) {
-        
+        nomeTextField.setText(model.getNome());
+        superficieTextField.setText(String.valueOf(model.getSuperficie()));
+        regioneComboBox.getSelectionModel().select(model.getRegione());
     }
 }
