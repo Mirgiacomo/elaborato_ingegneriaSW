@@ -26,7 +26,7 @@ import javafx.util.Duration;
 public class MainController implements Initializable, SelectViewCallback {
     private final ShowView showView = new ShowView();
     // TODO: togliere quando finiti test
-    private Utente loggedUser = new Utente("mirandola", "giacomo", "mirgiacomo", "", RuoloUtente.ADMIN , "");
+    private Utente loggedUser = new Utente("mirandola", "giacomo", "mirgiacomo", "", RuoloUtente.ADMIN , "", null);
 
     @FXML
     private JFXDrawer drawer;
