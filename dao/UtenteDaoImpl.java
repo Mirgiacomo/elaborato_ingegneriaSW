@@ -2,12 +2,11 @@ package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
-import elaborato_ingegneriaSW.models.Provincia;
-import elaborato_ingegneriaSW.models.RuoloUtente;
-import elaborato_ingegneriaSW.models.Territorio;
-import elaborato_ingegneriaSW.models.Utente;
+import elaborato_ingegneriaSW.models.*;
 
-import java.util.Objects;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class UtenteDaoImpl extends DaoImpl<Utente>{
@@ -30,7 +29,7 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
     }
 
     @Override
-    public Utente getItem(DocumentSnapshot document) {
+    public Utente getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException {
         Utente result = null;
         if (document.exists()) {
             result = new Utente();
@@ -40,8 +39,19 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
             result.setPassword(document.get("password", String.class));
             result.setCf(document.get("cf", String.class));
             result.setRuolo(document.get("ruolo", RuoloUtente.class));
-        }
+            result.setRuolo(document.get("ruolo", RuoloUtente.class));
+            result.setComuniAssociati(null);
+//            List<String> complications = (List<String>)document.get("comuniAssociati");
+//            if (complications != null) {
+//                for(String c: complications) {
+//                    ArrayList provola = (Objects.requireNonNull(document.get("comuniAssociati", ArrayList.class)));
+//                    System.out.println(provola.size());
+//                    ComuneDaoImpl comuneDao = new ComuneDaoImpl();
+//                    System.out.println(comuneDocument.getId());
+//                    System.out.println(comuneDao.getItem(comuneDocument.getId()).getNome());
 
+//                result.setRegione(regioneDao.getItem(regioneDocument.getId()));
+            }
         return result;
     }
 

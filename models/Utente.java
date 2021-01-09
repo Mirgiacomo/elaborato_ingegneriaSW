@@ -1,8 +1,9 @@
 package elaborato_ingegneriaSW.models;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
+import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
+
+import java.util.*;
 
 public class Utente extends AbstractTableModel implements Comparable<Utente>{
     private String cognome;
@@ -11,16 +12,22 @@ public class Utente extends AbstractTableModel implements Comparable<Utente>{
     private String password;
     private RuoloUtente ruolo;
     private String cf;
+    private Set<Comune> comuniAssociati;
 
     // TODO: aggiungere nel costruttore anche i comuni
-    public Utente(String cognome, String nome, String username, String password, RuoloUtente ruolo, String cf) {
+    public Utente(String cognome, String nome, String username, String password, RuoloUtente ruolo, String cf, Set<Comune> comuniAssociati) {
         this.cognome = cognome;
         this.nome = nome;
         this.username = username;
         this.password = password;
         this.ruolo = ruolo;
         this.cf = cf;
-//        this.comuniAssociati = comuniAssociati;
+        this.comuniAssociati = new HashSet<>();
+        if (comuniAssociati != null) {
+            for (Comune c: comuniAssociati) {
+                this.addComune(c);
+            }
+        }
     }
 
     public Utente() {
@@ -76,26 +83,30 @@ public class Utente extends AbstractTableModel implements Comparable<Utente>{
         this.cf = cf;
     }
 
-    HashMap<String, List> comuniAssociati;
-    public HashMap<String, List> getComuniAssociati() {
+    public void addComune(Comune c) {
+        this.comuniAssociati.add(c);
+    }
+
+    public Set<Comune> getComuniAssociati() {
         return comuniAssociati;
     }
-    public void setComuniAssociati(HashMap<String, List> comuniAssociati) {
+
+    public void setComuniAssociati(Set<Comune> comuniAssociati) {
         this.comuniAssociati = comuniAssociati;
     }
 
-    public HashMap<String, Object> getFirebaseObject() {
-        HashMap<String, Object> result = new HashMap<String, Object>();
-        result.put("nome", nome);
-        result.put("cognome", cognome);
-        result.put("username", username);
-        result.put("password", password);
-        result.put("cf", cf);
-        result.put("ruolo", ruolo);
-        result.put("comuniAssociati", password);
-        // TODO: comuni associati
-        return result;
-    }
+//    public HashMap<String, Object> getFirebaseObject() {
+//        HashMap<String, Object> result = new HashMap<String, Object>();
+//        result.put("nome", nome);
+//        result.put("cognome", cognome);
+//        result.put("username", username);
+//        result.put("password", password);
+//        result.put("cf", cf);
+//        result.put("ruolo", ruolo);
+//        result.put("comuniAssociati", password);
+//        // TODO: comuni associati
+//        return result;
+//    }
 
     @Override
     public boolean equals(Object o) {

@@ -100,7 +100,7 @@ public class EditUtenteController implements Initializable, EditController<Utent
         //TODO: aggiungere comuni
 
         Set<Comune> comuniAssociati = null;
-        System.out.println(comuniCheckComboBox.getCheckModel().getCheckedItems());
+        System.out.println("provola");
         // comuniAssociati.add(new Comune("123456", "Bovolone", "2021-01-01", "85", Territorio.COLLINA, true, ));
         Utente newUtente = new Utente(cognome, nome, username, Hashing.sha256().hashString(password1, StandardCharsets.UTF_8).toString(), ruolo, cf, comuniAssociati);
         if (utenteDao.addItem(newUtente) == null) {

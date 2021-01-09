@@ -114,12 +114,12 @@
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
                   </Text>
+                  <JFXPasswordField fx:id="password1PasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="114.91089630126953" GridPane.rowIndex="2">
                      <font>
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
                   </Text>
-                  <JFXPasswordField fx:id="password1PasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo" wrappingWidth="114.91089630126953" GridPane.rowIndex="3">
                      <font>
                         <Font name="Open Sans Regular" size="20.0" />
@@ -133,8 +133,8 @@
                         <Insets />
                      </GridPane.margin>
                   </Text>
-                  <JFXComboBox prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <CheckComboBox fx:id="comuniCheckComboBox" prefHeight="26.0" prefWidth="216.0" showCheckedCount="true" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4">
+                  <JFXComboBox fx:id="ruoloComboBox" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <CheckComboBox fx:id="comuniCheckComboBox" prefHeight="26.0" prefWidth="277.0" showCheckedCount="true" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="40.0" />
                      </GridPane.margin>

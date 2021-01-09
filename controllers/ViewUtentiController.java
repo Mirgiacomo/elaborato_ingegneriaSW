@@ -59,7 +59,6 @@ public class ViewUtentiController implements Initializable, ViewController {
                 try {
                     Set<Utente> utenti = utenteDao.getAllItems(UtenteDaoImpl.getCollectionName());
                     ObservableList<Utente> data = FXCollections.observableArrayList(utenti);
-
                     Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableUtenti, ViewUtentiController.this, "EditUtente");
 
                     actionCol.setCellFactory(cellFactory);
