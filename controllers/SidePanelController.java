@@ -35,7 +35,7 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton decessiProvinciaButton;
     @FXML
-    private JFXButton associaComuniButton;
+    private JFXButton utentiButton;
     @FXML
     private JFXButton exportReportButton;
     @FXML
@@ -78,9 +78,9 @@ public class SidePanelController implements Initializable {
     }
 
     @FXML
-    public void viewAssociaComuniAction(ActionEvent event) throws IOException {
+    public void viewUtentiAction(ActionEvent event) throws IOException {
         // TODO: fix con giusto fxml
-        callback.selectView("viewComuni.fxml");
+        callback.selectView("viewUtenti.fxml");
     }
 
     @FXML
@@ -123,7 +123,7 @@ public class SidePanelController implements Initializable {
         sidebar.getChildren().remove(grafico1Button);
         sidebar.getChildren().remove(contagiComuniButton);
         sidebar.getChildren().remove(decessiProvinciaButton);
-        sidebar.getChildren().remove(associaComuniButton);
+        sidebar.getChildren().remove(utentiButton);
         sidebar.getChildren().remove(exportReportButton);
         sidebar.getChildren().remove(footerPane);
 
@@ -137,7 +137,7 @@ public class SidePanelController implements Initializable {
                 sidebar.getChildren().add(regioniButton);
                 sidebar.getChildren().add(contagiComuniButton);
                 sidebar.getChildren().add(decessiProvinciaButton);
-                sidebar.getChildren().add(associaComuniButton);
+                sidebar.getChildren().add(utentiButton);
                 break;
 
             // Il personale dell’ente incaricato del monitoraggio può inserire  nuove regioni, province e comuni
