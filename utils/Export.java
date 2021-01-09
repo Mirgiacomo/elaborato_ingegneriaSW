@@ -78,7 +78,7 @@ public class Export {
                                         Utente item = (Utente) utente;
                                         String text = item.getNome() + "\t\t\t\t\t" + item.getCognome() + "\t\t\t\t\t" + item.getUsername() + "\t\t\t\t\t" +
                                                  item.getCf() + "\t\t\t\t\t" + item.getRuolo() + "\t\t\t\t\t" +
-                                                "item.getComuniAssociati()" + "\n";
+                                                item.getComuniAssociati() + "\n";
                                         writer.write(text);
                                     }
                                 }
