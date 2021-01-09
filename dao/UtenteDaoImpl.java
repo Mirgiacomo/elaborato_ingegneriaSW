@@ -2,8 +2,12 @@ package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
+import elaborato_ingegneriaSW.models.Provincia;
+import elaborato_ingegneriaSW.models.RuoloUtente;
+import elaborato_ingegneriaSW.models.Territorio;
 import elaborato_ingegneriaSW.models.Utente;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public class UtenteDaoImpl extends DaoImpl<Utente>{
@@ -29,7 +33,13 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
     public Utente getItem(DocumentSnapshot document) {
         Utente result = null;
         if (document.exists()) {
-            result = document.toObject(Utente.class);
+            result = new Utente();
+            result.setNome(document.get("nome", String.class));
+            result.setCognome(document.get("cognome", String.class));
+            result.setUsername(document.get("username", String.class));
+            result.setPassword(document.get("password", String.class));
+            result.setCf(document.get("cf", String.class));
+            result.setRuolo(document.get("ruolo", RuoloUtente.class));
         }
 
         return result;
