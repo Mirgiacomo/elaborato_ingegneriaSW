@@ -58,7 +58,7 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
     @Override
     public Utente addItem(Utente item) throws ExecutionException, InterruptedException {
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
-        ApiFuture<WriteResult> writeResult = documentReference.set(item, SetOptions.merge());
+        ApiFuture<WriteResult> writeResult = documentReference.set(item.getFirebaseObject(), SetOptions.merge());
 
         DocumentSnapshot documentSnapshot = documentReference.get().get();
         return getItem(documentSnapshot.getId());

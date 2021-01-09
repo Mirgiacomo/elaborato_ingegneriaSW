@@ -2,6 +2,7 @@ package elaborato_ingegneriaSW.controllers;
 
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -21,6 +22,7 @@ import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
 import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.AutoCompleteBox;
 import elaborato_ingegneriaSW.utils.FXUtil;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -97,9 +99,15 @@ public class EditUtenteController implements Initializable, EditController<Utent
             FXUtil.Alert(Alert.AlertType.ERROR, "PASSWORD ERRATE", "Le password non coincidono!", null, event);
         }
         RuoloUtente ruolo = (RuoloUtente) ruoloComboBox.getValue();
-        //TODO: aggiungere comuni
 
-        Set<Comune> comuniAssociati = null;
+        ObservableList<Comune> comuni = comuniCheckComboBox.getCheckModel().getCheckedItems();
+        Set<Comune> comuniAssociati = new HashSet<>();
+        if (!comuni.isEmpty()) {
+            for (Comune c: comuni) {
+                comuniAssociati.add(c);
+            }
+        }
+
         System.out.println("provola");
         // comuniAssociati.add(new Comune("123456", "Bovolone", "2021-01-01", "85", Territorio.COLLINA, true, ));
         Utente newUtente = new Utente(cognome, nome, username, Hashing.sha256().hashString(password1, StandardCharsets.UTF_8).toString(), ruolo, cf, comuniAssociati);
@@ -126,7 +134,7 @@ public class EditUtenteController implements Initializable, EditController<Utent
         password2PasswordField.setDisable(true);
         cfTextField.setText(model.getCf());
         ruoloComboBox.getSelectionModel().select(model.getRuolo());
-//        model.getComuniAssociati().forEach((comune, list) -> System.out.println(comune));
+        // TODO: selezionare i comuni giusti
     }
 
 }

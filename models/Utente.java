@@ -2,6 +2,7 @@ package elaborato_ingegneriaSW.models;
 
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
+import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
 
 import java.util.*;
 
@@ -95,18 +96,25 @@ public class Utente extends AbstractTableModel implements Comparable<Utente>{
         this.comuniAssociati = comuniAssociati;
     }
 
-//    public HashMap<String, Object> getFirebaseObject() {
-//        HashMap<String, Object> result = new HashMap<String, Object>();
-//        result.put("nome", nome);
-//        result.put("cognome", cognome);
-//        result.put("username", username);
-//        result.put("password", password);
-//        result.put("cf", cf);
-//        result.put("ruolo", ruolo);
-//        result.put("comuniAssociati", password);
-//        // TODO: comuni associati
-//        return result;
-//    }
+   public HashMap<String, Object> getFirebaseObject() {
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        result.put("nome", nome);
+        result.put("cognome", cognome);
+        result.put("username", username);
+        result.put("password", password);
+        result.put("cf", cf);
+        result.put("ruolo", ruolo);
+
+        // firebase non supporta le collection, vuole le liste
+        List<String> comuni = new ArrayList<>();
+        if (!comuniAssociati.isEmpty()) {
+            for (Comune comune: comuniAssociati) {
+                comuni.add(ComuneDaoImpl.getCollectionName() + "/" + comune.generateId());
+            }
+        }
+        result.put("comuniAssociati", comuni);
+        return result;
+    }
 
     @Override
     public boolean equals(Object o) {
