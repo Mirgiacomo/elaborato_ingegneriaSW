@@ -42,7 +42,7 @@ public class ComuneDaoImpl extends DaoImpl<Comune> {
             result.setNome(document.get("nome", String.class));
             result.setDataIstituzione(document.get("dataIstituzione", String.class));
             result.setSuperficie(document.get("superficie", Double.class));
-            result.setTerritorio(Territorio.valueOf(document.get("territorio", String.class)));
+            result.setTerritorio(document.get("territorio", Territorio.class));
             result.setFronteMare(document.get("fronteMare", Boolean.class));
             result.setProvincia(provinciaDao.getItem(provinciaDocument.getId()));
         }
