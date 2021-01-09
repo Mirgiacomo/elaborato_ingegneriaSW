@@ -2,97 +2,153 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Tooltip?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.CheckComboBox?>
 
-<VBox prefHeight="519.0" prefWidth="848.0" style="-fx-background-color: trasparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.InsertUtenteController">
-  <children>
-      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="790.0" styleClass="anchorPane" stylesheets="@css/style.css" VBox.vgrow="ALWAYS">
+<AnchorPane minHeight="-Infinity" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.EditUtenteController">
+   <children>
+      <VBox alignment="CENTER" layoutX="-5.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton layoutX="750.0" layoutY="444.0" opacity="0.0" prefHeight="44.0" prefWidth="84.0">
-               <tooltip>
-                  <Tooltip text="TODO: aggiungere qualcosa" />
-               </tooltip>
-            </JFXButton>
-            <Text layoutX="73.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSERIMENTO UTENTE" textAlignment="CENTER" wrappingWidth="701.5359497070312">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE UTENTE" textAlignment="CENTER" wrappingWidth="519.9358825683594">
                <font>
-                  <Font name="System Bold" size="33.0" />
+                  <Font name="Open Sans Semibold" size="38.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </Text>
-            <Text layoutX="28.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome">
-               <font>
-                  <Font name="Open Sans" size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="424.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome">
-               <font>
-                  <Font name="Open Sans" size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="45.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comuni">
-               <font>
-                  <Font name="Open Sans" size="20.0" />
-               </font>
-            </Text>
-            <JFXButton fx:id="insertUtenteButton" buttonType="RAISED" defaultButton="true" layoutX="331.0" layoutY="434.0" onAction="#insertUtenteAction" prefHeight="40.0" prefWidth="198.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="INSERISCI UTENTE" textFill="WHITE">
-               <font>
-                  <Font name="Open Sans Semibold" size="15.0" />
-               </font>
-            </JFXButton>
-            <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" layoutX="102.0" layoutY="109.0" prefHeight="38.0" prefWidth="268.0">
-               <font>
-                  <Font name="Open Sans" size="18.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="cfTextField" focusColor="#7c2e2e" layoutX="175.0" layoutY="224.0" prefHeight="38.0" prefWidth="254.0">
-               <font>
-                  <Font name="Open Sans" size="18.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="cognomeTextField" focusColor="#7c2e2e" layoutX="529.0" layoutY="110.0" prefHeight="28.0" prefWidth="253.0">
-               <font>
-                  <Font name="Open Sans" size="18.0" />
-               </font>
-            </JFXTextField>
-            <Text layoutX="28.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codice Fiscale">
-               <font>
-                  <Font name="Open Sans" size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="25.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
-               <font>
-                  <Font name="Open Sans" size="20.0" />
-               </font>
-            </Text>
-            <JFXTextField fx:id="usernameTextField" focusColor="#7c2e2e" layoutX="141.0" layoutY="170.0" prefHeight="38.0" prefWidth="233.0">
-               <font>
-                  <Font name="Open Sans" size="18.0" />
-               </font>
-            </JFXTextField>
-            <Text layoutX="423.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
-               <font>
-                  <Font name="Open Sans" size="20.0" />
-               </font>
-            </Text>
-            <JFXTextField fx:id="passwordTextField" focusColor="#7c2e2e" layoutX="528.0" layoutY="170.0" prefHeight="28.0" prefWidth="254.0">
-               <font>
-                  <Font name="Open Sans" size="18.0" />
-               </font>
-            </JFXTextField>
-            <CheckBox layoutX="160.0" layoutY="302.0" mnemonicParsing="false" text="CheckBox" />
-            <CheckBox layoutX="160.0" layoutY="337.0" mnemonicParsing="false" text="CheckBox" />
-            <Text layoutX="459.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo">
-               <font>
-                  <Font name="Open Sans" size="20.0" />
-               </font>
-            </Text>
-            <JFXComboBox fx:id="ruoloComboBox" layoutX="528.0" layoutY="231.0" prefHeight="28.0" prefWidth="254.0" />
+            <GridPane alignment="CENTER" maxWidth="1000.0" prefHeight="560.0" prefWidth="650.0" styleClass="form-box">
+               <columnConstraints>
+                  <ColumnConstraints maxWidth="199.99998779296874" minWidth="10.0" prefWidth="116.60001983642579" />
+                  <ColumnConstraints maxWidth="199.99998779296874" minWidth="10.0" prefWidth="170.99998016357424" />
+                  <ColumnConstraints maxWidth="199.99998779296874" minWidth="10.0" prefWidth="39.00002746582027" />
+                  <ColumnConstraints maxWidth="281.6000122070312" minWidth="50.40001220703124" prefWidth="115.19999999999999" />
+                  <ColumnConstraints maxWidth="216.80002441406253" minWidth="167.19998779296878" prefWidth="171.2" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="75.0" />
+                  <RowConstraints minHeight="75.0" />
+                  <RowConstraints maxHeight="88.80000610351564" minHeight="75.0" prefHeight="88.80000610351564" />
+                  <RowConstraints maxHeight="70.39998168945311" minHeight="61.599993896484364" prefHeight="61.599993896484364" />
+                  <RowConstraints minHeight="75.0" />
+                  <RowConstraints minHeight="75.0" />
+               </rowConstraints>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <JFXTextField fx:id="cognomeTextField" focusColor="#7c2e2e" GridPane.columnIndex="4">
+                     <font>
+                        <Font name="Open Sans Regular" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Text>
+                  <JFXButton fx:id="saveButton" buttonType="RAISED" defaultButton="true" onAction="#saveAction" prefHeight="38.0" prefWidth="106.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="SALVA" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Open Sans Semibold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXButton>
+                  <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cod. Fiscale" wrappingWidth="142.910888671875" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="cfTextField" focusColor="#7c2e2e" prefHeight="39.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ripeti Password" wrappingWidth="114.91089630126953" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="usernameTextField" focusColor="#7c2e2e" prefHeight="39.0" prefWidth="131.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXPasswordField fx:id="password2PasswordField" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usename" wrappingWidth="114.91089630126953" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="114.91089630126953" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXPasswordField fx:id="password1PasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo" wrappingWidth="114.91089630126953" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comuni associati all'utente:" wrappingWidth="244.51091766357422" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Text>
+                  <JFXComboBox prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <CheckComboBox fx:id="comuniCheckComboBox" prefHeight="26.0" prefWidth="216.0" showCheckedCount="true" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="40.0" />
+                     </GridPane.margin>
+                  </CheckComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="40.0" />
+               </VBox.margin>
+            </GridPane>
          </children>
-      </AnchorPane>
-  </children>
-</VBox>
+         <styleClass>
+            <String fx:value="anchorPane" />
+            <String fx:value="insert-bg" />
+         </styleClass>
+      </VBox>
+   </children>
+</AnchorPane>
