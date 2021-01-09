@@ -17,7 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
-public class InsertUtenteController implements Initializable {
+public class EditUtenteController implements Initializable {
 
     @FXML
     private JFXTextField nomeTextField;
