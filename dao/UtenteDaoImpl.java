@@ -40,18 +40,16 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
             result.setCf(document.get("cf", String.class));
             result.setRuolo(document.get("ruolo", RuoloUtente.class));
             result.setRuolo(document.get("ruolo", RuoloUtente.class));
-            result.setComuniAssociati(null);
-//            List<String> complications = (List<String>)document.get("comuniAssociati");
-//            if (complications != null) {
-//                for(String c: complications) {
-//                    ArrayList provola = (Objects.requireNonNull(document.get("comuniAssociati", ArrayList.class)));
-//                    System.out.println(provola.size());
-//                    ComuneDaoImpl comuneDao = new ComuneDaoImpl();
-//                    System.out.println(comuneDocument.getId());
-//                    System.out.println(comuneDao.getItem(comuneDocument.getId()).getNome());
 
-//                result.setRegione(regioneDao.getItem(regioneDocument.getId()));
+            List<String> comuni = (List<String>) document.get("comuniAssociati");
+            ComuneDaoImpl comuneDao = new ComuneDaoImpl();
+            if (comuni != null) {
+                for (String c : comuni) {
+                    DocumentReference comuneDocument = firestore.document(Objects.requireNonNull(c));
+                    result.addComune(comuneDao.getItem(comuneDocument.getId()));
+                }
             }
+        }
         return result;
     }
 
