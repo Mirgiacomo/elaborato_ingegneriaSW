@@ -3,8 +3,9 @@ package elaborato_ingegneriaSW.models;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 
 import java.util.HashMap;
+import java.util.Objects;
 
-public class Comune extends AbstractTableModel implements Comparable<Comune> {
+public class Comune implements Comparable<Comune> {
     private String codiceISTAT;
     private String nome;
     private String dataIstituzione;
@@ -110,6 +111,19 @@ public class Comune extends AbstractTableModel implements Comparable<Comune> {
         result.put("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId());
 
         return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comune comune = (Comune) o;
+        return Objects.equals(codiceISTAT, comune.codiceISTAT);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codiceISTAT);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package elaborato_ingegneriaSW.controllers;
 
-import elaborato_ingegneriaSW.models.AbstractTableModel;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +11,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public interface ViewController {
+public interface ViewController<T> {
     default void showInsertView(ActionEvent event, String viewName) throws IOException {
         ShowView showView = new ShowView();
-        FXMLLoader loader = showView.getLoader(viewName + ".fxml");
+        FXMLLoader loader = showView.getLoader(viewName);
 
         Parent view = loader.load();
         Scene scene = new Scene(view);
@@ -28,14 +27,14 @@ public interface ViewController {
         stage.setScene(scene);
         stage.showAndWait();
     }
-    default void showUpdateView(ActionEvent event, String viewName, AbstractTableModel model) throws IOException {
+    default void showUpdateView(ActionEvent event, String viewName, T model) throws IOException {
         ShowView showView = new ShowView();
-        FXMLLoader loader = showView.getLoader(viewName + ".fxml");
+        FXMLLoader loader = showView.getLoader(viewName);
 
         Parent view = loader.load();
         Scene scene = new Scene(view);
 
-        EditController controller = loader.getController();
+        EditController<T> controller = loader.getController();
         controller.populateForm(model);
 
         Stage stage = new Stage();

@@ -1,21 +1,18 @@
 package elaborato_ingegneriaSW.models;
 
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
-import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
-import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
 
 import java.util.*;
 
-public class Utente extends AbstractTableModel implements Comparable<Utente>{
+public class Utente implements Comparable<Utente>{
     private String cognome;
     private String nome;
     private String username;
     private String password;
     private RuoloUtente ruolo;
     private String cf;
-    private Set<Comune> comuniAssociati;
+    private Set<Comune> comuniAssociati = new HashSet<>();
 
-    // TODO: aggiungere nel costruttore anche i comuni
     public Utente(String cognome, String nome, String username, String password, RuoloUtente ruolo, String cf, Set<Comune> comuniAssociati) {
         this.cognome = cognome;
         this.nome = nome;

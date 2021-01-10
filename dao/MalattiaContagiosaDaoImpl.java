@@ -39,7 +39,7 @@ public class MalattiaContagiosaDaoImpl extends DaoImpl<MalattiaContagiosa> {
         if (document.exists()) {
             result = new MalattiaContagiosa(document.getString("nome"));
 
-            List<String> complications = (List<String>)document.get("complications");
+            List<String> complications = (List<String>) document.get("complications");
             if (complications != null) {
                 for(String c: complications) {
                     result.addComplication(c);

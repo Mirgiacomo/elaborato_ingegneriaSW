@@ -15,12 +15,12 @@ public abstract class DaoImpl<T> implements Dao<T> {
     }
 
     @Override
-    public Set getAllItems(String collectionName) throws ExecutionException, InterruptedException {
+    public Set<T> getAllItems(String collectionName) throws ExecutionException, InterruptedException {
         ApiFuture<QuerySnapshot> querySnapshot = firestore.collection(collectionName).get();
 
         List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
 
-        Set result = new TreeSet();
+        TreeSet<T> result = new TreeSet();
 
         for (QueryDocumentSnapshot document : documents) {
             result.add(getItem(document));
@@ -39,10 +39,10 @@ public abstract class DaoImpl<T> implements Dao<T> {
      * TODO: provare a sistemare perchè non funziona
      */
     @Override
-    public List getItemsByQuery(String collectionName, HashMap<String,T> conditions, Class classType) throws ExecutionException, InterruptedException {
+    public List<T> getItemsByQuery(String collectionName, HashMap<String,T> conditions, Class classType) throws ExecutionException, InterruptedException {
         CollectionReference collectionReference = firestore.collection(collectionName);
         Query query = null;
-        List result = null;
+        List<T> result = null;
 
         for (String key: conditions.keySet()) {
             query = collectionReference.whereEqualTo(key, conditions.get(key));

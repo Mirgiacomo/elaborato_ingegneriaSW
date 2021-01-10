@@ -1,9 +1,6 @@
 package elaborato_ingegneriaSW.controllers;
 
-import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
-import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.dao.UtenteDaoImpl;
-import elaborato_ingegneriaSW.models.AbstractTableModel;
 import elaborato_ingegneriaSW.models.Utente;
 import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
@@ -26,14 +23,13 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewUtentiController implements Initializable, ViewController {
+public class ViewUtentiController implements Initializable, ViewController<Utente> {
     private final UtenteDaoImpl utenteDao = new UtenteDaoImpl();
-    private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
     @FXML
     private TableView<Utente> tableUtenti;
     @FXML
-    public TableColumn<AbstractTableModel, String> actionCol;
+    public TableColumn<Utente, String> actionCol;
     @FXML
     public TableColumn<Utente, String> nomeCol;
     @FXML
@@ -59,7 +55,7 @@ public class ViewUtentiController implements Initializable, ViewController {
                 try {
                     Set<Utente> utenti = utenteDao.getAllItems(UtenteDaoImpl.getCollectionName());
                     ObservableList<Utente> data = FXCollections.observableArrayList(utenti);
-                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableUtenti, ViewUtentiController.this, "EditUtente");
+                    Callback<TableColumn<Utente, String>, TableCell<Utente, String>> cellFactory = param -> new EditButtonCell<>(tableUtenti, ViewUtentiController.this, "EditUtente.fxml");
 
                     actionCol.setCellFactory(cellFactory);
                     actionCol.prefWidthProperty().bind(tableUtenti.widthProperty().multiply(0.055));
@@ -75,8 +71,6 @@ public class ViewUtentiController implements Initializable, ViewController {
                     tableUtenti.setItems(data);
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             });
 
@@ -90,10 +84,10 @@ public class ViewUtentiController implements Initializable, ViewController {
     }
 
     public void showInsertUtente(ActionEvent event) throws IOException {
-        showInsertView(event, "EditUtente");
+        showInsertView(event, "EditUtente.fxml");
     }
 
     public void exportUtente(ActionEvent event) throws Exception {
-        Export.exportData(utenteDao.getAllItems(utenteDao.getCollectionName()));
+        Export.exportData(utenteDao.getAllItems(UtenteDaoImpl.getCollectionName()));
     }
 }

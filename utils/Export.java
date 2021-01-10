@@ -15,7 +15,7 @@ import java.util.Set;
 
 public class Export {
 
-    public static void exportData(Set<Object> items) throws Exception {
+    public static void exportData(Set<?> items) throws Exception {
         if(!items.isEmpty()) {
             Writer writer = null;
             Iterator iter = items.iterator();
