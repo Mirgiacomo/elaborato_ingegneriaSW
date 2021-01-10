@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.Regione;
 import elaborato_ingegneriaSW.utils.FXUtil;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 
-public class EditRegioneController implements Initializable, EditController<Regione> {
+public class EditRegioneController extends EditController<Regione> implements Initializable {
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
     @FXML
     public JFXButton saveButton;
@@ -51,34 +52,33 @@ public class EditRegioneController implements Initializable, EditController<Regi
         String nome = nomeTextField.getText();
         String capoluogo = capoluogoTextField.getText();
 
-        Regione newRegione = new Regione(nome, capoluogo, superficie);
+        Regione regione = new Regione(nome, capoluogo, superficie);
 
-        // Controllo se c'è una regione con lo stesso nome
-        if(regioneDao.getItem(newRegione.getNome().toLowerCase()) == null) {
-            if (regioneDao.addItem(newRegione) == null) {
-                FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
-            } else {
-                System.out.println("Regione inserita correttamente.");
-
-                // Chiudo la pagina di insert dopo l'avvenuto inserimento
-                Stage stage = (Stage) saveButton.getScene().getWindow();
-                stage.close();
-            }
+        if (regioneDao.addItem(regione) == null) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
-            if (regioneDao.updateItem(newRegione) == null) {
-                FXUtil.Alert(Alert.AlertType.ERROR, "AGGIORNAMENTO FALLITO", "Errore durante l'aggiornamento!", null, event);
-            } else {
-                System.out.println("Regione aggiornata correttamente.");
+            tableData.remove(model);
+            tableData.add(regione);
+            //System.out.println("Provincia inserita correttamente!");
 
-                // Chiudo la pagina di insert dopo l'avvenuto inserimento
-                Stage stage = (Stage) saveButton.getScene().getWindow();
-                stage.close();
-            }
+            // Chiudo la pagina di insert dopo l'avvenuto inserimento
+            Stage stage = (Stage) saveButton.getScene().getWindow();
+            stage.close();
         }
     }
 
     @Override
-    public void populateForm(Regione model) {
+    void setModel(Regione model) {
+        this.model = model;
+    }
+
+    @Override
+    void setTableData(ObservableList<Regione> tableData) {
+        this.tableData = tableData;
+    }
+
+    @Override
+    void populateForm() {
         nomeTextField.setText(model.getNome());
         capoluogoTextField.setText(model.getCapoluogo());
         superficieTextField.setText(String.valueOf(model.getSuperficie()));

@@ -27,7 +27,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckComboBox;
 
-public class EditUtenteController implements Initializable, EditController<Utente> {
+public class EditUtenteController extends EditController<Utente> implements Initializable {
 
     @FXML
     private JFXTextField nomeTextField;
@@ -100,7 +100,7 @@ public class EditUtenteController implements Initializable, EditController<Utent
                 FXUtil.Alert(Alert.AlertType.ERROR, "PASSWORD ERRATE", "Le password non coincidono!", null, event);
                 return;
             }
-            RuoloUtente ruolo = ruoloComboBox.getValue();
+            RuoloUtente ruolo = ruoloComboBox.getSelectionModel().getSelectedItem();
 
             ObservableList<Comune> comuni = comuniCheckComboBox.getCheckModel().getCheckedItems();
             Set<Comune> comuniAssociati = new HashSet<>();
@@ -108,11 +108,12 @@ public class EditUtenteController implements Initializable, EditController<Utent
                 comuniAssociati.addAll(comuni);
             }
 
-            Utente newUtente = new Utente(cognome, nome, username, Hashing.sha256().hashString(password1, StandardCharsets.UTF_8).toString(), ruolo, cf, comuniAssociati);
-            if (utenteDao.addItem(newUtente) == null) {
+            Utente utente = new Utente(cognome, nome, username, Hashing.sha256().hashString(password1, StandardCharsets.UTF_8).toString(), ruolo, cf, comuniAssociati);
+            if (utenteDao.addItem(utente) == null) {
                 FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO UTENTE FALLITO", "Errore durante il salvataggio dell'utente!", null, event);
             } else {
-                System.out.println("Utente salvato correttamente.");
+                tableData.remove(model);
+                tableData.add(utente);
 
                 // Chiudo la pagina di insert dopo l'avvenuto inserimento
                 Stage stage = (Stage) saveButton.getScene().getWindow();
@@ -125,7 +126,17 @@ public class EditUtenteController implements Initializable, EditController<Utent
     }
 
     @Override
-    public void populateForm(Utente model) {
+    void setModel(Utente model) {
+        this.model = model;
+    }
+
+    @Override
+    public void setTableData(ObservableList<Utente> tableData) {
+        this.tableData = tableData;
+    }
+
+    @Override
+    void populateForm() {
         nomeTextField.setText(model.getNome());
         cognomeTextField.setText(model.getCognome());
         usernameTextField.setText(model.getUsername());
@@ -143,5 +154,4 @@ public class EditUtenteController implements Initializable, EditController<Utent
             }
         }
     }
-
 }

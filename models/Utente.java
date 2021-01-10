@@ -118,7 +118,18 @@ public class Utente implements Comparable<Utente>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Utente utente = (Utente) o;
-        return Objects.equals(cf, utente.cf);
+        return Objects.equals(cognome, utente.cognome) &&
+                Objects.equals(nome, utente.nome) &&
+                Objects.equals(username, utente.username) &&
+                Objects.equals(password, utente.password) &&
+                ruolo == utente.ruolo &&
+                Objects.equals(cf, utente.cf) &&
+                Objects.equals(comuniAssociati, utente.comuniAssociati);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cognome, nome, username, password, ruolo, cf, comuniAssociati);
     }
 
     @Override

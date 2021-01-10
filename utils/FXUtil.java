@@ -16,8 +16,4 @@ public class FXUtil {
         alert.setContentText(contentText);
         alert.showAndWait();
     }
-
-    public static Object getComboBoxItemFromString(ComboBox comboBox) {
-        return comboBox.getItems().stream().filter(item -> comboBox.getValue().equals(item.toString())).findFirst().orElse(null);
-    }
 }

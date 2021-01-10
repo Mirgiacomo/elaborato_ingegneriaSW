@@ -23,27 +23,27 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewUtentiController implements Initializable, ViewController<Utente> {
+public class ViewUtentiController extends ViewController<Utente> implements Initializable {
     private final UtenteDaoImpl utenteDao = new UtenteDaoImpl();
 
     @FXML
     private TableView<Utente> tableUtenti;
     @FXML
-    public TableColumn<Utente, String> actionCol;
+    private TableColumn<Utente, String> actionCol;
     @FXML
-    public TableColumn<Utente, String> nomeCol;
+    private TableColumn<Utente, String> nomeCol;
     @FXML
-    public TableColumn<Utente, String> cognomeCol;
+    private TableColumn<Utente, String> cognomeCol;
     @FXML
-    public TableColumn<Utente, String> usernameCol;
+    private TableColumn<Utente, String> usernameCol;
     @FXML
-    public TableColumn<Utente, String> passwordCol;
+    private TableColumn<Utente, String> passwordCol;
     @FXML
-    public TableColumn<Utente, String> cfCol;
+    private TableColumn<Utente, String> cfCol;
     @FXML
-    public TableColumn<Utente, String> ruoloCol;
+    private TableColumn<Utente, String> ruoloCol;
     @FXML
-    public TableColumn<Utente, String> comuniAssociatiCol;
+    private TableColumn<Utente, String> comuniAssociatiCol;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -51,36 +51,42 @@ public class ViewUtentiController implements Initializable, ViewController<Utent
 
             @Override
             protected Void call() {
-            Platform.runLater(() -> {
-                try {
-                    Set<Utente> utenti = utenteDao.getAllItems(UtenteDaoImpl.getCollectionName());
-                    ObservableList<Utente> data = FXCollections.observableArrayList(utenti);
-                    Callback<TableColumn<Utente, String>, TableCell<Utente, String>> cellFactory = param -> new EditButtonCell<>(tableUtenti, ViewUtentiController.this, "EditUtente.fxml");
+                Platform.runLater(() -> {
+                    try {
+                        Set<Utente> utenti = utenteDao.getAllItems(UtenteDaoImpl.getCollectionName());
+                        setTableData(utenti);
 
-                    actionCol.setCellFactory(cellFactory);
-                    actionCol.prefWidthProperty().bind(tableUtenti.widthProperty().multiply(0.055));
-                    actionCol.setResizable(false);
-                    nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
-                    cognomeCol.setCellValueFactory(new PropertyValueFactory<>("cognome"));
-                    usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
-                    // passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
-                    cfCol.setCellValueFactory(new PropertyValueFactory<>("cf"));
-                    ruoloCol.setCellValueFactory(new PropertyValueFactory<>("ruolo"));
-                    comuniAssociatiCol.setCellValueFactory(new PropertyValueFactory<>("comuniAssociati"));
+                        Callback<TableColumn<Utente, String>, TableCell<Utente, String>> cellFactory = param -> new EditButtonCell<>(tableUtenti, ViewUtentiController.this, "EditUtente.fxml");
 
-                    tableUtenti.setItems(data);
-                } catch (ExecutionException | InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
+                        actionCol.setCellFactory(cellFactory);
+                        actionCol.prefWidthProperty().bind(tableUtenti.widthProperty().multiply(0.055));
+                        actionCol.setResizable(false);
+                        nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
+                        cognomeCol.setCellValueFactory(new PropertyValueFactory<>("cognome"));
+                        usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
+                        // passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
+                        cfCol.setCellValueFactory(new PropertyValueFactory<>("cf"));
+                        ruoloCol.setCellValueFactory(new PropertyValueFactory<>("ruolo"));
+                        comuniAssociatiCol.setCellValueFactory(new PropertyValueFactory<>("comuniAssociati"));
 
-            return null;
+                        tableUtenti.setItems(tableData);
+                    } catch (ExecutionException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                return null;
             }
         };
 
         Thread th = new Thread(task);
         th.setDaemon(true);
         th.start();
+    }
+
+    @Override
+    void setTableData(Set<Utente> data) {
+        this.tableData = FXCollections.observableArrayList(data);
     }
 
     public void showInsertUtente(ActionEvent event) throws IOException {

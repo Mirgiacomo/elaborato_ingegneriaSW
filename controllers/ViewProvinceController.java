@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewProvinceController implements Initializable, ViewController<Provincia> {
+public class ViewProvinceController extends ViewController<Provincia> implements Initializable {
     private final ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
 
     @FXML
@@ -46,7 +46,7 @@ public class ViewProvinceController implements Initializable, ViewController<Pro
             Platform.runLater(() -> {
                 try {
                     Set<Provincia> province = provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName());
-                    ObservableList<Provincia> data = FXCollections.observableArrayList(province);
+                    setTableData(province);
 
                     Callback<TableColumn<Provincia, String>, TableCell<Provincia, String>> cellFactory = param -> new EditButtonCell<>(tableProvince, ViewProvinceController.this, "EditProvincia.fxml");
 
@@ -57,7 +57,7 @@ public class ViewProvinceController implements Initializable, ViewController<Pro
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
                     regioneCol.setCellValueFactory(new PropertyValueFactory<>("regione"));
 
-                    tableProvince.setItems(data);
+                    tableProvince.setItems(tableData);
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -69,6 +69,11 @@ public class ViewProvinceController implements Initializable, ViewController<Pro
         Thread th = new Thread(task);
         th.setDaemon(true);
         th.start();
+    }
+
+    @Override
+    void setTableData(Set<Provincia> data) {
+        this.tableData = FXCollections.observableArrayList(data);
     }
 
     public void showInsertProvincia(ActionEvent event) throws IOException {

@@ -14,13 +14,14 @@ import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Regione;
 import elaborato_ingegneriaSW.utils.FXUtil;
 import elaborato_ingegneriaSW.utils.AutoCompleteBox;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-public class EditProvinciaController implements Initializable, EditController<Provincia> {
+public class EditProvinciaController extends EditController<Provincia> implements Initializable {
 
     @FXML
     private JFXTextField nomeTextField;
@@ -29,7 +30,7 @@ public class EditProvinciaController implements Initializable, EditController<Pr
     @FXML
     private JFXComboBox<Regione> regioneComboBox;
     @FXML
-    public JFXButton insertProvinciaButton;
+    public JFXButton saveButton;
 
 
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
@@ -54,35 +55,48 @@ public class EditProvinciaController implements Initializable, EditController<Pr
 
     @FXML
     public void saveAction(ActionEvent event) throws ExecutionException, InterruptedException {
-        Double superficie = null;
+        double superficie = -1.0;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
         } catch (NumberFormatException e) {
             FXUtil.Alert(Alert.AlertType.ERROR, "SUPERFICIE ERRATA", "Errore durante l'inserimento della superficie! Prova con il punto al posto della virgola", null, event);
             return;
         }
-        if(nomeTextField.getText().isBlank() || superficieTextField.getText().isBlank() || superficie <= 0){
+        if(nomeTextField.getText().isBlank() || superficieTextField.getText().isBlank() || superficie <= 0.0){
             FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE NEI DATI!", "Dati non validi!", null, event);
             return;
         }
 
         String nome = nomeTextField.getText();
-        Regione regione = (Regione) FXUtil.getComboBoxItemFromString(regioneComboBox);
-      
-        Provincia newProvincia = new Provincia(nome, superficie, regione);
-        if (provinciaDao.addItem(newProvincia) == null) {
+        Regione regione = (Regione) regioneComboBox.getSelectionModel().getSelectedItem();
+
+        Provincia provincia = new Provincia(nome, superficie, regione);
+        System.out.println(provincia);
+        if (provinciaDao.addItem(provincia) == null) {
             FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
-            System.out.println("Provincia inserita correttamente!");
+            tableData.remove(model);
+            tableData.add(provincia);
+            //System.out.println("Provincia inserita correttamente!");
 
             // Chiudo la pagina di insert dopo l'avvenuto inserimento
-            Stage stage = (Stage) insertProvinciaButton.getScene().getWindow();
+            Stage stage = (Stage) saveButton.getScene().getWindow();
             stage.close();
         }
     }
 
     @Override
-    public void populateForm(Provincia model) {
+    void setModel(Provincia model) {
+        this.model = model;
+    }
+
+    @Override
+    void setTableData(ObservableList<Provincia> tableData) {
+        this.tableData = tableData;
+    }
+
+    @Override
+    public void populateForm() {
         nomeTextField.setText(model.getNome());
         superficieTextField.setText(String.valueOf(model.getSuperficie()));
         regioneComboBox.getSelectionModel().select(model.getRegione());

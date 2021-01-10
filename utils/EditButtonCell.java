@@ -1,6 +1,7 @@
 package elaborato_ingegneriaSW.utils;
 
 import elaborato_ingegneriaSW.controllers.ViewController;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -32,12 +33,12 @@ public class EditButtonCell<T> extends TableCell<T, String> {
 
     @Override
     public void updateItem(String item, boolean empty) {
-            super.updateItem(item, empty);
-            if (empty) {
-                setGraphic(null);
-            } else {
-                setGraphic(editButton);
-            }
-            setText(null);
+        super.updateItem(item, empty);
+        if (empty) {
+            setGraphic(null);
+        } else {
+            setGraphic(editButton);
+        }
+        setText(null);
     }
 }

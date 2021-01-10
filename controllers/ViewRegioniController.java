@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewRegioniController implements Initializable, ViewController<Regione> {
+public class ViewRegioniController extends ViewController<Regione> implements Initializable {
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
     @FXML
@@ -46,7 +46,8 @@ public class ViewRegioniController implements Initializable, ViewController<Regi
             Platform.runLater(() -> {
                 try {
                     Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
-                    ObservableList<Regione> data = FXCollections.observableArrayList(regioni);
+                    setTableData(regioni);
+
                     Callback<TableColumn<Regione, String>, TableCell<Regione, String>> cellFactory = param -> new EditButtonCell<>(tableRegioni, ViewRegioniController.this, "EditRegione.fxml");
 
                     actionCol.setCellFactory(cellFactory);
@@ -56,9 +57,7 @@ public class ViewRegioniController implements Initializable, ViewController<Regi
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
                     capoluogoCol.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
 
-                    tableRegioni.setItems(data);
-
-
+                    tableRegioni.setItems(tableData);
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -71,6 +70,11 @@ public class ViewRegioniController implements Initializable, ViewController<Regi
         Thread th = new Thread(task);
         th.setDaemon(true);
         th.start();
+    }
+
+    @Override
+    void setTableData(Set<Regione> data) {
+        this.tableData = FXCollections.observableArrayList(data);
     }
 
     public void showInsertRegione(ActionEvent event) throws IOException {

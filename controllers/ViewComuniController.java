@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewComuniController implements Initializable, ViewController<Comune> {
+public class ViewComuniController extends ViewController<Comune> implements Initializable {
     private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
 
     @FXML
@@ -54,7 +54,7 @@ public class ViewComuniController implements Initializable, ViewController<Comun
             Platform.runLater(() -> {
                 try {
                     Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
-                    ObservableList<Comune> data = FXCollections.observableArrayList(comuni);
+                    setTableData(comuni);
 
                     Callback<TableColumn<Comune, String>, TableCell<Comune, String>> cellFactory = param -> new EditButtonCell<>(tableComuni, ViewComuniController.this, "EditComune.fxml");
 
@@ -69,7 +69,7 @@ public class ViewComuniController implements Initializable, ViewController<Comun
                     fronteMareCol.setCellValueFactory(new PropertyValueFactory<>("fronteMare"));
                     provinciaCol.setCellValueFactory(new PropertyValueFactory<>("provincia"));
 
-                    tableComuni.setItems(data);
+                    tableComuni.setItems(tableData);
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -82,6 +82,11 @@ public class ViewComuniController implements Initializable, ViewController<Comun
         th.setDaemon(true);
         th.start();
 
+    }
+
+    @Override
+    void setTableData(Set<Comune> data) {
+        this.tableData = FXCollections.observableArrayList(data);
     }
 
     public void showInsertComune(ActionEvent event) throws IOException {
