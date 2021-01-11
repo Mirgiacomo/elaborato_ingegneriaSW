@@ -1,12 +1,9 @@
 package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
-import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
-import elaborato_ingegneriaSW.models.AbstractTableModel;
 import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
-import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,13 +23,13 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewComuniController implements Initializable, ViewController {
+public class ViewComuniController extends ViewController<Comune> implements Initializable {
     private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
 
     @FXML
     private TableView<Comune> tableComuni;
     @FXML
-    public TableColumn<AbstractTableModel, String> actionCol;
+    public TableColumn<Comune, String> actionCol;
     @FXML
     public TableColumn<Comune, String> codiceISTATCol;
     @FXML
@@ -57,9 +54,9 @@ public class ViewComuniController implements Initializable, ViewController {
             Platform.runLater(() -> {
                 try {
                     Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
-                    ObservableList<Comune> data = FXCollections.observableArrayList(comuni);
+                    setTableData(comuni);
 
-                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableComuni, ViewComuniController.this, "EditComune");
+                    Callback<TableColumn<Comune, String>, TableCell<Comune, String>> cellFactory = param -> new EditButtonCell<>(tableComuni, ViewComuniController.this, "EditComune.fxml");
 
                     actionCol.setCellFactory(cellFactory);
                     actionCol.prefWidthProperty().bind(tableComuni.widthProperty().multiply(0.055));
@@ -72,7 +69,7 @@ public class ViewComuniController implements Initializable, ViewController {
                     fronteMareCol.setCellValueFactory(new PropertyValueFactory<>("fronteMare"));
                     provinciaCol.setCellValueFactory(new PropertyValueFactory<>("provincia"));
 
-                    tableComuni.setItems(data);
+                    tableComuni.setItems(tableData);
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -87,11 +84,16 @@ public class ViewComuniController implements Initializable, ViewController {
 
     }
 
+    @Override
+    void setTableData(Set<Comune> data) {
+        this.tableData = FXCollections.observableArrayList(data);
+    }
+
     public void showInsertComune(ActionEvent event) throws IOException {
-        showInsertView(event, "EditComune");
+        showInsertView(event, "EditComune.fxml");
     }
 
     public void exportComune(ActionEvent event) throws Exception {
-        Export.exportData(comuneDao.getAllItems(comuneDao.getCollectionName()));
+        Export.exportData(comuneDao.getAllItems(ComuneDaoImpl.getCollectionName()));
     }
 }

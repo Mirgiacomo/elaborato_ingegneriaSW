@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.CheckComboBox?>
+
+<AnchorPane minHeight="-Infinity" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.EditUtenteController">
+   <children>
+      <VBox alignment="CENTER" layoutX="-5.0" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRAZIONE UTENTE" textAlignment="CENTER" wrappingWidth="519.9358825683594">
+               <font>
+                  <Font name="Open Sans Semibold" size="38.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Text>
+            <GridPane alignment="CENTER" hgap="30.0" maxWidth="1000.0" prefHeight="560.0" prefWidth="650.0" styleClass="form-box">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="75.0" />
+                  <RowConstraints minHeight="75.0" />
+                  <RowConstraints maxHeight="88.80000610351564" minHeight="75.0" prefHeight="88.80000610351564" />
+                  <RowConstraints maxHeight="70.39998168945311" minHeight="61.599993896484364" prefHeight="61.599993896484364" />
+                  <RowConstraints minHeight="75.0" />
+                  <RowConstraints minHeight="75.0" />
+               </rowConstraints>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nome">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="nomeTextField" focusColor="#7c2e2e" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Text>
+                  <JFXTextField fx:id="cognomeTextField" focusColor="#7c2e2e" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="Open Sans Regular" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXTextField>
+
+
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cod. Fiscale" wrappingWidth="117.910888671875" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="cfTextField" focusColor="#7c2e2e" prefHeight="39.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usename" wrappingWidth="114.91089630126953" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="usernameTextField" focusColor="#7c2e2e" prefHeight="39.0" prefWidth="131.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Open Sans Regular" size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="94.91089630126953" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXPasswordField fx:id="password1PasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ripeti Password" wrappingWidth="114.91089630126953" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXPasswordField fx:id="password2PasswordField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo" wrappingWidth="59.91089630126953" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXComboBox fx:id="ruoloComboBox" prefHeight="26.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comuni associati all'utente:" wrappingWidth="174.51091766357422" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Open Sans Regular" size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Text>
+
+                  <JFXButton fx:id="saveButton" buttonType="RAISED" defaultButton="true" onAction="#saveAction" prefHeight="38.0" prefWidth="106.0" ripplerFill="WHITE" stylesheets="@css/style.css" text="SALVA" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Open Sans Semibold" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXButton>
+                  <CheckComboBox fx:id="comuniCheckComboBox" prefHeight="26.0" prefWidth="277.0" showCheckedCount="true" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="40.0" />
+                     </GridPane.margin>
+                  </CheckComboBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="40.0" />
+               </VBox.margin>
+            </GridPane>
+         </children>
+         <styleClass>
+            <String fx:value="anchorPane" />
+            <String fx:value="insert-bg" />
+         </styleClass>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -3,6 +3,7 @@ package elaborato_ingegneriaSW.utils;
 import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Regione;
+import elaborato_ingegneriaSW.models.Utente;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -14,10 +15,12 @@ import java.util.Set;
 
 public class Export {
 
-    public static void exportData(Set<Object> items) throws Exception {
+    public static void exportData(Set<?> items) throws Exception {
         if(!items.isEmpty()) {
             Writer writer = null;
             Iterator iter = items.iterator();
+            // Salvo l'oggetto all'inizio in modo tale da andare a confrontare la classe di appartenenza.
+            Object next = iter.next();
             try {
                 FileChooser fileChooser = new FileChooser();
 
@@ -32,17 +35,17 @@ public class Export {
                 // Mostro la finestra di salvataggio
                 Window primaryStage = null;
                 File file = fileChooser.showSaveDialog(primaryStage);
-                String fileName = file.getName();
 
                 // In base all'estensione salvo i dati
-                String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, file.getName().length());
                 if (file != null) {
+                    String fileName = file.getName();
+                    String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, file.getName().length());
                     try {
                         writer = new BufferedWriter(new FileWriter(file));
 
                         switch (fileExtension) {
                             case "txt":
-                                if(iter.next() instanceof Regione){
+                                if(next instanceof Regione){
                                     String intestazione = "Nome\t\t\t\t\tCapoluogo\t\t\t\t\tSuperficie\n";
                                     writer.write(intestazione);
                                     for (Object regione : items) {
@@ -50,7 +53,7 @@ public class Export {
                                         String text = item.getNome() + "\t\t\t\t\t" + item.getCapoluogo() + "\t\t\t\t\t" + item.getSuperficie() + "\n";
                                         writer.write(text);
                                     }
-                                } else if(iter.next() instanceof Provincia){
+                                } else if(next instanceof Provincia){
                                     String intestazione = "Nome\t\t\t\t\tRegione\t\t\t\t\tSuperficie\n";
                                     writer.write(intestazione);
                                     for (Object provincia : items) {
@@ -58,7 +61,7 @@ public class Export {
                                         String text = item.getNome() + "\t\t\t\t\t" + item.getRegione() + "\t\t\t\t\t" + item.getSuperficie() + "\n";
                                         writer.write(text);
                                     }
-                                } else if(iter.next() instanceof Comune){
+                                } else if(next instanceof Comune){
                                     String intestazione = "CodiceISTAT\t\t\t\t\tNome\t\t\t\t\tProvincia\t\t\t\t\tSuperficie\t\t\t\t\tFronteMare\t\t\t\t\tTerritorio\t\t\t\t\tDataIstituzione;\n";
                                     writer.write(intestazione);
                                     for (Object comune : items) {
@@ -68,10 +71,20 @@ public class Export {
                                                 item.getDataIstituzione()+ "\n";
                                         writer.write(text);
                                     }
+                                } else if(next instanceof Utente){
+                                    String intestazione = "Nome\t\t\t\t\tCognome\t\t\t\t\tUsername\t\t\t\t\tCodiceFiscale\t\t\t\t\tRuolo\t\t\t\t\tComuniAssociati;\n";
+                                    writer.write(intestazione);
+                                    for (Object utente : items) {
+                                        Utente item = (Utente) utente;
+                                        String text = item.getNome() + "\t\t\t\t\t" + item.getCognome() + "\t\t\t\t\t" + item.getUsername() + "\t\t\t\t\t" +
+                                                 item.getCf() + "\t\t\t\t\t" + item.getRuolo() + "\t\t\t\t\t" +
+                                                item.getComuniAssociati() + "\n";
+                                        writer.write(text);
+                                    }
                                 }
                                 break;
                             case "csv":
-                                if(iter.next() instanceof Regione){
+                                if(next instanceof Regione){
                                     String intestazione = "Nome;Capoluogo;Superficie;\n";
                                     writer.write(intestazione);
                                     for (Object regione : items) {
@@ -79,7 +92,7 @@ public class Export {
                                         String text = item.getNome() + ";" + item.getCapoluogo() + ";" + item.getSuperficie() + ";\n";
                                         writer.write(text);
                                     }
-                                } else if(iter.next() instanceof Provincia){
+                                } else if(next instanceof Provincia){
                                     String intestazione = "Nome;Regione;Superficie;\n";
                                     writer.write(intestazione);
                                     for (Object provincia : items) {
@@ -87,22 +100,30 @@ public class Export {
                                         String text = item.getNome() + ";" + item.getRegione() + ";" + item.getSuperficie() + ";\n";
                                         writer.write(text);
                                     }
-                                } else if(iter.next() instanceof Comune){
+                                } else if(next instanceof Comune){
                                     String intestazione = "CodiceISTAT;Nome;Provincia;Superficie;FronteMare;Territorio;DataIstituzione;\n";
                                     writer.write(intestazione);
                                     for (Object comune : items) {
                                         Comune item = (Comune) comune;
                                         String text = item.getCodiceISTAT() + ";" + item.getNome() + ";" + item.getProvincia() + ";" +
-                                                item.getSuperficie() + item.isFronteMare() + ";" + item.getTerritorio() + ";" +
+                                                item.getSuperficie() + item.isFronteMare() + ";" + item.getTerritorio().toString() + ";" +
                                                 item.getDataIstituzione()+ ";\n";
+                                        writer.write(text);
+                                    }
+                                } else if(next instanceof Utente){
+                                    String intestazione = "Nome;Cognome;Username,CodiceFiscale,Ruolo;\n";
+                                    writer.write(intestazione);
+                                    for (Object utente : items) {
+                                        Utente item = (Utente) utente;
+                                        String text = item.getNome() + ";" + item.getComuniAssociati() + ";" +
+                                                item.getUsername()  + ";" +  item.getCf() + ";" +  item.getRuolo().toString() + ";\n";
                                         writer.write(text);
                                     }
                                 }
                                 break;
                             case "xls":
-                                //TODO: salvataggio XLS
                                 Workbook workbook = new HSSFWorkbook();
-                                if(iter.next() instanceof Regione){
+                                if(next instanceof Regione){
                                     Sheet sheet = workbook.createSheet("Regione");
                                     String[] intestazione = {"Nome", "Capoluogo", "Superficie"};
 
@@ -128,7 +149,7 @@ public class Export {
                                     for(int i = 0; i < intestazione.length; i++) {
                                         sheet.autoSizeColumn(i);
                                     }
-                                } else if(iter.next() instanceof Provincia){
+                                } else if(next instanceof Provincia){
                                     Sheet sheet = workbook.createSheet("Provincia");
                                     String[] intestazione = {"Nome", "Regione", "Superficie"};
 
@@ -154,7 +175,7 @@ public class Export {
                                     for(int i = 0; i < intestazione.length; i++) {
                                         sheet.autoSizeColumn(i);
                                     }
-                                } else if(iter.next() instanceof Comune){
+                                } else if(next instanceof Comune){
                                     Sheet sheet = workbook.createSheet("Comune");
                                     String[] intestazione = {"ISTAT", "Nome", "Provincia", "Superficie", "FrontaMare", "Territorio", "DataIstituzione"};
 
@@ -184,10 +205,35 @@ public class Export {
                                     for(int i = 0; i < intestazione.length; i++) {
                                         sheet.autoSizeColumn(i);
                                     }
-                                }
-                                /**
+                                } else if(next instanceof Utente){
+                                    Sheet sheet = workbook.createSheet("Utente");
+                                    String[] intestazione = {"Nome", "Cognome", "Username", "Codice Fiscale", "Ruolo"};
 
-                                 */
+                                    // Creo una riga
+                                    Row headerRow = sheet.createRow(0);
+
+                                    // Creo le celle
+                                    for(int i = 0; i < intestazione.length; i++) {
+                                        Cell cell = headerRow.createCell(i);
+                                        cell.setCellValue(intestazione[i]);
+                                    }
+                                    int rowNum = 1;
+                                    for(Object utente: items) {
+                                        Utente item = (Utente) utente;
+                                        Row row = sheet.createRow(rowNum++);
+
+                                        row.createCell(0).setCellValue(item.getNome());
+                                        row.createCell(1).setCellValue(item.getCognome());
+                                        row.createCell(2).setCellValue(item.getUsername());
+                                        row.createCell(3).setCellValue(item.getCf());
+                                        row.createCell(4).setCellValue(item.getRuolo().toString());
+                                    }
+
+                                    // Resize all columns to fit the content size
+                                    for(int i = 0; i < intestazione.length; i++) {
+                                        sheet.autoSizeColumn(i);
+                                    }
+                                }
                                 // Scrivo l'output sul file
                                 FileOutputStream fileOut = new FileOutputStream(file.getAbsoluteFile());
                                 workbook.write(fileOut);

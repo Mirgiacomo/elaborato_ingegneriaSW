@@ -1,11 +1,9 @@
 package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
-import elaborato_ingegneriaSW.models.AbstractTableModel;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
-import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,13 +23,13 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewProvinceController implements Initializable, ViewController {
+public class ViewProvinceController extends ViewController<Provincia> implements Initializable {
     private final ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
 
     @FXML
     private TableView<Provincia> tableProvince;
     @FXML
-    public TableColumn<AbstractTableModel, String> actionCol;
+    public TableColumn<Provincia, String> actionCol;
     @FXML
     public TableColumn<Provincia, String> nomeCol;
     @FXML
@@ -48,9 +46,9 @@ public class ViewProvinceController implements Initializable, ViewController {
             Platform.runLater(() -> {
                 try {
                     Set<Provincia> province = provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName());
-                    ObservableList<Provincia> data = FXCollections.observableArrayList(province);
+                    setTableData(province);
 
-                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableProvince, ViewProvinceController.this, "EditProvincia");
+                    Callback<TableColumn<Provincia, String>, TableCell<Provincia, String>> cellFactory = param -> new EditButtonCell<>(tableProvince, ViewProvinceController.this, "EditProvincia.fxml");
 
                     actionCol.setCellFactory(cellFactory);
                     actionCol.prefWidthProperty().bind(tableProvince.widthProperty().multiply(0.055));
@@ -59,7 +57,7 @@ public class ViewProvinceController implements Initializable, ViewController {
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
                     regioneCol.setCellValueFactory(new PropertyValueFactory<>("regione"));
 
-                    tableProvince.setItems(data);
+                    tableProvince.setItems(tableData);
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -73,11 +71,16 @@ public class ViewProvinceController implements Initializable, ViewController {
         th.start();
     }
 
+    @Override
+    void setTableData(Set<Provincia> data) {
+        this.tableData = FXCollections.observableArrayList(data);
+    }
+
     public void showInsertProvincia(ActionEvent event) throws IOException {
-        showInsertView(event, "EditProvincia");
+        showInsertView(event, "EditProvincia.fxml");
     }
 
     public void exportProvincia(ActionEvent event) throws Exception {
-        Export.exportData(provinciaDao.getAllItems(provinciaDao.getCollectionName()));
+        Export.exportData(provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName()));
     }
 }

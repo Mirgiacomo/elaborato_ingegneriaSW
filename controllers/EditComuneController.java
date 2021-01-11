@@ -17,13 +17,14 @@ import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Territorio;
 import elaborato_ingegneriaSW.utils.AutoCompleteBox;
 import elaborato_ingegneriaSW.utils.FXUtil;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-public class EditComuneController implements Initializable, EditController<Comune> {
+public class EditComuneController extends EditController<Comune> implements Initializable {
     @FXML
     private JFXTextField codiceISTATTextField;
     @FXML
@@ -33,7 +34,7 @@ public class EditComuneController implements Initializable, EditController<Comun
     @FXML
     private JFXTextField superficieTextField;
     @FXML
-    private JFXComboBox territorioComboBox;
+    private JFXComboBox<Territorio> territorioComboBox;
     @FXML
     private JFXCheckBox fronteMareCheckBox;
     @FXML
@@ -56,9 +57,7 @@ public class EditComuneController implements Initializable, EditController<Comun
                 provinciaComboBox.getItems().add(provincia);
             }
             new AutoCompleteBox(provinciaComboBox);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -89,15 +88,17 @@ public class EditComuneController implements Initializable, EditController<Comun
         String codiceISTAT = codiceISTATTextField.getText();
         String nome = nomeTextField.getText();
         String dataIstituzione = dataIstituzioneDataPicker.getValue().toString();
-        Territorio territorio = (Territorio) FXUtil.getComboBoxItemFromString(territorioComboBox);
-        Boolean fronteMare = fronteMareCheckBox.isSelected();
-        Provincia provincia = (Provincia) FXUtil.getComboBoxItemFromString(provinciaComboBox);
+        Territorio territorio = territorioComboBox.getSelectionModel().getSelectedItem();
+        boolean fronteMare = fronteMareCheckBox.isSelected();
+        Provincia provincia = provinciaComboBox.getSelectionModel().getSelectedItem();
 
-        Comune newComune = new Comune(codiceISTAT, nome, dataIstituzione, superficie, territorio, fronteMare, provincia);
-        if (comuneDao.addItem(newComune) == null) {
+        Comune comune = new Comune(codiceISTAT, nome, dataIstituzione, superficie, territorio, fronteMare, provincia);
+        if (comuneDao.addItem(comune) == null) {
             FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
-            System.out.println("Comune inserito correttamente!");
+            //System.out.println("Comune inserito correttamente!");
+            tableData.remove(model);
+            tableData.add(comune);
 
             // Chiudo la pagina di insert dopo l'avvenuto inserimento
             Stage stage = (Stage) saveButton.getScene().getWindow();
@@ -106,7 +107,17 @@ public class EditComuneController implements Initializable, EditController<Comun
     }
 
     @Override
-    public void populateForm(Comune model) {
+    void setModel(Comune model) {
+        this.model = model;
+    }
+
+    @Override
+    void setTableData(ObservableList<Comune> tableData) {
+        this.tableData = tableData;
+    }
+
+    @Override
+    public void populateForm() {
         codiceISTATTextField.setText(model.getCodiceISTAT());
         nomeTextField.setText(model.getNome());
 
@@ -116,7 +127,7 @@ public class EditComuneController implements Initializable, EditController<Comun
         dataIstituzioneDataPicker.setValue(localDate);
 
         superficieTextField.setText(String.valueOf(model.getSuperficie()));
-        territorioComboBox.getSelectionModel().select(model.getTerritorio().ordinal());
+        territorioComboBox.getSelectionModel().select(model.getTerritorio());
         fronteMareCheckBox.setSelected(model.isFronteMare());
         provinciaComboBox.getSelectionModel().select(model.getProvincia());
     }

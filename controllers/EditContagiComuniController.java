@@ -126,7 +126,7 @@ public class EditContagiComuniController implements Initializable {
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         DayOfWeek firstDayOfWeek = WeekFields.of(Locale.getDefault()).getFirstDayOfWeek();
 
-        Comune comune = (Comune) FXUtil.getComboBoxItemFromString(comuneFilterComboBox);
+        Comune comune = comuneFilterComboBox.getSelectionModel().getSelectedItem();
         LocalDate date = weekFilterDatePicker.getValue();
         date = date.with(TemporalAdjusters.previousOrSame(firstDayOfWeek)); // prende il lunedì della settimana selezionata (altrimenti se ci sono settimane a metà tra un anno e l'altro potrebbero esserci problemi
 
@@ -168,7 +168,7 @@ public class EditContagiComuniController implements Initializable {
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         DayOfWeek firstDayOfWeek = WeekFields.of(Locale.getDefault()).getFirstDayOfWeek();
 
-        Comune comune = (Comune) FXUtil.getComboBoxItemFromString(comuneFilterComboBox);
+        Comune comune = comuneFilterComboBox.getSelectionModel().getSelectedItem();
         LocalDate date = weekFilterDatePicker.getValue();
         date = date.with(TemporalAdjusters.previousOrSame(firstDayOfWeek));
 

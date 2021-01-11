@@ -1,7 +1,7 @@
 package elaborato_ingegneriaSW.utils;
 
 import elaborato_ingegneriaSW.controllers.ViewController;
-import elaborato_ingegneriaSW.models.AbstractTableModel;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -11,15 +11,15 @@ import javafx.scene.paint.Paint;
 import java.io.IOException;
 
 
-public class EditButtonCell extends TableCell<AbstractTableModel, String> {
+public class EditButtonCell<T> extends TableCell<T, String> {
     final Button editButton = new Button("✎");
 
-    public EditButtonCell(final TableView table, final ViewController controller, final String editViewName) {
+    public EditButtonCell(final TableView<T> table, final ViewController<T> controller, final String editViewName) {
         editButton.setTextFill(Paint.valueOf("white"));
         editButton.setOnAction(event -> {
             // Evento: premo sul bottone
             try {
-                AbstractTableModel model = (AbstractTableModel) table.getSelectionModel().getSelectedItem(); // prende la riga selezionata
+                T model = table.getSelectionModel().getSelectedItem(); // prende la riga selezionata
                 if (!table.getSelectionModel().isEmpty()) {
                     controller.showUpdateView(event, editViewName, model);
                 } else {
@@ -33,12 +33,12 @@ public class EditButtonCell extends TableCell<AbstractTableModel, String> {
 
     @Override
     public void updateItem(String item, boolean empty) {
-            super.updateItem(item, empty);
-            if (empty) {
-                setGraphic(null);
-            } else {
-                setGraphic(editButton);
-            }
-            setText(null);
+        super.updateItem(item, empty);
+        if (empty) {
+            setGraphic(null);
+        } else {
+            setGraphic(editButton);
+        }
+        setText(null);
     }
 }

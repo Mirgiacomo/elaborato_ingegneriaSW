@@ -1,7 +1,6 @@
 package elaborato_ingegneriaSW.controllers;
 
 import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
-import elaborato_ingegneriaSW.models.AbstractTableModel;
 import elaborato_ingegneriaSW.models.Regione;
 import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
@@ -24,13 +23,13 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ViewRegioniController implements Initializable, ViewController {
+public class ViewRegioniController extends ViewController<Regione> implements Initializable {
     private final RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
     @FXML
     private TableView<Regione> tableRegioni;
     @FXML
-    public TableColumn<AbstractTableModel, String> actionCol;
+    public TableColumn<Regione, String> actionCol;
     @FXML
     public TableColumn<Regione, String> nomeCol;
     @FXML
@@ -47,8 +46,9 @@ public class ViewRegioniController implements Initializable, ViewController {
             Platform.runLater(() -> {
                 try {
                     Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
-                    ObservableList<Regione> data = FXCollections.observableArrayList(regioni);
-                    Callback<TableColumn<AbstractTableModel, String>, TableCell<AbstractTableModel, String>> cellFactory = param -> new EditButtonCell(tableRegioni, ViewRegioniController.this, "EditRegione");
+                    setTableData(regioni);
+
+                    Callback<TableColumn<Regione, String>, TableCell<Regione, String>> cellFactory = param -> new EditButtonCell<>(tableRegioni, ViewRegioniController.this, "EditRegione.fxml");
 
                     actionCol.setCellFactory(cellFactory);
                     actionCol.prefWidthProperty().bind(tableRegioni.widthProperty().multiply(0.055));
@@ -57,12 +57,8 @@ public class ViewRegioniController implements Initializable, ViewController {
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
                     capoluogoCol.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
 
-                    tableRegioni.setItems(data);
-
-
+                    tableRegioni.setItems(tableData);
                 } catch (ExecutionException | InterruptedException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
@@ -76,11 +72,16 @@ public class ViewRegioniController implements Initializable, ViewController {
         th.start();
     }
 
+    @Override
+    void setTableData(Set<Regione> data) {
+        this.tableData = FXCollections.observableArrayList(data);
+    }
+
     public void showInsertRegione(ActionEvent event) throws IOException {
-        showInsertView(event, "EditRegione");
+        showInsertView(event, "EditRegione.fxml");
     }
 
     public void exportRegione(ActionEvent event) throws Exception {
-        Export.exportData(regioneDao.getAllItems(regioneDao.getCollectionName()));
+        Export.exportData(regioneDao.getAllItems(RegioneDaoImpl.getCollectionName()));
     }
 }

@@ -5,7 +5,7 @@ import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Provincia extends AbstractTableModel implements Comparable<Provincia> {
+public class Provincia implements Comparable<Provincia> {
     private String nome;
     private double superficie;
     private Regione regione;
