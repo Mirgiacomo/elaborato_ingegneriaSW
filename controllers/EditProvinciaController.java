@@ -70,10 +70,11 @@ public class EditProvinciaController implements Initializable, EditController<Pr
         Regione regione = (Regione) FXUtil.getComboBoxItemFromString(regioneComboBox);
       
         Provincia newProvincia = new Provincia(nome, superficie, regione);
+
         if (provinciaDao.addItem(newProvincia) == null) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante il salvataggio! Controlla i dati inseriti", null, event);
         } else {
-            System.out.println("Provincia inserita correttamente!");
+            System.out.println("Provincia salvata correttamente!");
 
             // Chiudo la pagina di insert dopo l'avvenuto inserimento
             Stage stage = (Stage) insertProvinciaButton.getScene().getWindow();
