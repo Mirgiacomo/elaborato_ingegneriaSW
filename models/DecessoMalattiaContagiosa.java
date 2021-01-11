@@ -1,5 +1,11 @@
 package elaborato_ingegneriaSW.models;
 
+import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
+import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
+import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
+
+import java.util.HashMap;
+
 public class DecessoMalattiaContagiosa extends Decesso {
     private MalattiaContagiosa malattiaContagiosa;
 
@@ -29,5 +35,16 @@ public class DecessoMalattiaContagiosa extends Decesso {
     @Override
     public String generateId() {
         return getYear() + "_" + getProvincia().getNome().toLowerCase() + "_" + malattiaContagiosa.generateId();
+    }
+
+    public HashMap<String, Object> getFirebaseObject() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + getProvincia().generateId());
+        result.put("numeroMorti", getNumeroMorti());
+        result.put("year", getYear());
+        result.put("causaDecesso", getCausaDecesso());
+        result.put("malattiaContagiosa", MalattiaContagiosaDaoImpl.getCollectionName() + "/" + malattiaContagiosa.generateId());
+
+        return result;
     }
 }

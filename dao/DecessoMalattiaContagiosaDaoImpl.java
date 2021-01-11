@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
-public class DecessoDaoImpl extends DaoImpl<Decesso> {
-    private static final String collectionName = "decessi";
+public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaContagiosa> {
+    private static final String collectionName = "decessi_malattie_contagiose";
 
-    public DecessoDaoImpl() {
+    public DecessoMalattiaContagiosaDaoImpl() {
         super();
     }
 
@@ -21,7 +21,7 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
     }
 
     @Override
-    public Decesso getItem(String itemId) throws ExecutionException, InterruptedException {
+    public DecessoMalattiaContagiosa getItem(String itemId) throws ExecutionException, InterruptedException {
         DocumentReference documentReference = firestore.collection(collectionName).document(itemId);
         DocumentSnapshot document = documentReference.get().get();
 
@@ -29,27 +29,29 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
     }
 
     @Override
-    public Decesso getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException {
-        Decesso result = null;
+    public DecessoMalattiaContagiosa getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException {
+        DecessoMalattiaContagiosa result = null;
 
         if (document.exists()) {
-            result = new Decesso();
-
             DocumentReference provinciaDocument = firestore.document(Objects.requireNonNull(document.get("provincia", String.class)));
             ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
+            DocumentReference malattiaContagiosaDocument = firestore.document(Objects.requireNonNull(document.get("malattiaContagiosa", String.class)));
+            MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
 
+            result = new DecessoMalattiaContagiosa();
             result.setCausaDecesso(document.get("causaDecesso", CausaDecesso.class));
             result.setNumeroMorti(document.get("numeroMorti", Integer.class));
             result.setYear(document.get("year", Integer.class));
             result.setProvincia(provinciaDao.getItem(provinciaDocument.getId()));
+            result.setMalattiaContagiosa(malattiaContagiosaDao.getItem(malattiaContagiosaDocument.getId()));
         }
 
         return result;
     }
 
-    public List<Decesso> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
+    public List<DecessoMalattiaContagiosa> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
         CollectionReference collectionReference = firestore.collection(getCollectionName());
-        List<Decesso> result;
+        List<DecessoMalattiaContagiosa> result;
 
         Query query = collectionReference.whereEqualTo("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId())
                 .whereEqualTo("year", year);
@@ -65,13 +67,15 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
     }
 
     @Override
-    public Decesso addItem(Decesso item) throws ExecutionException, InterruptedException {
-        Decesso result = null;
+    public DecessoMalattiaContagiosa addItem(DecessoMalattiaContagiosa item) throws ExecutionException, InterruptedException {
+        DecessoMalattiaContagiosa result = null;
 
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
         ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
+        MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
 
-        if (provinciaDao.getItem(item.getProvincia().generateId()) != null) {
+        if (provinciaDao.getItem(item.getProvincia().generateId()) != null
+                && malattiaContagiosaDao.getItem(item.getMalattiaContagiosa().generateId()) != null) {
             documentReference.set(item.getFirebaseObject());
 
             DocumentSnapshot documentSnapshot = documentReference.get().get();
@@ -81,12 +85,12 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
     }
 
     @Override
-    public Decesso updateItem(Decesso item) {
+    public DecessoMalattiaContagiosa updateItem(DecessoMalattiaContagiosa item) {
         return null;
     }
 
     @Override
-    public boolean deleteItem(Decesso item) {
+    public boolean deleteItem(DecessoMalattiaContagiosa item) {
         return false;
     }
 }
