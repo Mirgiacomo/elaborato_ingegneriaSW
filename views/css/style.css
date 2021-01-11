@@ -47,7 +47,7 @@
 }
 
 .button-menu:hover{
-    -fx-background-color: "#580c0c";
+    -fx-background-color:   "#580c0c";
 }
 
 .anchorPane {
@@ -55,10 +55,20 @@
 }
 
 .insert-bg {
-    -fx-background-color: "#272626";
+    -fx-background-color:   "#272626";
 }
 
 .form-box {
-    -fx-background-color: rgba(255, 255, 255, 0.7);
-    -fx-background-radius: 10px;
+    -fx-background-color:   rgba(255, 255, 255, 0.7);
+    -fx-background-radius:  10px;
+}
+
+.dataPicker > .text-field {
+    -fx-background-color:   rgba(255, 255, 255, 0.7);
+    -fx-background-radius:  5px;
+    -fx-font-size:          16px;
+}
+
+.comboBox {
+    -fx-font-size:          17px;
 }
