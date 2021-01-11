@@ -54,21 +54,21 @@
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
                   </Text>
-                  <JFXComboBox fx:id="comuneFilterComboBox" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                  <JFXComboBox fx:id="comuneFilterComboBox" styleClass="comboBox" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                      <padding>
                         <Insets right="30.0" />
                      </padding>
                   </JFXComboBox>
+                  <DatePicker fx:id="weekFilterDatePicker" styleClass="dataPicker" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                  </DatePicker>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona la settimana" GridPane.columnIndex="2">
                      <font>
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
                   </Text>
-                  <DatePicker fx:id="weekFilterDatePicker" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
-                     <GridPane.margin>
-                        <Insets right="30.0" />
-                     </GridPane.margin>
-                  </DatePicker>
                   <JFXButton fx:id="loadContagiButton" buttonType="RAISED" defaultButton="true" onAction="#loadContagiAction" ripplerFill="WHITE" styleClass="button-ricerca" text="SELEZIONA" textFill="WHITE" GridPane.columnIndex="4">
                      <font>
                         <Font name="Open Sans Semibold" size="17.0" />
@@ -103,19 +103,23 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MALATTIA" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="14.0" />
-                     </font></Text>
+                     </font>
+                  </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N.TERAPIA INTENSIVA" textAlignment="CENTER" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="14.0" />
-                     </font></Text>
+                     </font>
+                  </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N.MEDICO DI BASE" textAlignment="CENTER" GridPane.columnIndex="2">
                      <font>
                         <Font name="System Bold" size="14.0" />
-                     </font></Text>
+                     </font>
+                  </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SEGNALAZIONI" textAlignment="CENTER" GridPane.columnIndex="3">
                      <font>
                         <Font name="System Bold" size="14.0" />
-                     </font></Text>
+                     </font>
+                  </Text>
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />
