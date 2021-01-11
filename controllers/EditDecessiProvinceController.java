@@ -61,15 +61,17 @@ public class EditDecessiProvinceController implements Initializable {
             int row = 1;
 
             for (CausaDecesso causaDecesso: CausaDecesso.values()) {
-                Label label = new Label(causaDecesso.getNome().toUpperCase());
-                JFXTextField number = new JFXTextField();
-                number.setId("number");
+                if (!causaDecesso.equals(CausaDecesso.MALATTIA_CONTAGIOSA)) {
+                    Label label = new Label(causaDecesso.getNome().toUpperCase());
+                    JFXTextField number = new JFXTextField();
+                    number.setId("number");
 
-                Set<JFXTextField> inputs = new HashSet<>();
-                inputs.add(number);
+                    Set<JFXTextField> inputs = new HashSet<>();
+                    inputs.add(number);
 
-                form.put(causaDecesso.getNome(), inputs);
-                decessiGridPane.addRow(row++, label, number);
+                    form.put(causaDecesso.getNome(), inputs);
+                    decessiGridPane.addRow(row++, label, number);
+                }
             }
             for (MalattiaContagiosa m: malattieContagiose) {
                 Label label = new Label(m.getNome().toUpperCase());
