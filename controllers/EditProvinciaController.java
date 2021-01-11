@@ -73,7 +73,7 @@ public class EditProvinciaController extends EditController<Provincia> implement
         Provincia provincia = new Provincia(nome, superficie, regione);
         System.out.println(provincia);
         if (provinciaDao.addItem(provincia) == null) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante il salvataggio! Controlla i dati inseriti", null, event);
         } else {
             tableData.remove(model);
             tableData.add(provincia);

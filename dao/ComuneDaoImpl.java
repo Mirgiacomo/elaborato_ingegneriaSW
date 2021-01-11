@@ -3,6 +3,7 @@ package elaborato_ingegneriaSW.dao;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.SetOptions;
 import com.google.cloud.firestore.WriteResult;
 import elaborato_ingegneriaSW.models.Comune;
 
@@ -60,7 +61,7 @@ public class ComuneDaoImpl extends DaoImpl<Comune> {
             provinciaDao.addItem(item.getProvincia());
         }
 
-        ApiFuture<WriteResult> writeResult = documentReference.set(item.getFirebaseObject());
+        ApiFuture<WriteResult> writeResult = documentReference.set(item.getFirebaseObject(), SetOptions.merge());
 
         DocumentSnapshot documentSnapshot = documentReference.get().get();
         return getItem(documentSnapshot.getId());
