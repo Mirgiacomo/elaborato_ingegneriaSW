@@ -61,7 +61,7 @@ public class Decesso implements Comparable<Decesso>{
      * @return year + provincia name
      */
     public String generateId() {
-        return year + "_" + provincia.getNome().toLowerCase();
+        return year + "_" + provincia.getNome().toLowerCase() + "_" + causaDecesso.name().toLowerCase();
     }
 
     @Override

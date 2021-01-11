@@ -22,4 +22,9 @@ public class DecessoMalattiaContagiosa extends Decesso {
     public void setMalattiaContagiosa(MalattiaContagiosa malattiaContagiosa) {
         this.malattiaContagiosa = malattiaContagiosa;
     }
+
+    @Override
+    public String generateId() {
+        return getYear() + "_" + getProvincia().getNome().toLowerCase() + "_" + malattiaContagiosa.generateId();
+    }
 }
