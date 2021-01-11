@@ -99,7 +99,7 @@ public class EditContagiComuniController implements Initializable {
             for (Comune comune: comuni) {
                 comuneFilterComboBox.getItems().add(comune);
             }
-            new AutoCompleteBox(comuneFilterComboBox);
+            //new AutoCompleteBox(comuneFilterComboBox);
 
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();

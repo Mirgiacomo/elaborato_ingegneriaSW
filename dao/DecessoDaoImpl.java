@@ -1,12 +1,12 @@
 package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.SetOptions;
-import com.google.cloud.firestore.WriteResult;
-import elaborato_ingegneriaSW.models.Decesso;
+import com.google.cloud.firestore.*;
+import elaborato_ingegneriaSW.models.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public class DecessoDaoImpl extends DaoImpl<Decesso> {
@@ -31,8 +31,41 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
     @Override
     public Decesso getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException {
         Decesso result = null;
+
         if (document.exists()) {
-            result = document.toObject(Decesso.class);
+            DocumentReference provinciaDocument = firestore.document(Objects.requireNonNull(document.get("provincia", String.class)));
+            ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
+
+            if (document.get("causaDecesso", CausaDecesso.class).equals(CausaDecesso.MALATTIA_CONTAGIOSA)) {
+                DocumentReference malattiaContagiosaDocument = firestore.document(Objects.requireNonNull(document.get("malattiaContagiosa", String.class)));
+                MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
+
+                DecessoMalattiaContagiosa decesso = new DecessoMalattiaContagiosa();
+                decesso.setCausaDecesso(document.get("causaDecesso", CausaDecesso.class));
+                decesso.setNumeroMorti(document.get("numeroMorti", Integer.class));
+                decesso.setYear(document.get("year", Integer.class));
+                decesso.setProvincia(provinciaDao.getItem(provinciaDocument.getId()));
+                decesso.setMalattiaContagiosa(malattiaContagiosaDao.getItem(malattiaContagiosaDocument.getId()));
+            } else {
+                result = document.toObject(Decesso.class);
+            }
+        }
+
+        return result;
+    }
+
+    public List<Decesso> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
+        CollectionReference collectionReference = firestore.collection(getCollectionName());
+        List<Decesso> result;
+
+        Query query = collectionReference.whereEqualTo("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId())
+                .whereEqualTo("year", year);
+
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+        result = new ArrayList<>();
+
+        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+            result.add(getItem(document));
         }
 
         return result;
