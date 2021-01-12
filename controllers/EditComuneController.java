@@ -57,7 +57,7 @@ public class EditComuneController extends EditController<Comune> implements Init
             for (Provincia provincia: province) {
                 provinciaComboBox.getItems().add(provincia);
             }
-            new AutoCompleteBox(provinciaComboBox);
+            //new AutoCompleteBox(provinciaComboBox);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -65,7 +65,9 @@ public class EditComuneController extends EditController<Comune> implements Init
         for (Territorio territorio: Territorio.values()) {
             territorioComboBox.getItems().add(territorio);
         }
-        new AutoCompleteBox(territorioComboBox);
+        //new AutoCompleteBox(territorioComboBox);
+
+        dataIstituzioneDataPicker.setValue(FXUtil.NOW_LOCAL_DATE());
     }
 
     @FXML
