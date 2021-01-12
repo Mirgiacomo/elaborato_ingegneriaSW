@@ -55,13 +55,13 @@ public class InsertDecessiController implements Initializable {
             for (Provincia provincia: province) {
                 provinciaFilterComboBox.getItems().add(provincia);
             }
-            new AutoCompleteBox(provinciaFilterComboBox);
+            //new AutoCompleteBox(provinciaFilterComboBox);
 
             // TODO: lasciarlo statico oppure caricare dinamicamente gli anni prendendoli dalla tabella decessi
             annoFilterComboBox.getItems().add("2019");
             annoFilterComboBox.getItems().add("2020");
             annoFilterComboBox.getItems().add("2021");
-            new AutoCompleteBox(annoFilterComboBox);
+            //new AutoCompleteBox(annoFilterComboBox);
 
         } catch (ExecutionException e) {
             e.printStackTrace();
