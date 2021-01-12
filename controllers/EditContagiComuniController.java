@@ -53,7 +53,7 @@ public class EditContagiComuniController implements Initializable {
             int row = 1;
 
             for (MalattiaContagiosa m: malattieContagiose) {
-                Label label = new Label(m.getNome());
+                Label label = new Label(m.getNome().toUpperCase());
 
                 JFXTextField terapiaIntensiva = new JFXTextField();
                 terapiaIntensiva.setId("terapiaIntensiva");
@@ -74,7 +74,7 @@ public class EditContagiComuniController implements Initializable {
                     Set<JFXTextField> inputsComplications = new HashSet<>();
 
                     for (String c: m.getComplications()) {
-                        Label cLabel = new Label(c);
+                        Label cLabel = new Label(c.toUpperCase());
                         JFXTextField valueInput = new JFXTextField();
 
                         valueInput.setId(c);

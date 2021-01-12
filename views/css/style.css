@@ -69,16 +69,21 @@
     -fx-font-size:          16px;
 }
 
-.jfx-text-field
-{
+.jfx-text-field {
     -jfx-focus-color:       "#7b241c";
     -fx-font-size:          16px;
 }
 
-.dataPicker:focused  {
+.dataPicker:focused {
     -fx-background-color:   "#a06661"
 }
 
 .comboBox {
     -fx-font-size:          17px;
+    -jfx-focus-color:       "#7b241c";
+}
+
+.label {
+    -fx-font-size:          15px;
+    -fx-font-weight:        bold
 }
