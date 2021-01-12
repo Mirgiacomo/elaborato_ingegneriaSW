@@ -171,7 +171,7 @@
                         <Insets />
                      </GridPane.margin>
                   </JFXButton>
-                  <DatePicker id="dataPicker" fx:id="dataIstituzioneDataPicker" prefHeight="38.0" prefWidth="207.0" style="-fx-background-color: rgba(255, 255, 255, 0.7);;" styleClass="dataPicker" stylesheets="@css/style.css" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                  <DatePicker id="dataPicker" fx:id="dataIstituzioneDataPicker" prefHeight="38.0" prefWidth="207.0" styleClass="dataPicker" stylesheets="@css/style.css" GridPane.columnIndex="3" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="17.0" />
                      </GridPane.margin>
