@@ -68,8 +68,8 @@ public class SidePanelController implements Initializable {
     }
 
     @FXML
-    public void viewDecessiProvinciaAction(ActionEvent event) throws IOException {
-        callback.selectView("insertDecessi.fxml");
+    public void editDecessiProvinceAction(ActionEvent event) throws IOException {
+        callback.selectView("editDecessiProvince.fxml");
     }
 
     @FXML

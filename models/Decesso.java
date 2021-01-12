@@ -1,5 +1,10 @@
 package elaborato_ingegneriaSW.models;
 
+import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
+import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
+import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
+
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Decesso implements Comparable<Decesso>{
@@ -61,7 +66,7 @@ public class Decesso implements Comparable<Decesso>{
      * @return year + provincia name
      */
     public String generateId() {
-        return year + "_" + provincia.getNome().toLowerCase();
+        return year + "_" + provincia.getNome().toLowerCase() + "_" + causaDecesso.name().toLowerCase();
     }
 
     @Override
@@ -88,5 +93,15 @@ public class Decesso implements Comparable<Decesso>{
             return provincia.getNome().compareTo(other.getProvincia().getNome());
         }
         return 0;
+    }
+
+    public HashMap<String, Object> getFirebaseObject() {
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        result.put("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId());
+        result.put("numeroMorti", numeroMorti);
+        result.put("year", year);
+        result.put("causaDecesso", causaDecesso);
+
+        return result;
     }
 }
