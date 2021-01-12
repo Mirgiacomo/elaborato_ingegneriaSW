@@ -47,7 +47,7 @@ public class EditProvinciaController extends EditController<Provincia> implement
             for (Regione regione: regioni) {
                 regioneComboBox.getItems().add(regione);
             }
-            new AutoCompleteBox(regioneComboBox);
+            // new AutoCompleteBox(regioneComboBox);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -54,21 +55,21 @@
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
                   </Text>
-                  <JFXComboBox fx:id="comuneFilterComboBox" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                  <JFXComboBox fx:id="comuneFilterComboBox" styleClass="comboBox" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                      <padding>
                         <Insets right="30.0" />
                      </padding>
                   </JFXComboBox>
+                  <DatePicker fx:id="weekFilterDatePicker" styleClass="dataPicker" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                  </DatePicker>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona la settimana" GridPane.columnIndex="2">
                      <font>
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
                   </Text>
-                  <DatePicker fx:id="weekFilterDatePicker" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
-                     <GridPane.margin>
-                        <Insets right="30.0" />
-                     </GridPane.margin>
-                  </DatePicker>
                   <JFXButton fx:id="loadContagiButton" buttonType="RAISED" defaultButton="true" onAction="#loadContagiAction" ripplerFill="WHITE" styleClass="button-ricerca" text="SELEZIONA" textFill="WHITE" GridPane.columnIndex="4">
                      <font>
                         <Font name="Open Sans Semibold" size="17.0" />
@@ -89,41 +90,49 @@
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin></Separator>
-            <GridPane fx:id="contagiGridPane" alignment="CENTER" hgap="15.0" maxWidth="1000.0" vgap="15.0">
-              <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-              </rowConstraints>
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MALATTIA" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N.TERAPIA INTENSIVA" textAlignment="CENTER" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N.MEDICO DI BASE" textAlignment="CENTER" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SEGNALAZIONI" textAlignment="CENTER" GridPane.columnIndex="3">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Text>
-               </children>
+            <ScrollPane fitToWidth="true" prefHeight="423.0" prefWidth="798.0">
+               <content>
+                  <GridPane fx:id="contagiGridPane" alignment="CENTER" hgap="15.0" maxWidth="1000.0" vgap="15.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                    </rowConstraints>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MALATTIA" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N.TERAPIA INTENSIVA" textAlignment="CENTER" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N.MEDICO DI BASE" textAlignment="CENTER" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SEGNALAZIONI" textAlignment="CENTER" GridPane.columnIndex="3">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </GridPane>
+               </content>
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
-               <padding>
-                  <Insets left="20.0" right="20.0" />
-               </padding>
-            </GridPane>
+            </ScrollPane>
             <JFXButton fx:id="saveButton" buttonType="RAISED" defaultButton="true" onAction="#saveAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" text="SALVA" textFill="WHITE">
                <font>
                   <Font name="Open Sans Semibold" size="17.0" />

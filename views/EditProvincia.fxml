@@ -78,7 +78,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Text>
-                  <JFXComboBox fx:id="regioneComboBox" focusColor="#7c2e2e" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <JFXComboBox fx:id="regioneComboBox" focusColor="#7c2e2e" maxWidth="1.7976931348623157E308" styleClass="comboBox" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

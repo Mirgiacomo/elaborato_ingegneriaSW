@@ -45,6 +45,7 @@ public class EditContagiComuniController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        weekFilterDatePicker.setValue(FXUtil.NOW_LOCAL_DATE());
         MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
 
         try {

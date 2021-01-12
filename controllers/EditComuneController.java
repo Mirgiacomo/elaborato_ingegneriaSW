@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
 public class EditComuneController extends EditController<Comune> implements Initializable {
@@ -30,7 +31,7 @@ public class EditComuneController extends EditController<Comune> implements Init
     @FXML
     private JFXTextField nomeTextField;
     @FXML
-    private JFXDatePicker dataIstituzioneDataPicker;
+    private DatePicker dataIstituzioneDataPicker;
     @FXML
     private JFXTextField superficieTextField;
     @FXML
@@ -56,7 +57,7 @@ public class EditComuneController extends EditController<Comune> implements Init
             for (Provincia provincia: province) {
                 provinciaComboBox.getItems().add(provincia);
             }
-            new AutoCompleteBox(provinciaComboBox);
+            //new AutoCompleteBox(provinciaComboBox);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -64,7 +65,9 @@ public class EditComuneController extends EditController<Comune> implements Init
         for (Territorio territorio: Territorio.values()) {
             territorioComboBox.getItems().add(territorio);
         }
-        new AutoCompleteBox(territorioComboBox);
+        //new AutoCompleteBox(territorioComboBox);
+
+        dataIstituzioneDataPicker.setValue(FXUtil.NOW_LOCAL_DATE());
     }
 
     @FXML
