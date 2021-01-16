@@ -37,6 +37,8 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton utentiButton;
     @FXML
+    private JFXButton reportDecessiButton;
+    @FXML
     private JFXButton exportReportButton;
     @FXML
     private VBox sidebar;
@@ -84,6 +86,12 @@ public class SidePanelController implements Initializable {
     }
 
     @FXML
+    public void viewReportDecessi(ActionEvent event) throws IOException {
+        // TODO: fix con giusto fxml
+        callback.selectView("reportDecessi.fxml");
+    }
+
+    @FXML
     public void viewExportReport(ActionEvent event) throws IOException {
         // TODO: fix con giusto fxml
         callback.selectView("viewComuni.fxml");
@@ -124,6 +132,7 @@ public class SidePanelController implements Initializable {
         sidebar.getChildren().remove(contagiComuniButton);
         sidebar.getChildren().remove(decessiProvinciaButton);
         sidebar.getChildren().remove(utentiButton);
+        sidebar.getChildren().remove(reportDecessiButton);
         sidebar.getChildren().remove(exportReportButton);
         sidebar.getChildren().remove(footerPane);
 
@@ -137,6 +146,7 @@ public class SidePanelController implements Initializable {
                 sidebar.getChildren().add(regioniButton);
                 sidebar.getChildren().add(contagiComuniButton);
                 sidebar.getChildren().add(decessiProvinciaButton);
+                sidebar.getChildren().add(reportDecessiButton);
                 sidebar.getChildren().add(utentiButton);
                 break;
 
