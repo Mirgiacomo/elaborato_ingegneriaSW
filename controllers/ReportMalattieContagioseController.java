@@ -1,8 +1,11 @@
 package elaborato_ingegneriaSW.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
+import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Provincia;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,13 +26,14 @@ public class ReportMalattieContagioseController implements Initializable {
     private VBox contentBox;
 
     ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
+    ComuneDaoImpl comuneDao = new ComuneDaoImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             Set<Provincia> province = provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName());
 
-            for (Provincia provincia: province) {
+            for (Provincia provincia : province) {
                 provinceCheckComboBox.getItems().add(provincia);
             }
         } catch (ExecutionException | InterruptedException e) {
@@ -38,6 +42,15 @@ public class ReportMalattieContagioseController implements Initializable {
     }
 
 
-    public void searchAction(ActionEvent actionEvent) {
+    public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
+        ObservableList<Provincia> province = provinceCheckComboBox.getCheckModel().getCheckedItems();
+        if (province != null && !province.isEmpty()) {
+            for (Provincia provincia : province) {
+                System.out.println("Provincia: " + provincia);
+                Set<Comune> comuni = comuneDao.getComuniByProvincia(provincia);
+                System.out.println(comuni);
+                System.out.println("---------------------");
+            }
+        }
     }
 }
