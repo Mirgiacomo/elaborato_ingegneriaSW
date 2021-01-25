@@ -5,6 +5,7 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.database.GenericTypeIndicator;
 import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Contagio;
+import elaborato_ingegneriaSW.models.Provincia;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -50,19 +51,42 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
         return result;
     }
 
-    public List<Contagio> getFilteredItems(Comune comune, int week, int year) throws ExecutionException, InterruptedException {
+    public Set<Contagio> getFilteredItems(Comune comune, int week, int year) throws ExecutionException, InterruptedException {
+        Set<Contagio> result = new HashSet<>();
+
         CollectionReference collectionReference = firestore.collection(getCollectionName());
-        List<Contagio> result;
 
         Query query = collectionReference.whereEqualTo("comune", ComuneDaoImpl.getCollectionName() + "/" + comune.generateId())
-                                    .whereEqualTo("week", week)
-                                    .whereEqualTo("year", year);
+                .whereEqualTo("week", week)
+                .whereEqualTo("year", year);
 
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
-        result = new ArrayList<>();
 
         for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
             result.add(getItem(document));
+        }
+
+        return result;
+    }
+
+    public Set<Contagio> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
+        ComuneDaoImpl comuneDao = new ComuneDaoImpl();
+        Set<Comune> comuni = comuneDao.getComuniByProvincia(provincia);
+
+        List<String> filter = new ArrayList<>();
+        Set<Contagio> result = new HashSet<>();
+
+        if (!comuni.isEmpty()) {
+            for (Comune comune : comuni) {
+                filter.add(ComuneDaoImpl.getCollectionName() + "/" + comune.generateId());
+            }
+
+            Query query = firestore.collection(getCollectionName()).whereEqualTo("year", year).whereIn("comune", filter);
+            ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
+            for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+                result.add(getItem(document));
+            }
         }
 
         return result;
@@ -78,13 +102,13 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
         ComuneDaoImpl comuneDao = new ComuneDaoImpl();
 
         if (malattiaContagiosaDao.getItem(item.getMalattiaContagiosa().generateId()) != null
-            && comuneDao.getItem(item.getComune().generateId()) != null) {
+                && comuneDao.getItem(item.getComune().generateId()) != null) {
             documentReference.set(item.getFirebaseObject());
 
             DocumentSnapshot documentSnapshot = documentReference.get().get();
             result = getItem(documentSnapshot.getId());
         }
-        return  result;
+        return result;
     }
 
     @Override

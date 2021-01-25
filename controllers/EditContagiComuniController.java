@@ -134,7 +134,7 @@ public class EditContagiComuniController implements Initializable {
         int year = date.getYear();
         int week = date.get(weekFields.weekOfWeekBasedYear());
 
-        List<Contagio> result = contagioDao.getFilteredItems(comune, week, year);
+        Set<Contagio> result = contagioDao.getFilteredItems(comune, week, year);
 
         if (result != null && !result.isEmpty()) {
             for (Contagio contagio : result) {
