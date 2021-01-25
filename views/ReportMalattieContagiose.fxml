@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.CheckComboBox?>
 
-<AnchorPane styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ReportContagiDecessiController">
+<AnchorPane styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ReportMalattieContagioseController">
    <children>
       <VBox alignment="TOP_CENTER" styleClass="anchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REPORT CONTAGI DECESSI" textAlignment="CENTER" wrappingWidth="735.9357604980469">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REPORT MALATTIE CONTAGIOSE" textAlignment="CENTER" wrappingWidth="735.9357604980469">
                <font>
                   <Font name="Open Sans Semibold" size="38.0" />
                </font>

@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-public class ReportContagiDecessiController implements Initializable {
+public class ReportMalattieContagioseController implements Initializable {
     @FXML
     private JFXButton searchButton;
     @FXML

@@ -35,7 +35,7 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton utentiButton;
     @FXML
-    private JFXButton reportContagiDecessiButton;
+    private JFXButton reportMalattieContagioseButton;
     @FXML
     private VBox sidebar;
     @FXML
@@ -81,8 +81,8 @@ public class SidePanelController implements Initializable {
     }
 
     @FXML
-    public void reportContagiDecessiAction(ActionEvent event) throws IOException {
-        callback.selectView("reportContagiDecessi.fxml");
+    public void reportMalattieContagioseAction(ActionEvent event) throws IOException {
+        callback.selectView("reportMalattieContagiose.fxml");
     }
 
 
@@ -121,7 +121,7 @@ public class SidePanelController implements Initializable {
         sidebar.getChildren().remove(decessiProvinciaButton);
         sidebar.getChildren().remove(utentiButton);
         sidebar.getChildren().remove(footerPane);
-        sidebar.getChildren().remove(reportContagiDecessiButton);
+        sidebar.getChildren().remove(reportMalattieContagioseButton);
 
         // Mi prendo il ruole dell'utente loggato e carico le sezioni a lui visibili
         RuoloUtente ruoloUtente = utente.getRuolo();
@@ -157,7 +157,7 @@ public class SidePanelController implements Initializable {
 
             // Visualizzazione report
             case RICERCATORE_ANALISTA:
-                sidebar.getChildren().add(reportContagiDecessiButton);
+                sidebar.getChildren().add(reportMalattieContagioseButton);
                 break;
             default:
                 System.out.println("Errore. Riprovare ad accedere!\n");

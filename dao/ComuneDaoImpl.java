@@ -1,15 +1,13 @@
 package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.SetOptions;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.models.Comune;
 
+import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Territorio;
 
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class ComuneDaoImpl extends DaoImpl<Comune> {
@@ -46,6 +44,20 @@ public class ComuneDaoImpl extends DaoImpl<Comune> {
             result.setTerritorio(document.get("territorio", Territorio.class));
             result.setFronteMare(document.get("fronteMare", Boolean.class));
             result.setProvincia(provinciaDao.getItem(provinciaDocument.getId()));
+        }
+
+        return result;
+    }
+
+    public Set<Comune> getComuniByProvincia(Provincia provincia) throws ExecutionException, InterruptedException {
+        ApiFuture<QuerySnapshot> querySnapshot = firestore.collection(collectionName).
+                whereEqualTo("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId()).get();
+        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+
+        Set<Comune> result = new HashSet<>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            result.add(getItem(document));
         }
 
         return result;
