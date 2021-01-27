@@ -3,11 +3,17 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -79,10 +85,59 @@
                </padding>
             </GridPane>
             <Separator />
-            <ScrollPane>
+            <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox fx:id="contentBox" />
+                  <VBox fx:id="contentBox" alignment="TOP_CENTER">
+                     <children>
+                        <Text fx:id="titleTemplate" strokeType="OUTSIDE" strokeWidth="0.0" text="PROVINCIA">
+                           <font>
+                              <Font name="Open Sans SemiBold" size="25.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox fx:id="templateBox" alignment="TOP_CENTER" maxHeight="400.0" prefHeight="500.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <TableView fx:id="tableTemplate" editable="true" tableMenuButtonVisible="true" HBox.hgrow="SOMETIMES">
+                                 <columns>
+                                    <TableColumn fx:id="malattiaContagiosaColTemplate" minWidth="-1.0" prefWidth="-1.0" text="MALATTIA" />
+                                    <TableColumn fx:id="contagiColTemplate" minWidth="-1.0" prefWidth="-1.0" text="CONTAGI" />
+                                    <TableColumn fx:id="decessiColTemplate" minWidth="-1.0" prefWidth="-1.0" text="DECESSI" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </TableView>
+                              <LineChart fx:id="chartTemplate" HBox.hgrow="SOMETIMES">
+                                <xAxis>
+                                  <CategoryAxis label="Malattie Contagiose" side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis label="Quantità" side="LEFT" />
+                                </yAxis>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </LineChart>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                     </children>
+                  </VBox>
                </content>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
             </ScrollPane>
          </children>
       </VBox>
