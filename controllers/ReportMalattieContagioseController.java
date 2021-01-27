@@ -9,11 +9,13 @@ import elaborato_ingegneriaSW.models.Contagio;
 import elaborato_ingegneriaSW.models.DecessoMalattiaContagiosa;
 import elaborato_ingegneriaSW.models.MalattiaContagiosa;
 import elaborato_ingegneriaSW.models.Provincia;
+import elaborato_ingegneriaSW.utils.Export;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
@@ -28,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -47,20 +50,6 @@ public class ReportMalattieContagioseController implements Initializable {
     private JFXButton searchButton;
     @FXML
     private VBox contentBox;
-    @FXML
-    private Text titleTemplate;
-    @FXML
-    private HBox templateBox;
-    @FXML
-    private TableView<Map> tableTemplate;
-    @FXML
-    private TableColumn<Map, String> malattiaContagiosaColTemplate;
-    @FXML
-    private TableColumn<Map, Integer> contagiColTemplate;
-    @FXML
-    private TableColumn<Map, Integer> decessiColTemplate;
-    @FXML
-    private LineChart<String, Number> chartTemplate;
 
     ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
     ContagioDaoImpl contagioDao = new ContagioDaoImpl();
@@ -116,6 +105,11 @@ public class ReportMalattieContagioseController implements Initializable {
                                 title.setId("title" + provincia.getNome());
                                 title.setText(provincia.getNome());
 
+                                JFXButton button = new JFXButton();
+                                button.setText("EXPORT");
+                                button.setTextFill(Color.WHITE);
+                                button.setStyle("-fx-background-color: #eda324");
+
                                 TableView<Map> table = new TableView<>();
                                 HBox.setHgrow(table, Priority.SOMETIMES);
 
@@ -149,6 +143,7 @@ public class ReportMalattieContagioseController implements Initializable {
                                 separator.setId("separator" + provincia.getNome());
 
                                 contentBox.getChildren().add(title);
+                                contentBox.getChildren().add(button);
                                 contentBox.getChildren().add(box);
                                 contentBox.getChildren().add(separator);
 
@@ -190,6 +185,26 @@ public class ReportMalattieContagioseController implements Initializable {
                                 decessiCol.setCellValueFactory(new MapValueFactory<>("decessi"));
 
                                 table.setItems(tableData);
+
+                                // action event
+                                EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+                                    public void handle(ActionEvent e)
+                                    {
+                                        Set<Map<String, Object>> rows = new HashSet<>();
+                                        if (!tableData.isEmpty()) {
+                                            for (Map row: tableData) {
+                                                rows.add(row);
+                                            }
+
+                                        }
+                                        try {
+                                            Export.exportData(rows, "MalattieContagiose");
+                                        } catch (Exception exception) {
+                                            exception.printStackTrace();
+                                        }
+                                    }
+                                };
+                                button.setOnAction(event);
 
                                 XYChart.Series<String, Number> seriesContagi = new XYChart.Series<>();
                                 XYChart.Series<String, Number> seriesDecessi = new XYChart.Series<>();

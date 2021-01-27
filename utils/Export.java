@@ -48,12 +48,12 @@ public class Export {
                         switch (fileExtension) {
                             case "txt":
                                 if (next instanceof Regione) {
-                                    String intestazione = "Nome\t\t\t\t\tCapoluogo\t\t\t\t\tSuperficie\n";
+                                    String formatStr = "%-16s %-16s %-16s";
+                                    String intestazione = String.format(formatStr, "Nome", "Capoluogo", "Superficie");
                                     writer.write(intestazione);
                                     for (Object regione : items) {
                                         Regione item = (Regione) regione;
-                                        String text = item.getNome() + "\t\t\t\t\t" + item.getCapoluogo() + "\t\t\t\t\t" + item.getSuperficie() + "\n";
-                                        writer.write(text);
+                                        writer.write(String.format(formatStr, item.getNome(), item.getCapoluogo(), item.getSuperficie()));
                                     }
                                 } else if (next instanceof Provincia) {
                                     String intestazione = "Nome\t\t\t\t\tRegione\t\t\t\t\tSuperficie\n";
@@ -84,12 +84,12 @@ public class Export {
                                         writer.write(text);
                                     }
                                 } else if (next != null && report != null && report.equals("MalattieContagiose")) {
-                                    String intestazione = "Malattia\t\t\t\tContagi\t\t\t\tDecessi\n";
-                                    writer.write(intestazione);
+                                    String formatStr = "%-16s %-16s %-16s";
+                                    writer.write(String.format(formatStr, "Malattia", "Contagi", "Decessi") + "\n");
                                     for (Object obj : items) {
                                         Map<String, Object> item = (Map<String, Object>) obj;
                                         String text = item.get("malattia") + "\t\t\t\t" + item.get("contagi") + "\t\t\t\t" + item.get("decessi") + "\n";
-                                        writer.write(text);
+                                        writer.write(String.format(formatStr, item.get("malattia"), item.get("contagi"), item.get("decessi")) + "\n");
                                     }
                                 }
                                 break;
