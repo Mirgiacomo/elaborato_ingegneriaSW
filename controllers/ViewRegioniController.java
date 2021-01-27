@@ -82,6 +82,6 @@ public class ViewRegioniController extends ViewController<Regione> implements In
     }
 
     public void exportRegione(ActionEvent event) throws Exception {
-        Export.exportData(regioneDao.getAllItems(RegioneDaoImpl.getCollectionName()));
+        Export.exportData(regioneDao.getAllItems(RegioneDaoImpl.getCollectionName()), null);
     }
 }

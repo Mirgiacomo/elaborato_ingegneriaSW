@@ -94,6 +94,6 @@ public class ViewComuniController extends ViewController<Comune> implements Init
     }
 
     public void exportComune(ActionEvent event) throws Exception {
-        Export.exportData(comuneDao.getAllItems(ComuneDaoImpl.getCollectionName()));
+        Export.exportData(comuneDao.getAllItems(ComuneDaoImpl.getCollectionName()), null);
     }
 }
