@@ -1,97 +1,145 @@
+
+
+![univr_logo](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/univr_logo.png)
+
+
+
+<h3 align="center">Università degli Studi di Verona - Dipartimento di Informatica</h3>
+<h4 align="center">Corso di Laurea Informatica - Anno Accademico 2020/21</h4>
+
+
+
+<h1 align="center">DOCUMENTAZIONE PROGETTO<br />INGEGNERIA DEL SOFTWARE</h1>
+
+<p align="center">Sistema software per la gestione delle informazioni socio-sanitarie di monitoraggio della popolazione italiana per la prevenzione di contagi e pandemie.</p>
+
+<p align="center"><b>
+  Mirandola Giacomo - VR1234 <br />
+  Tonin Davide - VR437255
+</b></p>
+
+​																									
+
+---
+
+
+
+# Indice
+
+[toc]
+
+
+
+---
+
+
+
 # Sviluppo: collaborazione team, progettazione e pattern, scelte progettuali
 
 >Introduzione
 
-Il progetto che è stato realizzato è un'applicazione java desktop sviluppata principalmente con le librerie JavaFX e JFoenix.
+Il progetto realizzato è un'applicazione java desktop sviluppata principalmente con la libreria **JavaFX**, e l'utilizzo di due librerie di supporto per la grafica e componenti aggiuntivi **JFoenix** e **ControlsFX**.
 
-Per sviluppare tale software è stato usato [Intellij Idea](https://www.jetbrains.com/idea/) come ambiente di sviluppo e [SceneBuilder](https://gluonhq.com/products/scene-builder/) per aiutarci con la progettazione dell'interfaccia grafica.
+Per sviluppare tale software è stato utilizzato l'ambiente di sviluppo [Intellij Idea](https://www.jetbrains.com/idea/), insieme a [SceneBuilder](https://gluonhq.com/products/scene-builder/) per la progettazione dell'interfaccia grafica.
 
-Il processo di sviluppo è stato coordinato secondo il metodo AGILE e SCRUM.
-Il gruppo, in questo caso formato da due persone, si trovava con settimanalmente per meeting di media/breve durante, nei quali lo scopo spaziava dal progettare concettualmente la base di dati e l'app fino ad individuare le criticità del sistema testandolo al momento.
+Il processo di sviluppo è stato coordinato secondo il metodo **AGILE** e **SCRUM**.
+Il team si trovava settimanalmente per meeting solitamente di media/breve durante, nei quali lo scopo spaziava dal progettare concettualmente la base di dati e l'app fino ad individuare le criticità del sistema testandolo al momento. Alcuni incontri duravano più a lungo, perchè in alcuni casi nascevano delle discussioni per cercare di trovare la migliore soluzione a fronte di idee diverse su un certo argomento.
+
 Durante i *daily scrum* l'obbiettivo era anche pianificare non dei "*daily sprint*" ma dei "*weekly sprint*", nel nostro caso, con modifiche, migliorie e le nuove implementazioni del sistema.
-Il gruppo, vista la situazione attuale legata al COVID-19, ha optato per *scrum-meeting* sulle piattaforme ZOOM ed AnyDesk.
-La teoria alla base del metodo utilizzato è quella del **controllo empirico dei processi**, secondo la quale, da un lato, la conoscenza deriva dall’esperienza e, dall’altro lato, le decisioni si basano su ciò che si conosce. Per questo motivo si prevede un processo iterativo con un approccio incrementale che ottimizza, passo dopo passo (e sprint dopo sprint), la prevedibilità ed il controllo del rischio.
-Anche se nel caso di questo progetto è stato talvolta questo ragionamento.
-Infatti è stato manifestato dagli sviluppatori anche il volere collettivo di sperimentare nuove piattaforme e librerie per ampliare le proprie conoscenze.
+Il gruppo, vista la situazione attuale legata al COVID-19, ha optato per *scrum-meeting* sulle piattaforme **Zoom** ed **AnyDesk**, oltre ad alcuni incontri telefonici o nell'ufficio di lavoro.
+
+La teoria alla base del metodo utilizzato è quella del <u>controllo empirico dei processi</u>, secondo la quale, da un lato, la conoscenza deriva dall’esperienza e, dall’altro lato, le decisioni si basano su ciò che si conosce. Per questo motivo si prevede un processo iterativo con un approccio incrementale che ottimizza, passo dopo passo (e sprint dopo sprint), la prevedibilità ed il controllo del rischio.
 
 ## Collaborazione team di sviluppo
 > Git & Github
 
-![N|Solid](https://dpsvdv74uwwos.cloudfront.net/statics/img/drive/4mlufcgifby062lx9zsbpsuebeidold3k1n.jpeg)
-Per la condivisione, collaborazione e gestione del versionamento del software abbiamo scelto git, in particolare abbiamo creato una repository ospitata su **Github**
-LINK: https://github.com/Mirgiacomo/elaborato_ingegneriaSW
+<img src="https://dpsvdv74uwwos.cloudfront.net/statics/img/drive/4mlufcgifby062lx9zsbpsuebeidold3k1n.jpeg" alt="N|Solid" style="zoom:50%;" />
 
-Il repository è stato sviluppato in modo "incrementale" ovvero, in base al weekly scrum e ai '*TODO*' della giornata/settimana, venivano creati dei branch relativi alle attività da svolgere (es. strutturazione interfacce, fix layout forms, etc.)
-Per questo motivo sono stati creati vari branch, i quali, ogni fine settimana, venivano mergiati in un branch più generale, ovvero quello che contiene le versioni stabili del prodottodi: *test*.
-Inizialmente venivano creati branch per la parte di base di dati, la parte di creazione della view, la parte di controller etc.
-Poi una volta preso forma il primo prototipo si è cominciato ad andare a lavorare sulle singole richieste: gestione regioni, gestione comuni, gestione malattie etc.
-In modo tale che ogni persona avesse in carico una singola parte dell'applicazione e la portava a termine.
-Ogni volta che uno sviluppatore apportava modifiche alla sua branch locale, faceva il push dei cambiamenti sulla repository online in modo che fossero disponibili anche agli altri sviluppatori.
+Per la condivisione del codice ed il controllo di versione, abbiamo scelto **git**, in particolare abbiamo creato una repository ospitata su **Github**.
+LINK REPOSITORY: https://github.com/Mirgiacomo/elaborato_ingegneriaSW
+
+Il codice nel repository è stato organizzato in branch diversi per ogni attività, creati in base ai vari meeting e necessità che nascevano durante lo sviluppo.
+
+Inoltre, sono stati creati due branch principali:
+
+- ``test``: branch di partenza e fine delle varie attività
+- ``master``: branch utilizzato per spostare le parti testate e funzionanti dal branch di test
+
+
+In questo modo, ogni componente del team si occupava di una certa attività, eventualmente chiedendo un aiuto o discutendo su vari dubbi, e una volta terminata il codice relativo veniva spostato nel branch di test affinché fosse disponibile per tutti e per effettuare i test con altre parti aggiunte.
+
 >  GitHub project
 
-E' stato optato l'uso di un tool di project management web-based semplice, il quale ci ha aiutato a gestire gli sprint, le richieste, i bug e i task del progetto.
-Come gestore di questi task, invece di Trello o altri tools, è stato scelto GitHub Project in quanto interconnesso alla repo dell'elaborato, il quale ha permesso di aiutare il team di sviluppo con la gestione dei task, ovvero delle user-story.
-Lo scopo di GitHub Project è per l'appunto quello di facilitare l'organizzazione del lavoro, la gestione dei task nel tempo e la comunicazione tra sviluppatori.
+Abbiamo scelto di utilizzare un **tool di project management** web-based, che ci ha aiutato ad organizzare e gestire le varie richieste, attività (ovvero le user-story), bug e idee.
 
-###### Dashboard fase finale progetto
+Fra i vari strumenti disponibili, abbiamo scelto di utilizzare **GitHub Project**, in quanto connesso direttamente con il repository del progetto.
+
+**GitHub Project** è un tool integrato nella piattaforma di GitHub, gratuito e basato sulle **kanban-board**, con lo scopo appunto di facilitare l'organizzazione del lavoro, la gestione dei task nel tempo e la comunicazione fra gli sviluppatori.
+
+#### Dashboard fase finale progetto
 ![N|Solid](https://i.ibb.co/rF1MywC/dashboard-github.png)
 
-Ciclo di vita di un task:
-1. To Do: il punto di partenza, dove vengono segnati i task da sviluppare nell'immediato futuro
-2. In Progress: segnala che un task è attualmente in fase di sviluppo
-3. Refactoring: degli sviluppi/task che sono stati implementati e che hanno bisogno di un refactoring dopo una bozza iniziale.  Usato anche per segnalare bug superficiali da sistemare.
-4. Opzionale: usato per abbozzare idee che vengono dagli sviluppatori e/o in fase di briefing. Queste idee vengono implementante graduatamente nella fase finale del progetto, quando si ha un **prototipo completo e funzionante**
-5.  Review/Test: quando uno sviluppatore finisce un task lo segnala agli altri sviluppatori che devono fare la "review" del nuovo codice. Se il nuovo codice sviluppato passa la review, allora viene messo in Done, se invece non passa la review si cerca di capire per quali motivi non è andato a buon fine, in modo da identificare eventuali bug.
-	Questo step è necessario per evitare di mettere in "produzione" codice con errori o
-	incoerenze
-6.  Done: il punto di arrivo del task, segnala che il task è stato completato e soprattutto **testato** con successo
+<u>Ciclo di vita di un task:</u>
+1. ``To Do``: il punto di partenza, dove vengono segnati i task da sviluppare nell'immediato futuro
+2. ``In Progress``: segnala che un task è attualmente in fase di sviluppo
+3. ``Refactoring``: degli sviluppi/task che sono stati implementati e che hanno bisogno di un refactoring dopo un primo sviluppo.
+4. ``Opzionale``: spazio usato per abbozzare idee che vengono agli sviluppatori e/o in fase di briefing. Queste idee vengono implementante graduatamente nella fase finale del progetto, quando si ha un **prototipo completo e funzionante**
+5. ``Review/Test``: quando uno sviluppatore finisce un task lo segnala agli altri sviluppatori che devono fare la "review" del nuovo codice. Se il nuovo codice sviluppato passa la review, allora viene messo in Done, se invece non passa la review si cerca di capire per quali motivi non è andato a buon fine, in modo da identificare eventuali bug. Questo step è necessario per evitare di **confermare** codice con errori o incoerenze
+6.  ``Done``: il punto di arrivo del task, segnala che il task è stato completato e soprattutto **testato** con successo
 
-> Zoom & AnyDesk
+> Zoom & AnyDesk & Telefono
 
-Come accennato precedentemente i weekly scrum sono stati svolti sulla piattaforma online Zoom con incontri a cadenza quotidiana per confrontarci, fare il punto della situazione e decidere a cosa dare priorità nella parte di sviluppo.
-Inoltre, un altro strumento utilizzato è stato AnyDesk, per fare una sorta di *pair-programming* che risulta essere molto interessante ed importante, in quanto da la possibilità di aiutare gli sviluppatori a vicenda nella scrittura o spiegazione del codice.
+I weekly scrum sono stati svolti sulla piattaforma online <u>Zoom</u> o per <u>telefono</u> con incontri settimanali, più o meno frequenti a seconda degli impegni e soprattutto delle **idee** o **problemi riscontrati**, per confrontarci, fare il punto della situazione e decidere a cosa dare priorità nella parte di sviluppo.
+Inoltre, un altro strumento utilizzato è stato <u>AnyDesk</u>, per fare una sorta di *pair-programming* che risulta essere molto interessante ed importante, in quanto da la possibilità di aiutarsi a vicenda nella scrittura o spiegazione del codice.
 
 ## Documentazione
-> StackEdit.io
-![N|Solid](https://stackedit.io/res-min/img/logo.svg)
+<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/stackedit_logo.png" alt="stackedit_logo" style="zoom:50%;" />
 
-Per quanto riguarda la documentazione, è stata scritta in formato Markdown con l'aiuto di [stackedit.io](https://stackedit.io/app#), un tool esterno per editare Markdown con più facilità.
+<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/typora_logo.png" alt="typora_logo" style="zoom:50%;" />
+
+La documentazione del progetto è stata scritta in formato Markdown con l'aiuto dei software [stackedit.io](https://stackedit.io/app#), un tool esterno per editare Markdown con più facilità, e [Typora][https://typora.io/].
+
+**Mardown** perchè è utilizzato spesso per la scrittura di testi formattati e in modo semplice, soprattutto nella documentazione e in particolare il file README dei repository su GitHub. Inoltre, il file può essere poi convertito in altri formati molto utili, tra cui ``html``(se per esempio lo si vuole formattare diversamente) e ``pdf``.
+
+**TODO**: yEd documentazione diagrammi.
 
 ## Progettazione e pattern usati
-> #### Perchè JAVA?
-Il team per lo sviluppo di tale elaborato ha deciso di utilizzare come linguaggio di programmazione JAVA in quanto, come detto precedentemente, si aveva già una dimestichezza ma al tempo stesso si voleva studiare ed approfondire nuove piattaforme e/o librerie legate a JAVA.
-La seconda idea era quella di sviluppare l'intero progetto mediante linguaggio PHP, appoggiandosi al framework Yii, ma poi, vista la poca coerenza con il corso di Programmazione II, è stata scartata come idea.
 
-> Pattern MVC
+#### PATTERN MVC
 
 La scelta del pattern MVC è stata fortemente condizionata dall'utilizzo del tool SceneBuilder, dato che esso produce una view, ovvero un file FXML il quale viene collegato ad un controller, ovvero una classe java.
 Questo mostra come il tool SceneBuilder sia fortemente orientato verso il pattern MVC.
 Il team, avendo già avuto modo di studiare precedentemente Java e SeneBuilder, ha deciso di approfondire ulteriormente le proprie conoscenze in Java e lo sviluppo di GUI in Java, per tale motivo ha deciso implementare tale design pattern.
 
-#### TODO: aggiungere altri pattern
-
-> Pattern DAO
+#### PATTERN DAO
 
 Nella realizzazione di questo prototipo è stato implementato anche pattern architetturale DAO con lo scopo di separare le operazioni che permettono l’accesso ai dati di basso livello dalle operazioni di alto livello.
 DAO infatti si occupa di dare all'applicazione una serie di metodi per accedere ai dati senza inserire all’interno del nostro codice chiamate dirette ad un DB, favorendo un approccio di tipo MVC.
 Ciò implica che se per svariati motivi dovessimo modificare il tipo di memoria persistente utilizzata, non sarà necessario stravolgere il codice della nostra applicazione, basterà bensì modificare il DAO utilizzato.d
 
-#### TODO: aggiungere altri pattern
+#### PATTERN SINGLETON
+
+#### PATTERN TEMPLATE
 
 ## Scelte progettuali
 
 > #### Perchè JAVA?
-Il team ha deciso di utilizzare come linguaggio di programmazione per lo sviluppo di tale elaborato, JAVA in quanto, come detto precedentemente, si aveva già una dimestichezza ma al tempo stesso si voleva studiare ed usare nuove piattaforme e/o librerie agganciate a JAVA.
-La seconda idea era quella di sviluppare l'intero progetto mediante linguaggio PHP, appoggiandosi al framework Yii, ma poi, vista la poca coerenza con il corso di Programmazione II, è stata scartata tale idea.
+> Avendo già dell'esperienza nell'ambito web, per lo sviluppo di questo progetto abbiamo scelto di utilizzare JAVA e JAVAFX perchè entrambi volevamo imparare la progettazione di interfacce grafiche per applicazioni con queste tecnologie in un contesto diverso, ovvero delle applicazioni Desktop.
 
-## Gestione dei dati
+### Gestione dei dati
 > Firebase
-![N|Solid](https://felgo.com/doc/images/logo-firebase.png)
 
-Visto l'intento di voler creare un prototipo di applicazione il più dinamico possibile, il team aveva diverse possibilità di salvataggio dati, come ad esempio la serializzazione su file o il salvataggio su database locale.
-Dopo varie discussioni si è scelto di utilizzare un sistemi software dove la persistenza dei dati è in generale caratterizzata dal fatto di non utilizzare il modello relazionale, di solito usato dalle basi di dati tradizionali come ad esempio MySQL o PostgreSQL.
-La scelta è ricaduta infatti nell'uso di **Firebase**: un **Realtime Database NoSQL** ospitato nel cloud Google che consente di archiviare e sincronizzare i dati tra i tuoi utenti in tempo reale.
-Non vi sono tabelle né record, nessuna traccia dell’approccio relazionale. Tutti i dati inseriti in Firebase vanno a costituire un **albero JSON**. Le informazioni al suo interno, infatti, potranno essere strutturate secondo questo formato: si potranno inserire mappe, liste, stringhe, tipi numerici e booleani.
+<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/firebase_logo.png" alt="firebase_logo" style="zoom: 25%;" />
+
+Tra le varie alternative per la gestione e il salvataggio dei dati, tra cui la serializzazione su file o l'implementazione di un database, dopo varie discussioni e considerazioni, avendo già utilizzato in precedenza la serializzazione su file e database relazionali, è stato di utilizzare una tecnologia nuova per noi, ovvero **database NoSql** di Google, **FIREBASE**.
+
+Questo database è conosciuto soprattutto per l'implementazione di applicazioni realtime ed è ospitato nel Cloud Google, che consente di archiviare e sincronizzare i dati fra i vari utenti in tempo reale, oltre a fornire altri aspetti importanti tra cui flessibilità e scalabilità.
+
+L'aspetto della sincronizzazione in tempo reale è molto importante quando si parla di monitoraggio in ogni ambito, dal monitoraggio di un impianto industriale al monitoraggio della popolazione per la prevenzione di epidemie, perchè consente di avere un'istantanea della situazione ed effettuare <u>analisi</u> e <u>predizione</u> in base ai dati raccolti.
+
+Inoltre, Firebase offre due alternative: una soluzione basata su json (Realtime database), e una su documenti organizzati in raccolte (Firestore Cloud).
+
+Noi abbiamo scelto di utilizzare la seconda, **Firestore Cloud**, perchè molto comoda per l'organizazzione dei dati e la connessione con **models** (vedi pattern MVC) utilizzati nell'applicazione Java.
 
 Link alla nostro Dashboard per il [progetto di Firebase](https://console.firebase.google.com/u/0/project/elaborato-ingegneria/firestore/data~2Fusers~2FZ1hRKCsQ5xkWJnRA0HTK)
 
