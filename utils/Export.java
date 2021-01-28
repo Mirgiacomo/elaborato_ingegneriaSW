@@ -48,7 +48,7 @@ public class Export {
                         switch (fileExtension) {
                             case "txt":
                                 if (next instanceof Regione) {
-                                    String formatStr = "%-16s %-16s %-16s";
+                                    String formatStr = "%-16s %-16s %-16s\n";
                                     String intestazione = String.format(formatStr, "Nome", "Capoluogo", "Superficie");
                                     writer.write(intestazione);
                                     for (Object regione : items) {
@@ -56,40 +56,39 @@ public class Export {
                                         writer.write(String.format(formatStr, item.getNome(), item.getCapoluogo(), item.getSuperficie()));
                                     }
                                 } else if (next instanceof Provincia) {
-                                    String intestazione = "Nome\t\t\t\t\tRegione\t\t\t\t\tSuperficie\n";
+                                    String formatStr = "%-16s %-16s %-16s\n";
+                                    String intestazione = String.format(formatStr, "Nome", "Regione", "Superficie");
                                     writer.write(intestazione);
                                     for (Object provincia : items) {
                                         Provincia item = (Provincia) provincia;
-                                        String text = item.getNome() + "\t\t\t\t\t" + item.getRegione() + "\t\t\t\t\t" + item.getSuperficie() + "\n";
-                                        writer.write(text);
+                                        writer.write(String.format(formatStr, item.getNome(), item.getRegione(), item.getSuperficie()));
                                     }
                                 } else if (next instanceof Comune) {
-                                    String intestazione = "CodiceISTAT\t\t\t\t\tNome\t\t\t\t\tProvincia\t\t\t\t\tSuperficie\t\t\t\t\tFronteMare\t\t\t\t\tTerritorio\t\t\t\t\tDataIstituzione;\n";
+                                    String formatStr = "%-16s %-16s %-16s %-16s %-16s %-16s %-16s\n";
+                                    String intestazione = String.format(formatStr, "CodiceISTAT", "Nome", "Provincia", "Superficie", "FronteMare", "Territorio", "DataIstituzione");
                                     writer.write(intestazione);
                                     for (Object comune : items) {
                                         Comune item = (Comune) comune;
-                                        String text = item.getCodiceISTAT() + "\t\t\t\t\t" + item.getNome() + "\t\t\t\t\t" + item.getProvincia() + "\t\t\t\t\t" +
-                                                item.getSuperficie() + "\t\t\t\t\t" + item.isFronteMare() + "\t\t\t\t\t" + item.getTerritorio() + "\t\t\t\t\t" +
-                                                item.getDataIstituzione() + "\n";
-                                        writer.write(text);
+                                        writer.write(String.format(formatStr, item.getCodiceISTAT(), item.getNome(), item.getProvincia(), item.getSuperficie(),
+                                                item.isFronteMare(), item.getTerritorio(), item.getDataIstituzione()));
                                     }
                                 } else if (next instanceof Utente) {
-                                    String intestazione = "Nome\t\t\t\t\tCognome\t\t\t\t\tUsername\t\t\t\t\tCodiceFiscale\t\t\t\t\tRuolo\t\t\t\t\tComuniAssociati;\n";
+                                    String formatStr = "%-16s %-16s %-16s %-16s %-16s %-16s\n";
+                                    String intestazione = String.format(formatStr, "Nome", "Cognome", "Username", "CodiceFiscale", "Ruolo", "ComuniAssciati");
                                     writer.write(intestazione);
                                     for (Object utente : items) {
                                         Utente item = (Utente) utente;
                                         String text = item.getNome() + "\t\t\t\t\t" + item.getCognome() + "\t\t\t\t\t" + item.getUsername() + "\t\t\t\t\t" +
                                                 item.getCf() + "\t\t\t\t\t" + item.getRuolo() + "\t\t\t\t\t" +
                                                 item.getComuniAssociati() + "\n";
-                                        writer.write(text);
+                                        writer.write(String.format(formatStr, item.getNome(), item.getCognome(), item.getUsername(), item.getCf(), item.getRuolo(), item.getComuniAssociati()));
                                     }
                                 } else if (next != null && report != null && report.equals("MalattieContagiose")) {
-                                    String formatStr = "%-16s %-16s %-16s";
-                                    writer.write(String.format(formatStr, "Malattia", "Contagi", "Decessi") + "\n");
+                                    String formatStr = "%-16s %-16s %-16s\n";
+                                    writer.write(String.format(formatStr, "Malattia", "Contagi", "Decessi"));
                                     for (Object obj : items) {
                                         Map<String, Object> item = (Map<String, Object>) obj;
-                                        String text = item.get("malattia") + "\t\t\t\t" + item.get("contagi") + "\t\t\t\t" + item.get("decessi") + "\n";
-                                        writer.write(String.format(formatStr, item.get("malattia"), item.get("contagi"), item.get("decessi")) + "\n");
+                                        writer.write(String.format(formatStr, item.get("malattia"), item.get("contagi"), item.get("decessi")));
                                     }
                                 }
                                 break;
