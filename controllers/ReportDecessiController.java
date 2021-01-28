@@ -16,13 +16,15 @@ import java.util.*;
 
 public class ReportDecessiController implements Initializable {
     @FXML
-    private JFXComboBox<String> suddivisioneComboBox;
-    @FXML
     private JFXComboBox<Integer> yearFilterComboBox;
     @FXML
     private JFXButton loadDecessiButton;
     @FXML
-    private TableView<Object> tableDecessi;
+    private TableView<Object> tableDecessiProvincia;
+    @FXML
+    private TableView<Object> tableDecessiRegione;
+    @FXML
+    private TableView<Object> tableDecessiNazione;
     @FXML
     public TableColumn<Object, String> nomeCol;
     @FXML
@@ -35,9 +37,6 @@ public class ReportDecessiController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        suddivisioneComboBox.getItems().add("PROVINCIA");
-        suddivisioneComboBox.getItems().add("REGIONE");
-        suddivisioneComboBox.getItems().add("NAZIONE");
         yearFilterComboBox.getItems().add(2019);
         yearFilterComboBox.getItems().add(2020);
         yearFilterComboBox.getItems().add(2021);

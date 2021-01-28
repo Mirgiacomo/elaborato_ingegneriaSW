@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,9 +17,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ReportDecessiController">
+<AnchorPane prefHeight="618.0" prefWidth="815.0" styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.ReportDecessiController">
    <children>
-      <VBox alignment="TOP_CENTER" styleClass="anchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="618.0" prefWidth="815.0" styleClass="anchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REPORT DECESSI" textAlignment="CENTER" wrappingWidth="735.9357604980469">
                <font>
@@ -41,17 +43,7 @@
                   <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Aggregati per">
-                     <font>
-                        <Font name="Open Sans Regular" size="20.0" />
-                     </font>
-                  </Text>
-                  <JFXComboBox fx:id="suddivisioneFilterComboBox" prefHeight="26.0" prefWidth="202.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding>
-                  </JFXComboBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona anno" GridPane.columnIndex="2">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona anno aggregazione" GridPane.columnIndex="2">
                      <font>
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
@@ -75,16 +67,49 @@
                </padding>
             </GridPane>
             <Separator />
-            <TableView fx:id="tableDecessiProvincia" editable="true" tableMenuButtonVisible="true">
-               <columns>
-                  <TableColumn fx:id="provinciaCol" minWidth="-1.0" prefWidth="-1.0" text="NOME" />
-                  <TableColumn fx:id="causaCol" minWidth="-1.0" prefWidth="-1.0" text="CAUSA" />
-                  <TableColumn fx:id="qtaCol" minWidth="-1.0" prefWidth="-1.0" text="QUANTITÀ" />
-               </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
+            <ScrollPane prefHeight="571.0" prefWidth="815.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1542.0" prefWidth="798.0">
+                     <children>
+                        <VBox layoutY="-2.0" prefHeight="1543.0" prefWidth="815.0">
+                           <children>
+                              <TableView fx:id="tableDecessiProvincia" editable="true" prefHeight="420.0" prefWidth="815.0" tableMenuButtonVisible="true">
+                                 <columns>
+                                    <TableColumn fx:id="provinciaCol" minWidth="-1.0" prefWidth="-1.0" text="PROVINCIA" />
+                                    <TableColumn fx:id="causaCol" minWidth="-1.0" prefWidth="-1.0" text="CAUSA" />
+                                    <TableColumn fx:id="qtaCol" minWidth="-1.0" prefWidth="-1.0" text="QUANTITÀ" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <TableView fx:id="tableDecessiRegione" editable="true" prefHeight="420.0" prefWidth="815.0" tableMenuButtonVisible="true">
+                                 <columns>
+                                    <TableColumn fx:id="provinciaCol1" minWidth="-1.0" prefWidth="-1.0" text="REGIONE" />
+                                    <TableColumn fx:id="causaCol1" minWidth="-1.0" prefWidth="-1.0" text="CAUSA" />
+                                    <TableColumn fx:id="qtaCol1" minWidth="-1.0" prefWidth="-1.0" text="QUANTITÀ" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <TableView fx:id="tableDecessiNazione" editable="true" prefHeight="420.0" prefWidth="815.0" tableMenuButtonVisible="true">
+                                 <columns>
+                                    <TableColumn fx:id="provinciaCol2" minWidth="-1.0" prefWidth="-1.0" text="NAZIONE" />
+                                    <TableColumn fx:id="causaCol2" minWidth="-1.0" prefWidth="-1.0" text="CAUSA" />
+                                    <TableColumn fx:id="qtaCol2" minWidth="-1.0" prefWidth="-1.0" text="QUANTITÀ" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <PieChart />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
          </children>
       </VBox>
    </children>
