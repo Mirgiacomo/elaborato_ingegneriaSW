@@ -4,9 +4,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.models.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class DecessoDaoImpl extends DaoImpl<Decesso> {
@@ -47,18 +45,49 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
         return result;
     }
 
-    public List<Decesso> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
-        CollectionReference collectionReference = firestore.collection(getCollectionName());
-        List<Decesso> result;
+//    public List<Decesso> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
+//        CollectionReference collectionReference = firestore.collection(getCollectionName());
+//        List<Decesso> result;
+//        Query query = collectionReference.whereEqualTo("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId())
+//                .whereEqualTo("year", year);
+//        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+//        result = new ArrayList<>();
+//        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+//            result.add(getItem(document));
+//        }
+//        return result;
+//    }
 
+    public Set<Decesso> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
+        CollectionReference collectionReference = firestore.collection(getCollectionName());
         Query query = collectionReference.whereEqualTo("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId())
                 .whereEqualTo("year", year);
-
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
-        result = new ArrayList<>();
-
+        Set<Decesso> result = new HashSet<>();
         for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
             result.add(getItem(document));
+        }
+        return result;
+    }
+
+    public Set<Decesso> getFilteredItems(Regione regione, int year) throws ExecutionException, InterruptedException {
+        ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
+        Set<Provincia> province = provinciaDao.getProvinceByRegione(regione);
+
+        List<String> filter = new ArrayList<>();
+        Set<Decesso> result = new HashSet<>();
+
+        if (!province.isEmpty()) {
+            for (Provincia provincia: province) {
+                filter.add(ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId());
+            }
+
+            Query query = firestore.collection(getCollectionName()).whereEqualTo("year", year).whereIn("provincia", filter);
+            ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
+            for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+                result.add(getItem(document));
+            }
         }
 
         return result;
