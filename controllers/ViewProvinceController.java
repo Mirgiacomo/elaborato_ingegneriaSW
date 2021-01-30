@@ -81,6 +81,6 @@ public class ViewProvinceController extends ViewController<Provincia> implements
     }
 
     public void exportProvincia(ActionEvent event) throws Exception {
-        Export.exportData(provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName()));
+        Export.exportData(provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName()), null);
     }
 }

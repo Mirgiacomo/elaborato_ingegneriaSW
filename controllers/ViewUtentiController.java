@@ -94,6 +94,6 @@ public class ViewUtentiController extends ViewController<Utente> implements Init
     }
 
     public void exportUtente(ActionEvent event) throws Exception {
-        Export.exportData(utenteDao.getAllItems(UtenteDaoImpl.getCollectionName()));
+        Export.exportData(utenteDao.getAllItems(UtenteDaoImpl.getCollectionName()), null);
     }
 }

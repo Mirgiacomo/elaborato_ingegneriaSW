@@ -4,9 +4,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.models.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaContagiosa> {
@@ -49,15 +47,15 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
         return result;
     }
 
-    public List<DecessoMalattiaContagiosa> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
+    public Set<DecessoMalattiaContagiosa> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
         CollectionReference collectionReference = firestore.collection(getCollectionName());
-        List<DecessoMalattiaContagiosa> result;
+        Set<DecessoMalattiaContagiosa> result;
 
         Query query = collectionReference.whereEqualTo("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId())
                 .whereEqualTo("year", year);
 
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
-        result = new ArrayList<>();
+        result = new HashSet<>();
 
         for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
             result.add(getItem(document));

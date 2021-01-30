@@ -129,7 +129,7 @@ public class EditDecessiProvinceController implements Initializable {
             }
         }
 
-        List<DecessoMalattiaContagiosa> resultDecessiMalattiaContagiosa = decessoMalattiaContagiosaDao.getFilteredItems(provincia, year);
+        Set<DecessoMalattiaContagiosa> resultDecessiMalattiaContagiosa = decessoMalattiaContagiosaDao.getFilteredItems(provincia, year);
 
         if (resultDecessiMalattiaContagiosa != null && !resultDecessiMalattiaContagiosa.isEmpty()) {
             for (Decesso decesso: resultDecessiMalattiaContagiosa) {
