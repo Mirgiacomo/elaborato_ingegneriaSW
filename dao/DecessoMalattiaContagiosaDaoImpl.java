@@ -85,6 +85,21 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
         return result;
     }
 
+    public Set<DecessoMalattiaContagiosa> getFilteredItems(int year) throws ExecutionException, InterruptedException {
+        Query query = firestore.collection(getCollectionName()).whereEqualTo("year", year);
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
+        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+
+        Set<DecessoMalattiaContagiosa> result = new HashSet<>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            result.add(getItem(document));
+        }
+
+        return result;
+    }
+
     @Override
     public DecessoMalattiaContagiosa addItem(DecessoMalattiaContagiosa item) throws ExecutionException, InterruptedException {
         DecessoMalattiaContagiosa result = null;

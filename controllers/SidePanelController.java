@@ -39,6 +39,8 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton reportMalattieContagioseRegioneButton;
     @FXML
+    private JFXButton reportMalattieContagioseNazioneButton;
+    @FXML
     private VBox sidebar;
     @FXML
     private Pane footerPane;
@@ -90,6 +92,10 @@ public class SidePanelController implements Initializable {
     public void reportMalattieContagioseRegioneAction(ActionEvent actionEvent) throws IOException {
         callback.selectView("reportMalattieContagioseRegione.fxml");
     }
+    @FXML
+    public void reportMalattieContagioseNazioneAction(ActionEvent actionEvent) throws IOException {
+        callback.selectView("reportMalattieContagioseNazione.fxml");
+    }
 
 
     @FXML
@@ -129,6 +135,7 @@ public class SidePanelController implements Initializable {
         sidebar.getChildren().remove(footerPane);
         sidebar.getChildren().remove(reportMalattieContagioseProvinciaButton);
         sidebar.getChildren().remove(reportMalattieContagioseRegioneButton);
+        sidebar.getChildren().remove(reportMalattieContagioseNazioneButton);
 
         // Mi prendo il ruole dell'utente loggato e carico le sezioni a lui visibili
         RuoloUtente ruoloUtente = utente.getRuolo();
@@ -166,6 +173,7 @@ public class SidePanelController implements Initializable {
             case RICERCATORE_ANALISTA:
                 sidebar.getChildren().add(reportMalattieContagioseProvinciaButton);
                 sidebar.getChildren().add(reportMalattieContagioseRegioneButton);
+                sidebar.getChildren().add(reportMalattieContagioseNazioneButton);
                 break;
             default:
                 System.out.println("Errore. Riprovare ad accedere!\n");

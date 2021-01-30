@@ -116,6 +116,21 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
         return result;
     }
 
+    public Set<Contagio> getFilteredItems(int year) throws ExecutionException, InterruptedException {
+        Query query = firestore.collection(getCollectionName()).whereEqualTo("year", year);
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
+        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+
+        Set<Contagio> result = new HashSet<>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            result.add(getItem(document));
+        }
+
+        return result;
+    }
+
     @Override
     public Contagio addItem(Contagio item) throws ExecutionException, InterruptedException {
         Contagio result = null;

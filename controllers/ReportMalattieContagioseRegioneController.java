@@ -149,13 +149,13 @@ public class ReportMalattieContagioseRegioneController implements Initializable 
                                     for (MalattiaContagiosa malattiaContagiosa: malattieContagiose) {
                                         HashMap<String, Object> row = new HashMap<>();
                                         row.put("malattia", malattiaContagiosa.getNome());
-                                        row.put("contagi", 0);
-                                        row.put("decessi", 0);
 
+                                        int contContagi = 0;
+                                        int contDecessi = 0;
                                         if (!contagi.isEmpty()) {
                                             for (Contagio contagio: contagi) {
                                                 if (contagio.getMalattiaContagiosa().equals(malattiaContagiosa)) {
-                                                    row.put("contagi", (contagio.getNumeroMedicoBase() + contagio.getNumeroTerapiaIntensiva()));
+                                                    contContagi += (contagio.getNumeroMedicoBase() + contagio.getNumeroTerapiaIntensiva());
                                                 }
                                             }
                                         }
@@ -163,10 +163,12 @@ public class ReportMalattieContagioseRegioneController implements Initializable 
                                         if (!decessi.isEmpty()) {
                                             for (DecessoMalattiaContagiosa decesso: decessi) {
                                                 if (decesso.getMalattiaContagiosa().equals(malattiaContagiosa)) {
-                                                    row.put("decessi", decesso.getNumeroMorti());
+                                                    contDecessi += decesso.getNumeroMorti();
                                                 }
                                             }
                                         }
+                                        row.put("contagi", contContagi);
+                                        row.put("decessi", contDecessi);
                                         data.add(row);
                                     }
                                 }
