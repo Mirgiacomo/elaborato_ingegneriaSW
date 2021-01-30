@@ -70,6 +70,23 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
         return result;
     }
 
+    public Set<Contagio> getFilteredItems(Comune comune, int year) throws ExecutionException, InterruptedException {
+        Set<Contagio> result = new HashSet<>();
+
+        CollectionReference collectionReference = firestore.collection(getCollectionName());
+
+        Query query = collectionReference.whereEqualTo("comune", ComuneDaoImpl.getCollectionName() + "/" + comune.generateId())
+                .whereEqualTo("year", year);
+
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
+        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+            result.add(getItem(document));
+        }
+
+        return result;
+    }
+
     public Set<Contagio> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
         ComuneDaoImpl comuneDao = new ComuneDaoImpl();
         Set<Comune> comuni = comuneDao.getComuniByProvincia(provincia);

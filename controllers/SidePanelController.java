@@ -35,6 +35,8 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton utentiButton;
     @FXML
+    private JFXButton reportContagiComuneButton;
+    @FXML
     private JFXButton reportMalattieContagioseProvinciaButton;
     @FXML
     private JFXButton reportMalattieContagioseRegioneButton;
@@ -85,6 +87,11 @@ public class SidePanelController implements Initializable {
     }
 
     @FXML
+    public void reportContagiComuneAction(ActionEvent actionEvent) throws IOException {
+        callback.selectView("reportContagiComune.fxml");
+    }
+
+    @FXML
     public void reportMalattieContagioseProvinciaAction(ActionEvent event) throws IOException {
         callback.selectView("reportMalattieContagioseProvincia.fxml");
     }
@@ -96,7 +103,6 @@ public class SidePanelController implements Initializable {
     public void reportMalattieContagioseNazioneAction(ActionEvent actionEvent) throws IOException {
         callback.selectView("reportMalattieContagioseNazione.fxml");
     }
-
 
     @FXML
     public void logoutAction(ActionEvent event) throws IOException {
@@ -133,6 +139,7 @@ public class SidePanelController implements Initializable {
         sidebar.getChildren().remove(decessiProvinciaButton);
         sidebar.getChildren().remove(utentiButton);
         sidebar.getChildren().remove(footerPane);
+        sidebar.getChildren().remove(reportContagiComuneButton);
         sidebar.getChildren().remove(reportMalattieContagioseProvinciaButton);
         sidebar.getChildren().remove(reportMalattieContagioseRegioneButton);
         sidebar.getChildren().remove(reportMalattieContagioseNazioneButton);
@@ -142,12 +149,16 @@ public class SidePanelController implements Initializable {
         switch (ruoloUtente){
             // ADMIN ha permessi di visualizzare tutto
             case ADMIN:
+                sidebar.getChildren().add(utentiButton);
                 sidebar.getChildren().add(provinceButton);
                 sidebar.getChildren().add(comuniButton);
                 sidebar.getChildren().add(regioniButton);
                 sidebar.getChildren().add(contagiComuniButton);
                 sidebar.getChildren().add(decessiProvinciaButton);
-                sidebar.getChildren().add(utentiButton);
+                sidebar.getChildren().add(reportContagiComuneButton);
+                sidebar.getChildren().add(reportMalattieContagioseProvinciaButton);
+                sidebar.getChildren().add(reportMalattieContagioseRegioneButton);
+                sidebar.getChildren().add(reportMalattieContagioseNazioneButton);
                 break;
 
             // Il personale dell’ente incaricato del monitoraggio può inserire  nuove regioni, province e comuni
@@ -171,6 +182,7 @@ public class SidePanelController implements Initializable {
 
             // Visualizzazione report
             case RICERCATORE_ANALISTA:
+                sidebar.getChildren().add(reportContagiComuneButton);
                 sidebar.getChildren().add(reportMalattieContagioseProvinciaButton);
                 sidebar.getChildren().add(reportMalattieContagioseRegioneButton);
                 sidebar.getChildren().add(reportMalattieContagioseNazioneButton);
