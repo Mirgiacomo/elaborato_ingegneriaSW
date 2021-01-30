@@ -133,7 +133,6 @@ public class ReportDecessiProvinciaController implements Initializable {
                                 contentBox.getChildren().add(box);
                                 contentBox.getChildren().add(separator);
 
-                                Set<Contagio> contagi = contagioDao.getFilteredItems(provincia, year);
                                 Set<DecessoMalattiaContagiosa> decessiMalattiaContagiosa = decessoMalattiaContagiosaDao.getFilteredItems(provincia, year);
                                 Set<Decesso> decessi = decessoDao.getFilteredItems(provincia, year);
 
