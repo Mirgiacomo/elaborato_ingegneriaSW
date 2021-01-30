@@ -50,8 +50,8 @@ public class ReportDecessiController implements Initializable {
 //    public TableColumn<Object, String> causaCol;
 //    @FXML
 //    public TableColumn<Object, String> qtaCol;
-        @FXML
-        private VBox contentBox;
+    @FXML
+    private VBox contentBox;
 
     DecessoDaoImpl decessoDao = new DecessoDaoImpl();
     DecessoMalattiaContagiosaDaoImpl decessoMalattiaContagiosaDao = new DecessoMalattiaContagiosaDaoImpl();
@@ -76,10 +76,12 @@ public class ReportDecessiController implements Initializable {
             protected Void call() {
                 Platform.runLater(() -> {
                     try {
+                        contentBox.getChildren().clear();
+
                         HBox box = new HBox();
                         VBox.setVgrow(box, Priority.ALWAYS);
 
-                        box.setId("ProvinciaBox");
+                        box.setId("ProvinciaContentBox");
                         box.getChildren().clear();
 
 //                            Text title = new Text();
@@ -96,7 +98,7 @@ public class ReportDecessiController implements Initializable {
                         HBox.setHgrow(tableProv, Priority.SOMETIMES);
 //
                         TableColumn<Map, String> provinciaCol = new TableColumn<>();
-                        provinciaCol.setText("malattia");
+                        provinciaCol.setText("provincia");
                         provinciaCol.setId("provinciaCol");
 //
                         TableColumn<Map, String> causaCol = new TableColumn<>();
@@ -112,6 +114,9 @@ public class ReportDecessiController implements Initializable {
                         tableProv.getColumns().add(causaCol);
                         tableProv.getColumns().add(qtaCol);
 
+                        box.getChildren().add(tableProv);
+                        contentBox.getChildren().add(box);
+
 //                            final CategoryAxis xAxis = new CategoryAxis();
 //                            final NumberAxis yAxis = new NumberAxis();
 //                            LineChart<String, Number> chart = new LineChart<>(xAxis, yAxis);
@@ -126,19 +131,20 @@ public class ReportDecessiController implements Initializable {
 
 //                            contentBox.getChildren().add(title);
 //                            contentBox.getChildren().add(button);
-                            contentBox.getChildren().add(box);
+                            // contentBox.getChildren().add(box);
 //                            contentBox.getChildren().add(separator);
 
                         Set<DecessoMalattiaContagiosa> decessiMalattiaContagiosa = decessoMalattiaContagiosaDao.getFilteredItems(year);
+                        System.out.println(decessiMalattiaContagiosa);
 
                         List<HashMap<String, Object>> data = new ArrayList<>();
 
                         if (!decessiMalattiaContagiosa.isEmpty()) {
                             for (DecessoMalattiaContagiosa decessoMalattiaContagiosa: decessiMalattiaContagiosa) {
                                 HashMap<String, Object> row = new HashMap<>();
-                                row.put("Provincia", decessoMalattiaContagiosa.getProvincia());
-                                row.put("malattia", decessoMalattiaContagiosa.getMalattiaContagiosa().getNome());
-                                row.put("decessi", decessoMalattiaContagiosa.getNumeroMorti());
+                                row.put("provincia", decessoMalattiaContagiosa.getProvincia().getNome());
+                                row.put("causa", decessoMalattiaContagiosa.getMalattiaContagiosa().getNome());
+                                row.put("qta", decessoMalattiaContagiosa.getNumeroMorti());
 
                                 data.add(row);
                             }
