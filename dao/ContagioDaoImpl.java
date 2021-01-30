@@ -6,6 +6,7 @@ import com.google.firebase.database.GenericTypeIndicator;
 import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Contagio;
 import elaborato_ingegneriaSW.models.Provincia;
+import elaborato_ingegneriaSW.models.Regione;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -72,6 +73,29 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
     public Set<Contagio> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
         ComuneDaoImpl comuneDao = new ComuneDaoImpl();
         Set<Comune> comuni = comuneDao.getComuniByProvincia(provincia);
+
+        List<String> filter = new ArrayList<>();
+        Set<Contagio> result = new HashSet<>();
+
+        if (!comuni.isEmpty()) {
+            for (Comune comune : comuni) {
+                filter.add(ComuneDaoImpl.getCollectionName() + "/" + comune.generateId());
+            }
+
+            Query query = firestore.collection(getCollectionName()).whereEqualTo("year", year).whereIn("comune", filter);
+            ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
+            for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+                result.add(getItem(document));
+            }
+        }
+
+        return result;
+    }
+
+    public Set<Contagio> getFilteredItems(Regione regione, int year) throws ExecutionException, InterruptedException {
+        ComuneDaoImpl comuneDao = new ComuneDaoImpl();
+        Set<Comune> comuni = comuneDao.getComuniByRegione(regione);
 
         List<String> filter = new ArrayList<>();
         Set<Contagio> result = new HashSet<>();

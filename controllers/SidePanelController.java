@@ -35,7 +35,9 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton utentiButton;
     @FXML
-    private JFXButton reportMalattieContagioseButton;
+    private JFXButton reportMalattieContagioseProvinciaButton;
+    @FXML
+    private JFXButton reportMalattieContagioseRegioneButton;
     @FXML
     private VBox sidebar;
     @FXML
@@ -81,8 +83,12 @@ public class SidePanelController implements Initializable {
     }
 
     @FXML
-    public void reportMalattieContagioseAction(ActionEvent event) throws IOException {
-        callback.selectView("reportMalattieContagiose.fxml");
+    public void reportMalattieContagioseProvinciaAction(ActionEvent event) throws IOException {
+        callback.selectView("reportMalattieContagioseProvincia.fxml");
+    }
+    @FXML
+    public void reportMalattieContagioseRegioneAction(ActionEvent actionEvent) throws IOException {
+        callback.selectView("reportMalattieContagioseRegione.fxml");
     }
 
 
@@ -121,7 +127,8 @@ public class SidePanelController implements Initializable {
         sidebar.getChildren().remove(decessiProvinciaButton);
         sidebar.getChildren().remove(utentiButton);
         sidebar.getChildren().remove(footerPane);
-        sidebar.getChildren().remove(reportMalattieContagioseButton);
+        sidebar.getChildren().remove(reportMalattieContagioseProvinciaButton);
+        sidebar.getChildren().remove(reportMalattieContagioseRegioneButton);
 
         // Mi prendo il ruole dell'utente loggato e carico le sezioni a lui visibili
         RuoloUtente ruoloUtente = utente.getRuolo();
@@ -157,7 +164,8 @@ public class SidePanelController implements Initializable {
 
             // Visualizzazione report
             case RICERCATORE_ANALISTA:
-                sidebar.getChildren().add(reportMalattieContagioseButton);
+                sidebar.getChildren().add(reportMalattieContagioseProvinciaButton);
+                sidebar.getChildren().add(reportMalattieContagioseRegioneButton);
                 break;
             default:
                 System.out.println("Errore. Riprovare ad accedere!\n");

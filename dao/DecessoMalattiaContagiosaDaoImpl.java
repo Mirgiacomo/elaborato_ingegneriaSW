@@ -64,6 +64,27 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
         return result;
     }
 
+    public Set<DecessoMalattiaContagiosa> getFilteredItems(Regione regione, int year) throws ExecutionException, InterruptedException {
+        ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
+        Set<Provincia> province = provinciaDao.getProvinceByRegione(regione);
+
+        List<String> filter = new ArrayList<>();
+        Set<DecessoMalattiaContagiosa> result = new HashSet<>();
+        if (!province.isEmpty()) {
+            for (Provincia provincia : province) {
+                filter.add(ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId());
+            }
+
+            Query query = firestore.collection(getCollectionName()).whereEqualTo("year", year).whereIn("provincia", filter);
+            ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
+            for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+                result.add(getItem(document));
+            }
+        }
+        return result;
+    }
+
     @Override
     public DecessoMalattiaContagiosa addItem(DecessoMalattiaContagiosa item) throws ExecutionException, InterruptedException {
         DecessoMalattiaContagiosa result = null;

@@ -1,14 +1,8 @@
 package elaborato_ingegneriaSW.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import elaborato_ingegneriaSW.dao.ContagioDaoImpl;
-import elaborato_ingegneriaSW.dao.DecessoMalattiaContagiosaDaoImpl;
-import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
-import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
-import elaborato_ingegneriaSW.models.Contagio;
-import elaborato_ingegneriaSW.models.DecessoMalattiaContagiosa;
-import elaborato_ingegneriaSW.models.MalattiaContagiosa;
-import elaborato_ingegneriaSW.models.Provincia;
+import elaborato_ingegneriaSW.dao.*;
+import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.Export;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -26,7 +20,6 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -41,9 +34,9 @@ import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
-public class ReportMalattieContagioseController implements Initializable {
+public class ReportMalattieContagioseRegioneController implements Initializable {
     @FXML
-    private CheckComboBox<Provincia> provinceCheckComboBox;
+    private CheckComboBox<Regione> regioniCheckComboBox;
     @FXML
     private SearchableComboBox<Integer> yearSearchableComboBox;
     @FXML
@@ -51,7 +44,7 @@ public class ReportMalattieContagioseController implements Initializable {
     @FXML
     private VBox contentBox;
 
-    ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
+    RegioneDaoImpl regioneDao = new RegioneDaoImpl();
     ContagioDaoImpl contagioDao = new ContagioDaoImpl();
     DecessoMalattiaContagiosaDaoImpl decessoMalattiaContagiosaDao = new DecessoMalattiaContagiosaDaoImpl();
     MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
@@ -61,10 +54,10 @@ public class ReportMalattieContagioseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            Set<Provincia> province = provinciaDao.getAllItems(ProvinciaDaoImpl.getCollectionName());
+            Set<Regione> regioni = regioneDao.getAllItems(RegioneDaoImpl.getCollectionName());
 
-            for (Provincia provincia : province) {
-                provinceCheckComboBox.getItems().add(provincia);
+            for (Regione regione : regioni) {
+                regioniCheckComboBox.getItems().add(regione);
             }
 
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -79,15 +72,15 @@ public class ReportMalattieContagioseController implements Initializable {
 
     public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
         // TODO: check filtri
-        ObservableList<Provincia> province = provinceCheckComboBox.getCheckModel().getCheckedItems();
+        ObservableList<Regione> regioni = regioniCheckComboBox.getCheckModel().getCheckedItems();
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
 
         Set<MalattiaContagiosa> malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
 
-        if (province != null && !province.isEmpty()) {
+        if (regioni != null && !regioni.isEmpty()) {
             contentBox.getChildren().clear();
 
-            for (Provincia provincia : province) {
+            for (Regione regione : regioni) {
                 Task<Void> task = new Task<>() {
 
                     @Override
@@ -97,13 +90,13 @@ public class ReportMalattieContagioseController implements Initializable {
                                 HBox box = new HBox();
                                 VBox.setVgrow(box, Priority.ALWAYS);
 
-                                box.setId(provincia.getNome() + "Box");
+                                box.setId(regione.getNome() + "Box");
                                 box.getChildren().clear();
 
                                 Text title = new Text();
                                 title.setFont(Font.font("Open Sans Semibold", FontWeight.SEMI_BOLD, 25));
-                                title.setId("title" + provincia.getNome());
-                                title.setText(provincia.getNome());
+                                title.setId("title" + regione.getNome());
+                                title.setText(regione.getNome());
 
                                 JFXButton button = new JFXButton();
                                 button.setText("EXPORT");
@@ -115,15 +108,15 @@ public class ReportMalattieContagioseController implements Initializable {
 
                                 TableColumn<Map, String> malattiaContagiosaCol = new TableColumn<>();
                                 malattiaContagiosaCol.setText("malattia");
-                                malattiaContagiosaCol.setId("malattiaContagiosaCol" + provincia.getNome());
+                                malattiaContagiosaCol.setId("malattiaContagiosaCol" + regione.getNome());
 
                                 TableColumn<Map, Integer> contagiCol = new TableColumn<>();
                                 contagiCol.setText("contagi");
-                                contagiCol.setId("contagiCol" + provincia.getNome());
+                                contagiCol.setId("contagiCol" + regione.getNome());
 
                                 TableColumn<Map, Integer> decessiCol = new TableColumn<>();
                                 decessiCol.setText("decessi");
-                                decessiCol.setId("decessiCol" + provincia.getNome());
+                                decessiCol.setId("decessiCol" + regione.getNome());
 
                                 table.getColumns().clear();
                                 table.getColumns().add(malattiaContagiosaCol);
@@ -133,22 +126,22 @@ public class ReportMalattieContagioseController implements Initializable {
                                 final CategoryAxis xAxis = new CategoryAxis();
                                 final NumberAxis yAxis = new NumberAxis();
                                 LineChart<String, Number> chart = new LineChart<>(xAxis, yAxis);
-                                chart.setId("chart" + provincia.getNome());
+                                chart.setId("chart" + regione.getNome());
                                 HBox.setHgrow(chart, Priority.SOMETIMES);
 
                                 box.getChildren().add(table);
                                 box.getChildren().add(chart);
 
                                 Separator separator = new Separator();
-                                separator.setId("separator" + provincia.getNome());
+                                separator.setId("separator" + regione.getNome());
 
                                 contentBox.getChildren().add(title);
                                 contentBox.getChildren().add(button);
                                 contentBox.getChildren().add(box);
                                 contentBox.getChildren().add(separator);
 
-                                Set<Contagio> contagi = contagioDao.getFilteredItems(provincia, year);
-                                Set<DecessoMalattiaContagiosa> decessi = decessoMalattiaContagiosaDao.getFilteredItems(provincia, year);
+                                Set<Contagio> contagi = contagioDao.getFilteredItems(regione, year);
+                                Set<DecessoMalattiaContagiosa> decessi = decessoMalattiaContagiosaDao.getFilteredItems(regione, year);
 
                                 List<HashMap<String, Object>> data = new ArrayList<>();
 
