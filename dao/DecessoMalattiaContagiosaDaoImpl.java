@@ -4,9 +4,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.models.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaContagiosa> {
@@ -65,6 +63,24 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
 
         return result;
     }
+
+    public Set<DecessoMalattiaContagiosa> getFilteredItems(int year) throws ExecutionException, InterruptedException {
+        CollectionReference collectionReference = firestore.collection(getCollectionName());
+        Set<DecessoMalattiaContagiosa> result;
+
+        Query query = collectionReference.whereEqualTo("year", year);
+
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+        result = new HashSet<>();
+
+        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
+            result.add(getItem(document));
+        }
+
+        System.out.println(result.stream().iterator().next().getNumeroMorti());
+        return result;
+    }
+
 
     @Override
     public DecessoMalattiaContagiosa addItem(DecessoMalattiaContagiosa item) throws ExecutionException, InterruptedException {

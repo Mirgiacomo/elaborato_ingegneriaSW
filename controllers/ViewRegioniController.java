@@ -56,7 +56,6 @@ public class ViewRegioniController extends ViewController<Regione> implements In
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
                     capoluogoCol.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
-
                     tableRegioni.setItems(tableData);
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
