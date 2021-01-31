@@ -90,6 +90,13 @@ public class Export {
                                         Map<String, Object> item = (Map<String, Object>) obj;
                                         writer.write(String.format(formatStr, item.get("malattia"), item.get("contagi"), item.get("decessi")));
                                     }
+                                } else if (next != null && report != null && report.equals("Decessi")) {
+                                    String formatStr = "%-16s %-16s %-16s\n";
+                                    writer.write(String.format(formatStr, "Causa", "Decessi"));
+                                    for (Object obj : items) {
+                                        Map<String, Object> item = (Map<String, Object>) obj;
+                                        writer.write(String.format(formatStr, item.get("causa"), item.get("decessi"), item.get("decessi")));
+                                    }
                                 }
                                 break;
                             case "csv":
@@ -134,6 +141,15 @@ public class Export {
                                     for (Object obj : items) {
                                         Map<String, Object> item = (Map<String, Object>) obj;
                                         String text = item.get("malattia") + ";" + item.get("contagi") + ";" + item.get("decessi") + ";\n";
+                                        writer.write(text);
+                                    }
+                                } else if (next != null && report != null && report.equals("Decessi")) {
+                                    String intestazione = "Causa;Decessi\n";
+                                    writer.write(intestazione);
+                                    for (Object obj : items) {
+                                        System.out.println(items.toString());
+                                        Map<String, Object> item = (Map<String, Object>) obj;
+                                        String text = item.get("causa") + ";" + item.get("decessi") + ";\n";
                                         writer.write(text);
                                     }
                                 }
@@ -270,6 +286,26 @@ public class Export {
                                         row.createCell(0).setCellValue((String) item.get("malattia"));
                                         row.createCell(1).setCellValue((Integer) item.get("contagi"));
                                         row.createCell(2).setCellValue((Integer) item.get("decessi"));
+                                    }
+                                } else if (next != null && report != null && report.equals("Decessi")) {
+                                    Sheet sheet = workbook.createSheet("Decessi");
+                                    String[] intestazione = {"Causa", "Decessi"};
+
+                                    // Creo una riga
+                                    Row headerRow = sheet.createRow(0);
+
+                                    // Creo le celle
+                                    for (int i = 0; i < intestazione.length; i++) {
+                                        Cell cell = headerRow.createCell(i);
+                                        cell.setCellValue(intestazione[i]);
+                                    }
+                                    int rowNum = 1;
+                                    for (Object obj : items) {
+                                        Map<String, Object> item = (Map<String, Object>) obj;
+                                        Row row = sheet.createRow(rowNum++);
+
+                                        row.createCell(0).setCellValue((String) item.get("causa"));
+                                        row.createCell(1).setCellValue((Integer) item.get("decessi"));
                                     }
                                 }
                                 // Scrivo l'output sul file

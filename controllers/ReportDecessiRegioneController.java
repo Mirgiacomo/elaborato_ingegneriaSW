@@ -195,7 +195,7 @@ public class ReportDecessiRegioneController implements Initializable {
 
                                         }
                                         try {
-                                            Export.exportData(rows, "DecessiRegione");
+                                            Export.exportData(rows, "Decessi");
                                         } catch (Exception exception) {
                                             exception.printStackTrace();
                                         }

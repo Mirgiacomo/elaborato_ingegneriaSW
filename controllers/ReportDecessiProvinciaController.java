@@ -193,7 +193,7 @@ public class ReportDecessiProvinciaController implements Initializable {
 
                                         }
                                         try {
-                                            Export.exportData(rows, "DecessiProvincia");
+                                            Export.exportData(rows, "Decessi");
                                         } catch (Exception exception) {
                                             exception.printStackTrace();
                                         }
