@@ -104,7 +104,10 @@ public class ReportDecessiProvinciaController implements Initializable {
                                 JFXButton buttonImg = new JFXButton();
                                 buttonImg.setText("EXPORT GRAFICO");
                                 buttonImg.setTextFill(Color.WHITE);
-                                buttonImg.setStyle("-fx-background-color: black; -fx-font-size: 10px;");
+                                buttonImg.setStyle("-fx-background-color: black; " +
+                                        "-fx-font-size: 10px;" +
+                                        "-fx-border-insets: 5px;" +
+                                        "-fx-background-insets: 5px;");
 
                                 TableView<Map> table = new TableView<>();
                                 HBox.setHgrow(table, Priority.SOMETIMES);
@@ -136,10 +139,8 @@ public class ReportDecessiProvinciaController implements Initializable {
                                 separator.setId("separator" + provincia.getNome());
 
                                 contentBox.getChildren().add(title);
-                                contentBox.getChildren().addAll(button);
+                                contentBox.getChildren().add(button);
                                 contentBox.getChildren().add(box);
-                                contentBox.getChildren().addAll(buttonImg);
-                                contentBox.getChildren().add(separator);
 
                                 Set<DecessoMalattiaContagiosa> decessiMalattiaContagiosa = decessoMalattiaContagiosaDao.getFilteredItems(provincia, year);
                                 Set<Decesso> decessi = decessoDao.getFilteredItems(provincia, year);
@@ -185,6 +186,12 @@ public class ReportDecessiProvinciaController implements Initializable {
                                 decessiCol.setCellValueFactory(new MapValueFactory<>("decessi"));
 
                                 table.setItems(tableData);
+
+                                // Lo inserisco dopo perchè non voglio che venga mostrato se non c'è il grafico
+                                if(!pieChart.getData().isEmpty()){
+                                    contentBox.getChildren().addAll(buttonImg);
+                                }
+                                contentBox.getChildren().add(separator);
 
                                 // action event
                                 EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
