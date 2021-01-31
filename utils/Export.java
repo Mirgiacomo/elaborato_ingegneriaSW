@@ -105,7 +105,7 @@ public class Export {
                                         writer.write(String.format(formatStr, item.get("malattia"), item.get("contagi")));
                                     }
                                 } else if (next != null && report != null && report.equals("Decessi")) {
-                                    String formatStr = "%-16s %-16s %-16s\n";
+                                    String formatStr = "%-16s %-16s\n";
                                     writer.write(String.format(formatStr, "Causa", "Decessi"));
                                     for (Object obj : items) {
                                         Map<String, Object> item = (Map<String, Object>) obj;
