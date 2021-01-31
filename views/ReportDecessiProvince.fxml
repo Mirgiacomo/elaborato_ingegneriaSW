@@ -23,7 +23,7 @@
    <children>
       <VBox alignment="TOP_CENTER" styleClass="anchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REPORT MALATTIE CONTAGIOSE PER PROVINCIA" textAlignment="CENTER" wrappingWidth="808.7358093261719">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REPORT DECESSI PER PROVINCIA" textAlignment="CENTER" wrappingWidth="808.7358093261719">
                <font>
                   <Font name="Open Sans Semibold" size="33.0" />
                </font>

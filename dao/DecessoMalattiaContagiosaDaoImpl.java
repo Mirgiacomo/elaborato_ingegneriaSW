@@ -100,7 +100,6 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
                 result.add(getItem(document));
             }
         }
-
         return result;
     }
 
