@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.dao.*;
 import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.Export;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,10 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.*;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -44,7 +42,6 @@ public class ReportDecessiProvinciaController implements Initializable {
     private VBox contentBox;
 
     ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
-    ContagioDaoImpl contagioDao = new ContagioDaoImpl();
     DecessoMalattiaContagiosaDaoImpl decessoMalattiaContagiosaDao = new DecessoMalattiaContagiosaDaoImpl();
     MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
     DecessoDaoImpl decessoDao = new DecessoDaoImpl();
@@ -71,8 +68,11 @@ public class ReportDecessiProvinciaController implements Initializable {
     }
 
     public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
-        // TODO: check filtri
         ObservableList<Provincia> province = provinceCheckComboBox.getCheckModel().getCheckedItems();
+        if(yearSearchableComboBox.getSelectionModel().isEmpty()){
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE FILTRO!", "Anno inserito nel filtro non valido!", null, actionEvent);
+            return;
+        }
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
 
         if (province != null && !province.isEmpty()) {

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.dao.*;
 import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.Export;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -62,7 +64,10 @@ public class ReportDecessiNazioneController implements Initializable {
     }
 
     public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
-        // TODO: check filtri
+        if(yearSearchableComboBox.getSelectionModel().isEmpty()){
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE FILTRO!", "Anno inserito nel filtro non valido!", null, actionEvent);
+            return;
+        }
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
         contentBox.getChildren().clear();
 

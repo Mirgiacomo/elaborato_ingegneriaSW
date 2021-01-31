@@ -5,6 +5,7 @@ import com.sun.xml.bind.v2.model.core.RegistryInfo;
 import elaborato_ingegneriaSW.dao.*;
 import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.Export;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -71,8 +73,12 @@ public class ReportDecessiRegioneController implements Initializable {
     }
 
     public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
-        // TODO: check filtri
+
         ObservableList<Regione> regioni = regioniCheckComboBox.getCheckModel().getCheckedItems();
+        if(yearSearchableComboBox.getSelectionModel().isEmpty()){
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE FILTRO!", "Anno inserito nel filtro non valido!", null, actionEvent);
+            return;
+        }
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
 
         if (regioni != null && !regioni.isEmpty()) {
