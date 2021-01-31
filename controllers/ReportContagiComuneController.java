@@ -173,7 +173,7 @@ public class ReportContagiComuneController implements Initializable {
 
                                         }
                                         try {
-                                            Export.exportData(rows, "MalattieContagiose");
+                                            Export.exportData(rows, "ContagiComune");
                                         } catch (Exception exception) {
                                             exception.printStackTrace();
                                         }
