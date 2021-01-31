@@ -6,7 +6,6 @@ import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,7 +50,7 @@ public class ViewProvinceController extends ViewController<Provincia> implements
                     Callback<TableColumn<Provincia, String>, TableCell<Provincia, String>> cellFactory = param -> new EditButtonCell<>(tableProvince, ViewProvinceController.this, "EditProvincia.fxml");
 
                     actionCol.setCellFactory(cellFactory);
-                    actionCol.prefWidthProperty().bind(tableProvince.widthProperty().multiply(0.055));
+                    actionCol.prefWidthProperty().bind(tableProvince.widthProperty().multiply(0.075));
                     actionCol.setResizable(false);
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));
