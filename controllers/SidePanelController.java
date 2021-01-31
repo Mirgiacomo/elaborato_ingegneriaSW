@@ -35,7 +35,13 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton utentiButton;
     @FXML
-    private JFXButton reportMalattieContagioseButton;
+    private JFXButton reportContagiComuneButton;
+    @FXML
+    private JFXButton reportMalattieContagioseProvinciaButton;
+    @FXML
+    private JFXButton reportMalattieContagioseRegioneButton;
+    @FXML
+    private JFXButton reportMalattieContagioseNazioneButton;
     @FXML
     private JFXButton reportDecessiProvinceButton;
     @FXML
@@ -87,10 +93,22 @@ public class SidePanelController implements Initializable {
     }
 
     @FXML
-    public void reportMalattieContagioseAction(ActionEvent event) throws IOException {
-        callback.selectView("reportMalattieContagiose.fxml");
+    public void reportContagiComuneAction(ActionEvent actionEvent) throws IOException {
+        callback.selectView("reportContagiComune.fxml");
     }
 
+    @FXML
+    public void reportMalattieContagioseProvinciaAction(ActionEvent event) throws IOException {
+        callback.selectView("reportMalattieContagioseProvincia.fxml");
+    }
+    @FXML
+    public void reportMalattieContagioseRegioneAction(ActionEvent actionEvent) throws IOException {
+        callback.selectView("reportMalattieContagioseRegione.fxml");
+    }
+    @FXML
+    public void reportMalattieContagioseNazioneAction(ActionEvent actionEvent) throws IOException {
+        callback.selectView("reportMalattieContagioseNazione.fxml");
+    }
     @FXML
     public void reportDecessiProvinceAction(ActionEvent event) throws IOException {
         callback.selectView("reportDecessiProvince.fxml");
@@ -105,7 +123,6 @@ public class SidePanelController implements Initializable {
     public void reportDecessiNazioniAction(ActionEvent event) throws IOException {
         callback.selectView("reportDecessiNazioni.fxml");
     }
-
 
     @FXML
     public void logoutAction(ActionEvent event) throws IOException {
@@ -142,7 +159,10 @@ public class SidePanelController implements Initializable {
         sidebar.getChildren().remove(decessiProvinciaButton);
         sidebar.getChildren().remove(utentiButton);
         sidebar.getChildren().remove(footerPane);
-        sidebar.getChildren().remove(reportMalattieContagioseButton);
+        sidebar.getChildren().remove(reportContagiComuneButton);
+        sidebar.getChildren().remove(reportMalattieContagioseProvinciaButton);
+        sidebar.getChildren().remove(reportMalattieContagioseRegioneButton);
+        sidebar.getChildren().remove(reportMalattieContagioseNazioneButton);
         sidebar.getChildren().remove(reportDecessiProvinceButton);
         sidebar.getChildren().remove(reportDecessiRegioniButton);
         sidebar.getChildren().remove(reportDecessiNazioniButton);
@@ -152,11 +172,16 @@ public class SidePanelController implements Initializable {
         switch (ruoloUtente){
             // ADMIN ha permessi di visualizzare tutto
             case ADMIN:
+                sidebar.getChildren().add(utentiButton);
                 sidebar.getChildren().add(provinceButton);
                 sidebar.getChildren().add(comuniButton);
                 sidebar.getChildren().add(regioniButton);
                 sidebar.getChildren().add(contagiComuniButton);
                 sidebar.getChildren().add(decessiProvinciaButton);
+                sidebar.getChildren().add(reportContagiComuneButton);
+                sidebar.getChildren().add(reportMalattieContagioseProvinciaButton);
+                sidebar.getChildren().add(reportMalattieContagioseRegioneButton);
+                sidebar.getChildren().add(reportMalattieContagioseNazioneButton);
                 sidebar.getChildren().add(utentiButton);
                 sidebar.getChildren().add(reportDecessiProvinceButton);
                 sidebar.getChildren().add(reportDecessiRegioniButton);
@@ -184,7 +209,10 @@ public class SidePanelController implements Initializable {
 
             // Visualizzazione report
             case RICERCATORE_ANALISTA:
-                sidebar.getChildren().add(reportMalattieContagioseButton);
+                sidebar.getChildren().add(reportContagiComuneButton);
+                sidebar.getChildren().add(reportMalattieContagioseProvinciaButton);
+                sidebar.getChildren().add(reportMalattieContagioseRegioneButton);
+                sidebar.getChildren().add(reportMalattieContagioseNazioneButton);
                 break;
             default:
                 System.out.println("Errore. Riprovare ad accedere!\n");

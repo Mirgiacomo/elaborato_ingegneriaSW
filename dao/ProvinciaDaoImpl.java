@@ -2,6 +2,7 @@ package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
+import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Regione;
 
@@ -41,6 +42,20 @@ public class ProvinciaDaoImpl extends DaoImpl<Provincia> {
             result.setNome(document.get("nome", String.class));
             result.setSuperficie(document.get("superficie", Double.class));
             result.setRegione(regioneDao.getItem(regioneDocument.getId()));
+        }
+
+        return result;
+    }
+
+    public Set<Provincia> getProvinceByRegione(Regione regione) throws ExecutionException, InterruptedException {
+        ApiFuture<QuerySnapshot> querySnapshot = firestore.collection(collectionName).
+                whereEqualTo("regione", RegioneDaoImpl.getCollectionName() + "/" + regione.generateId()).get();
+        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+
+        Set<Provincia> result = new HashSet<>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            result.add(getItem(document));
         }
 
         return result;

@@ -2,10 +2,7 @@ package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
-import elaborato_ingegneriaSW.models.Comune;
-
-import elaborato_ingegneriaSW.models.Provincia;
-import elaborato_ingegneriaSW.models.Territorio;
+import elaborato_ingegneriaSW.models.*;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -60,6 +57,24 @@ public class ComuneDaoImpl extends DaoImpl<Comune> {
             result.add(getItem(document));
         }
 
+        return result;
+    }
+
+    public Set<Comune> getComuniByRegione(Regione regione) throws ExecutionException, InterruptedException {
+        ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
+        Set<Provincia> province = provinciaDao.getProvinceByRegione(regione);
+
+        Set<Comune> comuni;
+        Set<Comune> result = new HashSet<>();
+
+        if (!province.isEmpty()) {
+            for (Provincia provincia: province) {
+                comuni = getComuniByProvincia(provincia);
+                if (!comuni.isEmpty()) {
+                    result.addAll(comuni);
+                }
+            }
+        }
         return result;
     }
 

@@ -64,32 +64,14 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
         return result;
     }
 
-//    public Set<DecessoMalattiaContagiosa> getFilteredItems(Regione regione, int year) throws ExecutionException, InterruptedException {
-//        CollectionReference collectionReference = firestore.collection(getCollectionName());
-//        Set<DecessoMalattiaContagiosa> result;
-//
-//        Query query = collectionReference.whereEqualTo("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId())
-//                .whereEqualTo("year", year);
-//
-//        ApiFuture<QuerySnapshot> querySnapshot = query.get();
-//        result = new HashSet<>();
-//
-//        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
-//            result.add(getItem(document));
-//        }
-//
-//        return result;
-//    }
-
     public Set<DecessoMalattiaContagiosa> getFilteredItems(Regione regione, int year) throws ExecutionException, InterruptedException {
         ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
         Set<Provincia> province = provinciaDao.getProvinceByRegione(regione);
 
         List<String> filter = new ArrayList<>();
         Set<DecessoMalattiaContagiosa> result = new HashSet<>();
-
         if (!province.isEmpty()) {
-            for (Provincia provincia: province) {
+            for (Provincia provincia : province) {
                 filter.add(ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId());
             }
 
@@ -100,6 +82,21 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
                 result.add(getItem(document));
             }
         }
+        return result;
+    }
+
+    public Set<DecessoMalattiaContagiosa> getFilteredItems(int year) throws ExecutionException, InterruptedException {
+        Query query = firestore.collection(getCollectionName()).whereEqualTo("year", year);
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
+        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+
+        Set<DecessoMalattiaContagiosa> result = new HashSet<>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            result.add(getItem(document));
+        }
+
         return result;
     }
 
