@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXScrollPane;
 import elaborato_ingegneriaSW.models.RuoloUtente;
 import elaborato_ingegneriaSW.models.Utente;
 import elaborato_ingegneriaSW.utils.SelectViewCallback;
@@ -49,9 +50,9 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton reportDecessiNazioniButton;
     @FXML
-    private VBox sidebar;
+    private VBox sidebarBox;
     @FXML
-    private Pane footerPane;
+    private VBox sidebar;
 
     private SelectViewCallback callback;
 
@@ -158,7 +159,6 @@ public class SidePanelController implements Initializable {
         sidebar.getChildren().remove(contagiComuniButton);
         sidebar.getChildren().remove(decessiProvinciaButton);
         sidebar.getChildren().remove(utentiButton);
-        sidebar.getChildren().remove(footerPane);
         sidebar.getChildren().remove(reportContagiComuneButton);
         sidebar.getChildren().remove(reportMalattieContagioseProvinciaButton);
         sidebar.getChildren().remove(reportMalattieContagioseRegioneButton);
@@ -220,7 +220,6 @@ public class SidePanelController implements Initializable {
                 System.out.println("Errore. Riprovare ad accedere!\n");
                 break;
         }
-        sidebar.getChildren().add(footerPane);
     }
 
     public void infoAction(ActionEvent event) throws IOException {
