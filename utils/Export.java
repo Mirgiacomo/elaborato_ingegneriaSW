@@ -4,16 +4,23 @@ import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Regione;
 import elaborato_ingegneriaSW.models.Utente;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 
+import javax.imageio.ImageIO;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 public class Export {
 
@@ -359,6 +366,31 @@ public class Export {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
+    }
+
+    public static void exportImg(PieChart pieChart, String titolo) {
+        try {
+            FileChooser fileChooser = new FileChooser();
+
+            FileChooser.ExtensionFilter PNGExtFilter = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+            fileChooser.getExtensionFilters().add(PNGExtFilter);
+
+            // Mostro la finestra di salvataggio
+            Window primaryStage = null;
+            File file = fileChooser.showSaveDialog(primaryStage);
+
+            if (file != null) {
+                pieChart.setTitle(titolo);
+                WritableImage image = pieChart.snapshot(new SnapshotParameters(), null);
+                try {
+                    ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
