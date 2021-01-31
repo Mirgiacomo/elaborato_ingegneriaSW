@@ -119,6 +119,7 @@ public class ReportDecessiRegioneController implements Initializable {
                                 PieChart pieChart = new PieChart();
                                 pieChart.setId("pie" + regione.getNome());
                                 pieChart.setLabelLineLength(2);
+                                pieChart.setLabelsVisible(false);
                                 pieChart.setLegendSide(Side.RIGHT);
                                 HBox.setHgrow(pieChart, Priority.SOMETIMES);
 
@@ -194,7 +195,7 @@ public class ReportDecessiRegioneController implements Initializable {
 
                                         }
                                         try {
-                                            Export.exportData(rows, "DecessiRegione");
+                                            Export.exportData(rows, "Decessi");
                                         } catch (Exception exception) {
                                             exception.printStackTrace();
                                         }

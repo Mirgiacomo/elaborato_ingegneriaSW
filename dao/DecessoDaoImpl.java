@@ -93,6 +93,21 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
         return result;
     }
 
+    public Set<Decesso> getFilteredItems(int year) throws ExecutionException, InterruptedException {
+        Query query = firestore.collection(getCollectionName()).whereEqualTo("year", year);
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+
+        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+
+        Set<Decesso> result = new HashSet<>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            result.add(getItem(document));
+        }
+
+        return result;
+    }
+
     @Override
     public Decesso addItem(Decesso item) throws ExecutionException, InterruptedException {
         Decesso result = null;

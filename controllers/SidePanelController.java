@@ -48,7 +48,7 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton reportDecessiRegioniButton;
     @FXML
-    private JFXButton reportDecessiNazioniButton;
+    private JFXButton reportDecessiNazioneButton;
     @FXML
     private VBox sidebarBox;
     @FXML
@@ -121,8 +121,8 @@ public class SidePanelController implements Initializable {
     }
 
     @FXML
-    public void reportDecessiNazioniAction(ActionEvent event) throws IOException {
-        callback.selectView("reportDecessiNazioni.fxml");
+    public void reportDecessiNazioneAction(ActionEvent event) throws IOException {
+        callback.selectView("reportDecessiNazione.fxml");
     }
 
     @FXML
@@ -165,7 +165,7 @@ public class SidePanelController implements Initializable {
         sidebar.getChildren().remove(reportMalattieContagioseNazioneButton);
         sidebar.getChildren().remove(reportDecessiProvinceButton);
         sidebar.getChildren().remove(reportDecessiRegioniButton);
-        sidebar.getChildren().remove(reportDecessiNazioniButton);
+        sidebar.getChildren().remove(reportDecessiNazioneButton);
 
         // Mi prendo il ruole dell'utente loggato e carico le sezioni a lui visibili
         RuoloUtente ruoloUtente = utente.getRuolo();
@@ -184,7 +184,7 @@ public class SidePanelController implements Initializable {
                 sidebar.getChildren().add(reportMalattieContagioseNazioneButton);
                 sidebar.getChildren().add(reportDecessiProvinceButton);
                 sidebar.getChildren().add(reportDecessiRegioniButton);
-                sidebar.getChildren().add(reportDecessiNazioniButton);
+                sidebar.getChildren().add(reportDecessiNazioneButton);
                 break;
 
             // Il personale dell’ente incaricato del monitoraggio può inserire  nuove regioni, province e comuni
@@ -214,7 +214,7 @@ public class SidePanelController implements Initializable {
                 sidebar.getChildren().add(reportMalattieContagioseNazioneButton);
                 sidebar.getChildren().add(reportDecessiProvinceButton);
                 sidebar.getChildren().add(reportDecessiRegioniButton);
-                sidebar.getChildren().add(reportDecessiNazioniButton);
+                sidebar.getChildren().add(reportDecessiNazioneButton);
                 break;
             default:
                 System.out.println("Errore. Riprovare ad accedere!\n");
