@@ -37,6 +37,12 @@ public class SidePanelController implements Initializable {
     @FXML
     private JFXButton reportMalattieContagioseButton;
     @FXML
+    private JFXButton reportDecessiProvinceButton;
+    @FXML
+    private JFXButton reportDecessiRegioniButton;
+    @FXML
+    private JFXButton reportDecessiNazioniButton;
+    @FXML
     private VBox sidebar;
     @FXML
     private Pane footerPane;
@@ -85,6 +91,21 @@ public class SidePanelController implements Initializable {
         callback.selectView("reportMalattieContagiose.fxml");
     }
 
+    @FXML
+    public void reportDecessiProvinceAction(ActionEvent event) throws IOException {
+        callback.selectView("reportDecessiProvince.fxml");
+    }
+
+    @FXML
+    public void reportDecessiRegioniAction(ActionEvent event) throws IOException {
+        callback.selectView("reportDecessiRegioni.fxml");
+    }
+
+    @FXML
+    public void reportDecessiNazioniAction(ActionEvent event) throws IOException {
+        callback.selectView("reportDecessiNazioni.fxml");
+    }
+
 
     @FXML
     public void logoutAction(ActionEvent event) throws IOException {
@@ -122,6 +143,9 @@ public class SidePanelController implements Initializable {
         sidebar.getChildren().remove(utentiButton);
         sidebar.getChildren().remove(footerPane);
         sidebar.getChildren().remove(reportMalattieContagioseButton);
+        sidebar.getChildren().remove(reportDecessiProvinceButton);
+        sidebar.getChildren().remove(reportDecessiRegioniButton);
+        sidebar.getChildren().remove(reportDecessiNazioniButton);
 
         // Mi prendo il ruole dell'utente loggato e carico le sezioni a lui visibili
         RuoloUtente ruoloUtente = utente.getRuolo();
@@ -134,6 +158,9 @@ public class SidePanelController implements Initializable {
                 sidebar.getChildren().add(contagiComuniButton);
                 sidebar.getChildren().add(decessiProvinciaButton);
                 sidebar.getChildren().add(utentiButton);
+                sidebar.getChildren().add(reportDecessiProvinceButton);
+                sidebar.getChildren().add(reportDecessiRegioniButton);
+                sidebar.getChildren().add(reportDecessiNazioniButton);
                 break;
 
             // Il personale dell’ente incaricato del monitoraggio può inserire  nuove regioni, province e comuni

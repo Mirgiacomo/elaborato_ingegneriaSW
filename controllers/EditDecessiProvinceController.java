@@ -112,7 +112,7 @@ public class EditDecessiProvinceController implements Initializable {
         Provincia provincia = provinciaFilterComboBox.getSelectionModel().getSelectedItem();
         int year = yearFilterComboBox.getSelectionModel().getSelectedItem();
 
-        List<Decesso> resultDecessi = decessoDao.getFilteredItems(provincia, year);
+        Set<Decesso> resultDecessi = decessoDao.getFilteredItems(provincia, year);
 
         if (resultDecessi != null && !resultDecessi.isEmpty()) {
             for (Decesso decesso: resultDecessi) {
