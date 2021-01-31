@@ -77,20 +77,6 @@ public class ProvinciaDaoImpl extends DaoImpl<Provincia> {
         return getItem(documentSnapshot.getId());
     }
 
-    public Set<Provincia> getProvinceByRegione(Regione regione) throws ExecutionException, InterruptedException {
-        ApiFuture<QuerySnapshot> querySnapshot = firestore.collection(collectionName).
-                whereEqualTo("regione", RegioneDaoImpl.getCollectionName() + "/" + regione.generateId()).get();
-        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
-
-        Set<Provincia> result = new HashSet<>();
-
-        for (QueryDocumentSnapshot document : documents) {
-            result.add(getItem(document));
-        }
-
-        return result;
-    }
-
     @Override
     public Provincia updateItem(Provincia item) {
         return null;
