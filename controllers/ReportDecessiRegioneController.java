@@ -101,6 +101,11 @@ public class ReportDecessiRegioneController implements Initializable {
                                 button.setTextFill(Color.WHITE);
                                 button.setStyle("-fx-background-color: #eda324");
 
+                                JFXButton buttonImg = new JFXButton();
+                                buttonImg.setText("EXPORT GRAFICO");
+                                buttonImg.setTextFill(Color.WHITE);
+                                buttonImg.setStyle("-fx-background-color: A4E06E");
+
                                 TableView<Map> table = new TableView<>();
                                 HBox.setHgrow(table, Priority.SOMETIMES);
 
@@ -132,6 +137,7 @@ public class ReportDecessiRegioneController implements Initializable {
                                 contentBox.getChildren().add(title);
                                 contentBox.getChildren().add(button);
                                 contentBox.getChildren().add(box);
+                                contentBox.getChildren().addAll(buttonImg);
                                 contentBox.getChildren().add(separator);
 
                                 Set<DecessoMalattiaContagiosa> decessiMalattiaContagiosa = decessoMalattiaContagiosaDao.getFilteredItems(regione, year);
@@ -201,7 +207,25 @@ public class ReportDecessiRegioneController implements Initializable {
                                         }
                                     }
                                 };
+                                // action event
+                                EventHandler<ActionEvent> eventImg = new EventHandler<ActionEvent>() {
+                                    public void handle(ActionEvent e)
+                                    {
+                                        Set<Map<String, Object>> rows = new HashSet<>();
+                                        if (!tableData.isEmpty()) {
+                                            for (Map row: tableData) {
+                                                rows.add(row);
+                                            }
+                                        }
+                                        try {
+                                            Export.exportImg(pieChart, regione.getNome());
+                                        } catch (Exception exception) {
+                                            exception.printStackTrace();
+                                        }
+                                    }
+                                };
                                 button.setOnAction(event);
+                                buttonImg.setOnAction(eventImg);
 
                             } catch (ExecutionException | InterruptedException e) {
                                 e.printStackTrace();
