@@ -182,7 +182,6 @@ public class SidePanelController implements Initializable {
                 sidebar.getChildren().add(reportMalattieContagioseProvinciaButton);
                 sidebar.getChildren().add(reportMalattieContagioseRegioneButton);
                 sidebar.getChildren().add(reportMalattieContagioseNazioneButton);
-                sidebar.getChildren().add(utentiButton);
                 sidebar.getChildren().add(reportDecessiProvinceButton);
                 sidebar.getChildren().add(reportDecessiRegioniButton);
                 sidebar.getChildren().add(reportDecessiNazioniButton);
@@ -213,6 +212,9 @@ public class SidePanelController implements Initializable {
                 sidebar.getChildren().add(reportMalattieContagioseProvinciaButton);
                 sidebar.getChildren().add(reportMalattieContagioseRegioneButton);
                 sidebar.getChildren().add(reportMalattieContagioseNazioneButton);
+                sidebar.getChildren().add(reportDecessiProvinceButton);
+                sidebar.getChildren().add(reportDecessiRegioniButton);
+                sidebar.getChildren().add(reportDecessiNazioniButton);
                 break;
             default:
                 System.out.println("Errore. Riprovare ad accedere!\n");
