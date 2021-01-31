@@ -121,6 +121,7 @@ public class ReportDecessiNazioneController implements Initializable {
                                 PieChart pieChart = new PieChart();
                                 pieChart.setId("pie" + regione.getNome());
                                 pieChart.setLabelLineLength(2);
+                                pieChart.setLabelsVisible(false);
                                 pieChart.setLegendSide(Side.RIGHT);
                                 HBox.setHgrow(pieChart, Priority.SOMETIMES);
 

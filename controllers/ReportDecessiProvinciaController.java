@@ -119,6 +119,8 @@ public class ReportDecessiProvinciaController implements Initializable {
                                 PieChart pieChart = new PieChart();
                                 pieChart.setId("pie" + provincia.getNome());
                                 pieChart.setLabelLineLength(2);
+                                pieChart.setAnimated(true);
+                                pieChart.setLabelsVisible(false);
                                 pieChart.setLegendSide(Side.RIGHT);
                                 HBox.setHgrow(pieChart, Priority.SOMETIMES);
 
