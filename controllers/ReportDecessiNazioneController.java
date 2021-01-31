@@ -96,7 +96,7 @@ public class ReportDecessiNazioneController implements Initializable {
                 JFXButton buttonImg = new JFXButton();
                 buttonImg.setText("EXPORT GRAFICO");
                 buttonImg.setTextFill(Color.WHITE);
-                buttonImg.setStyle("-fx-background-color: A4E06E");
+                buttonImg.setStyle("-fx-background-color: black; -fx-font-size: 10px;");
 
                 TableView<Map> table = new TableView<>();
                 HBox.setHgrow(table, Priority.SOMETIMES);
@@ -115,8 +115,7 @@ public class ReportDecessiNazioneController implements Initializable {
 
                 PieChart pieChart = new PieChart();
                 pieChart.setId("pieNazione");
-                pieChart.setLabelLineLength(2);
-                pieChart.setLabelsVisible(false);
+                pieChart.setLabelLineLength(10);
                 pieChart.setLegendSide(Side.RIGHT);
                 HBox.setHgrow(pieChart, Priority.SOMETIMES);
 

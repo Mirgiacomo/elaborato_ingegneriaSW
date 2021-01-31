@@ -104,7 +104,7 @@ public class ReportDecessiProvinciaController implements Initializable {
                                 JFXButton buttonImg = new JFXButton();
                                 buttonImg.setText("EXPORT GRAFICO");
                                 buttonImg.setTextFill(Color.WHITE);
-                                buttonImg.setStyle("-fx-background-color: A4E06E");
+                                buttonImg.setStyle("-fx-background-color: black; -fx-font-size: 10px;");
 
                                 TableView<Map> table = new TableView<>();
                                 HBox.setHgrow(table, Priority.SOMETIMES);
