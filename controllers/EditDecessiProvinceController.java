@@ -103,6 +103,13 @@ public class EditDecessiProvinceController implements Initializable {
 
     @FXML
     public void loadDecessiAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
+        saveButton.setDisable(true);
+        if(provinciaFilterComboBox.getSelectionModel().isEmpty() || yearFilterComboBox.getSelectionModel().isEmpty()){
+            saveButton.setDisable(true);
+            FXUtil.Alert(Alert.AlertType.ERROR, "DATI FILTRO ERRATI", "Dati nel filtro errati!", null, actionEvent);
+            return;
+        }
+        saveButton.setDisable(false);
         for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
             for (JFXTextField input: entry.getValue()) {
                 input.setText("");
@@ -166,7 +173,6 @@ public class EditDecessiProvinceController implements Initializable {
                 if (isMalattiaContagiosa) {
                     MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
                     MalattiaContagiosa malattiaContagiosa = malattiaContagiosaDao.getItem(entry.getKey());
-                    System.out.println(entry.getKey());
 
                     DecessoMalattiaContagiosa newDecessoMalattiaContagiosa = new DecessoMalattiaContagiosa();
                     newDecessoMalattiaContagiosa.setYear(year);
@@ -179,7 +185,6 @@ public class EditDecessiProvinceController implements Initializable {
                         newDecessoMalattiaContagiosa.setNumeroMorti(Integer.parseInt(value));
                     }
                     decessoMalattiaContagiosaDao.addItem(newDecessoMalattiaContagiosa);
-                    System.out.println(newDecessoMalattiaContagiosa);
                 } else {
                     Decesso newDecesso = new Decesso();
 
