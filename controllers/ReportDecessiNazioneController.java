@@ -63,8 +63,8 @@ public class ReportDecessiNazioneController implements Initializable {
         }
     }
 
-    public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
-        if(yearSearchableComboBox.getSelectionModel().isEmpty()){
+    public void searchAction(ActionEvent actionEvent) {
+        if (yearSearchableComboBox.getSelectionModel().isEmpty()) {
             FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE FILTRO!", "Anno inserito nel filtro non valido!", null, actionEvent);
             return;
         }
@@ -73,166 +73,160 @@ public class ReportDecessiNazioneController implements Initializable {
 
         Task<Void> task = new Task<>() {
 
-    @Override
-    protected Void call() {
-        Platform.runLater(() -> {
-            try {
-                HBox box = new HBox();
-                VBox.setVgrow(box, Priority.ALWAYS);
+            @Override
+            protected Void call() {
+                Platform.runLater(() -> {
+                    try {
+                        HBox box = new HBox();
+                        VBox.setVgrow(box, Priority.ALWAYS);
 
-                box.setId("Box");
-                box.getChildren().clear();
+                        box.setId("Box");
+                        box.getChildren().clear();
 
-                Text title = new Text();
-                title.setFont(Font.font("Open Sans Semibold", FontWeight.SEMI_BOLD, 25));
-                title.setId("title");
-                title.setText("ITALIA");
+                        Text title = new Text();
+                        title.setFont(Font.font("Open Sans Semibold", FontWeight.SEMI_BOLD, 25));
+                        title.setId("title");
+                        title.setText("ITALIA");
 
-                JFXButton button = new JFXButton();
-                button.setText("EXPORT");
-                button.setTextFill(Color.WHITE);
-                button.setStyle("-fx-background-color: #eda324");
+                        JFXButton button = new JFXButton();
+                        button.setText("EXPORT");
+                        button.setTextFill(Color.WHITE);
+                        button.setStyle("-fx-background-color: #eda324");
 
-                JFXButton buttonImg = new JFXButton();
-                buttonImg.setText("EXPORT GRAFICO");
-                buttonImg.setTextFill(Color.WHITE);
-                buttonImg.setStyle("-fx-background-color: black; " +
-                        "-fx-font-size: 10px;" +
-                        "-fx-border-insets: 5px;" +
-                        "-fx-background-insets: 5px;");
+                        JFXButton buttonImg = new JFXButton();
+                        buttonImg.setText("EXPORT GRAFICO");
+                        buttonImg.setTextFill(Color.WHITE);
+                        buttonImg.setStyle("-fx-background-color: black; " +
+                                "-fx-font-size: 10px;" +
+                                "-fx-border-insets: 5px;" +
+                                "-fx-background-insets: 5px;");
 
-                TableView<Map> table = new TableView<>();
-                HBox.setHgrow(table, Priority.SOMETIMES);
+                        TableView<Map> table = new TableView<>();
+                        HBox.setHgrow(table, Priority.SOMETIMES);
 
-                TableColumn<Map, String> causaCol = new TableColumn<>();
-                causaCol.setText("causa");
-                causaCol.setId("causaCol");
+                        TableColumn<Map, String> causaCol = new TableColumn<>();
+                        causaCol.setText("causa");
+                        causaCol.setId("causaCol");
 
-                TableColumn<Map, Integer> decessiCol = new TableColumn<>();
-                decessiCol.setText("decessi");
-                decessiCol.setId("decessiCol");
+                        TableColumn<Map, Integer> decessiCol = new TableColumn<>();
+                        decessiCol.setText("decessi");
+                        decessiCol.setId("decessiCol");
 
-                table.getColumns().clear();
-                table.getColumns().add(causaCol);
-                table.getColumns().add(decessiCol);
+                        table.getColumns().clear();
+                        table.getColumns().add(causaCol);
+                        table.getColumns().add(decessiCol);
 
-                PieChart pieChart = new PieChart();
-                pieChart.setId("pieNazione");
-                pieChart.setLabelLineLength(10);
-                pieChart.setLegendSide(Side.RIGHT);
-                HBox.setHgrow(pieChart, Priority.SOMETIMES);
+                        PieChart pieChart = new PieChart();
+                        pieChart.setId("pieNazione");
+                        pieChart.setLabelLineLength(10);
+                        pieChart.setLegendSide(Side.RIGHT);
+                        HBox.setHgrow(pieChart, Priority.SOMETIMES);
 
-                box.getChildren().add(table);
-                box.getChildren().add(pieChart);
+                        box.getChildren().add(table);
+                        box.getChildren().add(pieChart);
 
-                Separator separator = new Separator();
-                separator.setId("separatorNazione");
+                        Separator separator = new Separator();
+                        separator.setId("separatorNazione");
 
-                contentBox.getChildren().add(title);
-                contentBox.getChildren().add(button);
-                contentBox.getChildren().add(box);
+                        contentBox.getChildren().add(title);
+                        contentBox.getChildren().add(button);
+                        contentBox.getChildren().add(box);
 
-                Set<DecessoMalattiaContagiosa> decessiMalattiaContagiosa = decessoMalattiaContagiosaDao.getFilteredItems(year);
-                Set<Decesso> decessi = decessoDao.getFilteredItems(year);
+                        Set<DecessoMalattiaContagiosa> decessiMalattiaContagiosa = decessoMalattiaContagiosaDao.getFilteredItems(year);
+                        Set<Decesso> decessi = decessoDao.getFilteredItems(year);
 
-                List<HashMap<String, Object>> data = new ArrayList<>();
+                        List<HashMap<String, Object>> data = new ArrayList<>();
 
-                if (!decessiMalattiaContagiosa.isEmpty() && !decessi.isEmpty()) {
-                    int counter = 0;
+                        if (!decessiMalattiaContagiosa.isEmpty() && !decessi.isEmpty()) {
+                            int counter = 0;
 
-                    HashMap<String, Object> row = new HashMap<>();
+                            HashMap<String, Object> row = new HashMap<>();
 
-                    row.put("causa", "MALATTIA CONTAGIOSA");
-                    row.put("decessi", 0);
-                    if (!decessiMalattiaContagiosa.isEmpty()) {
-                        for (DecessoMalattiaContagiosa decessoMalattiaContagiosa: decessiMalattiaContagiosa) {
-                            counter += decessoMalattiaContagiosa.getNumeroMorti();
-                        }
-                        row.put("decessi", counter);
-                        data.add(row);
+                            row.put("causa", "MALATTIA CONTAGIOSA");
+                            row.put("decessi", 0);
+                            if (!decessiMalattiaContagiosa.isEmpty()) {
+                                for (DecessoMalattiaContagiosa decessoMalattiaContagiosa : decessiMalattiaContagiosa) {
+                                    counter += decessoMalattiaContagiosa.getNumeroMorti();
+                                }
+                                row.put("decessi", counter);
+                                data.add(row);
 
-                    }
+                            }
 
-                    pieChart.getData().add(new PieChart.Data("MALATTIA CONTAGIOSA", counter));
+                            pieChart.getData().add(new PieChart.Data("MALATTIA CONTAGIOSA", counter));
 
-                    for (CausaDecesso causaDecesso: CausaDecesso.values()) {
-                        HashMap<String, Object> rowDecesso = new HashMap<>();
-                        rowDecesso.put("causa", causaDecesso.getNome());
+                            for (CausaDecesso causaDecesso : CausaDecesso.values()) {
+                                HashMap<String, Object> rowDecesso = new HashMap<>();
+                                rowDecesso.put("causa", causaDecesso.getNome());
 
-                        int contDecessi = 0;
-                        for (Decesso decesso: decessi) {
-                            if (decesso.getCausaDecesso().equals(causaDecesso)) {
-                                contDecessi += decesso.getNumeroMorti();
+                                int contDecessi = 0;
+                                for (Decesso decesso : decessi) {
+                                    if (decesso.getCausaDecesso().equals(causaDecesso)) {
+                                        contDecessi += decesso.getNumeroMorti();
+                                    }
+                                }
+
+                                rowDecesso.put("decessi", contDecessi);
+
+                                pieChart.getData().add(new PieChart.Data(causaDecesso.getNome(), contDecessi));
+
+                                data.add(rowDecesso);
                             }
                         }
 
-                        rowDecesso.put("decessi", contDecessi);
+                        ObservableList<Map> tableData = FXCollections.observableArrayList(data);
 
-                        pieChart.getData().add(new PieChart.Data(causaDecesso.getNome(), contDecessi));
+                        causaCol.setCellValueFactory(new MapValueFactory<>("causa"));
+                        decessiCol.setCellValueFactory(new MapValueFactory<>("decessi"));
 
-                        data.add(rowDecesso);
-                    }
-                }
+                        table.setItems(tableData);
 
-                ObservableList<Map> tableData = FXCollections.observableArrayList(data);
+                        // Lo inserisco dopo perchè non voglio che venga mostrato se non c'è il grafico
+                        if (!pieChart.getData().isEmpty()) {
+                            contentBox.getChildren().addAll(buttonImg);
+                        }
+                        contentBox.getChildren().add(separator);
 
-                causaCol.setCellValueFactory(new MapValueFactory<>("causa"));
-                decessiCol.setCellValueFactory(new MapValueFactory<>("decessi"));
+                        // action event
+                        EventHandler<ActionEvent> event = e -> {
+                            Set<Map<String, Object>> rows = new HashSet<>();
+                            if (!tableData.isEmpty()) {
+                                for (Map row : tableData) {
+                                    rows.add(row);
+                                }
 
-                table.setItems(tableData);
-
-                // Lo inserisco dopo perchè non voglio che venga mostrato se non c'è il grafico
-                if(!pieChart.getData().isEmpty()){
-                    contentBox.getChildren().addAll(buttonImg);
-                }
-                contentBox.getChildren().add(separator);
-
-                // action event
-                EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent e)
-                    {
-                        Set<Map<String, Object>> rows = new HashSet<>();
-                        if (!tableData.isEmpty()) {
-                            for (Map row: tableData) {
-                                rows.add(row);
                             }
-
-                        }
-                        try {
-                            Export.exportData(rows, "Decessi");
-                        } catch (Exception exception) {
-                            exception.printStackTrace();
-                        }
-                    }
-                };
-                // action event
-                EventHandler<ActionEvent> eventImg = new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent e)
-                    {
-                        Set<Map<String, Object>> rows = new HashSet<>();
-                        if (!tableData.isEmpty()) {
-                            for (Map row: tableData) {
-                                rows.add(row);
+                            try {
+                                Export.exportData(rows, "Decessi");
+                            } catch (Exception exception) {
+                                exception.printStackTrace();
                             }
-                        }
-                        try {
-                            Export.exportImg(pieChart, "ITALIA");
-                        } catch (Exception exception) {
-                            exception.printStackTrace();
-                        }
+                        };
+                        // action event
+                        EventHandler<ActionEvent> eventImg = e -> {
+                            Set<Map<String, Object>> rows = new HashSet<>();
+                            if (!tableData.isEmpty()) {
+                                for (Map row : tableData) {
+                                    rows.add(row);
+                                }
+                            }
+                            try {
+                                Export.exportImg(pieChart, "ITALIA");
+                            } catch (Exception exception) {
+                                exception.printStackTrace();
+                            }
+                        };
+                        button.setOnAction(event);
+                        buttonImg.setOnAction(eventImg);
+                    } catch (ExecutionException | InterruptedException e) {
+                        e.printStackTrace();
                     }
-                };
-                button.setOnAction(event);
-                buttonImg.setOnAction(eventImg);
-            } catch (ExecutionException | InterruptedException e) {
-                e.printStackTrace();
-            }
                 });
                 return null;
-                    }
-                };
-                Thread th = new Thread(task);
-                th.setDaemon(true);
-                th.start();
+            }
+        };
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
     }
 }

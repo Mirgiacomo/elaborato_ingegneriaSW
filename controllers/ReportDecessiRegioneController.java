@@ -72,7 +72,7 @@ public class ReportDecessiRegioneController implements Initializable {
         }
     }
 
-    public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
+    public void searchAction(ActionEvent actionEvent) {
 
         ObservableList<Regione> regioni = regioniCheckComboBox.getCheckModel().getCheckedItems();
         if(yearSearchableComboBox.getSelectionModel().isEmpty()){

@@ -67,7 +67,7 @@ public class ReportDecessiProvinciaController implements Initializable {
         }
     }
 
-    public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
+    public void searchAction(ActionEvent actionEvent) {
         ObservableList<Provincia> province = provinceCheckComboBox.getCheckModel().getCheckedItems();
         if(yearSearchableComboBox.getSelectionModel().isEmpty()){
             FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE FILTRO!", "Anno inserito nel filtro non valido!", null, actionEvent);
