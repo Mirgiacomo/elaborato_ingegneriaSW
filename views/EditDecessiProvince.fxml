@@ -76,37 +76,36 @@
                   <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                </padding>
             </GridPane>
-            <ScrollPane prefHeight="536.0" prefWidth="736.0">
+            <ScrollPane fitToWidth="true">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="538.0" prefWidth="719.0">
+                  <GridPane fx:id="decessiGridPane" alignment="CENTER" hgap="15.0" vgap="15.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                     </rowConstraints>
                      <children>
-                        <GridPane fx:id="decessiGridPane" alignment="CENTER" hgap="15.0" maxWidth="1000.0" vgap="15.0">
-                           <columnConstraints>
-                              <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-                           </rowConstraints>
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CAUSA" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NUMERO" textAlignment="CENTER" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                           <padding>
-                              <Insets left="20.0" right="20.0" />
-                           </padding>
-                        </GridPane>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CAUSA" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NUMERO" textAlignment="CENTER" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
                      </children>
-                  </AnchorPane>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </GridPane>
               </content>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </ScrollPane>
             <JFXButton fx:id="saveButton" buttonType="RAISED" defaultButton="true" onAction="#saveAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" text="SALVA" textFill="WHITE">
                <font>

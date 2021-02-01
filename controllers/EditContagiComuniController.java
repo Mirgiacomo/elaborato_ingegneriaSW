@@ -36,6 +36,8 @@ public class EditContagiComuniController implements Initializable {
     private DatePicker weekFilterDatePicker;
     @FXML
     private GridPane contagiGridPane;
+    @FXML
+    private JFXButton saveButton;
 
     private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
     private final ContagioDaoImpl contagioDao = new ContagioDaoImpl();
