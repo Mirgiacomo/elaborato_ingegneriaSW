@@ -45,19 +45,6 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
         return result;
     }
 
-//    public List<Decesso> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
-//        CollectionReference collectionReference = firestore.collection(getCollectionName());
-//        List<Decesso> result;
-//        Query query = collectionReference.whereEqualTo("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId())
-//                .whereEqualTo("year", year);
-//        ApiFuture<QuerySnapshot> querySnapshot = query.get();
-//        result = new ArrayList<>();
-//        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
-//            result.add(getItem(document));
-//        }
-//        return result;
-//    }
-
     public Set<Decesso> getFilteredItems(Provincia provincia, int year) throws ExecutionException, InterruptedException {
         CollectionReference collectionReference = firestore.collection(getCollectionName());
         Query query = collectionReference.whereEqualTo("provincia", ProvinciaDaoImpl.getCollectionName() + "/" + provincia.generateId())
