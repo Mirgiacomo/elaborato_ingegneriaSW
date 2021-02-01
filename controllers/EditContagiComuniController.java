@@ -150,6 +150,11 @@ public class EditContagiComuniController implements Initializable {
         LocalDate date = weekFilterDatePicker.getValue();
         date = date.with(TemporalAdjusters.previousOrSame(firstDayOfWeek)); // prende il lunedì della settimana selezionata (altrimenti se ci sono settimane a metà tra un anno e l'altro potrebbero esserci problemi
 
+        if (date.compareTo(FXUtil.NOW_LOCAL_DATE()) > 0) {
+            saveButton.setDisable(true);
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "La data selezionata non è valida, selezionare un giorno NON FUTURO!", null, event);
+            return;
+        }
         int year = date.getYear();
         int week = date.get(weekFields.weekOfWeekBasedYear());
 
@@ -197,6 +202,12 @@ public class EditContagiComuniController implements Initializable {
         Comune comune = comuneFilterComboBox.getSelectionModel().getSelectedItem();
         LocalDate date = weekFilterDatePicker.getValue();
         date = date.with(TemporalAdjusters.previousOrSame(firstDayOfWeek));
+
+        if (date.compareTo(FXUtil.NOW_LOCAL_DATE()) > 0) {
+            saveButton.setDisable(true);
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "La data selezionata non è valida, selezionare un giorno NON FUTURO!", null, event);
+            return;
+        }
 
         int year = date.getYear();
         int week = date.get(weekFields.weekOfWeekBasedYear());
@@ -249,9 +260,11 @@ public class EditContagiComuniController implements Initializable {
             }
             FXUtil.Alert(Alert.AlertType.INFORMATION, "SALVATAGGIO COMPLETATO", "Salvataggio completato con successo!", null, event);
         } catch (NumberFormatException e) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "VALORI ERRATA", "Errore durante il salvataggio!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE SALVATAGGIO", "Errore durante il salvataggio!", null, event);
         } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'esecuzione!", null, event);
+            // DEBUG
+            // e.printStackTrace();
         }
     }
 }

@@ -215,7 +215,9 @@ public class EditDecessiProvinceController implements Initializable {
         } catch (NumberFormatException e) {
             FXUtil.Alert(Alert.AlertType.ERROR, "VALORI ERRATI", "Errore durante il salvataggio!", null, event);
         } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'esecuzione!", null, event);
+            // DEBUG
+            // e.printStackTrace();
         }
     }
 }

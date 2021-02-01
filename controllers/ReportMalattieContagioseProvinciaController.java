@@ -10,6 +10,7 @@ import elaborato_ingegneriaSW.models.DecessoMalattiaContagiosa;
 import elaborato_ingegneriaSW.models.MalattiaContagiosa;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.utils.Export;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -77,12 +79,21 @@ public class ReportMalattieContagioseProvinciaController implements Initializabl
         }
     }
 
-    public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
-        // TODO: check filtri
+    public void searchAction(ActionEvent event) throws ExecutionException, InterruptedException {
+        if (provinceCheckComboBox.getCheckModel().isEmpty() || yearSearchableComboBox.getSelectionModel().isEmpty()) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE CARICAMENTO", "Selezionare una o più province e un anno!", null, event);
+            return;
+        }
         ObservableList<Provincia> province = provinceCheckComboBox.getCheckModel().getCheckedItems();
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
 
-        Set<MalattiaContagiosa> malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
+        Set<MalattiaContagiosa> malattieContagiose;
+        try {
+            malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
+        } catch (ExecutionException | InterruptedException e) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il caricamento!", null, event);
+            return;
+        }
 
         if (province != null && !province.isEmpty()) {
             contentBox.getChildren().clear();
