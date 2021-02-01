@@ -72,7 +72,7 @@ public class EditUtenteController extends EditController<Utente> implements Init
 
     @FXML
     @Override
-    public void saveAction(ActionEvent event) throws ExecutionException, InterruptedException {
+    public void saveAction(ActionEvent event) {
         try {
             // Controllo se il cf è valido
             Pattern pattern = Pattern.compile("^[a-zA-Z]{6}[0-9]{2}[abcdehlmprstABCDEHLMPRST][0-9]{2}([a-zA-Z][0-9]{3})[a-zA-Z]$", Pattern.CASE_INSENSITIVE);
@@ -90,11 +90,6 @@ public class EditUtenteController extends EditController<Utente> implements Init
                 return;
             }
 
-            if(!ruoloComboBox.getSelectionModel().getSelectedItem().equals(RuoloUtente.PERSONALE_MONITORAGGIO) && !comuniCheckComboBox.getCheckModel().getCheckedIndices().isEmpty()){
-                FXUtil.Alert(Alert.AlertType.ERROR, "WARNING", "Attenzione, solo il personale monitoraggio può avere associati dei comuni!", null, event);
-                return;
-            }
-
             String nome = nomeTextField.getText();
             String cognome = cognomeTextField.getText();
             String cf = cfTextField.getText();
@@ -109,7 +104,7 @@ public class EditUtenteController extends EditController<Utente> implements Init
 
             ObservableList<Comune> comuni = comuniCheckComboBox.getCheckModel().getCheckedItems();
             Set<Comune> comuniAssociati = new HashSet<>();
-            if (!comuni.isEmpty()) {
+            if (!comuni.isEmpty() && ruolo.equals(RuoloUtente.PERSONALE_CONTAGI)) {
                 comuniAssociati.addAll(comuni);
             }
 
@@ -125,9 +120,22 @@ public class EditUtenteController extends EditController<Utente> implements Init
                 stage.close();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'esecuzione!", null, event);
+            //DEBUG
+            //e.printStackTrace();
         }
 
+    }
+
+    public void changeRuoloAction(ActionEvent event) {
+        RuoloUtente ruolo = ruoloComboBox.getSelectionModel().getSelectedItem();
+        if (ruolo != null) {
+            if (ruolo != RuoloUtente.PERSONALE_CONTAGI) {
+                comuniCheckComboBox.setDisable(true);
+            } else {
+                comuniCheckComboBox.setDisable(false);
+            }
+        }
     }
 
     @Override
@@ -153,6 +161,9 @@ public class EditUtenteController extends EditController<Utente> implements Init
         cfTextField.setText(model.getCf());
         ruoloComboBox.getSelectionModel().select(model.getRuolo());
 
+        if (!model.getRuolo().equals(RuoloUtente.PERSONALE_CONTAGI)) {
+            comuniCheckComboBox.setDisable(true);
+        }
         if (!model.getComuniAssociati().isEmpty()) {
             for (Comune c: model.getComuniAssociati()) {
                 comuniCheckComboBox.getCheckModel().check(c);
