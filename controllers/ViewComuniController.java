@@ -6,7 +6,6 @@ import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,7 +58,7 @@ public class ViewComuniController extends ViewController<Comune> implements Init
                     Callback<TableColumn<Comune, String>, TableCell<Comune, String>> cellFactory = param -> new EditButtonCell<>(tableComuni, ViewComuniController.this, "EditComune.fxml");
 
                     actionCol.setCellFactory(cellFactory);
-                    actionCol.prefWidthProperty().bind(tableComuni.widthProperty().multiply(0.055));
+                    actionCol.prefWidthProperty().bind(tableComuni.widthProperty().multiply(0.075));
                     actionCol.setResizable(false);
                     codiceISTATCol.setCellValueFactory(new PropertyValueFactory<>("codiceISTAT"));
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));

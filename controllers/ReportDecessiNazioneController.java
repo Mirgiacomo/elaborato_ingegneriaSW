@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.dao.*;
 import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.Export;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -62,7 +64,10 @@ public class ReportDecessiNazioneController implements Initializable {
     }
 
     public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
-        // TODO: check filtri
+        if(yearSearchableComboBox.getSelectionModel().isEmpty()){
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE FILTRO!", "Anno inserito nel filtro non valido!", null, actionEvent);
+            return;
+        }
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
         contentBox.getChildren().clear();
 
@@ -88,6 +93,14 @@ public class ReportDecessiNazioneController implements Initializable {
                 button.setTextFill(Color.WHITE);
                 button.setStyle("-fx-background-color: #eda324");
 
+                JFXButton buttonImg = new JFXButton();
+                buttonImg.setText("EXPORT GRAFICO");
+                buttonImg.setTextFill(Color.WHITE);
+                buttonImg.setStyle("-fx-background-color: black; " +
+                        "-fx-font-size: 10px;" +
+                        "-fx-border-insets: 5px;" +
+                        "-fx-background-insets: 5px;");
+
                 TableView<Map> table = new TableView<>();
                 HBox.setHgrow(table, Priority.SOMETIMES);
 
@@ -105,8 +118,7 @@ public class ReportDecessiNazioneController implements Initializable {
 
                 PieChart pieChart = new PieChart();
                 pieChart.setId("pieNazione");
-                pieChart.setLabelLineLength(2);
-                pieChart.setLabelsVisible(false);
+                pieChart.setLabelLineLength(10);
                 pieChart.setLegendSide(Side.RIGHT);
                 HBox.setHgrow(pieChart, Priority.SOMETIMES);
 
@@ -119,7 +131,6 @@ public class ReportDecessiNazioneController implements Initializable {
                 contentBox.getChildren().add(title);
                 contentBox.getChildren().add(button);
                 contentBox.getChildren().add(box);
-                contentBox.getChildren().add(separator);
 
                 Set<DecessoMalattiaContagiosa> decessiMalattiaContagiosa = decessoMalattiaContagiosaDao.getFilteredItems(year);
                 Set<Decesso> decessi = decessoDao.getFilteredItems(year);
@@ -170,6 +181,12 @@ public class ReportDecessiNazioneController implements Initializable {
 
                 table.setItems(tableData);
 
+                // Lo inserisco dopo perchè non voglio che venga mostrato se non c'è il grafico
+                if(!pieChart.getData().isEmpty()){
+                    contentBox.getChildren().addAll(buttonImg);
+                }
+                contentBox.getChildren().add(separator);
+
                 // action event
                 EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent e)
@@ -188,8 +205,25 @@ public class ReportDecessiNazioneController implements Initializable {
                         }
                     }
                 };
+                // action event
+                EventHandler<ActionEvent> eventImg = new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent e)
+                    {
+                        Set<Map<String, Object>> rows = new HashSet<>();
+                        if (!tableData.isEmpty()) {
+                            for (Map row: tableData) {
+                                rows.add(row);
+                            }
+                        }
+                        try {
+                            Export.exportImg(pieChart, "ITALIA");
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
+                    }
+                };
                 button.setOnAction(event);
-
+                buttonImg.setOnAction(eventImg);
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }

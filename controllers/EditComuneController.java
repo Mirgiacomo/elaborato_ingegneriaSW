@@ -15,7 +15,6 @@ import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Territorio;
-import elaborato_ingegneriaSW.utils.AutoCompleteBox;
 import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -84,8 +83,12 @@ public class EditComuneController extends EditController<Comune> implements Init
         Pattern pattern = Pattern.compile("^[0-9]{6}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(codiceISTATTextField.getText());
         boolean matchFound = matcher.find();
-        if(codiceISTATTextField.getText().isBlank() || nomeTextField.getText().isBlank() ||  superficie <= 0 || superficieTextField.getText().isBlank() || !(matchFound)){
+        if(codiceISTATTextField.getText().isBlank() || nomeTextField.getText().isBlank() ||  superficie <= 0 || superficieTextField.getText().isBlank() || provinciaComboBox.getSelectionModel().isEmpty() || territorioComboBox.getSelectionModel().isEmpty()){
             FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
+            return;
+        }
+        if(!matchFound){
+            FXUtil.Alert(Alert.AlertType.ERROR, "ISTAT ERRATO", "Codice ISTAT non valido!", null, event);
             return;
         }
         String codiceISTAT = codiceISTATTextField.getText();
@@ -99,7 +102,6 @@ public class EditComuneController extends EditController<Comune> implements Init
         if (comuneDao.addItem(comune) == null) {
             FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
         } else {
-            //System.out.println("Comune inserito correttamente!");
             tableData.remove(model);
             tableData.add(comune);
 

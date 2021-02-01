@@ -35,11 +35,7 @@ public class EditContagiComuniController implements Initializable {
     @FXML
     private DatePicker weekFilterDatePicker;
     @FXML
-    private JFXButton loadContagiButton;
-    @FXML
     private GridPane contagiGridPane;
-    @FXML
-    private JFXButton saveButton;
 
     private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
     private final ContagioDaoImpl contagioDao = new ContagioDaoImpl();
@@ -127,6 +123,11 @@ public class EditContagiComuniController implements Initializable {
      */
     @FXML
     public void loadContagiAction(ActionEvent event) throws ExecutionException, InterruptedException {
+        if (comuneFilterComboBox.getSelectionModel().isEmpty() || weekFilterDatePicker.getValue() == null) {
+            saveButton.setDisable(true);
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Selezionare un comune e una data!", null, event);
+            return;
+        }
         for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
             for (JFXTextField input: entry.getValue()) {
                 input.setText("");
@@ -141,11 +142,6 @@ public class EditContagiComuniController implements Initializable {
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         DayOfWeek firstDayOfWeek = WeekFields.of(Locale.getDefault()).getFirstDayOfWeek();
 
-        if (comuneFilterComboBox.getSelectionModel().isEmpty() || weekFilterDatePicker.getValue() == null) {
-            saveButton.setDisable(true);
-            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Selezionare un comune e una data!", null, event);
-            return;
-        }
         Comune comune = comuneFilterComboBox.getSelectionModel().getSelectedItem();
         LocalDate date = weekFilterDatePicker.getValue();
         date = date.with(TemporalAdjusters.previousOrSame(firstDayOfWeek)); // prende il lunedì della settimana selezionata (altrimenti se ci sono settimane a metà tra un anno e l'altro potrebbero esserci problemi

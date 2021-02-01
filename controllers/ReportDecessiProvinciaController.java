@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.dao.*;
 import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.Export;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,10 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.*;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -44,7 +42,6 @@ public class ReportDecessiProvinciaController implements Initializable {
     private VBox contentBox;
 
     ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
-    ContagioDaoImpl contagioDao = new ContagioDaoImpl();
     DecessoMalattiaContagiosaDaoImpl decessoMalattiaContagiosaDao = new DecessoMalattiaContagiosaDaoImpl();
     MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
     DecessoDaoImpl decessoDao = new DecessoDaoImpl();
@@ -71,8 +68,11 @@ public class ReportDecessiProvinciaController implements Initializable {
     }
 
     public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
-        // TODO: check filtri
         ObservableList<Provincia> province = provinceCheckComboBox.getCheckModel().getCheckedItems();
+        if(yearSearchableComboBox.getSelectionModel().isEmpty()){
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE FILTRO!", "Anno inserito nel filtro non valido!", null, actionEvent);
+            return;
+        }
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
 
         if (province != null && !province.isEmpty()) {
@@ -100,6 +100,14 @@ public class ReportDecessiProvinciaController implements Initializable {
                                 button.setText("EXPORT");
                                 button.setTextFill(Color.WHITE);
                                 button.setStyle("-fx-background-color: #eda324");
+
+                                JFXButton buttonImg = new JFXButton();
+                                buttonImg.setText("EXPORT GRAFICO");
+                                buttonImg.setTextFill(Color.WHITE);
+                                buttonImg.setStyle("-fx-background-color: black; " +
+                                        "-fx-font-size: 10px;" +
+                                        "-fx-border-insets: 5px;" +
+                                        "-fx-background-insets: 5px;");
 
                                 TableView<Map> table = new TableView<>();
                                 HBox.setHgrow(table, Priority.SOMETIMES);
@@ -133,7 +141,6 @@ public class ReportDecessiProvinciaController implements Initializable {
                                 contentBox.getChildren().add(title);
                                 contentBox.getChildren().add(button);
                                 contentBox.getChildren().add(box);
-                                contentBox.getChildren().add(separator);
 
                                 Set<DecessoMalattiaContagiosa> decessiMalattiaContagiosa = decessoMalattiaContagiosaDao.getFilteredItems(provincia, year);
                                 Set<Decesso> decessi = decessoDao.getFilteredItems(provincia, year);
@@ -141,7 +148,6 @@ public class ReportDecessiProvinciaController implements Initializable {
                                 List<HashMap<String, Object>> data = new ArrayList<>();
 
                                 if (!decessiMalattiaContagiosa.isEmpty() && !decessi.isEmpty()) {
-                                    HashMap<String, Object> row3 = new HashMap<>();
                                     int counter = 0;
 
                                     HashMap<String, Object> row = new HashMap<>();
@@ -181,6 +187,12 @@ public class ReportDecessiProvinciaController implements Initializable {
 
                                 table.setItems(tableData);
 
+                                // Lo inserisco dopo perchè non voglio che venga mostrato se non c'è il grafico
+                                if(!pieChart.getData().isEmpty()){
+                                    contentBox.getChildren().addAll(buttonImg);
+                                }
+                                contentBox.getChildren().add(separator);
+
                                 // action event
                                 EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
                                     public void handle(ActionEvent e)
@@ -190,7 +202,6 @@ public class ReportDecessiProvinciaController implements Initializable {
                                             for (Map row: tableData) {
                                                 rows.add(row);
                                             }
-
                                         }
                                         try {
                                             Export.exportData(rows, "Decessi");
@@ -199,7 +210,25 @@ public class ReportDecessiProvinciaController implements Initializable {
                                         }
                                     }
                                 };
+                                // action event
+                                EventHandler<ActionEvent> eventImg = new EventHandler<ActionEvent>() {
+                                    public void handle(ActionEvent e)
+                                    {
+                                        Set<Map<String, Object>> rows = new HashSet<>();
+                                        if (!tableData.isEmpty()) {
+                                            for (Map row: tableData) {
+                                                rows.add(row);
+                                            }
+                                        }
+                                        try {
+                                            Export.exportImg(pieChart, provincia.getNome());
+                                        } catch (Exception exception) {
+                                            exception.printStackTrace();
+                                        }
+                                    }
+                                };
                                 button.setOnAction(event);
+                                buttonImg.setOnAction(eventImg);
 
                             } catch (ExecutionException | InterruptedException e) {
                                 e.printStackTrace();

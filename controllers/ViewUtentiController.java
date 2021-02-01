@@ -6,7 +6,6 @@ import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,7 +58,7 @@ public class ViewUtentiController extends ViewController<Utente> implements Init
                         Callback<TableColumn<Utente, String>, TableCell<Utente, String>> cellFactory = param -> new EditButtonCell<>(tableUtenti, ViewUtentiController.this, "EditUtente.fxml");
 
                         actionCol.setCellFactory(cellFactory);
-                        actionCol.prefWidthProperty().bind(tableUtenti.widthProperty().multiply(0.055));
+                        actionCol.prefWidthProperty().bind(tableUtenti.widthProperty().multiply(0.075));
                         actionCol.setResizable(false);
                         nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                         cognomeCol.setCellValueFactory(new PropertyValueFactory<>("cognome"));
@@ -68,6 +67,7 @@ public class ViewUtentiController extends ViewController<Utente> implements Init
                         cfCol.setCellValueFactory(new PropertyValueFactory<>("cf"));
                         ruoloCol.setCellValueFactory(new PropertyValueFactory<>("ruolo"));
                         comuniAssociatiCol.setCellValueFactory(new PropertyValueFactory<>("comuniAssociati"));
+                        comuniAssociatiCol.prefWidthProperty().bind(tableUtenti.widthProperty().multiply(0.7));
 
                         tableUtenti.setItems(tableData);
                     } catch (ExecutionException | InterruptedException e) {

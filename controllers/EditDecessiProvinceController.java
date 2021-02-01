@@ -105,16 +105,15 @@ public class EditDecessiProvinceController implements Initializable {
 
     @FXML
     public void loadDecessiAction(ActionEvent event) throws ExecutionException, InterruptedException {
-        for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
-            for (JFXTextField input: entry.getValue()) {
-                input.setText("");
-            }
-        }
-
         if (provinciaFilterComboBox.getSelectionModel().isEmpty() || yearFilterComboBox.getSelectionModel().isEmpty()) {
             saveButton.setDisable(true);
             FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Selezionare una provincia e un anno!", null, event);
             return;
+        }
+        for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
+            for (JFXTextField input: entry.getValue()) {
+                input.setText("");
+            }
         }
 
         Provincia provincia = provinciaFilterComboBox.getSelectionModel().getSelectedItem();

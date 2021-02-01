@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXScrollPane;
 import elaborato_ingegneriaSW.models.RuoloUtente;
 import elaborato_ingegneriaSW.models.Utente;
 import elaborato_ingegneriaSW.utils.LoggedUser;
@@ -18,7 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -50,8 +48,6 @@ public class SidePanelController implements Initializable {
     private JFXButton reportDecessiRegioniButton;
     @FXML
     private JFXButton reportDecessiNazioneButton;
-    @FXML
-    private VBox sidebarBox;
     @FXML
     private VBox sidebar;
 
@@ -173,10 +169,10 @@ public class SidePanelController implements Initializable {
         switch (ruoloUtente){
             // ADMIN ha permessi di visualizzare tutto
             case ADMIN:
-                sidebar.getChildren().add(utentiButton);
-                sidebar.getChildren().add(provinceButton);
                 sidebar.getChildren().add(comuniButton);
+                sidebar.getChildren().add(provinceButton);
                 sidebar.getChildren().add(regioniButton);
+                sidebar.getChildren().add(utentiButton);
                 sidebar.getChildren().add(contagiComuniButton);
                 sidebar.getChildren().add(decessiProvinciaButton);
                 sidebar.getChildren().add(reportContagiComuneButton);
