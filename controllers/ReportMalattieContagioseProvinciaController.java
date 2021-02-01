@@ -58,8 +58,6 @@ public class ReportMalattieContagioseProvinciaController implements Initializabl
     DecessoMalattiaContagiosaDaoImpl decessoMalattiaContagiosaDao = new DecessoMalattiaContagiosaDaoImpl();
     MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
 
-    Set<MalattiaContagiosa> malattieContagiose;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -72,8 +70,6 @@ public class ReportMalattieContagioseProvinciaController implements Initializabl
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
             yearSearchableComboBox.getItems().add(currentYear - 1);
             yearSearchableComboBox.getItems().add(currentYear);
-
-            malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -200,21 +196,20 @@ public class ReportMalattieContagioseProvinciaController implements Initializabl
                                 table.setItems(tableData);
 
                                 // action event
-                                EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-                                    public void handle(ActionEvent e)
-                                    {
-                                        Set<Map<String, Object>> rows = new HashSet<>();
-                                        if (!tableData.isEmpty()) {
-                                            for (Map row: tableData) {
-                                                rows.add(row);
-                                            }
+                                EventHandler<ActionEvent> event = e -> {
+                                    Set<Map<String, Object>> rows = new HashSet<>();
+                                    if (!tableData.isEmpty()) {
+                                        for (Map row: tableData) {
+                                            rows.add(row);
+                                        }
 
-                                        }
-                                        try {
-                                            Export.exportData(rows, "MalattieContagiose");
-                                        } catch (Exception exception) {
-                                            exception.printStackTrace();
-                                        }
+                                    }
+                                    try {
+                                        Export.exportData(rows, "MalattieContagiose");
+                                    } catch (Exception exception) {
+                                        FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'export!", null, e);
+                                        // DEBUG
+                                        // exception.printStackTrace();
                                     }
                                 };
                                 button.setOnAction(event);
@@ -233,7 +228,9 @@ public class ReportMalattieContagioseProvinciaController implements Initializabl
                                 chart.getData().addAll(seriesContagi, seriesDecessi);
 
                             } catch (ExecutionException | InterruptedException e) {
-                                e.printStackTrace();
+                                FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il caricamento!", null, event);
+                                // DEBUG
+                                // exception.printStackTrace();
                             }
                         });
                         return null;

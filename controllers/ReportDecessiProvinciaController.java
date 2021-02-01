@@ -43,10 +43,7 @@ public class ReportDecessiProvinciaController implements Initializable {
 
     ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
     DecessoMalattiaContagiosaDaoImpl decessoMalattiaContagiosaDao = new DecessoMalattiaContagiosaDaoImpl();
-    MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
     DecessoDaoImpl decessoDao = new DecessoDaoImpl();
-
-    Set<MalattiaContagiosa> malattieContagiose;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,8 +57,6 @@ public class ReportDecessiProvinciaController implements Initializable {
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
             yearSearchableComboBox.getItems().add(currentYear - 1);
             yearSearchableComboBox.getItems().add(currentYear);
-
-            malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -147,24 +142,23 @@ public class ReportDecessiProvinciaController implements Initializable {
 
                                 List<HashMap<String, Object>> data = new ArrayList<>();
 
-                                if (!decessiMalattiaContagiosa.isEmpty() && !decessi.isEmpty()) {
+                                if (!decessiMalattiaContagiosa.isEmpty()) {
                                     int counter = 0;
 
                                     HashMap<String, Object> row = new HashMap<>();
 
                                     row.put("causa", "MALATTIA CONTAGIOSA");
                                     row.put("decessi", 0);
-                                    if (!decessiMalattiaContagiosa.isEmpty()) {
-                                        for (DecessoMalattiaContagiosa decessoMalattiaContagiosa: decessiMalattiaContagiosa) {
-                                            counter += decessoMalattiaContagiosa.getNumeroMorti();
-                                        }
-                                        row.put("decessi", counter);
-
+                                    for (DecessoMalattiaContagiosa decessoMalattiaContagiosa : decessiMalattiaContagiosa) {
+                                        counter += decessoMalattiaContagiosa.getNumeroMorti();
                                     }
+                                    row.put("decessi", counter);
+
                                     data.add(row);
 
                                     pieChart.getData().add(new PieChart.Data("MALATTIA CONTAGIOSA", counter));
-
+                                }
+                                if (!decessi.isEmpty()) {
                                     for (Decesso decesso: decessi) {
                                         HashMap<String, Object> row2 = new HashMap<>();
                                         row2.put("causa", decesso.getCausaDecesso().getNome());
@@ -194,20 +188,19 @@ public class ReportDecessiProvinciaController implements Initializable {
                                 contentBox.getChildren().add(separator);
 
                                 // action event
-                                EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-                                    public void handle(ActionEvent e)
-                                    {
-                                        Set<Map<String, Object>> rows = new HashSet<>();
-                                        if (!tableData.isEmpty()) {
-                                            for (Map row: tableData) {
-                                                rows.add(row);
-                                            }
+                                EventHandler<ActionEvent> eventHandler = e -> {
+                                    Set<Map<String, Object>> rows = new HashSet<>();
+                                    if (!tableData.isEmpty()) {
+                                        for (Map row: tableData) {
+                                            rows.add(row);
                                         }
-                                        try {
-                                            Export.exportData(rows, "Decessi");
-                                        } catch (Exception exception) {
-                                            exception.printStackTrace();
-                                        }
+                                    }
+                                    try {
+                                        Export.exportData(rows, "Decessi");
+                                    } catch (Exception exception) {
+                                        FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'export!", null, actionEvent);
+                                        // DEBUG
+                                        // exception.printStackTrace();
                                     }
                                 };
                                 // action event
@@ -223,15 +216,19 @@ public class ReportDecessiProvinciaController implements Initializable {
                                         try {
                                             Export.exportImg(pieChart, provincia.getNome());
                                         } catch (Exception exception) {
-                                            exception.printStackTrace();
+                                            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'export!", null, actionEvent);
+                                            // DEBUG
+                                            // exception.printStackTrace();
                                         }
                                     }
                                 };
-                                button.setOnAction(event);
+                                button.setOnAction(eventHandler);
                                 buttonImg.setOnAction(eventImg);
 
                             } catch (ExecutionException | InterruptedException e) {
-                                e.printStackTrace();
+                                FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il caricamento!", null, actionEvent);
+                                // DEBUG
+                                // e.printStackTrace();
                             }
                         });
                         return null;

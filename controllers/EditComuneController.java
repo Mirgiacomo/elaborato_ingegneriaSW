@@ -71,7 +71,7 @@ public class EditComuneController extends EditController<Comune> implements Init
 
     @FXML
     @Override
-    public void saveAction(ActionEvent event) throws ExecutionException, InterruptedException {
+    public void saveAction(ActionEvent event) {
         Double superficie = null;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
@@ -99,16 +99,23 @@ public class EditComuneController extends EditController<Comune> implements Init
         Provincia provincia = provinciaComboBox.getSelectionModel().getSelectedItem();
 
         Comune comune = new Comune(codiceISTAT, nome, dataIstituzione, superficie, territorio, fronteMare, provincia);
-        if (comuneDao.addItem(comune) == null) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Errore durante l'inserimento!", null, event);
-        } else {
-            tableData.remove(model);
-            tableData.add(comune);
+        try {
+            if (comuneDao.addItem(comune) == null) {
+                FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante il salvataggio! Controlla i dati inseriti", null, event);
+            } else {
+                tableData.remove(model);
+                tableData.add(comune);
 
-            // Chiudo la pagina di insert dopo l'avvenuto inserimento
-            Stage stage = (Stage) saveButton.getScene().getWindow();
-            stage.close();
+                // Chiudo la pagina di insert dopo l'avvenuto inserimento
+                Stage stage = (Stage) saveButton.getScene().getWindow();
+                stage.close();
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'inserimento!", null, event);
+            // DEBUG
+            // e.printStackTrace();
         }
+
     }
 
     @Override

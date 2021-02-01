@@ -28,7 +28,6 @@ import java.util.concurrent.ExecutionException;
 
 
 public class EditDecessiProvinceController implements Initializable {
-    public GridPane contagiGridPane;
     @FXML
     private SearchableComboBox<Provincia> provinciaFilterComboBox;
     @FXML
@@ -60,13 +59,11 @@ public class EditDecessiProvinceController implements Initializable {
             for (Provincia provincia: province) {
                 provinciaFilterComboBox.getItems().add(provincia);
             }
-            //new AutoCompleteBox(provinciaFilterComboBox);
 
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
             yearFilterComboBox.getItems().add(currentYear - 1);
             yearFilterComboBox.getItems().add(currentYear);
-            //new AutoCompleteBox(yearFilterComboBox);
 
             Set<MalattiaContagiosa> malattieContagiose = (Set<MalattiaContagiosa>) malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
             decessiGridPane.getStyleClass().add("grid-pane");

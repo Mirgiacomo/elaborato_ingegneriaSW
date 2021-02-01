@@ -49,24 +49,15 @@ public class ReportMalattieContagioseNazioneController implements Initializable 
     @FXML
     private VBox contentBox;
 
-    ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
     ContagioDaoImpl contagioDao = new ContagioDaoImpl();
     DecessoMalattiaContagiosaDaoImpl decessoMalattiaContagiosaDao = new DecessoMalattiaContagiosaDaoImpl();
     MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
 
-    Set<MalattiaContagiosa> malattieContagiose;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-            yearSearchableComboBox.getItems().add(currentYear - 1);
-            yearSearchableComboBox.getItems().add(currentYear);
-
-            malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        yearSearchableComboBox.getItems().add(currentYear - 1);
+        yearSearchableComboBox.getItems().add(currentYear);
     }
 
     public void searchAction(ActionEvent event) throws ExecutionException, InterruptedException {
@@ -213,24 +204,23 @@ public class ReportMalattieContagioseNazioneController implements Initializable 
                         table.setItems(tableData);
 
                         // action event
-                        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-                            public void handle(ActionEvent e)
-                            {
-                                Set<Map<String, Object>> rows = new HashSet<>();
-                                if (!tableData.isEmpty()) {
-                                    for (Map row: tableData) {
-                                        rows.add(row);
-                                    }
+                        EventHandler<ActionEvent> eventHandler = e -> {
+                            Set<Map<String, Object>> rows = new HashSet<>();
+                            if (!tableData.isEmpty()) {
+                                for (Map row : tableData) {
+                                    rows.add(row);
+                                }
 
-                                }
-                                try {
-                                    Export.exportData(rows, "MalattieContagiose");
-                                } catch (Exception exception) {
-                                    exception.printStackTrace();
-                                }
+                            }
+                            try {
+                                Export.exportData(rows, "MalattieContagiose");
+                            } catch (Exception exception) {
+                                FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'export!", null, e);
+                                // DEBUG
+                                // exception.printStackTrace();
                             }
                         };
-                        button.setOnAction(event);
+                        button.setOnAction(eventHandler);
 
                         XYChart.Series<String, Number> seriesContagi = new XYChart.Series<>();
                         XYChart.Series<String, Number> seriesDecessi = new XYChart.Series<>();
@@ -245,7 +235,9 @@ public class ReportMalattieContagioseNazioneController implements Initializable 
                         chart.getData().clear();
                         chart.getData().addAll(seriesContagi, seriesDecessi);
                     } catch (ExecutionException | InterruptedException e) {
-                        e.printStackTrace();
+                        FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il caricamento!", null, event);
+                        // DEBUG
+                        // exception.printStackTrace();
                     }
                 });
                 return null;
