@@ -2,8 +2,6 @@ package elaborato_ingegneriaSW.dao;
 
 import com.google.cloud.firestore.DocumentSnapshot;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
