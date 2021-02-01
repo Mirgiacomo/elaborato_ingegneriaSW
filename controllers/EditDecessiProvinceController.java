@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -29,9 +30,9 @@ import java.util.concurrent.ExecutionException;
 public class EditDecessiProvinceController implements Initializable {
     public GridPane contagiGridPane;
     @FXML
-    private JFXComboBox<Provincia> provinciaFilterComboBox;
+    private SearchableComboBox<Provincia> provinciaFilterComboBox;
     @FXML
-    private JFXComboBox<Integer> yearFilterComboBox;
+    private SearchableComboBox<Integer> yearFilterComboBox;
     @FXML
     private JFXButton loadDecessiButton;
     @FXML
@@ -99,14 +100,21 @@ public class EditDecessiProvinceController implements Initializable {
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
+        saveButton.setDisable(true);
     }
 
     @FXML
-    public void loadDecessiAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
+    public void loadDecessiAction(ActionEvent event) throws ExecutionException, InterruptedException {
         for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
             for (JFXTextField input: entry.getValue()) {
                 input.setText("");
             }
+        }
+
+        if (provinciaFilterComboBox.getSelectionModel().isEmpty() || yearFilterComboBox.getSelectionModel().isEmpty()) {
+            saveButton.setDisable(true);
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Selezionare una provincia e un anno!", null, event);
+            return;
         }
 
         Provincia provincia = provinciaFilterComboBox.getSelectionModel().getSelectedItem();
@@ -117,8 +125,8 @@ public class EditDecessiProvinceController implements Initializable {
         if (resultDecessi != null && !resultDecessi.isEmpty()) {
             for (Decesso decesso: resultDecessi) {
                 Set<JFXTextField> inputs = null;
-                if (form.containsKey(decesso.getCausaDecesso().getNome())) {
-                    inputs = form.get(decesso.getCausaDecesso().getNome());
+                if (form.containsKey(decesso.getCausaDecesso().name())) {
+                    inputs = form.get(decesso.getCausaDecesso().name());
                 }
 
                 if (inputs != null && !inputs.isEmpty()) {
@@ -146,10 +154,16 @@ public class EditDecessiProvinceController implements Initializable {
                 }
             }
         }
+        saveButton.setDisable(false);
     }
 
     @FXML
     public void saveAction(ActionEvent event) {
+        if (provinciaFilterComboBox.getSelectionModel().isEmpty() || yearFilterComboBox.getSelectionModel().isEmpty()) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE SALVATAGGIO", "Selezionare un comune e una data! Se premi SELEZIONA, perdi eventuali dati inseriti", null, event);
+            return;
+        }
+
         Provincia provincia = provinciaFilterComboBox.getSelectionModel().getSelectedItem();
         int year = yearFilterComboBox.getSelectionModel().getSelectedItem();
 
@@ -166,7 +180,6 @@ public class EditDecessiProvinceController implements Initializable {
                 if (isMalattiaContagiosa) {
                     MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
                     MalattiaContagiosa malattiaContagiosa = malattiaContagiosaDao.getItem(entry.getKey());
-                    System.out.println(entry.getKey());
 
                     DecessoMalattiaContagiosa newDecessoMalattiaContagiosa = new DecessoMalattiaContagiosa();
                     newDecessoMalattiaContagiosa.setYear(year);
@@ -175,11 +188,12 @@ public class EditDecessiProvinceController implements Initializable {
                     newDecessoMalattiaContagiosa.setMalattiaContagiosa(malattiaContagiosa);
 
                     for (JFXTextField input: entry.getValue()) {
-                        String value = input.getText();
-                        newDecessoMalattiaContagiosa.setNumeroMorti(Integer.parseInt(value));
+                        int value = input.getText().isBlank() ? 0 : Integer.parseInt(input.getText());
+                        newDecessoMalattiaContagiosa.setNumeroMorti(value);
                     }
                     decessoMalattiaContagiosaDao.addItem(newDecessoMalattiaContagiosa);
-                    System.out.println(newDecessoMalattiaContagiosa);
+                    // DEBUG
+                    // System.out.println(newDecessoMalattiaContagiosa);
                 } else {
                     Decesso newDecesso = new Decesso();
 
@@ -188,16 +202,18 @@ public class EditDecessiProvinceController implements Initializable {
                     newDecesso.setCausaDecesso(CausaDecesso.valueOf(entry.getKey()));
 
                     for (JFXTextField input: entry.getValue()) {
-                        String value = input.getText();
-                        newDecesso.setNumeroMorti(Integer.parseInt(value));
+                        int value = input.getText().isBlank() ? 0 : Integer.parseInt(input.getText());
+                        newDecesso.setNumeroMorti(value);
                     }
 
                     decessoDao.addItem(newDecesso);
-                    System.out.println(newDecesso);
+                    // DEBUG
+                    // System.out.println(newDecesso);
                 }
             }
+            FXUtil.Alert(Alert.AlertType.INFORMATION, "SALVATAGGIO COMPLETATO", "Salvataggio completato con successo!", null, event);
         } catch (NumberFormatException e) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "VALORI ERRATI", "Errore durante l'inserimento di alcuni dati! Prova con il punto al posto della virgola", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "VALORI ERRATI", "Errore durante il salvataggio!", null, event);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }

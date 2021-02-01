@@ -74,7 +74,9 @@ public class Decesso implements Comparable<Decesso>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Decesso decesso = (Decesso) o;
-        return Objects.equals(decesso.getYear(), decesso.getProvincia().getNome());
+        return year == decesso.year &&
+                provincia.equals(decesso.provincia) &&
+                causaDecesso == decesso.causaDecesso;
     }
 
     @Override

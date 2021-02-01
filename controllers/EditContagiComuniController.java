@@ -5,13 +5,16 @@ import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.dao.ContagioDaoImpl;
 import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
 import elaborato_ingegneriaSW.models.*;
-import elaborato_ingegneriaSW.utils.AutoCompleteBox;
 import elaborato_ingegneriaSW.utils.FXUtil;
+import elaborato_ingegneriaSW.utils.LoggedUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import org.controlsfx.control.SearchableComboBox;
 
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -23,8 +26,12 @@ import java.util.concurrent.ExecutionException;
 
 
 public class EditContagiComuniController implements Initializable {
+    private Utente loggedUser;
+
     @FXML
-    private JFXComboBox<Comune> comuneFilterComboBox;
+    private AnchorPane editContagiRoot;
+    @FXML
+    private SearchableComboBox<Comune> comuneFilterComboBox;
     @FXML
     private DatePicker weekFilterDatePicker;
     @FXML
@@ -45,74 +52,81 @@ public class EditContagiComuniController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        weekFilterDatePicker.setValue(FXUtil.NOW_LOCAL_DATE());
-        MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
+        loggedUser = LoggedUser.getLoggedUser();
 
-        try {
-            Set<MalattiaContagiosa> malattieContagiose = (Set<MalattiaContagiosa>) malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
-            contagiGridPane.getStyleClass().add("grid-pane");
-            int row = 1;
+        if (loggedUser != null) {
+            weekFilterDatePicker.setValue(FXUtil.NOW_LOCAL_DATE());
+            MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
 
-            for (MalattiaContagiosa m: malattieContagiose) {
-                Label label = new Label(m.getNome().toUpperCase());
+            try {
+                Set<MalattiaContagiosa> malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
+                contagiGridPane.getStyleClass().add("grid-pane");
+                int row = 1;
 
-                JFXTextField terapiaIntensiva = new JFXTextField();
-                terapiaIntensiva.setId("terapiaIntensiva");
+                for (MalattiaContagiosa m: malattieContagiose) {
+                    Label label = new Label(m.getNome().toUpperCase());
 
-                JFXTextField medicoBase = new JFXTextField();
-                medicoBase.setId("medicoBase");
+                    JFXTextField terapiaIntensiva = new JFXTextField();
+                    terapiaIntensiva.setId("terapiaIntensiva");
 
-                Set<JFXTextField> inputs = new HashSet<>();
-                inputs.add(terapiaIntensiva);
-                inputs.add(medicoBase);
+                    JFXTextField medicoBase = new JFXTextField();
+                    medicoBase.setId("medicoBase");
 
-                GridPane complications = new GridPane();
-                complications.setHgap(15);
-                complications.setVgap(15);
+                    Set<JFXTextField> inputs = new HashSet<>();
+                    inputs.add(terapiaIntensiva);
+                    inputs.add(medicoBase);
 
-                if (!m.getComplications().isEmpty()) {
-                    int complicationsRow = 0;
-                    Set<JFXTextField> inputsComplications = new HashSet<>();
+                    GridPane complications = new GridPane();
+                    complications.setHgap(15);
+                    complications.setVgap(15);
 
-                    for (String c: m.getComplications()) {
-                        Label cLabel = new Label(c.toUpperCase());
-                        JFXTextField valueInput = new JFXTextField();
+                    if (!m.getComplications().isEmpty()) {
+                        int complicationsRow = 0;
+                        Set<JFXTextField> inputsComplications = new HashSet<>();
 
-                        valueInput.setId(c);
-                        inputsComplications.add(valueInput);
+                        for (String c: m.getComplications()) {
+                            Label cLabel = new Label(c.toUpperCase());
+                            JFXTextField valueInput = new JFXTextField();
 
-                        complications.addRow(complicationsRow, cLabel, valueInput);
-                        complicationsRow++;
+                            valueInput.setId(c);
+                            inputsComplications.add(valueInput);
+
+                            complications.addRow(complicationsRow, cLabel, valueInput);
+                            complicationsRow++;
+                        }
+                        formComplications.put(m.getNome(), inputsComplications);
                     }
-                    formComplications.put(m.getNome(), inputsComplications);
+                    form.put(m.getNome(), inputs);
+                    contagiGridPane.addRow(row++, label, terapiaIntensiva, medicoBase, complications);
                 }
-                form.put(m.getNome(), inputs);
-                contagiGridPane.addRow(row++, label, terapiaIntensiva, medicoBase, complications);
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
 
-        // TODO: Ogni persona avrà solo certi comuni associati, non tutti
-        try {
-            Set<Comune> comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
+            try {
+                Set<Comune> comuni = new HashSet<>();
 
-            for (Comune comune: comuni) {
-                comuneFilterComboBox.getItems().add(comune);
+                if (loggedUser.getRuolo().equals(RuoloUtente.ADMIN)) {
+                    comuni = comuneDao.getAllItems(ComuneDaoImpl.getCollectionName());
+                } else if (loggedUser.getRuolo().equals(RuoloUtente.PERSONALE_CONTAGI)) {
+                    comuni = loggedUser.getComuniAssociati();
+                }
+                for (Comune comune: comuni) {
+                    comuneFilterComboBox.getItems().add(comune);
+                }
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
             }
-            //new AutoCompleteBox(comuneFilterComboBox);
-
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
+            saveButton.setDisable(true);
         }
     }
 
     /**
      * Carica eventuali contagi già inseriti per il comune e la settimana selezionati
-     * @param actionEvent
+     * @param event
      */
     @FXML
-    public void loadContagiAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
+    public void loadContagiAction(ActionEvent event) throws ExecutionException, InterruptedException {
         for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
             for (JFXTextField input: entry.getValue()) {
                 input.setText("");
@@ -127,6 +141,11 @@ public class EditContagiComuniController implements Initializable {
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         DayOfWeek firstDayOfWeek = WeekFields.of(Locale.getDefault()).getFirstDayOfWeek();
 
+        if (comuneFilterComboBox.getSelectionModel().isEmpty() || weekFilterDatePicker.getValue() == null) {
+            saveButton.setDisable(true);
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Selezionare un comune e una data!", null, event);
+            return;
+        }
         Comune comune = comuneFilterComboBox.getSelectionModel().getSelectedItem();
         LocalDate date = weekFilterDatePicker.getValue();
         date = date.with(TemporalAdjusters.previousOrSame(firstDayOfWeek)); // prende il lunedì della settimana selezionata (altrimenti se ci sono settimane a metà tra un anno e l'altro potrebbero esserci problemi
@@ -161,6 +180,7 @@ public class EditContagiComuniController implements Initializable {
                 }
             }
         }
+        saveButton.setDisable(false);
     }
 
     @FXML
@@ -168,6 +188,11 @@ public class EditContagiComuniController implements Initializable {
         MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         DayOfWeek firstDayOfWeek = WeekFields.of(Locale.getDefault()).getFirstDayOfWeek();
+
+        if (comuneFilterComboBox.getSelectionModel().isEmpty() || weekFilterDatePicker.getValue() == null) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE SALVATAGGIO", "Selezionare un comune e una data!", null, event);
+            return;
+        }
 
         Comune comune = comuneFilterComboBox.getSelectionModel().getSelectedItem();
         LocalDate date = weekFilterDatePicker.getValue();
@@ -188,45 +213,43 @@ public class EditContagiComuniController implements Initializable {
                     newContagio.setMalattiaContagiosa(malattiaContagiosa);
 
                     for (JFXTextField input: entry.getValue()) {
-                        String value;
+                        int value = input.getText().isBlank() ? 0 : Integer.parseInt(input.getText());
                         switch (input.getId()) {
                             case "terapiaIntensiva":
-                                value = input.getText();
-                                if (value != null && !value.equals("")) {
-                                    newContagio.setNumeroTerapiaIntensiva(Integer.parseInt(value));
-                                }
+                                newContagio.setNumeroTerapiaIntensiva(value);
                                 break;
                             case "medicoBase":
-                                value = input.getText();
-                                if (value != null && !value.equals("")) {
-                                    newContagio.setNumeroMedicoBase(Integer.parseInt(value));
-                                }
+                                newContagio.setNumeroMedicoBase(value);
                                 break;
                         }
                     }
 
-                    int totalComplications = 0;
+                    int maxComplications = 0;
                     if (formComplications.containsKey(entry.getKey())) {
                         for (JFXTextField complication: formComplications.get(entry.getKey())) {
                             // controllo se la malattia contagiosa ha la complicazione in oggetto
                             if (malattiaContagiosa.getComplications().contains(complication.getId())) {
-                                String value = complication.getText();
-                                int intValue = (value != null && !value.equals("")) ? Integer.parseInt(value) : 0;
-                                newContagio.addComplication(complication.getId(), intValue);
-                                totalComplications += intValue;
+                                int value = complication.getText().isBlank() ? 0 : Integer.parseInt(complication.getText());
+                                newContagio.addComplication(complication.getId(), value);
+                                if (value > maxComplications) {
+                                    maxComplications = value;
+                                }
                             }
                         }
                     }
-                    if (totalComplications > (newContagio.getNumeroMedicoBase() + newContagio.getNumeroTerapiaIntensiva())) {
-                        System.err.println("numero di pazienti non valido!");
+                    if (maxComplications > (newContagio.getNumeroMedicoBase() + newContagio.getNumeroTerapiaIntensiva())) {
+                        FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE INSERIMENTO", "Numero pazienti non valido!", null, event);
+                        return;
                     } else {
                         contagioDao.addItem(newContagio);
                     }
-                    System.out.println(newContagio);
+                    // DEBUG
+                    // System.out.println(newContagio);
                 }
             }
+            FXUtil.Alert(Alert.AlertType.INFORMATION, "SALVATAGGIO COMPLETATO", "Salvataggio completato con successo!", null, event);
         } catch (NumberFormatException e) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "VALORI ERRATA", "Errore durante l'inserimento di alcuni dati! Prova con il punto al posto della virgola", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "VALORI ERRATA", "Errore durante il salvataggio!", null, event);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }

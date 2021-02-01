@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.DatePicker?>
@@ -14,8 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
-<AnchorPane styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.EditContagiComuniController">
+<AnchorPane fx:id="editContagiRoot" styleClass="anchorPane" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.EditContagiComuniController">
    <children>
       <VBox alignment="TOP_CENTER" styleClass="anchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
@@ -38,39 +38,39 @@
                </VBox.margin>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NOTA: selezionare il comune e la settimana per caricare eventuali dati già inseriti." />
-            <GridPane alignment="CENTER" maxWidth="1000.0">
+            <GridPane alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints />
                 <ColumnConstraints hgrow="SOMETIMES" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="NEVER" />
                 <ColumnConstraints hgrow="SOMETIMES" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comune">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Comune" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER">
                      <font>
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
                   </Text>
-                  <JFXComboBox fx:id="comuneFilterComboBox" styleClass="comboBox" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
-                     <padding>
-                        <Insets right="30.0" />
-                     </padding>
-                  </JFXComboBox>
-                  <DatePicker fx:id="weekFilterDatePicker" styleClass="dataPicker" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+                  <SearchableComboBox fx:id="comuneFilterComboBox" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                      <GridPane.margin>
-                        <Insets right="30.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </SearchableComboBox>
+                  <DatePicker fx:id="weekFilterDatePicker" styleClass="dataPicker" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="10.0" right="30.0" top="5.0" />
                      </GridPane.margin>
                   </DatePicker>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona la settimana" GridPane.columnIndex="2">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona la settimana" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER">
                      <font>
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>
                   </Text>
-                  <JFXButton fx:id="loadContagiButton" buttonType="RAISED" defaultButton="true" onAction="#loadContagiAction" ripplerFill="WHITE" styleClass="button-ricerca" text="SELEZIONA" textFill="WHITE" GridPane.columnIndex="4">
+                  <JFXButton fx:id="loadContagiButton" buttonType="RAISED" defaultButton="true" onAction="#loadContagiAction" ripplerFill="WHITE" styleClass="button-ricerca" text="SELEZIONA" textFill="WHITE" GridPane.columnIndex="4" GridPane.hgrow="NEVER">
                      <font>
                         <Font name="Open Sans Semibold" size="17.0" />
                      </font>
@@ -90,9 +90,9 @@
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin></Separator>
-            <ScrollPane fitToWidth="true" prefHeight="423.0" prefWidth="798.0">
+            <ScrollPane fitToWidth="true">
                <content>
-                  <GridPane fx:id="contagiGridPane" alignment="CENTER" hgap="15.0" maxWidth="1000.0" vgap="15.0">
+                  <GridPane fx:id="contagiGridPane" alignment="CENTER" hgap="15.0" vgap="15.0">
                     <columnConstraints>
                         <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
@@ -125,13 +125,16 @@
                         </Text>
                      </children>
                      <padding>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets bottom="20.0" left="20.0" right="20.0" />
                      </padding>
                   </GridPane>
                </content>
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
             </ScrollPane>
             <JFXButton fx:id="saveButton" buttonType="RAISED" defaultButton="true" onAction="#saveAction" prefHeight="43.0" prefWidth="192.0" ripplerFill="WHITE" text="SALVA" textFill="WHITE">
                <font>
