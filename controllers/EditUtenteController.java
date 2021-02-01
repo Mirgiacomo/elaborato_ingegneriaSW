@@ -90,6 +90,11 @@ public class EditUtenteController extends EditController<Utente> implements Init
                 return;
             }
 
+            if(!ruoloComboBox.getSelectionModel().getSelectedItem().equals(RuoloUtente.PERSONALE_MONITORAGGIO) && !comuniCheckComboBox.getCheckModel().getCheckedIndices().isEmpty()){
+                FXUtil.Alert(Alert.AlertType.ERROR, "WARNING", "Attenzione, solo il personale monitoraggio può avere associati dei comuni!", null, event);
+                return;
+            }
+
             String nome = nomeTextField.getText();
             String cognome = cognomeTextField.getText();
             String cf = cfTextField.getText();

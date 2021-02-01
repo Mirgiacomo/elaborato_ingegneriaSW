@@ -6,7 +6,6 @@ import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,7 +50,7 @@ public class ViewRegioniController extends ViewController<Regione> implements In
                     Callback<TableColumn<Regione, String>, TableCell<Regione, String>> cellFactory = param -> new EditButtonCell<>(tableRegioni, ViewRegioniController.this, "EditRegione.fxml");
 
                     actionCol.setCellFactory(cellFactory);
-                    actionCol.prefWidthProperty().bind(tableRegioni.widthProperty().multiply(0.055));
+                    actionCol.prefWidthProperty().bind(tableRegioni.widthProperty().multiply(0.075));
                     actionCol.setResizable(false);
                     nomeCol.setCellValueFactory(new PropertyValueFactory<>("nome"));
                     superficieCol.setCellValueFactory(new PropertyValueFactory<>("superficie"));

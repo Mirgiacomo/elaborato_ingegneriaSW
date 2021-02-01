@@ -5,7 +5,6 @@ import elaborato_ingegneriaSW.dao.ComuneDaoImpl;
 import elaborato_ingegneriaSW.dao.ContagioDaoImpl;
 import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
 import elaborato_ingegneriaSW.models.*;
-import elaborato_ingegneriaSW.utils.AutoCompleteBox;
 import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,11 +27,7 @@ public class EditContagiComuniController implements Initializable {
     @FXML
     private DatePicker weekFilterDatePicker;
     @FXML
-    private JFXButton loadContagiButton;
-    @FXML
     private GridPane contagiGridPane;
-    @FXML
-    private JFXButton saveButton;
 
     private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
     private final ContagioDaoImpl contagioDao = new ContagioDaoImpl();
@@ -113,6 +108,10 @@ public class EditContagiComuniController implements Initializable {
      */
     @FXML
     public void loadContagiAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
+        if(comuneFilterComboBox.getSelectionModel().isEmpty()){
+            FXUtil.Alert(Alert.AlertType.ERROR, "DATI FILTRO ERRATI", "Selezionare un comune!", null, actionEvent);
+            return;
+        }
         for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
             for (JFXTextField input: entry.getValue()) {
                 input.setText("");
@@ -218,11 +217,11 @@ public class EditContagiComuniController implements Initializable {
                         }
                     }
                     if (totalComplications > (newContagio.getNumeroMedicoBase() + newContagio.getNumeroTerapiaIntensiva())) {
-                        System.err.println("numero di pazienti non valido!");
+                        FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Il numero di persone con complicazioni non può superare quello dei contagi totali!", null, event);
+                        return;
                     } else {
                         contagioDao.addItem(newContagio);
                     }
-                    System.out.println(newContagio);
                 }
             }
         } catch (NumberFormatException e) {

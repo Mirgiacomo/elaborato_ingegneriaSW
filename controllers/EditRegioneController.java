@@ -32,7 +32,6 @@ public class EditRegioneController extends EditController<Regione> implements In
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     @FXML
@@ -59,7 +58,6 @@ public class EditRegioneController extends EditController<Regione> implements In
         } else {
             tableData.remove(model);
             tableData.add(regione);
-            //System.out.println("Provincia inserita correttamente!");
 
             // Chiudo la pagina di insert dopo l'avvenuto inserimento
             Stage stage = (Stage) saveButton.getScene().getWindow();

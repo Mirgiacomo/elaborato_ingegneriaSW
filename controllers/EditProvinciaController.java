@@ -13,7 +13,6 @@ import elaborato_ingegneriaSW.dao.RegioneDaoImpl;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Regione;
 import elaborato_ingegneriaSW.utils.FXUtil;
-import elaborato_ingegneriaSW.utils.AutoCompleteBox;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -71,13 +70,11 @@ public class EditProvinciaController extends EditController<Provincia> implement
         Regione regione = (Regione) regioneComboBox.getSelectionModel().getSelectedItem();
 
         Provincia provincia = new Provincia(nome, superficie, regione);
-        System.out.println(provincia);
         if (provinciaDao.addItem(provincia) == null) {
             FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante il salvataggio! Controlla i dati inseriti", null, event);
         } else {
             tableData.remove(model);
             tableData.add(provincia);
-            //System.out.println("Provincia inserita correttamente!");
 
             // Chiudo la pagina di insert dopo l'avvenuto inserimento
             Stage stage = (Stage) saveButton.getScene().getWindow();
