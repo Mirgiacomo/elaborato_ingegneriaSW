@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.models.RuoloUtente;
 import elaborato_ingegneriaSW.models.Utente;
+import elaborato_ingegneriaSW.utils.LoggedUser;
 import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.event.ActionEvent;

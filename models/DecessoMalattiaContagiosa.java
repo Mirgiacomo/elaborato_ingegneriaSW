@@ -5,6 +5,7 @@ import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class DecessoMalattiaContagiosa extends Decesso {
     private MalattiaContagiosa malattiaContagiosa;
@@ -35,6 +36,22 @@ public class DecessoMalattiaContagiosa extends Decesso {
     @Override
     public String generateId() {
         return getYear() + "_" + getProvincia().getNome().toLowerCase() + "_" + malattiaContagiosa.generateId();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        DecessoMalattiaContagiosa that = (DecessoMalattiaContagiosa) o;
+        return Objects.equals(malattiaContagiosa, that.malattiaContagiosa) &&
+                getYear() == that.getYear() &&
+                getProvincia().equals(that.getProvincia());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), malattiaContagiosa);
     }
 
     public HashMap<String, Object> getFirebaseObject() {

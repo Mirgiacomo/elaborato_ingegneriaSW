@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import elaborato_ingegneriaSW.dao.*;
 import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.Export;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -70,12 +72,21 @@ public class ReportMalattieContagioseRegioneController implements Initializable 
         }
     }
 
-    public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
-        // TODO: check filtri
+    public void searchAction(ActionEvent event) throws ExecutionException, InterruptedException {
+        if (regioniCheckComboBox.getCheckModel().isEmpty() || yearSearchableComboBox.getSelectionModel().isEmpty()) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE CARICAMENTO", "Selezionare una è più regioni e un anno!", null, event);
+            return;
+        }
         ObservableList<Regione> regioni = regioniCheckComboBox.getCheckModel().getCheckedItems();
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
 
-        Set<MalattiaContagiosa> malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
+        Set<MalattiaContagiosa> malattieContagiose;
+        try {
+            malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
+        } catch (ExecutionException | InterruptedException e) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il caricamento!", null, event);
+            return;
+        }
 
         if (regioni != null && !regioni.isEmpty()) {
             contentBox.getChildren().clear();

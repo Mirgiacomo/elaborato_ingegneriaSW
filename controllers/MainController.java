@@ -3,6 +3,7 @@ package elaborato_ingegneriaSW.controllers;
 import elaborato_ingegneriaSW.MainApp;
 import elaborato_ingegneriaSW.models.RuoloUtente;
 import elaborato_ingegneriaSW.models.Utente;
+import elaborato_ingegneriaSW.utils.LoggedUser;
 import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import com.jfoenix.controls.JFXDrawer;
 
@@ -65,6 +66,9 @@ public class MainController implements Initializable, SelectViewCallback {
                     break;
             }*/
             try {
+                // TODO: togliere la seguente riga, solo per debug
+                LoggedUser.setLoggedUser(loggedUser);
+
                 FXMLLoader loader = showView.getLoader("SidePanel.fxml");
                 VBox box = loader.load();
 
@@ -145,7 +149,8 @@ public class MainController implements Initializable, SelectViewCallback {
 
     public void setLoggedUser(Utente user)
     {
-        this.loggedUser = user;
+        LoggedUser.setLoggedUser(user);
+        this.loggedUser = LoggedUser.getLoggedUser();
     }
 
     public Utente getLoggedUser()

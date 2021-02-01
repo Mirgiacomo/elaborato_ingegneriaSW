@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="sidebarBox" alignment="TOP_CENTER" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.SidePanelController">
+<VBox fx:id="sidebarBox" alignment="TOP_CENTER" minWidth="350.0" prefHeight="350.0" prefWidth="400.0" styleClass="anchorPane" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.SidePanelController">
     <children>
         <ImageView fitHeight="133.0" fitWidth="251.0" pickOnBounds="true" preserveRatio="true">
             <image>

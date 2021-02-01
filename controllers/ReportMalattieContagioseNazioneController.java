@@ -10,6 +10,7 @@ import elaborato_ingegneriaSW.models.DecessoMalattiaContagiosa;
 import elaborato_ingegneriaSW.models.MalattiaContagiosa;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.utils.Export;
+import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -67,11 +69,20 @@ public class ReportMalattieContagioseNazioneController implements Initializable 
         }
     }
 
-    public void searchAction(ActionEvent actionEvent) throws ExecutionException, InterruptedException {
-        // TODO: check filtri
+    public void searchAction(ActionEvent event) throws ExecutionException, InterruptedException {
+        if (yearSearchableComboBox.getSelectionModel().isEmpty()) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE CARICAMENTO", "Selezionare un anno!", null, event);
+            return;
+        }
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
 
-        Set<MalattiaContagiosa> malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
+        Set<MalattiaContagiosa> malattieContagiose;
+        try {
+            malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
+        } catch (ExecutionException | InterruptedException e) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il caricamento!", null, event);
+            return;
+        }
 
         Task<Void> task = new Task<>() {
 
