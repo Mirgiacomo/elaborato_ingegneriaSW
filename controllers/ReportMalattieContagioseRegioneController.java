@@ -74,7 +74,7 @@ public class ReportMalattieContagioseRegioneController implements Initializable 
 
     public void searchAction(ActionEvent event) throws ExecutionException, InterruptedException {
         if (regioniCheckComboBox.getCheckModel().isEmpty() || yearSearchableComboBox.getSelectionModel().isEmpty()) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE CARICAMENTO", "Selezionare una è più regioni e un anno!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE CARICAMENTO", "Selezionare una o più regioni e un anno!", null, event);
             return;
         }
         ObservableList<Regione> regioni = regioniCheckComboBox.getCheckModel().getCheckedItems();

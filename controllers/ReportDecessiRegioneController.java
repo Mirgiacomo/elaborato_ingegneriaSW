@@ -68,11 +68,12 @@ public class ReportDecessiRegioneController implements Initializable {
     }
 
     public void searchAction(ActionEvent actionEvent) {
-        ObservableList<Regione> regioni = regioniCheckComboBox.getCheckModel().getCheckedItems();
-        if(yearSearchableComboBox.getSelectionModel().isEmpty()){
-            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE FILTRO!", "Anno inserito nel filtro non valido!", null, actionEvent);
+        if (regioniCheckComboBox.getCheckModel().isEmpty() || yearSearchableComboBox.getSelectionModel().isEmpty()) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE CARICAMENTO", "Selezionare una o più regioni e un anno!", null, actionEvent);
             return;
         }
+
+        ObservableList<Regione> regioni = regioniCheckComboBox.getCheckModel().getCheckedItems();
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
 
         if (regioni != null && !regioni.isEmpty()) {

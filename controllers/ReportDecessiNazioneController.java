@@ -53,7 +53,7 @@ public class ReportDecessiNazioneController implements Initializable {
 
     public void searchAction(ActionEvent actionEvent) {
         if (yearSearchableComboBox.getSelectionModel().isEmpty()) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE FILTRO!", "Anno inserito nel filtro non valido!", null, actionEvent);
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE CARICAMENTO", "Selezionare un anno!", null, actionEvent);
             return;
         }
         int year = yearSearchableComboBox.getSelectionModel().getSelectedItem();
