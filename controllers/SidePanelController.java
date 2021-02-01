@@ -150,19 +150,7 @@ public class SidePanelController implements Initializable {
     @FXML
     public void createSidePanel(Utente utente) {
         // All'inizio tolgo tutti i bottoni in modo tale da inserirli nella sequenza giusta
-        sidebar.getChildren().remove(provinceButton);
-        sidebar.getChildren().remove(comuniButton);
-        sidebar.getChildren().remove(regioniButton);
-        sidebar.getChildren().remove(contagiComuniButton);
-        sidebar.getChildren().remove(decessiProvinciaButton);
-        sidebar.getChildren().remove(utentiButton);
-        sidebar.getChildren().remove(reportContagiComuneButton);
-        sidebar.getChildren().remove(reportMalattieContagioseProvinciaButton);
-        sidebar.getChildren().remove(reportMalattieContagioseRegioneButton);
-        sidebar.getChildren().remove(reportMalattieContagioseNazioneButton);
-        sidebar.getChildren().remove(reportDecessiProvinceButton);
-        sidebar.getChildren().remove(reportDecessiRegioniButton);
-        sidebar.getChildren().remove(reportDecessiNazioneButton);
+        sidebar.getChildren().clear();
 
         // Mi prendo il ruole dell'utente loggato e carico le sezioni a lui visibili
         RuoloUtente ruoloUtente = utente.getRuolo();
@@ -201,6 +189,9 @@ public class SidePanelController implements Initializable {
             case PERSONALE_DECESSI:
                 // TODO: valutare se aggiungere un altro bottone per la visualizzazione di tali dati sotto forma di report
                 sidebar.getChildren().add(decessiProvinciaButton);
+                sidebar.getChildren().add(reportDecessiProvinceButton);
+                sidebar.getChildren().add(reportDecessiRegioniButton);
+                sidebar.getChildren().add(reportDecessiNazioneButton);
                 break;
 
             // Visualizzazione report
