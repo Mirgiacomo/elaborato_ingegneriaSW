@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXScrollPane;
 import elaborato_ingegneriaSW.models.RuoloUtente;
 import elaborato_ingegneriaSW.models.Utente;
+import elaborato_ingegneriaSW.utils.LoggedUser;
 import elaborato_ingegneriaSW.utils.SelectViewCallback;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.event.ActionEvent;
