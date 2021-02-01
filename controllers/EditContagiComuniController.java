@@ -37,6 +37,8 @@ public class EditContagiComuniController implements Initializable {
     private GridPane contagiGridPane;
     @FXML
     private JFXButton saveButton;
+    @FXML
+    private JFXButton azzeraButton;
 
     private final ComuneDaoImpl comuneDao = new ComuneDaoImpl();
     private final ContagioDaoImpl contagioDao = new ContagioDaoImpl();
@@ -262,6 +264,19 @@ public class EditContagiComuniController implements Initializable {
             FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'esecuzione!", null, event);
             // DEBUG
             // e.printStackTrace();
+        }
+    }
+
+    public void azzeraAction(ActionEvent actionEvent) {
+        for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
+            for (JFXTextField input: entry.getValue()) {
+                input.setText("");
+            }
+            if (formComplications.containsKey(entry.getKey())) {
+                for (JFXTextField complication : formComplications.get(entry.getKey())) {
+                    complication.setText("");
+                }
+            }
         }
     }
 }

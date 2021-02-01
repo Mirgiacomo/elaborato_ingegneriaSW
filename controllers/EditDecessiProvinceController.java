@@ -32,6 +32,8 @@ public class EditDecessiProvinceController implements Initializable {
     private GridPane decessiGridPane;
     @FXML
     private JFXButton saveButton;
+    @FXML
+    private JFXButton azzeraButton;
 
     private final DecessoDaoImpl decessoDao = new DecessoDaoImpl();
     private final DecessoMalattiaContagiosaDaoImpl decessoMalattiaContagiosaDao = new DecessoMalattiaContagiosaDaoImpl();
@@ -208,6 +210,14 @@ public class EditDecessiProvinceController implements Initializable {
             FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'esecuzione!", null, event);
             // DEBUG
             // e.printStackTrace();
+        }
+    }
+
+    public void azzeraAction(ActionEvent actionEvent) {
+        for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
+            for (JFXTextField input: entry.getValue()) {
+                input.setText("");
+            }
         }
     }
 }
