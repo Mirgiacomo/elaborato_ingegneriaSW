@@ -112,7 +112,7 @@ public class EditUtenteController extends EditController<Utente> implements Init
 
             Utente utente = new Utente(cognome, nome, username, Hashing.sha256().hashString(password1, StandardCharsets.UTF_8).toString(), ruolo, cf, comuniAssociati);
             try {
-                if (utenteDao.addItem(utente) == null) {
+                if (utenteDao.saveItem(utente) == null) {
                     FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO UTENTE FALLITO", "Errore durante il salvataggio dell'utente!", null, event);
                 } else {
                     tableData.remove(model);

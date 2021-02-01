@@ -2,7 +2,6 @@ package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
-import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Provincia;
 import elaborato_ingegneriaSW.models.Regione;
 
@@ -62,24 +61,19 @@ public class ProvinciaDaoImpl extends DaoImpl<Provincia> {
     }
 
     @Override
-    public Provincia addItem(Provincia item) throws ExecutionException, InterruptedException {
+    public Provincia saveItem(Provincia item) throws ExecutionException, InterruptedException {
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
 
         RegioneDaoImpl regioneDao = new RegioneDaoImpl();
 
         if (regioneDao.getItem(item.getRegione().generateId()) == null) {
-            regioneDao.addItem(item.getRegione());
+            regioneDao.saveItem(item.getRegione());
         }
 
         ApiFuture<WriteResult> writeResult = documentReference.set(item.getFirebaseObject());
 
         DocumentSnapshot documentSnapshot = documentReference.get().get();
         return getItem(documentSnapshot.getId());
-    }
-
-    @Override
-    public Provincia updateItem(Provincia item) {
-        return null;
     }
 
     @Override

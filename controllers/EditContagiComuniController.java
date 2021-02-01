@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import org.controlsfx.control.SearchableComboBox;
 
 import java.net.URL;
@@ -250,7 +249,7 @@ public class EditContagiComuniController implements Initializable {
                         FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE INSERIMENTO", "Numero pazienti non valido!", null, event);
                         return;
                     } else {
-                        contagioDao.addItem(newContagio);
+                        contagioDao.saveItem(newContagio);
                     }
                     // DEBUG
                     // System.out.println(newContagio);

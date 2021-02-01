@@ -100,7 +100,7 @@ public class EditComuneController extends EditController<Comune> implements Init
 
         Comune comune = new Comune(codiceISTAT, nome, dataIstituzione, superficie, territorio, fronteMare, provincia);
         try {
-            if (comuneDao.addItem(comune) == null) {
+            if (comuneDao.saveItem(comune) == null) {
                 FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante il salvataggio! Controlla i dati inseriti", null, event);
             } else {
                 tableData.remove(model);

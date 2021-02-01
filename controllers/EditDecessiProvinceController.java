@@ -1,14 +1,12 @@
 package elaborato_ingegneriaSW.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.DecessoDaoImpl;
 import elaborato_ingegneriaSW.dao.DecessoMalattiaContagiosaDaoImpl;
 import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.models.*;
-import elaborato_ingegneriaSW.utils.AutoCompleteBox;
 import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,10 +17,6 @@ import javafx.scene.layout.GridPane;
 import org.controlsfx.control.SearchableComboBox;
 
 import java.net.URL;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
-import java.time.temporal.WeekFields;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
@@ -187,7 +181,7 @@ public class EditDecessiProvinceController implements Initializable {
                         int value = input.getText().isBlank() ? 0 : Integer.parseInt(input.getText());
                         newDecessoMalattiaContagiosa.setNumeroMorti(value);
                     }
-                    decessoMalattiaContagiosaDao.addItem(newDecessoMalattiaContagiosa);
+                    decessoMalattiaContagiosaDao.saveItem(newDecessoMalattiaContagiosa);
                     // DEBUG
                     // System.out.println(newDecessoMalattiaContagiosa);
                 } else {
@@ -202,7 +196,7 @@ public class EditDecessiProvinceController implements Initializable {
                         newDecesso.setNumeroMorti(value);
                     }
 
-                    decessoDao.addItem(newDecesso);
+                    decessoDao.saveItem(newDecesso);
                     // DEBUG
                     // System.out.println(newDecesso);
                 }

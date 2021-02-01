@@ -29,32 +29,4 @@ public abstract class DaoImpl<T> implements Dao<T> {
         return result;
     }
 
-    /**
-     * Crea una query di ricerca sul database
-     * @param collectionName: nome collezione su database
-     * @param conditions: chiave = nome del campo, valore = valore da filtrare
-     * @param classType: classe degli oggetti richiesti
-     * @return result
-     *
-     * TODO: provare a sistemare perchè non funziona
-     */
-    @Override
-    public List<T> getItemsByQuery(String collectionName, HashMap<String,T> conditions, Class classType) throws ExecutionException, InterruptedException {
-        CollectionReference collectionReference = firestore.collection(collectionName);
-        Query query = null;
-        List<T> result = null;
-
-        for (String key: conditions.keySet()) {
-            query = collectionReference.whereEqualTo(key, conditions.get(key));
-        }
-
-        ApiFuture<QuerySnapshot> querySnapshot = query.get();
-        result = new ArrayList<>();
-
-        for (DocumentSnapshot document : querySnapshot.get().getDocuments()) {
-            result.add(getItem(document));
-        }
-
-        return result;
-    }
 }

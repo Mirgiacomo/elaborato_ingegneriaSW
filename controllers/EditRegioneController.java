@@ -54,7 +54,7 @@ public class EditRegioneController extends EditController<Regione> implements In
         Regione regione = new Regione(nome, capoluogo, superficie);
 
         try {
-            if (regioneDao.addItem(regione) == null) {
+            if (regioneDao.saveItem(regione) == null) {
                 FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante il salvataggio! Controlla i dati inseriti!", null, event);
             } else {
                 tableData.remove(model);

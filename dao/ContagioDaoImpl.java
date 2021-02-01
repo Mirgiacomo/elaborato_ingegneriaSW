@@ -2,7 +2,6 @@ package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
-import com.google.firebase.database.GenericTypeIndicator;
 import elaborato_ingegneriaSW.models.Comune;
 import elaborato_ingegneriaSW.models.Contagio;
 import elaborato_ingegneriaSW.models.Provincia;
@@ -149,7 +148,7 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
     }
 
     @Override
-    public Contagio addItem(Contagio item) throws ExecutionException, InterruptedException {
+    public Contagio saveItem(Contagio item) throws ExecutionException, InterruptedException {
         Contagio result = null;
 
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
@@ -165,11 +164,6 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
             result = getItem(documentSnapshot.getId());
         }
         return result;
-    }
-
-    @Override
-    public Contagio updateItem(Contagio item) {
-        return null;
     }
 
     @Override

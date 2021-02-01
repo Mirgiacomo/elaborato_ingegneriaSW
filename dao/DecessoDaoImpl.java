@@ -96,7 +96,7 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
     }
 
     @Override
-    public Decesso addItem(Decesso item) throws ExecutionException, InterruptedException {
+    public Decesso saveItem(Decesso item) throws ExecutionException, InterruptedException {
         Decesso result = null;
 
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
@@ -109,11 +109,6 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
             result = getItem(documentSnapshot.getId());
         }
         return  result;
-    }
-
-    @Override
-    public Decesso updateItem(Decesso item) {
-        return null;
     }
 
     @Override
