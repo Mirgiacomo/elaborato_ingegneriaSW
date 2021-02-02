@@ -74,7 +74,7 @@ public class ReportMalattieContagioseRegioneController implements Initializable 
 
     public void searchAction(ActionEvent event) throws ExecutionException, InterruptedException {
         if (regioniCheckComboBox.getCheckModel().isEmpty() || yearSearchableComboBox.getSelectionModel().isEmpty()) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE CARICAMENTO", "Selezionare una è più regioni e un anno!", null, event);
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE CARICAMENTO", "Selezionare una o più regioni e un anno!", null, event);
             return;
         }
         ObservableList<Regione> regioni = regioniCheckComboBox.getCheckModel().getCheckedItems();
@@ -193,24 +193,23 @@ public class ReportMalattieContagioseRegioneController implements Initializable 
                                 table.setItems(tableData);
 
                                 // action event
-                                EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-                                    public void handle(ActionEvent e)
-                                    {
-                                        Set<Map<String, Object>> rows = new HashSet<>();
-                                        if (!tableData.isEmpty()) {
-                                            for (Map row: tableData) {
-                                                rows.add(row);
-                                            }
+                                EventHandler<ActionEvent> eventHandler = e -> {
+                                    Set<Map<String, Object>> rows = new HashSet<>();
+                                    if (!tableData.isEmpty()) {
+                                        for (Map row : tableData) {
+                                            rows.add(row);
+                                        }
 
-                                        }
-                                        try {
-                                            Export.exportData(rows, "MalattieContagiose");
-                                        } catch (Exception exception) {
-                                            exception.printStackTrace();
-                                        }
+                                    }
+                                    try {
+                                        Export.exportData(rows, "MalattieContagiose");
+                                    } catch (Exception exception) {
+                                        FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'export!", null, e);
+                                        // DEBUG
+                                        // exception.printStackTrace();
                                     }
                                 };
-                                button.setOnAction(event);
+                                button.setOnAction(eventHandler);
 
                                 XYChart.Series<String, Number> seriesContagi = new XYChart.Series<>();
                                 XYChart.Series<String, Number> seriesDecessi = new XYChart.Series<>();
@@ -226,7 +225,9 @@ public class ReportMalattieContagioseRegioneController implements Initializable 
                                 chart.getData().addAll(seriesContagi, seriesDecessi);
 
                             } catch (ExecutionException | InterruptedException e) {
-                                e.printStackTrace();
+                                FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il caricamento!", null, event);
+                                // DEBUG
+                                // exception.printStackTrace();
                             }
                         });
                         return null;

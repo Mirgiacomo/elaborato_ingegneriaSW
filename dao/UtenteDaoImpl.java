@@ -4,9 +4,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.models.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class UtenteDaoImpl extends DaoImpl<Utente>{
@@ -54,17 +52,12 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
     }
 
     @Override
-    public Utente addItem(Utente item) throws ExecutionException, InterruptedException {
+    public Utente saveItem(Utente item) throws ExecutionException, InterruptedException {
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
         ApiFuture<WriteResult> writeResult = documentReference.set(item.getFirebaseObject(), SetOptions.merge());
 
         DocumentSnapshot documentSnapshot = documentReference.get().get();
         return getItem(documentSnapshot.getId());
-    }
-
-    @Override
-    public Utente updateItem(Utente item) {
-        return null;
     }
 
     @Override

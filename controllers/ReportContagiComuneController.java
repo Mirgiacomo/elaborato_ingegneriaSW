@@ -48,8 +48,6 @@ public class ReportContagiComuneController implements Initializable {
     ContagioDaoImpl contagioDao = new ContagioDaoImpl();
     MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
 
-    Set<MalattiaContagiosa> malattieContagiose;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -62,14 +60,12 @@ public class ReportContagiComuneController implements Initializable {
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
             yearSearchableComboBox.getItems().add(currentYear - 1);
             yearSearchableComboBox.getItems().add(currentYear);
-
-            malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public void searchAction(ActionEvent event) throws ExecutionException, InterruptedException {
+    public void searchAction(ActionEvent event) {
         if (comuniCheckComboBox.getCheckModel().isEmpty() || yearSearchableComboBox.getSelectionModel().isEmpty()) {
             FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE CARICAMENTO", "Selezionare uno o più comuni e un anno!", null, event);
             return;
@@ -174,24 +170,23 @@ public class ReportContagiComuneController implements Initializable {
                                 table.setItems(tableData);
 
                                 // action event
-                                EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-                                    public void handle(ActionEvent e)
-                                    {
-                                        Set<Map<String, Object>> rows = new HashSet<>();
-                                        if (!tableData.isEmpty()) {
-                                            for (Map row: tableData) {
-                                                rows.add(row);
-                                            }
+                                EventHandler<ActionEvent> eventHandler = e -> {
+                                    Set<Map<String, Object>> rows = new HashSet<>();
+                                    if (!tableData.isEmpty()) {
+                                        for (Map row: tableData) {
+                                            rows.add(row);
+                                        }
 
-                                        }
-                                        try {
-                                            Export.exportData(rows, "ContagiComune");
-                                        } catch (Exception exception) {
-                                            exception.printStackTrace();
-                                        }
+                                    }
+                                    try {
+                                        Export.exportData(rows, "ContagiComune");
+                                    } catch (Exception exception) {
+                                        FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'export!", null, e);
+                                        // DEBUG
+                                        // exception.printStackTrace();
                                     }
                                 };
-                                button.setOnAction(event);
+                                button.setOnAction(eventHandler);
 
                                 XYChart.Series<String, Number> seriesContagi = new XYChart.Series<>();
 
@@ -204,7 +199,9 @@ public class ReportContagiComuneController implements Initializable {
                                 chart.getData().addAll(seriesContagi);
 
                             } catch (ExecutionException | InterruptedException e) {
-                                e.printStackTrace();
+                                FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il caricamento!", null, event);
+                                // DEBUG
+                                // exception.printStackTrace();
                             }
                         });
                         return null;

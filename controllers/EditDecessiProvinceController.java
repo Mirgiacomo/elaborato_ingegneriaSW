@@ -1,14 +1,12 @@
 package elaborato_ingegneriaSW.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import elaborato_ingegneriaSW.dao.DecessoDaoImpl;
 import elaborato_ingegneriaSW.dao.DecessoMalattiaContagiosaDaoImpl;
 import elaborato_ingegneriaSW.dao.MalattiaContagiosaDaoImpl;
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 import elaborato_ingegneriaSW.models.*;
-import elaborato_ingegneriaSW.utils.AutoCompleteBox;
 import elaborato_ingegneriaSW.utils.FXUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,16 +17,11 @@ import javafx.scene.layout.GridPane;
 import org.controlsfx.control.SearchableComboBox;
 
 import java.net.URL;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
-import java.time.temporal.WeekFields;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 
 public class EditDecessiProvinceController implements Initializable {
-    public GridPane contagiGridPane;
     @FXML
     private SearchableComboBox<Provincia> provinciaFilterComboBox;
     @FXML
@@ -39,6 +32,8 @@ public class EditDecessiProvinceController implements Initializable {
     private GridPane decessiGridPane;
     @FXML
     private JFXButton saveButton;
+    @FXML
+    private JFXButton azzeraButton;
 
     private final DecessoDaoImpl decessoDao = new DecessoDaoImpl();
     private final DecessoMalattiaContagiosaDaoImpl decessoMalattiaContagiosaDao = new DecessoMalattiaContagiosaDaoImpl();
@@ -60,13 +55,11 @@ public class EditDecessiProvinceController implements Initializable {
             for (Provincia provincia: province) {
                 provinciaFilterComboBox.getItems().add(provincia);
             }
-            //new AutoCompleteBox(provinciaFilterComboBox);
 
             int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
             yearFilterComboBox.getItems().add(currentYear - 1);
             yearFilterComboBox.getItems().add(currentYear);
-            //new AutoCompleteBox(yearFilterComboBox);
 
             Set<MalattiaContagiosa> malattieContagiose = (Set<MalattiaContagiosa>) malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
             decessiGridPane.getStyleClass().add("grid-pane");
@@ -190,7 +183,7 @@ public class EditDecessiProvinceController implements Initializable {
                         int value = input.getText().isBlank() ? 0 : Integer.parseInt(input.getText());
                         newDecessoMalattiaContagiosa.setNumeroMorti(value);
                     }
-                    decessoMalattiaContagiosaDao.addItem(newDecessoMalattiaContagiosa);
+                    decessoMalattiaContagiosaDao.saveItem(newDecessoMalattiaContagiosa);
                     // DEBUG
                     // System.out.println(newDecessoMalattiaContagiosa);
                 } else {
@@ -205,7 +198,7 @@ public class EditDecessiProvinceController implements Initializable {
                         newDecesso.setNumeroMorti(value);
                     }
 
-                    decessoDao.addItem(newDecesso);
+                    decessoDao.saveItem(newDecesso);
                     // DEBUG
                     // System.out.println(newDecesso);
                 }
@@ -217,6 +210,14 @@ public class EditDecessiProvinceController implements Initializable {
             FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'esecuzione!", null, event);
             // DEBUG
             // e.printStackTrace();
+        }
+    }
+
+    public void azzeraAction(ActionEvent actionEvent) {
+        for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
+            for (JFXTextField input: entry.getValue()) {
+                input.setText("");
+            }
         }
     }
 }

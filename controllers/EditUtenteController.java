@@ -73,7 +73,6 @@ public class EditUtenteController extends EditController<Utente> implements Init
     @FXML
     @Override
     public void saveAction(ActionEvent event) {
-        try {
             // Controllo se il cf è valido
             Pattern pattern = Pattern.compile("^[a-zA-Z]{6}[0-9]{2}[abcdehlmprstABCDEHLMPRST][0-9]{2}([a-zA-Z][0-9]{3})[a-zA-Z]$", Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(cfTextField.getText());
@@ -86,7 +85,7 @@ public class EditUtenteController extends EditController<Utente> implements Init
                     || cfTextField.getText().isBlank()
                     || ruoloComboBox.getValue() == null
                     || !(matchFound)){
-                FXUtil.Alert(Alert.AlertType.ERROR, "INSERIMENTO FALLITO", "Dati non validi!", null, event);
+                FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Dati non validi!", null, event);
                 return;
             }
 
@@ -101,30 +100,33 @@ public class EditUtenteController extends EditController<Utente> implements Init
                 return;
             }
             RuoloUtente ruolo = ruoloComboBox.getSelectionModel().getSelectedItem();
-
-            ObservableList<Comune> comuni = comuniCheckComboBox.getCheckModel().getCheckedItems();
             Set<Comune> comuniAssociati = new HashSet<>();
-            if (!comuni.isEmpty() && ruolo.equals(RuoloUtente.PERSONALE_CONTAGI)) {
-                comuniAssociati.addAll(comuni);
+            ObservableList<Comune> comuni;
+
+            if (!comuniCheckComboBox.getCheckModel().isEmpty()) {
+                comuni = comuniCheckComboBox.getCheckModel().getCheckedItems();
+                if (!comuni.isEmpty() && ruolo.equals(RuoloUtente.PERSONALE_CONTAGI)) {
+                    comuniAssociati.addAll(comuni);
+                }
             }
 
             Utente utente = new Utente(cognome, nome, username, Hashing.sha256().hashString(password1, StandardCharsets.UTF_8).toString(), ruolo, cf, comuniAssociati);
-            if (utenteDao.addItem(utente) == null) {
-                FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO UTENTE FALLITO", "Errore durante il salvataggio dell'utente!", null, event);
-            } else {
-                tableData.remove(model);
-                tableData.add(utente);
+            try {
+                if (utenteDao.saveItem(utente) == null) {
+                    FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO UTENTE FALLITO", "Errore durante il salvataggio dell'utente!", null, event);
+                } else {
+                    tableData.remove(model);
+                    tableData.add(utente);
 
-                // Chiudo la pagina di insert dopo l'avvenuto inserimento
-                Stage stage = (Stage) saveButton.getScene().getWindow();
-                stage.close();
+                    // Chiudo la pagina di insert dopo l'avvenuto inserimento
+                    Stage stage = (Stage) saveButton.getScene().getWindow();
+                    stage.close();
+                }
+            } catch (ExecutionException | InterruptedException e) {
+                FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il salvataggio!", null, event);
+                //DEBUG
+                //e.printStackTrace();
             }
-        } catch (Exception e) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante l'esecuzione!", null, event);
-            //DEBUG
-            //e.printStackTrace();
-        }
-
     }
 
     public void changeRuoloAction(ActionEvent event) {

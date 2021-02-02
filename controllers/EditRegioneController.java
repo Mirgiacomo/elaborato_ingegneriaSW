@@ -36,7 +36,7 @@ public class EditRegioneController extends EditController<Regione> implements In
 
     @FXML
     @Override
-    public void saveAction(ActionEvent event) throws ExecutionException, InterruptedException {
+    public void saveAction(ActionEvent event) {
         Double superficie = null;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
@@ -53,16 +53,24 @@ public class EditRegioneController extends EditController<Regione> implements In
 
         Regione regione = new Regione(nome, capoluogo, superficie);
 
-        if (regioneDao.addItem(regione) == null) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante il salvataggio! Controlla i dati inseriti!", null, event);
-        } else {
-            tableData.remove(model);
-            tableData.add(regione);
+        try {
+            if (regioneDao.saveItem(regione) == null) {
+                FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante il salvataggio! Controlla i dati inseriti!", null, event);
+            } else {
+                tableData.remove(model);
+                tableData.add(regione);
 
-            // Chiudo la pagina di insert dopo l'avvenuto inserimento
-            Stage stage = (Stage) saveButton.getScene().getWindow();
-            stage.close();
+                // Chiudo la pagina di insert dopo l'avvenuto inserimento
+                Stage stage = (Stage) saveButton.getScene().getWindow();
+                stage.close();
+            }
+        } catch (ExecutionException | InterruptedException e) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il salvataggio!", null, event);
+
+            // DEBUG
+            // e.printStackTrace();
         }
+
     }
 
     @Override

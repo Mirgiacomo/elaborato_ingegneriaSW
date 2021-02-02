@@ -53,7 +53,7 @@ public class EditProvinciaController extends EditController<Provincia> implement
     }
 
     @FXML
-    public void saveAction(ActionEvent event) throws ExecutionException, InterruptedException {
+    public void saveAction(ActionEvent event) {
         double superficie = -1.0;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
@@ -70,15 +70,22 @@ public class EditProvinciaController extends EditController<Provincia> implement
         Regione regione = (Regione) regioneComboBox.getSelectionModel().getSelectedItem();
 
         Provincia provincia = new Provincia(nome, superficie, regione);
-        if (provinciaDao.addItem(provincia) == null) {
-            FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante il salvataggio! Controlla i dati inseriti", null, event);
-        } else {
-            tableData.remove(model);
-            tableData.add(provincia);
+        try {
+            if (provinciaDao.saveItem(provincia) == null) {
+                FXUtil.Alert(Alert.AlertType.ERROR, "SALVATAGGIO FALLITO", "Errore durante il salvataggio! Controlla i dati inseriti", null, event);
+            } else {
+                tableData.remove(model);
+                tableData.add(provincia);
 
-            // Chiudo la pagina di insert dopo l'avvenuto inserimento
-            Stage stage = (Stage) saveButton.getScene().getWindow();
-            stage.close();
+                // Chiudo la pagina di insert dopo l'avvenuto inserimento
+                Stage stage = (Stage) saveButton.getScene().getWindow();
+                stage.close();
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE", "Errore durante il salvataggio!", null, event);
+
+            // DEBUG
+            // e.printStackTrace();
         }
     }
 

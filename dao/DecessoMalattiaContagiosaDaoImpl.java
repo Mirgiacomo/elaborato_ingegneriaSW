@@ -101,7 +101,7 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
     }
 
     @Override
-    public DecessoMalattiaContagiosa addItem(DecessoMalattiaContagiosa item) throws ExecutionException, InterruptedException {
+    public DecessoMalattiaContagiosa saveItem(DecessoMalattiaContagiosa item) throws ExecutionException, InterruptedException {
         DecessoMalattiaContagiosa result = null;
 
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
@@ -116,11 +116,6 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
             result = getItem(documentSnapshot.getId());
         }
         return  result;
-    }
-
-    @Override
-    public DecessoMalattiaContagiosa updateItem(DecessoMalattiaContagiosa item) {
-        return null;
     }
 
     @Override

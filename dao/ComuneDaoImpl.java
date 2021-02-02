@@ -79,24 +79,19 @@ public class ComuneDaoImpl extends DaoImpl<Comune> {
     }
 
     @Override
-    public Comune addItem(Comune item) throws ExecutionException, InterruptedException {
+    public Comune saveItem(Comune item) throws ExecutionException, InterruptedException {
         DocumentReference documentReference = firestore.collection(collectionName).document(item.generateId());
 
         ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
 
         if (provinciaDao.getItem(item.getProvincia().generateId()) == null) {
-            provinciaDao.addItem(item.getProvincia());
+            provinciaDao.saveItem(item.getProvincia());
         }
 
         ApiFuture<WriteResult> writeResult = documentReference.set(item.getFirebaseObject(), SetOptions.merge());
 
         DocumentSnapshot documentSnapshot = documentReference.get().get();
         return getItem(documentSnapshot.getId());
-    }
-
-    @Override
-    public Comune updateItem(Comune item) {
-        return null;
     }
 
     @Override

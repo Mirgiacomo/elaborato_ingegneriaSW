@@ -26,7 +26,7 @@ public class EditButtonCell<T> extends TableCell<T, String> {
                     FXUtil.Alert(Alert.AlertType.WARNING, "ATTENZIONE!", "Selezionare la riga da modificare, prima di premere il bottone!", null, event);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                FXUtil.Alert(Alert.AlertType.ERROR, "ERRORE!", "Errore durante l'esecuzione!", null, event);
             }
         });
     }
