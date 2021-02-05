@@ -8,11 +8,8 @@
 <h4 align="center">Corso di Laurea Informatica - Anno Accademico 2020/21</h4>
 
 
-
 <h1 align="center">DOCUMENTAZIONE PROGETTO<br />INGEGNERIA DEL SOFTWARE</h1>
-
 <p align="center">Sistema software per la gestione delle informazioni socio-sanitarie di monitoraggio della popolazione italiana per la prevenzione di contagi e pandemie.</p>
-
 <p align="center"><b>
   Mirandola Giacomo - VR1234 <br />
   Tonin Davide - VR437255
@@ -33,6 +30,8 @@
 ---
 
 
+
+# Diagrammi
 
 # Sviluppo: collaborazione team, progettazione e pattern, scelte progettuali
 
@@ -107,11 +106,15 @@ La documentazione del progetto è stata scritta in formato Markdown con l'aiuto 
 
 #### PATTERN MVC
 
+> MVC - Model View Controller
+
 La scelta del pattern MVC è stata fortemente condizionata dall'utilizzo del tool SceneBuilder, dato che esso produce una view, ovvero un file FXML il quale viene collegato ad un controller, ovvero una classe java.
 Questo mostra come il tool SceneBuilder sia fortemente orientato verso il pattern MVC.
 Il team, avendo già avuto modo di studiare precedentemente Java e SeneBuilder, ha deciso di approfondire ulteriormente le proprie conoscenze in Java e lo sviluppo di GUI in Java, per tale motivo ha deciso implementare tale design pattern.
 
 #### PATTERN DAO
+
+> DAO - Data Access Object
 
 Nella realizzazione di questo prototipo è stato implementato anche pattern architetturale DAO con lo scopo di separare le operazioni che permettono l’accesso ai dati di basso livello dalle operazioni di alto livello.
 DAO infatti si occupa di dare all'applicazione una serie di metodi per accedere ai dati senza inserire all’interno del nostro codice chiamate dirette ad un DB, favorendo un approccio di tipo MVC.
@@ -119,7 +122,11 @@ Ciò implica che se per svariati motivi dovessimo modificare il tipo di memoria 
 
 #### PATTERN SINGLETON
 
+> SINGLETON
+
 #### PATTERN TEMPLATE
+
+> TEMPLATE
 
 ## Scelte progettuali
 
@@ -127,7 +134,7 @@ Ciò implica che se per svariati motivi dovessimo modificare il tipo di memoria 
 > Avendo già dell'esperienza nell'ambito web, per lo sviluppo di questo progetto abbiamo scelto di utilizzare JAVA e JAVAFX perchè entrambi volevamo imparare la progettazione di interfacce grafiche per applicazioni con queste tecnologie in un contesto diverso, ovvero delle applicazioni Desktop.
 
 ### Gestione dei dati
-> Firebase
+> FIREBASE
 
 <img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/firebase_logo.png" alt="firebase_logo" style="zoom: 25%;" />
 
@@ -141,9 +148,9 @@ Inoltre, Firebase offre due alternative: una soluzione basata su json (Realtime 
 
 Noi abbiamo scelto di utilizzare la seconda, **Firestore Cloud**, perchè molto comoda per l'organizazzione dei dati e la connessione con **models** (vedi pattern MVC) utilizzati nell'applicazione Java.
 
-Link alla nostro Dashboard per il [progetto di Firebase](https://console.firebase.google.com/u/0/project/elaborato-ingegneria/firestore/data~2Fusers~2FZ1hRKCsQ5xkWJnRA0HTK)
+Link alla dashboard per il [progetto di Firebase](https://console.firebase.google.com/u/0/project/elaborato-ingegneria/firestore/data~2Fusers~2FZ1hRKCsQ5xkWJnRA0HTK)
 
-###### Immagine di come si presenta la struttura dati in Firebase
+###### Struttura dati Firebase
 
 ![N|Solid](https://i.ibb.co/Tc2d8zR/dashboard-firebase.png)
 
@@ -158,8 +165,8 @@ C'è la possibilità inoltre, di registrare un nuovo utente con un determinato r
 > Per migliorare la sicurezza è stata aggiunta una criptazione della password in fase di registrazione, in modo tale da non avere nessuna password in chiaro su database
 > La libreria che è stata usata per fare ciò è: **com.google.guava:guava:18.0**
 
+## Dashboard
 
-> ## Dashboard
 ###### Dashboard iniziale ADMIN
 ![N|Solid](https://i.ibb.co/1zYjcvP/main-dashboard-app.png)
 
@@ -179,30 +186,38 @@ In base al ruolo dell'utente che effettua il login, verranno caricate dinamicame
 - ADMIN
 	- Visibilità su tutti i moduli dell'applicazione
 
-> ## Provincia/Regioni/Comuni
-###### Insert Province/Regioni/Comuni
+## Provincia/Regioni/Comuni
+
+> ###### Edit Province/Regioni/Comuni
+
 ![N|Solid](https://i.ibb.co/NsXWzsd/province-app.png)
 I moduli di province/comuni/regioni permettono di aggiungere una nuova regione, provincia o comune attraverso il pulsante 'inserisci'.
 In questo prototipo è stata inserità anche la funzionalità di modifica di queste informazioni attraverso l'apposito pulsante.
 Inoltre è stato anche pensato di implementare nella prossima relase la funzionalità di delete di un oggetto.
 
 ## Utenti
-###### Insert Utente
+> ###### Edit Utente
+
 ![N|Solid](https://i.ibb.co/zSWLZHP/registrazione-utente-app.png)
-Anche il modulo *utenti* segue la stessa logica di aggiunta/modifica, permettendo inoltre di associare e dissociare i comuni di competenza per ogni personale a contratto.
+Anche il modulo *utenti* segue la stessa logica di aggiunta/modifica, permettendo inoltre di associare e rimuovere i comuni di competenza per ogni personale a contratto.
 Nella prossima realease del prototipo è stato già pensato di implementare anche la modifica della password per gli utenti.
 
 ## Export
 Per i moduli comuni, regioni , province, utenti è stato implementata una funzione di export dati in modo dinamico nei diversi formati: **TXT**, **CSV**, **XLS**.
 E' già stato pianificato anche di aggiungere l'export in **JSON** e **XML**.
 
+La funzione di export è disponibile inoltre per tutti i report su malattie contagiose e decessi aggregati nei vari livelli di comune, provincia, regione e nazione.
+
 ![N|Solid](https://i.ibb.co/Sv1J4n6/export-app.png)
 
 ## Contagi Comuni / Decessi Province
 Queste due sezioni, gestite rispettivamente da Personale Contagi e Personale Decessi, permettono di inserire con cadenza settimanel (nel caso dei contagi) o con cadenza annuale (nel caso dei decessi) i dati, e al contempo visualizzarli mediante appositi filtri.
 
-> Le **malattie** e le **complicazioni** della sezione contagi comuni vengono **caricate dinamicamente** da firebase, permettendo una scalabilità dell'applicazione senza necessità modifiche/aggiunte.
-> Lo stesso discorso vale anche per i decessi per provincia, dove le cause sono anch'esse caricate dinamicante.
+> Le **malattie** e le **complicazioni** della sezione contagi comuni vengono **caricate dinamicamente** dal database, permettendo una scalabilità dell'applicazione senza necessità di modifiche/aggiunte direttamente nel codice.
+>
+> Infatti, ogni malattia contagiosa può avere zero o più complicazioni che vengono salvate nel database, al momento vengono inserite a mano dagli sviluppatori ma in una successiva release del prodotto si potrebbe pensare di mettere a disposizione un modulo apposito per la gestione dinamica delle malattie contagiose da parte di un certo tipo di utenti.
+>
+> Lo stesso discorso vale anche nei i decessi per provincia, dove le cause per malattie contagiose sono caricate dinamicante.
 
 #### TODO: aggiungere quale accenno al caricamento delle tabelle
 
@@ -211,7 +226,7 @@ Queste due sezioni, gestite rispettivamente da Personale Contagi e Personale Dec
 #### TODO: aggiungere questa parte che è da terminare con foto
 
 
-## Report aggregati
+## Report MALATTIE CONTAGIOSE
 
 #### TODO: aggiungere questa parte che è da terminare con foto
 
