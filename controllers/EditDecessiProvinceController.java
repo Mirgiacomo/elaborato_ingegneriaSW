@@ -61,7 +61,7 @@ public class EditDecessiProvinceController implements Initializable {
             yearFilterComboBox.getItems().add(currentYear - 1);
             yearFilterComboBox.getItems().add(currentYear);
 
-            Set<MalattiaContagiosa> malattieContagiose = (Set<MalattiaContagiosa>) malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
+            Set<MalattiaContagiosa> malattieContagiose = malattiaContagiosaDao.getAllItems(MalattiaContagiosaDaoImpl.getCollectionName());
             decessiGridPane.getStyleClass().add("grid-pane");
             int row = 1;
 
@@ -173,31 +173,22 @@ public class EditDecessiProvinceController implements Initializable {
                     MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
                     MalattiaContagiosa malattiaContagiosa = malattiaContagiosaDao.getItem(entry.getKey());
 
-                    DecessoMalattiaContagiosa newDecessoMalattiaContagiosa = new DecessoMalattiaContagiosa();
-                    newDecessoMalattiaContagiosa.setYear(year);
-                    newDecessoMalattiaContagiosa.setProvincia(provincia);
-                    newDecessoMalattiaContagiosa.setCausaDecesso(CausaDecesso.MALATTIA_CONTAGIOSA);
-                    newDecessoMalattiaContagiosa.setMalattiaContagiosa(malattiaContagiosa);
-
+                    int numeroMorti = 0;
                     for (JFXTextField input: entry.getValue()) {
-                        int value = input.getText().isBlank() ? 0 : Integer.parseInt(input.getText());
-                        newDecessoMalattiaContagiosa.setNumeroMorti(value);
+                        numeroMorti = input.getText().isBlank() ? 0 : Integer.parseInt(input.getText());
                     }
+                    DecessoMalattiaContagiosa newDecessoMalattiaContagiosa = new DecessoMalattiaContagiosa(provincia, year, numeroMorti, malattiaContagiosa);
                     decessoMalattiaContagiosaDao.saveItem(newDecessoMalattiaContagiosa);
                     // DEBUG
                     // System.out.println(newDecessoMalattiaContagiosa);
                 } else {
-                    Decesso newDecesso = new Decesso();
-
-                    newDecesso.setYear(year);
-                    newDecesso.setProvincia(provincia);
-                    newDecesso.setCausaDecesso(CausaDecesso.valueOf(entry.getKey()));
+                    CausaDecesso causaDecesso = CausaDecesso.valueOf(entry.getKey());
+                    int numeroMorti = 0;
 
                     for (JFXTextField input: entry.getValue()) {
-                        int value = input.getText().isBlank() ? 0 : Integer.parseInt(input.getText());
-                        newDecesso.setNumeroMorti(value);
+                        numeroMorti = input.getText().isBlank() ? 0 : Integer.parseInt(input.getText());
                     }
-
+                    Decesso newDecesso = new Decesso(provincia, year, numeroMorti, causaDecesso);
                     decessoDao.saveItem(newDecesso);
                     // DEBUG
                     // System.out.println(newDecesso);

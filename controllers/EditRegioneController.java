@@ -37,7 +37,7 @@ public class EditRegioneController extends EditController<Regione> implements In
     @FXML
     @Override
     public void saveAction(ActionEvent event) {
-        Double superficie = null;
+        double superficie;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
         } catch (NumberFormatException e) {

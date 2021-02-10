@@ -11,7 +11,7 @@ public class Utente implements Comparable<Utente>{
     private String password;
     private RuoloUtente ruolo;
     private String cf;
-    private Set<Comune> comuniAssociati = new HashSet<>();
+    private Set<Comune> comuniAssociati;
 
     public Utente(String cognome, String nome, String username, String password, RuoloUtente ruolo, String cf, Set<Comune> comuniAssociati) {
         this.cognome = cognome;
@@ -28,7 +28,14 @@ public class Utente implements Comparable<Utente>{
         }
     }
 
-    public Utente() {
+    public Utente(String cognome, String nome, String username, String password, RuoloUtente ruolo, String cf) {
+        this.cognome = cognome;
+        this.nome = nome;
+        this.username = username;
+        this.password = password;
+        this.ruolo = ruolo;
+        this.cf = cf;
+        this.comuniAssociati = new HashSet<>();
     }
 
     /**

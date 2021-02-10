@@ -36,12 +36,12 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
             DocumentReference malattiaContagiosaDocument = firestore.document(Objects.requireNonNull(document.get("malattiaContagiosa", String.class)));
             MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
 
-            result = new DecessoMalattiaContagiosa();
-            result.setCausaDecesso(document.get("causaDecesso", CausaDecesso.class));
-            result.setNumeroMorti(document.get("numeroMorti", Integer.class));
-            result.setYear(document.get("year", Integer.class));
-            result.setProvincia(provinciaDao.getItem(provinciaDocument.getId()));
-            result.setMalattiaContagiosa(malattiaContagiosaDao.getItem(malattiaContagiosaDocument.getId()));
+            int numeroMorti = document.get("numeroMorti", Integer.class);
+            int year = document.get("year", Integer.class);
+            Provincia provincia = provinciaDao.getItem(provinciaDocument.getId());
+            MalattiaContagiosa malattiaContagiosa = malattiaContagiosaDao.getItem(malattiaContagiosaDocument.getId());
+
+            result = new DecessoMalattiaContagiosa(provincia, year, numeroMorti, malattiaContagiosa);
         }
 
         return result;

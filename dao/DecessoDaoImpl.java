@@ -31,15 +31,15 @@ public class DecessoDaoImpl extends DaoImpl<Decesso> {
         Decesso result = null;
 
         if (document.exists()) {
-            result = new Decesso();
-
             DocumentReference provinciaDocument = firestore.document(Objects.requireNonNull(document.get("provincia", String.class)));
             ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
 
-            result.setCausaDecesso(document.get("causaDecesso", CausaDecesso.class));
-            result.setNumeroMorti(document.get("numeroMorti", Integer.class));
-            result.setYear(document.get("year", Integer.class));
-            result.setProvincia(provinciaDao.getItem(provinciaDocument.getId()));
+            Provincia provincia = provinciaDao.getItem(provinciaDocument.getId());
+            int numeroMorti = document.get("numeroMorti", Integer.class);
+            int year = document.get("year", Integer.class);
+            CausaDecesso causaDecesso = document.get("causaDecesso", CausaDecesso.class);
+
+            result = new Decesso(provincia, year, numeroMorti, causaDecesso);
         }
 
         return result;

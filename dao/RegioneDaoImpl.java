@@ -32,7 +32,11 @@ public class RegioneDaoImpl extends DaoImpl<Regione> {
     public Regione getItem(DocumentSnapshot document) {
         Regione result = null;
         if (document.exists()) {
-            result = document.toObject(Regione.class);
+            String nome = document.get("nome", String.class);
+            double superficie = document.get("superficie", Double.class);
+            String capoluogo = document.get("capoluogo", String.class);
+
+            result = new Regione(nome, capoluogo, superficie);
         }
 
         return result;

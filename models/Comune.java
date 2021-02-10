@@ -2,13 +2,14 @@ package elaborato_ingegneriaSW.models;
 
 import elaborato_ingegneriaSW.dao.ProvinciaDaoImpl;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class Comune implements Comparable<Comune> {
     private String codiceISTAT;
     private String nome;
-    private String dataIstituzione;
+    private LocalDate dataIstituzione;
     private double superficie;
     private Territorio territorio;
     private boolean fronteMare;
@@ -23,7 +24,7 @@ public class Comune implements Comparable<Comune> {
      * @param fronteMare      indicazione del fatto che il comune si affacci sul mare
      * @param provincia       provincia a cui appartiene il comune
      */
-    public Comune(String codiceISTAT, String nome, String dataIstituzione, double superficie, Territorio territorio, boolean fronteMare, Provincia provincia) {
+    public Comune(String codiceISTAT, String nome, LocalDate dataIstituzione, double superficie, Territorio territorio, boolean fronteMare, Provincia provincia) {
         this.codiceISTAT = codiceISTAT;
         this.nome = nome;
         this.dataIstituzione = dataIstituzione;
@@ -31,9 +32,6 @@ public class Comune implements Comparable<Comune> {
         this.territorio = territorio;
         this.fronteMare = fronteMare;
         this.provincia = provincia;
-    }
-
-    public Comune() {
     }
 
     public String getCodiceISTAT() {
@@ -52,11 +50,11 @@ public class Comune implements Comparable<Comune> {
         this.nome = nome;
     }
 
-    public String getDataIstituzione() {
+    public LocalDate getDataIstituzione() {
         return dataIstituzione;
     }
 
-    public void setDataIstituzione(String dataIstituzione) {
+    public void setDataIstituzione(LocalDate dataIstituzione) {
         this.dataIstituzione = dataIstituzione;
     }
 

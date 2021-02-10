@@ -18,8 +18,6 @@ public class Regione implements Comparable<Regione> {
         this.superficie = superficie;
     }
 
-    public Regione() { }
-
     public String getNome() {
         return nome;
     }

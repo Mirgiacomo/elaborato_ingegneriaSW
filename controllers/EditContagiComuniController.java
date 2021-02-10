@@ -213,26 +213,24 @@ public class EditContagiComuniController implements Initializable {
 
         try {
             for (Map.Entry<String, Set<JFXTextField>> entry: form.entrySet()) {
-                Contagio newContagio = new Contagio();
-                newContagio.setComune(comune);
-                newContagio.setYear(year);
-                newContagio.setWeek(week);
-
                 MalattiaContagiosa malattiaContagiosa = malattiaContagiosaDao.getItem(entry.getKey());
                 if (malattiaContagiosa != null) {
-                    newContagio.setMalattiaContagiosa(malattiaContagiosa);
+                    int numeroTerapiaIntensiva = 0;
+                    int numeroMedicoBase = 0;
 
                     for (JFXTextField input: entry.getValue()) {
                         int value = input.getText().isBlank() ? 0 : Integer.parseInt(input.getText());
                         switch (input.getId()) {
                             case "terapiaIntensiva":
-                                newContagio.setNumeroTerapiaIntensiva(value);
+                                numeroTerapiaIntensiva = value;
                                 break;
                             case "medicoBase":
-                                newContagio.setNumeroMedicoBase(value);
+                                numeroMedicoBase = value;
                                 break;
                         }
                     }
+
+                    Contagio newContagio = new Contagio(comune, numeroTerapiaIntensiva, numeroMedicoBase, malattiaContagiosa, week, year, null);
 
                     int maxComplications = 0;
                     if (formComplications.containsKey(entry.getKey())) {

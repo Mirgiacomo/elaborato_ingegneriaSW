@@ -72,7 +72,7 @@ public class EditComuneController extends EditController<Comune> implements Init
     @FXML
     @Override
     public void saveAction(ActionEvent event) {
-        Double superficie = null;
+        double superficie;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
         } catch (NumberFormatException e) {
@@ -93,7 +93,7 @@ public class EditComuneController extends EditController<Comune> implements Init
         }
         String codiceISTAT = codiceISTATTextField.getText();
         String nome = nomeTextField.getText();
-        String dataIstituzione = dataIstituzioneDataPicker.getValue().toString();
+        LocalDate dataIstituzione = dataIstituzioneDataPicker.getValue();
         Territorio territorio = territorioComboBox.getSelectionModel().getSelectedItem();
         boolean fronteMare = fronteMareCheckBox.isSelected();
         Provincia provincia = provinciaComboBox.getSelectionModel().getSelectedItem();
@@ -134,7 +134,7 @@ public class EditComuneController extends EditController<Comune> implements Init
         nomeTextField.setText(model.getNome());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
-        String date = model.getDataIstituzione();
+        String date = model.getDataIstituzione().toString();
         LocalDate localDate = LocalDate.parse(date, formatter);
         dataIstituzioneDataPicker.setValue(localDate);
 
