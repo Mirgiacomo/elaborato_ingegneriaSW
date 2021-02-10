@@ -5,6 +5,7 @@ import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.models.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
@@ -36,7 +37,11 @@ public class ComuneDaoImpl extends DaoImpl<Comune> {
 
             String codiceISTAT = document.get("codiceISTAT", String.class);
             String nome = document.get("nome", String.class);
-            LocalDate dataIstituzione = document.get("dataIstituzione", LocalDate.class);
+
+            String data = document.get("dataIstituzione", String.class);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+            LocalDate dataIstituzione = LocalDate.parse(data, formatter);
+
             double superficie = document.get("superficie", Double.class);
             Territorio territorio = document.get("territorio", Territorio.class);
             boolean fronteMare = document.get("fronteMare", Boolean.class);

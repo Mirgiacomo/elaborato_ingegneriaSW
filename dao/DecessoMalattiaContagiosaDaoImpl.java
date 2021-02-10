@@ -110,7 +110,7 @@ public class DecessoMalattiaContagiosaDaoImpl extends DaoImpl<DecessoMalattiaCon
 
         if (provinciaDao.getItem(item.getProvincia().generateId()) != null
                 && malattiaContagiosaDao.getItem(item.getMalattiaContagiosa().generateId()) != null) {
-            documentReference.set(item.getFirebaseObject());
+            documentReference.set(item.getFirebaseObject(), SetOptions.merge());
 
             DocumentSnapshot documentSnapshot = documentReference.get().get();
             result = getItem(documentSnapshot.getId());

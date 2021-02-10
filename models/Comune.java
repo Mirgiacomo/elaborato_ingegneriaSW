@@ -102,7 +102,7 @@ public class Comune implements Comparable<Comune> {
         HashMap<String, Object> result = new HashMap<String, Object>();
         result.put("codiceISTAT", codiceISTAT);
         result.put("nome", nome);
-        result.put("dataIstituzione", dataIstituzione);
+        result.put("dataIstituzione", dataIstituzione.toString());
         result.put("superficie", superficie);
         result.put("territorio", territorio);
         result.put("fronteMare", fronteMare);

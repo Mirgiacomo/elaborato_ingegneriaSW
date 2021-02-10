@@ -157,7 +157,7 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
 
         if (malattiaContagiosaDao.getItem(item.getMalattiaContagiosa().generateId()) != null
                 && comuneDao.getItem(item.getComune().generateId()) != null) {
-            documentReference.set(item.getFirebaseObject());
+            documentReference.set(item.getFirebaseObject(), SetOptions.merge());
 
             DocumentSnapshot documentSnapshot = documentReference.get().get();
             result = getItem(documentSnapshot.getId());
