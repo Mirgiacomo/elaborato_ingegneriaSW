@@ -22,9 +22,6 @@ public class DecessoMalattiaContagiosa extends Decesso {
         this.malattiaContagiosa = malattiaContagiosa;
     }
 
-    public DecessoMalattiaContagiosa() {
-    }
-
     public MalattiaContagiosa getMalattiaContagiosa() {
         return malattiaContagiosa;
     }

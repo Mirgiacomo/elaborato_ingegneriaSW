@@ -4,6 +4,8 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import elaborato_ingegneriaSW.models.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
@@ -30,17 +32,22 @@ public class ComuneDaoImpl extends DaoImpl<Comune> {
     public Comune getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException {
         Comune result = null;
         if (document.exists()) {
-            result = new Comune();
             DocumentReference provinciaDocument = firestore.document(Objects.requireNonNull(document.get("provincia", String.class)));
             ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
 
-            result.setCodiceISTAT(document.get("codiceISTAT", String.class));
-            result.setNome(document.get("nome", String.class));
-            result.setDataIstituzione(document.get("dataIstituzione", String.class));
-            result.setSuperficie(document.get("superficie", Double.class));
-            result.setTerritorio(document.get("territorio", Territorio.class));
-            result.setFronteMare(document.get("fronteMare", Boolean.class));
-            result.setProvincia(provinciaDao.getItem(provinciaDocument.getId()));
+            String codiceISTAT = document.get("codiceISTAT", String.class);
+            String nome = document.get("nome", String.class);
+
+            String data = document.get("dataIstituzione", String.class);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+            LocalDate dataIstituzione = LocalDate.parse(data, formatter);
+
+            double superficie = document.get("superficie", Double.class);
+            Territorio territorio = document.get("territorio", Territorio.class);
+            boolean fronteMare = document.get("fronteMare", Boolean.class);
+            Provincia provincia = provinciaDao.getItem(provinciaDocument.getId());
+
+            result = new Comune(codiceISTAT, nome, dataIstituzione, superficie, territorio, fronteMare, provincia);
         }
 
         return result;

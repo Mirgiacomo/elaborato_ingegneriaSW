@@ -27,10 +27,6 @@ public class MalattiaContagiosa implements Comparable<MalattiaContagiosa> {
         this(nome, null);
     }
 
-    public MalattiaContagiosa() {
-        this(null, null);
-    }
-
     public String getNome() {
         return nome;
     }

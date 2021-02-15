@@ -30,14 +30,14 @@ public class UtenteDaoImpl extends DaoImpl<Utente>{
     public Utente getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException {
         Utente result = null;
         if (document.exists()) {
-            result = new Utente();
-            result.setNome(document.get("nome", String.class));
-            result.setCognome(document.get("cognome", String.class));
-            result.setUsername(document.get("username", String.class));
-            result.setPassword(document.get("password", String.class));
-            result.setCf(document.get("cf", String.class));
-            result.setRuolo(document.get("ruolo", RuoloUtente.class));
-            result.setRuolo(document.get("ruolo", RuoloUtente.class));
+            String nome = document.get("nome", String.class);
+            String cognome = document.get("cognome", String.class);
+            String username = document.get("username", String.class);
+            String password = document.get("password", String.class);
+            RuoloUtente ruolo = document.get("ruolo", RuoloUtente.class);
+            String cf = document.get("cf", String.class);
+
+            result = new Utente(cognome, nome, username, password, ruolo, cf);
 
             List<String> comuni = (List<String>) document.get("comuniAssociati");
             ComuneDaoImpl comuneDao = new ComuneDaoImpl();

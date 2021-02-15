@@ -54,7 +54,7 @@ public class EditProvinciaController extends EditController<Provincia> implement
 
     @FXML
     public void saveAction(ActionEvent event) {
-        double superficie = -1.0;
+        double superficie;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
         } catch (NumberFormatException e) {
@@ -67,7 +67,7 @@ public class EditProvinciaController extends EditController<Provincia> implement
         }
 
         String nome = nomeTextField.getText();
-        Regione regione = (Regione) regioneComboBox.getSelectionModel().getSelectedItem();
+        Regione regione = regioneComboBox.getSelectionModel().getSelectedItem();
 
         Provincia provincia = new Provincia(nome, superficie, regione);
         try {
@@ -104,5 +104,7 @@ public class EditProvinciaController extends EditController<Provincia> implement
         nomeTextField.setText(model.getNome());
         superficieTextField.setText(String.valueOf(model.getSuperficie()));
         regioneComboBox.getSelectionModel().select(model.getRegione());
+        nomeTextField.setDisable(true);
+        regioneComboBox.setDisable(true);
     }
 }

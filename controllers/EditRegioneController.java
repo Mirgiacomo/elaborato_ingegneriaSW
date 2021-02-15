@@ -37,7 +37,7 @@ public class EditRegioneController extends EditController<Regione> implements In
     @FXML
     @Override
     public void saveAction(ActionEvent event) {
-        Double superficie = null;
+        double superficie;
         try {
             superficie = Double.parseDouble(superficieTextField.getText());
         } catch (NumberFormatException e) {
@@ -88,5 +88,6 @@ public class EditRegioneController extends EditController<Regione> implements In
         nomeTextField.setText(model.getNome());
         capoluogoTextField.setText(model.getCapoluogo());
         superficieTextField.setText(String.valueOf(model.getSuperficie()));
+        nomeTextField.setDisable(true);
     }
 }

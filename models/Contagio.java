@@ -30,7 +30,7 @@ public class Contagio {
      * @param week                   numero della settimana nell'anno scelto
      * @param year
      */
-    public Contagio(Comune comune, int numeroTerapiaIntensiva, int numeroMedicoBase, MalattiaContagiosa malattiaContagiosa, int week, int year) {
+    public Contagio(Comune comune, int numeroTerapiaIntensiva, int numeroMedicoBase, MalattiaContagiosa malattiaContagiosa, int week, int year, Map<String, Integer> complications) {
         this.comune = comune;
         this.numeroTerapiaIntensiva = numeroTerapiaIntensiva;
         this.numeroMedicoBase = numeroMedicoBase;
@@ -38,29 +38,9 @@ public class Contagio {
         this.week = week;
         this.year = year;
         this.complications = new HashMap<>();
-    }
-
-    /**
-     *
-     * @param comune
-     * @param numeroTerapiaIntensiva numero di pazienti in terapia intensiva
-     * @param numeroMedicoBase       numero di pazienti in cura presso il medico di base
-     * @param malattiaContagiosa
-     * @param date                   data di riferimento per la settimana
-     */
-    public Contagio(Comune comune, int numeroTerapiaIntensiva, int numeroMedicoBase, MalattiaContagiosa malattiaContagiosa, LocalDate date) {
-        this.comune = comune;
-        this.numeroTerapiaIntensiva = numeroTerapiaIntensiva;
-        this.numeroMedicoBase = numeroMedicoBase;
-        this.malattiaContagiosa = malattiaContagiosa;
-
-        this.week = date.get(WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear());
-        this.year = date.getYear();
-        this.complications = new HashMap<>();
-    }
-
-    public Contagio() {
-        this.complications = new HashMap<>();
+        if (complications != null) {
+            this.complications = complications;
+        }
     }
 
     public Comune getComune() {

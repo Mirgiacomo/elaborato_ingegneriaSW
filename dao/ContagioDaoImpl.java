@@ -2,10 +2,7 @@ package elaborato_ingegneriaSW.dao;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
-import elaborato_ingegneriaSW.models.Comune;
-import elaborato_ingegneriaSW.models.Contagio;
-import elaborato_ingegneriaSW.models.Provincia;
-import elaborato_ingegneriaSW.models.Regione;
+import elaborato_ingegneriaSW.models.*;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -31,7 +28,7 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
 
     @Override
     public Contagio getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException, NullPointerException {
-        Contagio result = new Contagio();
+        Contagio result = null;
         if (document.exists()) {
             ComuneDaoImpl comuneDao = new ComuneDaoImpl();
             MalattiaContagiosaDaoImpl malattiaContagiosaDao = new MalattiaContagiosaDaoImpl();
@@ -39,13 +36,15 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
             DocumentReference comuneDocument = firestore.document(Objects.requireNonNull(document.get("comune", String.class)));
             DocumentReference malattiaContagiosaDocument = firestore.document(Objects.requireNonNull(document.get("malattiaContagiosa", String.class)));
 
-            result.setComune(comuneDao.getItem(comuneDocument.getId()));
-            result.setMalattiaContagiosa(malattiaContagiosaDao.getItem(malattiaContagiosaDocument.getId()));
-            result.setNumeroMedicoBase(document.get("numeroMedicoBase", Integer.class));
-            result.setNumeroTerapiaIntensiva(document.get("numeroTerapiaIntensiva", Integer.class));
-            result.setWeek(document.get("week", Integer.class));
-            result.setYear(document.get("year", Integer.class));
-            result.setComplications((Map<String, Integer>) document.get("complications"));
+            Comune comune = comuneDao.getItem(comuneDocument.getId());
+            MalattiaContagiosa malattiaContagiosa = malattiaContagiosaDao.getItem(malattiaContagiosaDocument.getId());
+            int numeroMedicoBase = document.get("numeroMedicoBase", Integer.class);
+            int numeroTerapiaIntensiva = document.get("numeroTerapiaIntensiva", Integer.class);
+            int week = document.get("week", Integer.class);
+            int year = document.get("year", Integer.class);
+            Map<String, Integer> complications = (Map<String, Integer>) document.get("complications");
+
+            result = new Contagio(comune, numeroTerapiaIntensiva, numeroMedicoBase, malattiaContagiosa, week, year, complications);
         }
 
         return result;
@@ -158,7 +157,7 @@ public class ContagioDaoImpl extends DaoImpl<Contagio> {
 
         if (malattiaContagiosaDao.getItem(item.getMalattiaContagiosa().generateId()) != null
                 && comuneDao.getItem(item.getComune().generateId()) != null) {
-            documentReference.set(item.getFirebaseObject());
+            documentReference.set(item.getFirebaseObject(), SetOptions.merge());
 
             DocumentSnapshot documentSnapshot = documentReference.get().get();
             result = getItem(documentSnapshot.getId());

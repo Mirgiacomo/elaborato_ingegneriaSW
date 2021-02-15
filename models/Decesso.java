@@ -27,8 +27,6 @@ public class Decesso implements Comparable<Decesso>{
         this.causaDecesso = causaDecesso;
     }
 
-    public Decesso() { }
-
     public Provincia getProvincia() {
         return provincia;
     }

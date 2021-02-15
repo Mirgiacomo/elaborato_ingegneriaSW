@@ -21,8 +21,6 @@ public class Provincia implements Comparable<Provincia> {
         this.regione = regione;
     }
 
-    public Provincia() { }
-
     public String getNome() {
         return nome;
     }
