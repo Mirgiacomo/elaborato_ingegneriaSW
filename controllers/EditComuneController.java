@@ -132,6 +132,7 @@ public class EditComuneController extends EditController<Comune> implements Init
     public void populateForm() {
         codiceISTATTextField.setText(model.getCodiceISTAT());
         nomeTextField.setText(model.getNome());
+        codiceISTATTextField.setDisable(true);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
         String date = model.getDataIstituzione().toString();

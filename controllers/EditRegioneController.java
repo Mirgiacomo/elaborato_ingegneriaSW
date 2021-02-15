@@ -88,5 +88,6 @@ public class EditRegioneController extends EditController<Regione> implements In
         nomeTextField.setText(model.getNome());
         capoluogoTextField.setText(model.getCapoluogo());
         superficieTextField.setText(String.valueOf(model.getSuperficie()));
+        nomeTextField.setDisable(true);
     }
 }

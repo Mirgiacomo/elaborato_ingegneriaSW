@@ -104,5 +104,7 @@ public class EditProvinciaController extends EditController<Provincia> implement
         nomeTextField.setText(model.getNome());
         superficieTextField.setText(String.valueOf(model.getSuperficie()));
         regioneComboBox.getSelectionModel().select(model.getRegione());
+        nomeTextField.setDisable(true);
+        regioneComboBox.setDisable(true);
     }
 }
