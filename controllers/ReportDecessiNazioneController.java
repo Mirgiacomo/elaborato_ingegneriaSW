@@ -144,21 +144,23 @@ public class ReportDecessiNazioneController implements Initializable {
 
                         if (!decessi.isEmpty()) {
                             for (CausaDecesso causaDecesso : CausaDecesso.values()) {
-                                HashMap<String, Object> rowDecesso = new HashMap<>();
-                                rowDecesso.put("causa", causaDecesso.getNome());
+                                if (!causaDecesso.equals(CausaDecesso.MALATTIA_CONTAGIOSA)) {
+                                    HashMap<String, Object> rowDecesso = new HashMap<>();
+                                    rowDecesso.put("causa", causaDecesso.getNome());
 
-                                int contDecessi = 0;
-                                for (Decesso decesso : decessi) {
-                                    if (decesso.getCausaDecesso().equals(causaDecesso)) {
-                                        contDecessi += decesso.getNumeroMorti();
+                                    int contDecessi = 0;
+                                    for (Decesso decesso : decessi) {
+                                        if (decesso.getCausaDecesso().equals(causaDecesso)) {
+                                            contDecessi += decesso.getNumeroMorti();
+                                        }
                                     }
+
+                                    rowDecesso.put("decessi", contDecessi);
+
+                                    pieChart.getData().add(new PieChart.Data(causaDecesso.getNome(), contDecessi));
+
+                                    data.add(rowDecesso);
                                 }
-
-                                rowDecesso.put("decessi", contDecessi);
-
-                                pieChart.getData().add(new PieChart.Data(causaDecesso.getNome(), contDecessi));
-
-                                data.add(rowDecesso);
                             }
                         }
 

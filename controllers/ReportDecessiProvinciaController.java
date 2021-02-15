@@ -149,7 +149,6 @@ public class ReportDecessiProvinciaController implements Initializable {
                                     HashMap<String, Object> row = new HashMap<>();
 
                                     row.put("causa", "MALATTIA CONTAGIOSA");
-                                    row.put("decessi", 0);
                                     for (DecessoMalattiaContagiosa decessoMalattiaContagiosa : decessiMalattiaContagiosa) {
                                         counter += decessoMalattiaContagiosa.getNumeroMorti();
                                     }
@@ -160,18 +159,22 @@ public class ReportDecessiProvinciaController implements Initializable {
                                     pieChart.getData().add(new PieChart.Data("MALATTIA CONTAGIOSA", counter));
                                 }
                                 if (!decessi.isEmpty()) {
-                                    for (Decesso decesso: decessi) {
-                                        HashMap<String, Object> row2 = new HashMap<>();
-                                        row2.put("causa", decesso.getCausaDecesso().getNome());
-                                        row2.put("decessi", 0);
+                                    for (CausaDecesso causaDecesso: CausaDecesso.values()) {
+                                        if (!causaDecesso.equals(CausaDecesso.MALATTIA_CONTAGIOSA)) {
+                                            HashMap<String, Object> rowDecesso = new HashMap<>();
+                                            rowDecesso.put("causa", causaDecesso.getNome());
 
-                                        if (!decessi.isEmpty()) {
-                                            row2.put("decessi", decesso.getNumeroMorti());
+                                            int contDecessi = 0;
+                                            for (Decesso decesso: decessi) {
+                                                if (decesso.getCausaDecesso().equals(causaDecesso)) {
+                                                    contDecessi += decesso.getNumeroMorti();
+                                                }
+                                            }
+
+                                            rowDecesso.put("decessi", contDecessi);
+                                            pieChart.getData().add(new PieChart.Data(causaDecesso.getNome(), contDecessi));
+                                            data.add(rowDecesso);
                                         }
-                                        pieChart.getData().add(new PieChart.Data(decesso.getCausaDecesso().getNome(), decesso.getNumeroMorti()));
-
-
-                                        data.add(row2);
                                     }
                                 }
 
