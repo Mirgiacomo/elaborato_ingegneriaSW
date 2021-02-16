@@ -322,7 +322,7 @@ Monitoraggio<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="190.0" y="498.81489094927895"/>
+            <y:Point x="175.7875751503006" y="504.73673463665375"/>
             <y:Point x="167.5" y="485.7578208139046"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
