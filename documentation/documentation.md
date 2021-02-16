@@ -6,7 +6,6 @@
 
 <h3 align="center">Università degli Studi di Verona - Dipartimento di Informatica</h3>
 <h4 align="center">Corso di Laurea Informatica - Anno Accademico 2020/21</h4>
-
 <h1 align="center">DOCUMENTAZIONE PROGETTO<br />INGEGNERIA DEL SOFTWARE</h1>
 <p align="center">Sistema software per la gestione delle informazioni socio-sanitarie di monitoraggio della popolazione italiana per la prevenzione di contagi e pandemie.</p>
 <p align="center"><b>
@@ -32,7 +31,7 @@
 
 # Diagrammi
 
-![activity_personale_monitoraggio](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagrams/activity_personale_monitoraggio.jpg)
+
 
 # Sviluppo: collaborazione team, progettazione e pattern, scelte progettuali
 
