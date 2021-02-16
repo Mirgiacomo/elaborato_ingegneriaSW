@@ -12,5 +12,5 @@ public abstract class EditController<T> {
     abstract void setModel(T model);
     abstract void setTableData(ObservableList<T> tableData);
     abstract void populateForm();
-    abstract void saveAction(ActionEvent event) throws ExecutionException, InterruptedException;
+    abstract void saveAction(ActionEvent event);
 }

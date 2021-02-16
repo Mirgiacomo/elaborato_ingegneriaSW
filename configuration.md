@@ -19,3 +19,6 @@ In ``run configuration`` aggiungere queste righe in VM OPTION:
     --add-exports
     javafx.base/com.sun.javafx.event=ALL-UNNAMED
     --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+    -Dorg.slf4j.simpleLogger.defaultLogLevel=info
+    
+Aggiungere la libreria slf4j-simple

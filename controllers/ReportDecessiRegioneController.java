@@ -1,7 +1,6 @@
 package elaborato_ingegneriaSW.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import com.sun.xml.bind.v2.model.core.RegistryInfo;
 import elaborato_ingegneriaSW.dao.*;
 import elaborato_ingegneriaSW.models.*;
 import elaborato_ingegneriaSW.utils.Export;

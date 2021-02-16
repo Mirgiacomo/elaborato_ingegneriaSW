@@ -1,5 +1,6 @@
 package elaborato_ingegneriaSW;
 
+import com.google.firebase.database.FirebaseDatabase;
 import elaborato_ingegneriaSW.controllers.MainController;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.application.Application;
