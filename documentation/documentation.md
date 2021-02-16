@@ -39,11 +39,11 @@ Ogni utente, quando si registra, viene reindirizzato verso una dashboard con le 
 
 > USE CASE
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/use_case_diagram/use_case.png)
+![use_case](/img/use_case_diagram/use_case.png)
 
 > USE CASE ADMIN
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/use_case_diagram/use_case_admin.png)
+![use_case](img/use_case_diagram/use_case_admin.png)
 
 
 
@@ -71,7 +71,7 @@ Ogni utente, quando si registra, viene reindirizzato verso una dashboard con le 
 | ------------------- | ------------------------------------------------------------ |
 | Pre-condizioni      | Aver effettuato l'accesso al sistema come personale decessi  |
 | Operazioni permesse | Inserimento e modifica dei decessi per provincia, visualizzare i report per i decessi |
-| Sequenza            | 1) L'utente seleziona dal menu la voce "Decessi Province"<br />        a) Seleziona provincia e settimana, e carica eventuali dati già inseriti<br />        b) Inserisce/Modifica i decessi per le varie cause di morte<br />        b) Può ripetere in loop le operazioni<br />        d) Quando ha finito esegue il logout<br />2) L'utente seleziona dal menu uno dei report decessi (per provincia, regione, nazione):<br />        a) Inserisce i filtri richiesti<br />        b) Visualizza i report<br />        c) Può esportare i dati<br /><br />Quando ha finito esegue il logout |
+| Sequenza            | 1) L'utente seleziona dal menu la voce "Decessi Province"<br />        a) Seleziona provincia e settimana, e carica eventuali dati già inseriti<br />        b) Inserisce/Modifica i decessi per le varie cause di morte<br />        b) Può ripetere in loop le operazioni<br />        d) Quando ha finito esegue il logout<br />2) L'utente seleziona dal menu uno dei report decessi (per provincia, regione, nazione):<br />        a) Inserisce i filtri richiesti<br />        b) Visualizza i report<br />        c) Può esportare i dati<br />3) Quando ha finito esegue il logout |
 | Post-condizioni     | Nuova successione di operazioni                              |
 
 
@@ -80,12 +80,12 @@ Ogni utente, quando si registra, viene reindirizzato verso una dashboard con le 
 | ------------------- | ------------------------------------------------------------ |
 | Pre-condizioni      | Aver effettuato l'accesso al sistema come ricercatore analista |
 | Operazioni permesse | Monitoraggio malattie contagiose e decessi                   |
-| Sequenza            | L'utePuò effettuare l'export dei dati selezionati in vari formati.<br /nte può vedere i vari report indifferentemente dall'ordine<br />1) Seleziona dal menu uno dei report malattie contagiose (per provincia, regione, nazione): dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati confrontando contagi e decessi per ogni malattia contagiosa.<br />Può effettuare l'export dei dati selezionati in vari formati.<br />2) Seleziona dal menu il report contagi comuni: dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati per i comuni scelti.<br />3) Seleziona dal menu uno dei report decessi (per provincia, regione, nazione): dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati per le varie cause di morte.<br />Può effettuare l'export dei dati selezionati in vari formati.<br /><br />Infine effettua il logout. |
+| Sequenza            | L'utePuò effettuare l'export dei dati selezionati in vari formati.<br /nte può vedere i vari report indifferentemente dall'ordine<br />1) Seleziona dal menu uno dei report malattie contagiose (per provincia, regione, nazione): dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati confrontando contagi e decessi per ogni malattia contagiosa.<br />Può effettuare l'export dei dati selezionati in vari formati.<br />2) Seleziona dal menu il report contagi comuni: dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati per i comuni scelti.<br />3) Seleziona dal menu uno dei report decessi (per provincia, regione, nazione): dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati per le varie cause di morte.<br />Può effettuare l'export dei dati selezionati in vari formati.<br />4) Quando ha finito esegue il logout |
 | Post-condizioni     | Nuova successione di operazioni                              |
 
 
 
-L'utente **admin** ha i permessi su tutte le interfacce, quindi può fare tutto quanto scritto sopra, oltre a inserire o modificare gli utenti.
+L'utente **admin** ha i permessi e la visibilità su tutte le interfacce, quindi può fare tutto quanto scritto sopra, oltre a inserire o modificare gli utenti.
 
 ---
 
@@ -97,21 +97,21 @@ Abbiamo creato i sequence diagram per i principali use case, omettendo alcuni ca
 
 Lo stessa sequenza è prevista per l'inserimento e la modifica di regione e provincia
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/inserimento_comuni_sequence.png)
+![use_case](img/sequence_diagram/inserimento_comuni_sequence.png)
 
 > Sequence diagram personale contagi
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/inserimento_contagi_sequence.png)
+![use_case](img/sequence_diagram/inserimento_contagi_sequence.png)
 
 > Sequence diagram personale decessi
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/inserimento_decessi_sequence.png)
+![use_case](/img/sequence_diagram/inserimento_decessi_sequence.png)
 
 > Sequence diagram ricercatore analista
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/report_decessi_province.png)
+![use_case](img/sequence_diagram/report_decessi_province.png)
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/report_malattie_contagiose_provincia.png)
+![use_case](img/sequence_diagram/report_malattie_contagiose_provincia.png)
 
 ---
 
@@ -119,29 +119,29 @@ Lo stessa sequenza è prevista per l'inserimento e la modifica di regione e prov
 
 > Activity Diagram personale monitoraggio
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_analista.png)
+![use_case](img/activity_diagram/activity_analista.png)
 
 > Activity diagram utente admin
 
 L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di gestione utenti per non ripetere le operazioni già presenti negli altri diagrammi.
 
-<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_personale_monitoraggio.png" alt="use_case" style="zoom:100%;" />
+<img src="/img/activity_diagram/activity_personale_monitoraggio.png" alt="use_case" style="zoom:100%;" />
 
 
 
 > Activity Diagram personale contagi
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_personale_contagi.png)
+![use_case](img/activity_diagram/activity_personale_contagi.png)
 
 > Activity Diagram personale decessi
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_personale_decessi.png)
+![use_case](/img/activity_diagram/activity_personale_decessi.png)
 
 
 
 > Activity Diagram ricercatore analista
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_analista.png)
+![use_case](img/activity_diagram/activity_analista.png)
 
 
 
@@ -149,7 +149,7 @@ L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di g
 
 L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di gestione utenti per non ripetere le operazioni già presenti negli altri diagrammi.
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_edit_utente.png)
+![use_case](img/activity_diagram/activity_edit_utente.png)
 
 ---
 
@@ -159,19 +159,19 @@ L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di g
 
 > Class Diagram dei Controller
 
-<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/class_diagram/Controllers.png "/>
+<img src="/img/class_diagram/Controllers.png "/>
 
 
 
 > Class Diagram dell'implementazione DAO
 
-<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/class_diagram/DAO.png "/>
+<img src="/img/class_diagram/DAO.png "/>
 
 
 
 > Class Diagram dei Models dell'applicazione
 
-<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/class_diagram/Models.png "/>
+<img src="img/class_diagram/Models.png "/>
 
 
 
@@ -182,7 +182,7 @@ L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di g
 Abbiamo scelto il seguente sequence diagram perchè racchiude varie funzionalità del sistema, in
 particolare l'implementazione di un DAO, l'interazione con il database su Firebase e l'interazione utente sistema tramite interfaccia grafica
 
-![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/dao_sequence.png)
+![use_case](/img/sequence_diagram/dao_sequence.png)
 
 
 
@@ -247,9 +247,9 @@ I weekly scrum sono stati svolti sulla piattaforma online <u>Zoom</u> o per <u>t
 Inoltre, un altro strumento utilizzato è stato <u>AnyDesk</u>, per fare una sorta di *pair-programming* che risulta essere molto interessante ed importante, in quanto da la possibilità di aiutarsi a vicenda nella scrittura o spiegazione del codice.
 
 ## Documentazione
-<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/stackedit_logo.png" alt="stackedit_logo" style="zoom:50%;" />
+<img src="img/stackedit_logo.png" alt="stackedit_logo" style="zoom:50%;" />
 
-<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/typora_logo.png" alt="typora_logo" style="zoom:50%;" />
+<img src="/img/typora_logo.png" alt="typora_logo" style="zoom:50%;" />
 
 La documentazione del progetto è stata scritta in formato Markdown con l'aiuto dei software [stackedit.io](https://stackedit.io/app#), un tool esterno per editare Markdown con più facilità, e [Typora][https://typora.io/].
 
@@ -280,7 +280,7 @@ loro:
 - **Controller**: definisce la logica applicativa, ovvero il comportamento del sistema rispetto ad
   input esterni, per esempio dell'utente
 
-<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/mvc.png" alt="mvc"  />
+<img src="/img/mvc.png" alt="mvc"  />
 
 Abbiamo tenuto suddivisi fin da subito i file di model, view e controller inserendoli in tre cartelle apposite del progetto.
 
@@ -358,7 +358,7 @@ Abbiamo utilizzato il pattern template per implementare delle viste molto simili
 ### Gestione dei dati
 > FIREBASE
 
-<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/firebase_logo.png" alt="firebase_logo" style="zoom: 25%;" />
+<img src="/img/firebase_logo.png" alt="firebase_logo" style="zoom: 25%;" />
 
 Tra le varie alternative per la gestione e il salvataggio dei dati, tra cui la serializzazione su file o l'implementazione di un database, dopo varie discussioni e considerazioni, avendo già utilizzato in precedenza la serializzazione su file e database relazionali, è stato di utilizzare una tecnologia nuova per noi, ovvero **database NoSql** di Google, **FIREBASE**.
 
@@ -374,13 +374,14 @@ Link alla dashboard per il [progetto di Firebase](https://console.firebase.googl
 
 ###### Struttura dati Firebase
 
-![N|Solid](https://i.ibb.co/Tc2d8zR/dashboard-firebase.png)
+<img src="/img/dashboard_firebase.png"/>
 
 # Organizzazione della GUI
 Il prototipo è strutturato in circa 2 sezioni principali:
 > ## 1. Login page
 
-<img src="https://i.ibb.co/fqLgPHX/login-app.png" alt="N|Solid" style="zoom:50%;" />
+<img src="/img/login_app.png"/>
+
 La prima pagina dell'applicazione è quella di Login: permette l'autenticazione di diversi tipi di utenti (ADMIN, Ricercatori Analisti, Personale dell'ente etc), i quali, una volta loggati, potranno avere accesso alle funzioni che spetta ai loro ruoli.
 C'è la possibilità inoltre, di registrare un nuovo utente con un determinato ruolo.
 
@@ -390,38 +391,36 @@ C'è la possibilità inoltre, di registrare un nuovo utente con un determinato r
 ## Dashboard
 
 ###### Dashboard iniziale ADMIN
-<img src="https://i.ibb.co/1zYjcvP/main-dashboard-app.png" alt="N|Solid" style="zoom:50%;" />
+<img src="/img/main_dashboard_app.PNG"/>
 
 In base al ruolo dell'utente che effettua il login, verranno caricate dinamicamente lo voci di menu nella dashboard a seconda dei privilegi:
 
-- PERSONALE MONITORAGGIO
+- *PERSONALE MONITORAGGIO*
 	- Inserimento/modifica Regione
 	- Inserimento/modifica Provincia
 	- Inserimento/modifica Comune
-- PERSONALE CONTAGI
+- *PERSONALE CONTAGI*
 	- Inserimento mensile contagi dei comuni di competenza
-- PERSONALE DECESSI
+- *PERSONALE DECESSI*
 	- Inserimento annuale decessi per provincia di competenza
-- RICERCATORE ANALISTA
+- *RICERCATORE ANALISTA*
 	- Visualizzazione grafici aggregati
 	- Export Dati
-- ADMIN
+- *ADMIN*
 	- Visibilità su tutti i moduli dell'applicazione
 
 ## Provincia/Regioni/Comuni
 
 > ###### Edit Province/Regioni/Comuni
 
-![N|Solid](https://i.ibb.co/NsXWzsd/province-app.png)
-I moduli di province/comuni/regioni permettono di aggiungere una nuova regione, provincia o comune attraverso il pulsante 'inserisci'.
+<img src="/img/province_app.PNG"/>I moduli di province/comuni/regioni permettono di aggiungere una nuova regione, provincia o comune attraverso il pulsante 'inserisci'.
 In questo prototipo è stata inserità anche la funzionalità di modifica di queste informazioni attraverso l'apposito pulsante.
 Inoltre è stato anche pensato di implementare nella prossima relase la funzionalità di delete di un oggetto.
 
 ## Utenti
 > ###### Edit Utente
 
-![N|Solid](https://i.ibb.co/zSWLZHP/registrazione-utente-app.png)
-Anche il modulo *utenti* segue la stessa logica di aggiunta/modifica, permettendo inoltre di associare e rimuovere i comuni di competenza per ogni personale a contratto.
+<img src="/img/registrazione_utente_app.PNG"/>Anche il modulo *utenti* segue la stessa logica di aggiunta/modifica, permettendo inoltre di associare e rimuovere i comuni di competenza per ogni personale a contratto.
 Nella prossima realease del prototipo è stato già pensato di implementare anche la modifica della password per gli utenti.
 
 ## Export
@@ -430,7 +429,7 @@ E' già stato pianificato anche di aggiungere l'export in **JSON** e **XML**.
 
 La funzione di export è disponibile inoltre per tutti i report su malattie contagiose e decessi aggregati nei vari livelli di comune, provincia, regione e nazione.
 
-![N|Solid](https://i.ibb.co/Sv1J4n6/export-app.png)
+<img src="/img/export_app.PNG"/>
 
 ## Contagi Comuni / Decessi Province
 Queste due sezioni, gestite rispettivamente da Personale Contagi e Personale Decessi, permettono di inserire con cadenza settimanel (nel caso dei contagi) o con cadenza annuale (nel caso dei decessi) i dati, e al contempo visualizzarli mediante appositi filtri.
