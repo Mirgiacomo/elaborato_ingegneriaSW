@@ -390,9 +390,6 @@ C'è la possibilità inoltre, di registrare un nuovo utente con un determinato r
 
 ## Dashboard
 
-###### Dashboard iniziale ADMIN
-<img src="/img/main_dashboard_app.PNG"/>
-
 In base al ruolo dell'utente che effettua il login, verranno caricate dinamicamente lo voci di menu nella dashboard a seconda dei privilegi:
 
 - *PERSONALE MONITORAGGIO*
@@ -422,6 +419,8 @@ Inoltre è stato anche pensato di implementare nella prossima relase la funziona
 
 <img src="/img/registrazione_utente_app.PNG"/>Anche il modulo *utenti* segue la stessa logica di aggiunta/modifica, permettendo inoltre di associare e rimuovere i comuni di competenza per ogni personale a contratto.
 Nella prossima realease del prototipo è stato già pensato di implementare anche la modifica della password per gli utenti.
+
+*NOTA:* un utente può avere comuni associati solo se ricopre il ruolo di Personale Contagi o di ADMIN.
 
 ## Export
 Per i moduli comuni, regioni , province, utenti è stato implementata una funzione di export dati in modo dinamico nei diversi formati: **TXT**, **CSV**, **XLS**.
