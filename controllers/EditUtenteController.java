@@ -105,7 +105,7 @@ public class EditUtenteController extends EditController<Utente> implements Init
 
             if (!comuniCheckComboBox.getCheckModel().isEmpty()) {
                 comuni = comuniCheckComboBox.getCheckModel().getCheckedItems();
-                if (!comuni.isEmpty() && ruolo.equals(RuoloUtente.PERSONALE_CONTAGI)) {
+                if (!comuni.isEmpty() && (ruolo.equals(RuoloUtente.PERSONALE_CONTAGI) || ruolo.equals(RuoloUtente.ADMIN))) {
                     comuniAssociati.addAll(comuni);
                 }
             }
@@ -132,7 +132,7 @@ public class EditUtenteController extends EditController<Utente> implements Init
     public void changeRuoloAction(ActionEvent event) {
         RuoloUtente ruolo = ruoloComboBox.getSelectionModel().getSelectedItem();
         if (ruolo != null) {
-            if (ruolo != RuoloUtente.PERSONALE_CONTAGI) {
+            if (ruolo != RuoloUtente.PERSONALE_CONTAGI && ruolo != RuoloUtente.ADMIN) {
                 comuniCheckComboBox.setDisable(true);
             } else {
                 comuniCheckComboBox.setDisable(false);
@@ -163,7 +163,7 @@ public class EditUtenteController extends EditController<Utente> implements Init
         cfTextField.setText(model.getCf());
         ruoloComboBox.getSelectionModel().select(model.getRuolo());
 
-        if (!model.getRuolo().equals(RuoloUtente.PERSONALE_CONTAGI)) {
+        if (!model.getRuolo().equals(RuoloUtente.PERSONALE_CONTAGI) && !model.getRuolo().equals(RuoloUtente.ADMIN)) {
             comuniCheckComboBox.setDisable(true);
         }
         if (!model.getComuniAssociati().isEmpty()) {
