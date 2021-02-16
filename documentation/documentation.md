@@ -29,9 +29,164 @@
 
 
 
-# Diagrammi
+# USE CASE & SCHEDE DI SPECIFICA
+
+Solo gli utenti che si autenticano nel sistema possono eseguire delle operazioni, a seconda del ruolo.
+
+Abbiamo identificato 4 ruoli utente nel sistema, più l'amministratore che può fare qualsiasi operazione, e può anche gestire gli utenti.
+
+Ogni utente, quando si registra, viene reindirizzato verso una dashboard con le operazioni che può eseguire.
+
+> USE CASE
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/use_case_diagram/use_case.png)
+
+> USE CASE ADMIN
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/use_case_diagram/use_case_admin.png)
 
 
+
+> SCHEDE DI SPECIFICA
+
+| Attori              | Personale Monitoraggio                                       |
+| ------------------- | :----------------------------------------------------------- |
+| Pre-condizioni      | Aver effettuato l'accesso al sistema come personale monitoraggio |
+| Operazioni permesse | Visualizzazione, inserimento e modifica di comuni, province e regioni |
+| Sequenza            | 1) L'utente seleziona dal menu una voce fra "Comuni", "Province" e "Regioni" (Prendiamo esempio Regioni, per le altre due è sempre uguale):<br />2) Visualizza tutte le Regioni<br />3) Può effettuare le seguenti operazioni:<br />       a) Selezionare una regione e modificarla<br />       b) Inserire una nuova provincia<br />       c) Esportare i dati<br />4) Può ripetere in loop le operazioni<br />5) Quando ha finito esegue il logout |
+| Post-condizioni     | Nuova successione di operazioni                              |
+
+
+
+| Attori              | Personale Contagi                                            |
+| ------------------- | ------------------------------------------------------------ |
+| Pre-condizioni      | Aver effettuato l'accesso al sistema come personale contagi  |
+| Operazioni permesse | Inserimento e modifica dei contagi, solo dei comuni di cui è responsabile |
+| Sequenza            | 1) L'utente seleziona dal menu la voce "Contagi Comuni"<br />2) Seleziona comune e settimana, e carica eventuali dati già inseriti<br />3) Inserisce/Modifica i contagi per le varie malattie contagiose<br />       a) Per alcune malattie contagiose, può inserire delle complicazioni<br />4) Può ripetere in loop le operazioni<br />5) Quando ha finito esegue il logout |
+| Post-condizioni     | Nuova successione di operazioni                              |
+
+
+
+| Attori              | Personale Decessi                                            |
+| ------------------- | ------------------------------------------------------------ |
+| Pre-condizioni      | Aver effettuato l'accesso al sistema come personale decessi  |
+| Operazioni permesse | Inserimento e modifica dei decessi per provincia, visualizzare i report per i decessi |
+| Sequenza            | 1) L'utente seleziona dal menu la voce "Decessi Province"<br />        a) Seleziona provincia e settimana, e carica eventuali dati già inseriti<br />        b) Inserisce/Modifica i decessi per le varie cause di morte<br />        b) Può ripetere in loop le operazioni<br />        d) Quando ha finito esegue il logout<br />2) L'utente seleziona dal menu uno dei report decessi (per provincia, regione, nazione):<br />        a) Inserisce i filtri richiesti<br />        b) Visualizza i report<br />        c) Può esportare i dati<br /><br />Quando ha finito esegue il logout |
+| Post-condizioni     | Nuova successione di operazioni                              |
+
+
+
+| Attori              | Ricercatore Analista                                         |
+| ------------------- | ------------------------------------------------------------ |
+| Pre-condizioni      | Aver effettuato l'accesso al sistema come ricercatore analista |
+| Operazioni permesse | Monitoraggio malattie contagiose e decessi                   |
+| Sequenza            | L'utePuò effettuare l'export dei dati selezionati in vari formati.<br /nte può vedere i vari report indifferentemente dall'ordine<br />1) Seleziona dal menu uno dei report malattie contagiose (per provincia, regione, nazione): dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati confrontando contagi e decessi per ogni malattia contagiosa.<br />Può effettuare l'export dei dati selezionati in vari formati.<br />2) Seleziona dal menu il report contagi comuni: dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati per i comuni scelti.<br />3) Seleziona dal menu uno dei report decessi (per provincia, regione, nazione): dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati per le varie cause di morte.<br />Può effettuare l'export dei dati selezionati in vari formati.<br /><br />Infine effettua il logout. |
+| Post-condizioni     | Nuova successione di operazioni                              |
+
+
+
+L'utente **admin** ha i permessi su tutte le interfacce, quindi può fare tutto quanto scritto sopra, oltre a inserire o modificare gli utenti.
+
+---
+
+# SEQUENCE DIAGRAM PER USE CASE
+
+Abbiamo creato i sequence diagram per i principali use case, omettendo alcuni casi in cui le operazioni sono molto simili.
+
+> Sequence diagram personale monitoraggio
+
+Lo stessa sequenza è prevista per l'inserimento e la modifica di regione e provincia
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/inserimento_comuni_sequence.png)
+
+> Sequence diagram personale contagi
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/inserimento_contagi_sequence.png)
+
+> Sequence diagram personale decessi
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/inserimento_decessi_sequence.png)
+
+> Sequence diagram ricercatore analista
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/report_decessi_province.png)
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/report_malattie_contagiose_provincia.png)
+
+---
+
+# ACTIVITY DIAGRAM
+
+> Activity Diagram personale monitoraggio
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_analista.png)
+
+> Activity diagram utente admin
+
+L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di gestione utenti per non ripetere le operazioni già presenti negli altri diagrammi.
+
+<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_personale_monitoraggio.png" alt="use_case" style="zoom:100%;" />
+
+
+
+> Activity Diagram personale contagi
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_personale_contagi.png)
+
+> Activity Diagram personale decessi
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_personale_decessi.png)
+
+
+
+> Activity Diagram ricercatore analista
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_analista.png)
+
+
+
+> Activity Diagram utente admin
+
+L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di gestione utenti per non ripetere le operazioni già presenti negli altri diagrammi.
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/activity_diagram/activity_edit_utente.png)
+
+---
+
+
+
+# CLASS DIAGRAM & SEQUENCE DIAGRAM
+
+> Class Diagram dei Controller
+
+<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/class_diagram/Controllers.png "/>
+
+
+
+> Class Diagram dell'implementazione DAO
+
+<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/class_diagram/DAO.png "/>
+
+
+
+> Class Diagram dei Models dell'applicazione
+
+<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/class_diagram/Models.png "/>
+
+
+
+
+
+> Sequence Diagram
+
+Abbiamo scelto il seguente sequence diagram perchè racchiude varie funzionalità del sistema, in
+particolare l'implementazione di un DAO, l'interazione con il database su Firebase e l'interazione utente sistema tramite interfaccia grafica
+
+![use_case](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/sequence_diagram/dao_sequence.png)
+
+
+
+---
 
 # Sviluppo: collaborazione team, progettazione e pattern, scelte progettuali
 
@@ -100,7 +255,9 @@ La documentazione del progetto è stata scritta in formato Markdown con l'aiuto 
 
 **Mardown** perchè è utilizzato spesso per la scrittura di testi formattati e in modo semplice, soprattutto nella documentazione e in particolare il file README dei repository su GitHub. Inoltre, il file può essere poi convertito in altri formati molto utili, tra cui ``html``(se per esempio lo si vuole formattare diversamente) e ``pdf``.
 
-**TODO**: yEd documentazione diagrammi.
+> yED & Eclipse
+
+Per lo sviluppo dei vari diagrammi abbiamo utilizzato il software yED ed Eclipse per la generazione del diagramma delle classi
 
 ## Progettazione e pattern usati
 
@@ -158,7 +315,7 @@ Link alla dashboard per il [progetto di Firebase](https://console.firebase.googl
 Il prototipo è strutturato in circa 2 sezioni principali:
 > ## 1. Login page
 
-![N|Solid](https://i.ibb.co/fqLgPHX/login-app.png)
+<img src="https://i.ibb.co/fqLgPHX/login-app.png" alt="N|Solid" style="zoom:50%;" />
 La prima pagina dell'applicazione è quella di Login: permette l'autenticazione di diversi tipi di utenti (ADMIN, Ricercatori Analisti, Personale dell'ente etc), i quali, una volta loggati, potranno avere accesso alle funzioni che spetta ai loro ruoli.
 C'è la possibilità inoltre, di registrare un nuovo utente con un determinato ruolo.
 
@@ -168,7 +325,7 @@ C'è la possibilità inoltre, di registrare un nuovo utente con un determinato r
 ## Dashboard
 
 ###### Dashboard iniziale ADMIN
-![N|Solid](https://i.ibb.co/1zYjcvP/main-dashboard-app.png)
+<img src="https://i.ibb.co/1zYjcvP/main-dashboard-app.png" alt="N|Solid" style="zoom:50%;" />
 
 In base al ruolo dell'utente che effettua il login, verranno caricate dinamicamente lo voci di menu nella dashboard a seconda dei privilegi:
 
