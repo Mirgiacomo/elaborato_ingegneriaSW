@@ -134,7 +134,7 @@ public class MainController implements Initializable, SelectViewCallback {
                 root.getChildren().add(loginPane);
             }
         } catch (IOException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
