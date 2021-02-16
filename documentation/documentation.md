@@ -267,23 +267,88 @@ Per lo sviluppo dei vari diagrammi abbiamo utilizzato il software yED ed Eclipse
 
 La scelta del pattern MVC è stata fortemente condizionata dall'utilizzo del tool SceneBuilder, dato che esso produce una view, ovvero un file FXML il quale viene collegato ad un controller, ovvero una classe java.
 Questo mostra come il tool SceneBuilder sia fortemente orientato verso il pattern MVC.
-Il team, avendo già avuto modo di studiare precedentemente Java e SeneBuilder, ha deciso di approfondire ulteriormente le proprie conoscenze in Java e lo sviluppo di GUI in Java, per tale motivo ha deciso implementare tale design pattern.
+Il team di sviluppo, una volta presa familiarità con SceneBuilder, ha deciso di continuare con esso
+e quindi di implementare il pattern MVC.
+
+> DESCRIZIONE
+
+In breve, il pattern architetturale MVC divide il sistema in 3 componenti che interagiscono tra
+loro:
+
+- **Model**: definisce come viene rappresentata, gestita e memorizzata l'informazione
+- **View**: definisce la rappresentazione a video dei dati e delle interfacce
+- **Controller**: definisce la logica applicativa, ovvero il comportamento del sistema rispetto ad
+  input esterni, per esempio dell'utente
+
+<img src="/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/mvc.png" alt="mvc"  />
+
+Abbiamo tenuto suddivisi fin da subito i file di model, view e controller inserendoli in tre cartelle apposite del progetto.
+
+Ogni view è collegata ad un controller, che tramite il DAO accede ai dati salvati su Firebase, trattandoli come models specifici.
 
 #### PATTERN DAO
 
 > DAO - Data Access Object
 
-Nella realizzazione di questo prototipo è stato implementato anche pattern architetturale DAO con lo scopo di separare le operazioni che permettono l’accesso ai dati di basso livello dalle operazioni di alto livello.
-DAO infatti si occupa di dare all'applicazione una serie di metodi per accedere ai dati senza inserire all’interno del nostro codice chiamate dirette ad un DB, favorendo un approccio di tipo MVC.
-Ciò implica che se per svariati motivi dovessimo modificare il tipo di memoria persistente utilizzata, non sarà necessario stravolgere il codice della nostra applicazione, basterà bensì modificare il DAO utilizzato.d
+Il pattern DAO, ovvero Data Access Object, viene usato per separare le operazioni di accesso ai dati
+di basso livello da servizi di alto livello.
+Quindi rende disponibili un set di metodi di "alto livello" accessibili dall'utente, che al loro interno
+interagiscono a basso livello con i dati.
+Tale implementazione interna dei metodi non è di competenza dell'utente, che si limita a
+richiamarli.
+
+Nella sezione di class diagram, c'è lo schema di implementazione del pattern dao.
+
+Ogni implementazione specifica estende una classe astratta generale, in cui è stato definito un metodo parametrizzato per ottenere tutti i dati di una certa collezione, mentre per le operazioni specifiche, ogni Dao implementa i vari metodi richiesti.
+
+> INTERFACCIA DAO
+
+```java
+public interface Dao<T> {
+    Set<T> getAllItems(String collectionName) throws ExecutionException, InterruptedException;
+    T getItem(String itemId) throws ExecutionException, InterruptedException;
+    T getItem(DocumentSnapshot document) throws ExecutionException, InterruptedException;
+    T saveItem(T item) throws ExecutionException, InterruptedException;
+    boolean deleteItem(T item);
+}
+
+```
+
+
 
 #### PATTERN SINGLETON
 
 > SINGLETON
 
+Viene usato per fare in modo che ci sia al più un’istanza di una particolare classe.
+Le classi singleton vengono sviluppate con un costruttore privato e un metodo pubblico e statico
+che ritorna un riferimento all’unica istanza della classe.
+
+Il pattern singleton usato nella connessione a Firebase è di fondamentale importanza perchè
+assicura una sola connessione al database durante l'esecuzione dell'app, senza dover aprirla/chiuderla ogni qualvolta si deve accedere al database.
+
 #### PATTERN TEMPLATE
 
 > TEMPLATE
+
+Nel pattern template, una classe astratta espone un template per l'esecuzione dei suoi metodi.
+
+Le sotto-classi che estendono questa classe astratta implementano i metodi a seconda del caso specifico, ma seguendo sempre una struttura ben definita, oppure utilizzando metodi definiti di default dalla classe astratta.
+
+> ESEMPIO
+
+```java
+public abstract class EditController<T> {
+    protected ObservableList<T> tableData;
+    protected T model;
+
+    abstract void setModel(T model);
+    abstract void setTableData(ObservableList<T> tableData);
+    abstract void populateForm();
+}
+```
+
+Abbiamo utilizzato il pattern template per implementare delle viste molto simili, le viste di view e di edit (utenti, comuni, province, regioni), in modo da avere uno schema da seguire e tenere il codice il più ordinato possibile.
 
 ## Scelte progettuali
 
