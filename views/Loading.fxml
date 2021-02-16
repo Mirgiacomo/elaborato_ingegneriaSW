@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="main-wallpaper" stylesheets="@css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="elaborato_ingegneriaSW.controllers.LoadingController">
+   <children>
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+         <children>
+              <Text fill="#010000" strokeType="OUTSIDE" strokeWidth="0.0" text="LOADING..." textAlignment="CENTER" wrappingWidth="674.2034912109375">
+                  <font>
+                      <Font name="PT Sans" size="43.0" />
+                  </font>
+              </Text>
+            <JFXSpinner minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" style="-fx-body-color: white;">
+               <VBox.margin>
+                  <Insets bottom="50.0" top="50.0" />
+               </VBox.margin>
+            </JFXSpinner>
+            <Text fill="#010000" strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright© - 2020 - Davide Tonin - Giacomo Mirandola" textAlignment="CENTER" wrappingWidth="429.00347900390625">
+               <font>
+                  <Font name="System Italic" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

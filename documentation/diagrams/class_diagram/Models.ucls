@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="elaborato_ingegneriaSW.models.Utente" project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/Utente.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="432" y="355"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="elaborato_ingegneriaSW.models.Regione" project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/Regione.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="805" y="1299"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="elaborato_ingegneriaSW.models.Contagio" project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/Contagio.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="904" y="328"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="elaborato_ingegneriaSW.models.Comune" project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/Comune.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="428" y="1077"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="5" language="java" name="elaborato_ingegneriaSW.models.CausaDecesso" project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/CausaDecesso.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1429" y="647"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="6" language="java" name="elaborato_ingegneriaSW.models.MalattiaContagiosa" project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/MalattiaContagiosa.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1090" y="1300"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="7" language="java" name="elaborato_ingegneriaSW.models.Territorio" project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/Territorio.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="421" y="1401"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="8" language="java" name="elaborato_ingegneriaSW.models.Provincia" project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/Provincia.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="854" y="854"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="9" language="java" name="elaborato_ingegneriaSW.models.RuoloUtente" project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/RuoloUtente.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="322" y="722"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="10" language="java" name="elaborato_ingegneriaSW.models.Decesso" project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/Decesso.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1310" y="292"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="elaborato_ingegneriaSW.models.DecessoMalattiaContagiosa" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/models/DecessoMalattiaContagiosa.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1307" y="1000"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="12">    
+    <bendpoint x="1302" y="1300"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="13" name="malattiaContagiosa">        
+        <position height="20" width="119" x="1227" y="1297"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="1" maximum="1">        
+        <position height="18" width="27" x="1257" y="1280"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="15">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="16" name="territorio">        
+        <position height="20" width="55" x="353" y="1334"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="1" maximum="1">        
+        <position height="18" width="27" x="443" y="1334"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="18">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="19" name="comune">        
+        <position height="20" width="54" x="533" y="791"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="1" maximum="1">        
+        <position height="18" width="27" x="547" y="813"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="21">    
+    <bendpoint x="1093" y="533"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="22" name="malattiaContagiosa"/>      
+      <multiplicity id="23" minimum="1" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="24">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="25" name="provincia"/>      
+      <multiplicity id="26" minimum="1" maximum="1">        
+        <position height="18" width="27" x="670" y="954"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <association id="28">    
+    <bendpoint x="809" y="1005"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="29" name="regione"/>      
+      <multiplicity id="30" minimum="1" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <bendpoint x="321" y="585"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="32" name="ruolo"/>      
+      <multiplicity id="33" minimum="1" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <bendpoint x="1426" y="458"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="35" name="causaDecesso"/>      
+      <multiplicity id="36" minimum="1" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <bendpoint x="1189" y="457"/>    
+    <bendpoint x="1190" y="858"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="38" name="provincia"/>      
+      <multiplicity id="39" minimum="1" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <bendpoint x="429" y="577"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="41" name="comuniAssociati"/>      
+      <multiplicity id="42" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

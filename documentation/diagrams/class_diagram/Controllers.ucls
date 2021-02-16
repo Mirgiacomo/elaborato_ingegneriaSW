@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="elaborato_ingegneriaSW.controllers.LoginController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/LoginController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="137" width="257" x="796" y="689"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="elaborato_ingegneriaSW.controllers.ViewInfoController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ViewInfoController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1598" y="449"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="elaborato_ingegneriaSW.controllers.EditDecessiProvinceController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/EditDecessiProvinceController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1605" y="597"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="elaborato_ingegneriaSW.controllers.ReportMalattieContagioseNazioneController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ReportMalattieContagioseNazioneController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="344" x="1831" y="667"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="elaborato_ingegneriaSW.controllers.LoadingController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/LoadingController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="101" width="261" x="792" y="559"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="elaborato_ingegneriaSW.controllers.EditController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/EditController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1266" y="1373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="elaborato_ingegneriaSW.controllers.SidePanelController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/SidePanelController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="425" width="362" x="1077" y="401"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="elaborato_ingegneriaSW.controllers.EditComuneController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/EditComuneController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="857" y="1621"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="elaborato_ingegneriaSW.controllers.ViewUtentiController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ViewUtentiController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1642" y="1377"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="elaborato_ingegneriaSW.controllers.ViewRegioniController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ViewRegioniController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1917" y="1377"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="elaborato_ingegneriaSW.controllers.ReportMalattieContagioseProvinciaController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ReportMalattieContagioseProvinciaController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2004" y="445"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="elaborato_ingegneriaSW.controllers.MainController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/MainController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1082" y="997"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="elaborato_ingegneriaSW.controllers.ReportDecessiRegioneController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ReportDecessiRegioneController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="268" x="2253" y="527"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="elaborato_ingegneriaSW.controllers.EditUtenteController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/EditUtenteController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1160" y="1680"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="elaborato_ingegneriaSW.controllers.ViewComuniController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ViewComuniController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2195" y="1377"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="elaborato_ingegneriaSW.controllers.EditContagiComuniController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/EditContagiComuniController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="155" width="247" x="1483" y="699"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="elaborato_ingegneriaSW.controllers.EditRegioneController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/EditRegioneController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1464" y="1673"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="elaborato_ingegneriaSW.controllers.ReportContagiComuneController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ReportContagiComuneController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="925" y="463"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="elaborato_ingegneriaSW.controllers.ReportDecessiNazioneController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ReportDecessiNazioneController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="285" x="2249" y="666"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="elaborato_ingegneriaSW.controllers.ViewController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ViewController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2228" y="1041"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="elaborato_ingegneriaSW.controllers.ReportMalattieContagioseRegioneController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ReportMalattieContagioseRegioneController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="347" x="1830" y="525"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="elaborato_ingegneriaSW.controllers.ReportDecessiProvinciaController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ReportDecessiProvinciaController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2384" y="439"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="elaborato_ingegneriaSW.controllers.EditProvinciaController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/EditProvinciaController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1774" y="1625"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="elaborato_ingegneriaSW.controllers.ViewProvinceController" 
+    project="elaborato_ingegneriaSW" 
+    file="/elaborato_ingegneriaSW/src/elaborato_ingegneriaSW/controllers/ViewProvinceController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2476" y="1377"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <dependency id="28">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <dependency id="31">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
