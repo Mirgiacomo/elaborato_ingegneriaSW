@@ -1,6 +1,6 @@
 
 
-![univr_logo](/Users/davide/Documents/universita/secondo/ingegneria_sw/elaborato_2020/src/elaborato_ingegneriaSW/documentation/img/univr_logo.png)
+![univr_logo](/img/univr_logo.png)
 
 
 
@@ -231,7 +231,7 @@ Fra i vari strumenti disponibili, abbiamo scelto di utilizzare **GitHub Project*
 **GitHub Project** è un tool integrato nella piattaforma di GitHub, gratuito e basato sulle **kanban-board**, con lo scopo appunto di facilitare l'organizzazione del lavoro, la gestione dei task nel tempo e la comunicazione fra gli sviluppatori.
 
 #### Dashboard fase finale progetto
-![N|Solid](https://i.ibb.co/rF1MywC/dashboard-github.png)
+<img src="/img/dashboard_github.png" alt="typora_logo" style="zoom:50%;" />
 
 <u>Ciclo di vita di un task:</u>
 1. ``To Do``: il punto di partenza, dove vengono segnati i task da sviluppare nell'immediato futuro
@@ -439,16 +439,23 @@ Queste due sezioni, gestite rispettivamente da Personale Contagi e Personale Dec
 >
 > Lo stesso discorso vale anche nei i decessi per provincia, dove le cause per malattie contagiose sono caricate dinamicante.
 
-#### TODO: aggiungere quale accenno al caricamento delle tabelle
+*NOTA:* In seguito ad una modifica/aggiunta di un dato nell'applicazione, essa ricarica la pagina, cioè la tabella contenente i dati modificati.
+Questo per permettere il caricamento dei dati in tempo reale e quindi non dover far refreshare la pagina ogni volta.
 
-## Report Decessi
+##  Report Decessi
 
-#### TODO: aggiungere questa parte che è da terminare con foto
+<img src="/img/report_decessi_province.PNG"/>
 
+## Report Malattie Contagiose
 
-## Report MALATTIE CONTAGIOSE
+<img src="/img/report_malattie_contagiose_nazione.PNG"/>
 
-#### TODO: aggiungere questa parte che è da terminare con foto
+ I report per i decessi e contagi sono divisi in tre moduli: per provincia, regione e nazione.
+Ogni report permette di aggregare e disgregare i dati in base alla tipologia e all'anno.
+Basandoci e ispirandoci al detto *"**un'immagine vale più di mille parole**"* è stato deciso di aggiungere svariati report perlopiù grafici (PieChart e LineChart), perchè crediamo che l'impatto visivo sia di gran lunga migliore rispetto all'impatto che può avere una tabella, in quanto più utili e che permettono di imprimere nella memoria il dato.
+Infine, ultimo ma non per importanza, l'utilità dei grafici, soprattutto in campo lavorativo, i grafici risultano essere sicuramente molto utili per avere una visione a colpo d'occhio della situazione generale, mentre i dati nelle tabelle possono tornare utili nel caso si voglia entrare più nel dettaglio e fare una analisi più approfondita.
+
+Inoltre è stato aggiunta la possibilità di esportare tutte le informazioni aggregate presenti nei report, sia sotto forma di tabella, sia sotto forma di charts.
 
 
 # Test e validazione
