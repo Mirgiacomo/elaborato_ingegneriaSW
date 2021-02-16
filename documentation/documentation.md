@@ -1,15 +1,13 @@
 
 
-![univr_logo](/img/univr_logo.png)
-
-
+![univr_logo](img/univr_logo.png)
 
 <h3 align="center">Università degli Studi di Verona - Dipartimento di Informatica</h3>
 <h4 align="center">Corso di Laurea Informatica - Anno Accademico 2020/21</h4>
 <h1 align="center">DOCUMENTAZIONE PROGETTO<br />INGEGNERIA DEL SOFTWARE</h1>
 <p align="center">Sistema software per la gestione delle informazioni socio-sanitarie di monitoraggio della popolazione italiana per la prevenzione di contagi e pandemie.</p>
 <p align="center"><b>
-  Mirandola Giacomo - VR1234 <br />
+  Mirandola Giacomo - VR429611 <br />
   Tonin Davide - VR437255
 </b></p>
 
@@ -19,13 +17,37 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 # Indice
 
 [toc]
 
-
-
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -35,15 +57,45 @@ Solo gli utenti che si autenticano nel sistema possono eseguire delle operazioni
 
 Abbiamo identificato 4 ruoli utente nel sistema, più l'amministratore che può fare qualsiasi operazione, e può anche gestire gli utenti.
 
-Ogni utente, quando si registra, viene reindirizzato verso una dashboard con le operazioni che può eseguire.
+Ogni utente, quando effettua l'accesso, viene reindirizzato verso una dashboard con le operazioni che può eseguire.
 
 > USE CASE
 
-![use_case](/img/use_case_diagram/use_case.png)
+![use_case](img/use_case_diagram/use_case.png)
+
+
+
+
+
+
+
+
+
+
+
+
 
 > USE CASE ADMIN
 
 ![use_case](img/use_case_diagram/use_case_admin.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -53,10 +105,8 @@ Ogni utente, quando si registra, viene reindirizzato verso una dashboard con le 
 | ------------------- | :----------------------------------------------------------- |
 | Pre-condizioni      | Aver effettuato l'accesso al sistema come personale monitoraggio |
 | Operazioni permesse | Visualizzazione, inserimento e modifica di comuni, province e regioni |
-| Sequenza            | 1) L'utente seleziona dal menu una voce fra "Comuni", "Province" e "Regioni" (Prendiamo esempio Regioni, per le altre due è sempre uguale):<br />2) Visualizza tutte le Regioni<br />3) Può effettuare le seguenti operazioni:<br />       a) Selezionare una regione e modificarla<br />       b) Inserire una nuova provincia<br />       c) Esportare i dati<br />4) Può ripetere in loop le operazioni<br />5) Quando ha finito esegue il logout |
+| Sequenza            | 1) L'utente seleziona dal menu una voce fra "Comuni", "Province" e "Regioni" (Prendiamo esempio Regioni, per le altre due è sempre uguale):<br />2) Visualizza tutte le Regioni<br />3) Può effettuare le seguenti operazioni:<br />       a) Selezionare una regione e modificarla<br />       b) Inserire una nuova regione<br />       c) Esportare i dati<br />4) Può ripetere in loop le operazioni<br />5) Quando ha finito esegue il logout |
 | Post-condizioni     | Nuova successione di operazioni                              |
-
-
 
 | Attori              | Personale Contagi                                            |
 | ------------------- | ------------------------------------------------------------ |
@@ -65,8 +115,6 @@ Ogni utente, quando si registra, viene reindirizzato verso una dashboard con le 
 | Sequenza            | 1) L'utente seleziona dal menu la voce "Contagi Comuni"<br />2) Seleziona comune e settimana, e carica eventuali dati già inseriti<br />3) Inserisce/Modifica i contagi per le varie malattie contagiose<br />       a) Per alcune malattie contagiose, può inserire delle complicazioni<br />4) Può ripetere in loop le operazioni<br />5) Quando ha finito esegue il logout |
 | Post-condizioni     | Nuova successione di operazioni                              |
 
-
-
 | Attori              | Personale Decessi                                            |
 | ------------------- | ------------------------------------------------------------ |
 | Pre-condizioni      | Aver effettuato l'accesso al sistema come personale decessi  |
@@ -74,20 +122,18 @@ Ogni utente, quando si registra, viene reindirizzato verso una dashboard con le 
 | Sequenza            | 1) L'utente seleziona dal menu la voce "Decessi Province"<br />        a) Seleziona provincia e settimana, e carica eventuali dati già inseriti<br />        b) Inserisce/Modifica i decessi per le varie cause di morte<br />        b) Può ripetere in loop le operazioni<br />        d) Quando ha finito esegue il logout<br />2) L'utente seleziona dal menu uno dei report decessi (per provincia, regione, nazione):<br />        a) Inserisce i filtri richiesti<br />        b) Visualizza i report<br />        c) Può esportare i dati<br />3) Quando ha finito esegue il logout |
 | Post-condizioni     | Nuova successione di operazioni                              |
 
-
-
 | Attori              | Ricercatore Analista                                         |
 | ------------------- | ------------------------------------------------------------ |
 | Pre-condizioni      | Aver effettuato l'accesso al sistema come ricercatore analista |
 | Operazioni permesse | Monitoraggio malattie contagiose e decessi                   |
-| Sequenza            | L'utePuò effettuare l'export dei dati selezionati in vari formati.<br /nte può vedere i vari report indifferentemente dall'ordine<br />1) Seleziona dal menu uno dei report malattie contagiose (per provincia, regione, nazione): dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati confrontando contagi e decessi per ogni malattia contagiosa.<br />Può effettuare l'export dei dati selezionati in vari formati.<br />2) Seleziona dal menu il report contagi comuni: dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati per i comuni scelti.<br />3) Seleziona dal menu uno dei report decessi (per provincia, regione, nazione): dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati per le varie cause di morte.<br />Può effettuare l'export dei dati selezionati in vari formati.<br />4) Quando ha finito esegue il logout |
+| Sequenza            | L'utente può vedere i vari report indifferentemente dall'ordine.<br />1) Seleziona dal menu uno dei report malattie contagiose (per provincia, regione, nazione): dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati confrontando contagi e decessi per ogni malattia contagiosa.<br />Può effettuare l'export dei dati selezionati in vari formati.<br />2) Seleziona dal menu il report contagi comuni: dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati per i comuni scelti.<br />3) Seleziona dal menu uno dei report decessi (per provincia, regione, nazione): dopo aver inserito i filtri richiesti, può visualizzare i dati aggregati per le varie cause di morte.<br />Può effettuare l'export dei dati selezionati in vari formati.<br />4) Quando ha finito esegue il logout |
 | Post-condizioni     | Nuova successione di operazioni                              |
-
-
 
 L'utente **admin** ha i permessi e la visibilità su tutte le interfacce, quindi può fare tutto quanto scritto sopra, oltre a inserire o modificare gli utenti.
 
 ---
+
+
 
 # SEQUENCE DIAGRAM PER USE CASE
 
@@ -99,43 +145,189 @@ Lo stessa sequenza è prevista per l'inserimento e la modifica di regione e prov
 
 ![use_case](img/sequence_diagram/inserimento_comuni_sequence.png)
 
-> Sequence diagram personale contagi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+> Sequence diagram personale contagi - inserimento/modifica contagi settimanali
 
 ![use_case](img/sequence_diagram/inserimento_contagi_sequence.png)
 
-> Sequence diagram personale decessi
 
-![use_case](/img/sequence_diagram/inserimento_decessi_sequence.png)
 
-> Sequence diagram ricercatore analista
 
-![use_case](img/sequence_diagram/report_decessi_province.png)
 
-![use_case](img/sequence_diagram/report_malattie_contagiose_provincia.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+> Sequence diagram personale decessi - inserimento/modifica decessi annuali
+
+![use_case](img/sequence_diagram/inserimento_decessi_sequence.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+> Sequence diagram ricercatore analista - report decessi province e malattie contagiose province
+
+<img src="img/sequence_diagram/report_decessi_province.png" alt="use_case" style="zoom:80%;" />
+
+<img src="img/sequence_diagram/report_malattie_contagiose_provincia.png" alt="use_case" style="zoom:80%;" />
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # ACTIVITY DIAGRAM
 
 > Activity Diagram personale monitoraggio
 
-![use_case](img/activity_diagram/activity_analista.png)
+![use_case](img/activity_diagram/activity_personale_monitoraggio.png)
 
-> Activity diagram utente admin
 
-L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di gestione utenti per non ripetere le operazioni già presenti negli altri diagrammi.
 
-<img src="/img/activity_diagram/activity_personale_monitoraggio.png" alt="use_case" style="zoom:100%;" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 > Activity Diagram personale contagi
 
-![use_case](img/activity_diagram/activity_personale_contagi.png)
+<img src="img/activity_diagram/activity_personale_contagi.png" alt="use_case" style="zoom: 67%;" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 > Activity Diagram personale decessi
 
-![use_case](/img/activity_diagram/activity_personale_decessi.png)
+![use_case](img/activity_diagram/activity_personale_decessi.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -145,11 +337,35 @@ L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di g
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 > Activity Diagram utente admin
 
 L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di gestione utenti per non ripetere le operazioni già presenti negli altri diagrammi.
 
-![use_case](img/activity_diagram/activity_edit_utente.png)
+<img src="img/activity_diagram/activity_edit_utente.png" alt="use_case" style="zoom:67%;" />
 
 ---
 
@@ -159,13 +375,73 @@ L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di g
 
 > Class Diagram dei Controller
 
-<img src="/img/class_diagram/Controllers.png "/>
+<img src="img/class_diagram/Controllers.png "/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 > Class Diagram dell'implementazione DAO
 
-<img src="/img/class_diagram/DAO.png "/>
+<img src="img/class_diagram/DAO.png "/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -177,16 +453,36 @@ L'utente admin ha tutti i permessi, abbiamo descritto solamente l'attività di g
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 > Sequence Diagram
 
 Abbiamo scelto il seguente sequence diagram perchè racchiude varie funzionalità del sistema, in
 particolare l'implementazione di un DAO, l'interazione con il database su Firebase e l'interazione utente sistema tramite interfaccia grafica
 
-![use_case](/img/sequence_diagram/dao_sequence.png)
+![use_case](img/sequence_diagram/dao_sequence.png)
 
 
 
 ---
+
+
 
 # Sviluppo: collaborazione team, progettazione e pattern, scelte progettuali
 
@@ -230,8 +526,10 @@ Fra i vari strumenti disponibili, abbiamo scelto di utilizzare **GitHub Project*
 
 **GitHub Project** è un tool integrato nella piattaforma di GitHub, gratuito e basato sulle **kanban-board**, con lo scopo appunto di facilitare l'organizzazione del lavoro, la gestione dei task nel tempo e la comunicazione fra gli sviluppatori.
 
+
+
 #### Dashboard fase finale progetto
-<img src="/img/dashboard_github.png" alt="typora_logo" style="zoom:50%;" />
+<img src="img/dashboard_github.png" alt="dashboard_github" style="zoom:50%;" />
 
 <u>Ciclo di vita di un task:</u>
 1. ``To Do``: il punto di partenza, dove vengono segnati i task da sviluppare nell'immediato futuro
@@ -249,9 +547,9 @@ Inoltre, un altro strumento utilizzato è stato <u>AnyDesk</u>, per fare una sor
 ## Documentazione
 <img src="img/stackedit_logo.png" alt="stackedit_logo" style="zoom:50%;" />
 
-<img src="/img/typora_logo.png" alt="typora_logo" style="zoom:50%;" />
+<img src="img/typora_logo.png" alt="typora_logo" style="zoom:50%;" />
 
-La documentazione del progetto è stata scritta in formato Markdown con l'aiuto dei software [stackedit.io](https://stackedit.io/app#), un tool esterno per editare Markdown con più facilità, e [Typora][https://typora.io/].
+La documentazione del progetto è stata scritta in formato Markdown con l'aiuto dei software [stackedit.io](https://stackedit.io), un tool esterno per editare Markdown con più facilità, e [Typora][https://typora.io/].
 
 **Mardown** perchè è utilizzato spesso per la scrittura di testi formattati e in modo semplice, soprattutto nella documentazione e in particolare il file README dei repository su GitHub. Inoltre, il file può essere poi convertito in altri formati molto utili, tra cui ``html``(se per esempio lo si vuole formattare diversamente) e ``pdf``.
 
@@ -280,7 +578,7 @@ loro:
 - **Controller**: definisce la logica applicativa, ovvero il comportamento del sistema rispetto ad
   input esterni, per esempio dell'utente
 
-<img src="/img/mvc.png" alt="mvc"  />
+<img src="img/mvc.png" alt="mvc"  />
 
 Abbiamo tenuto suddivisi fin da subito i file di model, view e controller inserendoli in tre cartelle apposite del progetto.
 
@@ -345,6 +643,7 @@ public abstract class EditController<T> {
     abstract void setModel(T model);
     abstract void setTableData(ObservableList<T> tableData);
     abstract void populateForm();
+  	abstract void saveAction(ActionEvent event);
 }
 ```
 
@@ -358,9 +657,9 @@ Abbiamo utilizzato il pattern template per implementare delle viste molto simili
 ### Gestione dei dati
 > FIREBASE
 
-<img src="/img/firebase_logo.png" alt="firebase_logo" style="zoom: 25%;" />
+<img src="img/firebase_logo.png" alt="firebase_logo" style="zoom: 25%;" />
 
-Tra le varie alternative per la gestione e il salvataggio dei dati, tra cui la serializzazione su file o l'implementazione di un database, dopo varie discussioni e considerazioni, avendo già utilizzato in precedenza la serializzazione su file e database relazionali, è stato di utilizzare una tecnologia nuova per noi, ovvero **database NoSql** di Google, **FIREBASE**.
+Tra le varie alternative per la gestione e il salvataggio dei dati, tra cui la serializzazione su file o l'implementazione di un database, dopo varie discussioni e considerazioni, avendo già utilizzato in precedenza la serializzazione su file e database relazionali, è stato deciso di utilizzare una tecnologia nuova per noi, ovvero **database NoSql** di Google, **FIREBASE**.
 
 Questo database è conosciuto soprattutto per l'implementazione di applicazioni realtime ed è ospitato nel Cloud Google, che consente di archiviare e sincronizzare i dati fra i vari utenti in tempo reale, oltre a fornire altri aspetti importanti tra cui flessibilità e scalabilità.
 
@@ -374,13 +673,13 @@ Link alla dashboard per il [progetto di Firebase](https://console.firebase.googl
 
 ###### Struttura dati Firebase
 
-<img src="/img/dashboard_firebase.png"/>
+<img src="img/dashboard_firebase.png" style="zoom:50%;" />
 
 # Organizzazione della GUI
 Il prototipo è strutturato in circa 2 sezioni principali:
-> ## 1. Login page
+## Login page
 
-<img src="/img/login_app.png"/>
+<img src="img/login_app.png" style="zoom:50%;" />
 
 La prima pagina dell'applicazione è quella di Login: permette l'autenticazione di diversi tipi di utenti (ADMIN, Ricercatori Analisti, Personale dell'ente etc), i quali, una volta loggati, potranno avere accesso alle funzioni che spetta ai loro ruoli.
 C'è la possibilità inoltre, di registrare un nuovo utente con un determinato ruolo.
@@ -397,41 +696,45 @@ In base al ruolo dell'utente che effettua il login, verranno caricate dinamicame
 	- Inserimento/modifica Provincia
 	- Inserimento/modifica Comune
 - *PERSONALE CONTAGI*
-	- Inserimento mensile contagi dei comuni di competenza
+	- Inserimento settimanale contagi dei comuni di competenza
 - *PERSONALE DECESSI*
-	- Inserimento annuale decessi per provincia di competenza
+	- Inserimento annuale decessi per provincia
+	- Report decessi
 - *RICERCATORE ANALISTA*
-	- Visualizzazione grafici aggregati
-	- Export Dati
+	- Report contagi e malattie contagiose
+	- Report decessi
 - *ADMIN*
 	- Visibilità su tutti i moduli dell'applicazione
 
+
+
+Di seguito ci sono le principali viste accessibili dal menù.
+
 ## Provincia/Regioni/Comuni
 
-> ###### Edit Province/Regioni/Comuni
+> ###### View e Edit Province/Regioni/Comuni
 
-<img src="/img/province_app.PNG"/>I moduli di province/comuni/regioni permettono di aggiungere una nuova regione, provincia o comune attraverso il pulsante 'inserisci'.
-In questo prototipo è stata inserità anche la funzionalità di modifica di queste informazioni attraverso l'apposito pulsante.
+<img src="img/province_app.PNG" style="zoom:50%;" />I moduli di province/comuni/regioni permettono di aggiungere una nuova regione, provincia o comune attraverso il pulsante 'inserisci'.
+In questo prototipo è stata inserita anche la funzionalità di modifica di queste informazioni attraverso l'apposito pulsante.
 Inoltre è stato anche pensato di implementare nella prossima relase la funzionalità di delete di un oggetto.
 
 ## Utenti
 > ###### Edit Utente
 
-<img src="/img/registrazione_utente_app.PNG"/>Anche il modulo *utenti* segue la stessa logica di aggiunta/modifica, permettendo inoltre di associare e rimuovere i comuni di competenza per ogni personale a contratto.
+<img src="img/registrazione_utente_app.PNG" style="zoom:50%;" />
+
+Anche il modulo *utenti* segue la stessa logica di aggiunta/modifica, permettendo inoltre di associare e rimuovere i comuni di competenza per ogni personale a contratto.
 Nella prossima realease del prototipo è stato già pensato di implementare anche la modifica della password per gli utenti.
 
 *NOTA:* un utente può avere comuni associati solo se ricopre il ruolo di Personale Contagi o di ADMIN.
 
-## Export
 Per i moduli comuni, regioni , province, utenti è stato implementata una funzione di export dati in modo dinamico nei diversi formati: **TXT**, **CSV**, **XLS**.
 E' già stato pianificato anche di aggiungere l'export in **JSON** e **XML**.
 
 La funzione di export è disponibile inoltre per tutti i report su malattie contagiose e decessi aggregati nei vari livelli di comune, provincia, regione e nazione.
 
-<img src="/img/export_app.PNG"/>
-
-## Contagi Comuni / Decessi Province
-Queste due sezioni, gestite rispettivamente da Personale Contagi e Personale Decessi, permettono di inserire con cadenza settimanel (nel caso dei contagi) o con cadenza annuale (nel caso dei decessi) i dati, e al contempo visualizzarli mediante appositi filtri.
+## Contagi Comuni & Decessi Province
+Queste due sezioni, gestite rispettivamente da Personale Contagi e Personale Decessi, permettono di inserire con cadenza settimale (nel caso dei contagi) o con cadenza annuale (nel caso dei decessi) i dati, e al contempo visualizzarli mediante appositi filtri.
 
 > Le **malattie** e le **complicazioni** della sezione contagi comuni vengono **caricate dinamicamente** dal database, permettendo una scalabilità dell'applicazione senza necessità di modifiche/aggiunte direttamente nel codice.
 >
@@ -444,23 +747,34 @@ Questo per permettere il caricamento dei dati in tempo reale e quindi non dover 
 
 ##  Report Decessi
 
-<img src="/img/report_decessi_province.PNG"/>
+<img src="img/report_decessi_province.PNG"  />
 
 ## Report Malattie Contagiose
 
-<img src="/img/report_malattie_contagiose_nazione.PNG"/>
+<img src="img/report_malattie_contagiose_nazione.PNG"/>
 
- I report per i decessi e contagi sono divisi in tre moduli: per provincia, regione e nazione.
+ 
+
+I report per i decessi e delle malattie contagiose sono divisi in tre moduli: per provincia, regione e nazione, oltre al report dei soli contagi per i comuni.
 Ogni report permette di aggregare e disgregare i dati in base alla tipologia e all'anno.
 Basandoci e ispirandoci al detto *"**un'immagine vale più di mille parole**"* è stato deciso di aggiungere svariati report perlopiù grafici (PieChart e LineChart), perchè crediamo che l'impatto visivo sia di gran lunga migliore rispetto all'impatto che può avere una tabella, in quanto più utili e che permettono di imprimere nella memoria il dato.
-Infine, ultimo ma non per importanza, l'utilità dei grafici, soprattutto in campo lavorativo, i grafici risultano essere sicuramente molto utili per avere una visione a colpo d'occhio della situazione generale, mentre i dati nelle tabelle possono tornare utili nel caso si voglia entrare più nel dettaglio e fare una analisi più approfondita.
+Infine, ultimo ma non per importanza, i grafici risultano essere sicuramente molto utili per avere una visione a colpo d'occhio della situazione generale, mentre i dati nelle tabelle possono tornare utili nel caso si voglia entrare più nel dettaglio e fare una analisi più approfondita.
 
 Inoltre è stato aggiunta la possibilità di esportare tutte le informazioni aggregate presenti nei report, sia sotto forma di tabella, sia sotto forma di charts.
+
+## Export
+
+Per i moduli comuni, regioni , province, utenti è stato implementata una funzione di export dati in modo dinamico nei diversi formati: **TXT**, **CSV**, **XLS**.
+E' già stato pianificato anche di aggiungere l'export in **JSON** e **XML**.
+
+La funzione di export è disponibile inoltre <u>per tutti i report su malattie contagiose e decessi</u> aggregati nei vari livelli di comune, provincia, regione e nazione.
+
+<img src="img/export_app.PNG" style="zoom:50%;" />
 
 
 # Test e validazione
 > Introduzione
->
+
 Per verificare la solidità del software prodotto, si sono svolte le seguenti attività:
 
 1.  Ricognizione del documento delle specifiche e confronto con i diagrammi prodotti
