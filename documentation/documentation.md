@@ -625,30 +625,6 @@ che ritorna un riferimento all’unica istanza della classe.
 Il pattern singleton usato nella connessione a Firebase è di fondamentale importanza perchè
 assicura una sola connessione al database durante l'esecuzione dell'app, senza dover aprirla/chiuderla ogni qualvolta si deve accedere al database.
 
-#### PATTERN TEMPLATE
-
-> TEMPLATE
-
-Nel pattern template, una classe astratta espone un template per l'esecuzione dei suoi metodi.
-
-Le sotto-classi che estendono questa classe astratta implementano i metodi a seconda del caso specifico, ma seguendo sempre una struttura ben definita, oppure utilizzando metodi definiti di default dalla classe astratta.
-
-> ESEMPIO
-
-```java
-public abstract class EditController<T> {
-    protected ObservableList<T> tableData;
-    protected T model;
-
-    abstract void setModel(T model);
-    abstract void setTableData(ObservableList<T> tableData);
-    abstract void populateForm();
-  	abstract void saveAction(ActionEvent event);
-}
-```
-
-Abbiamo utilizzato il pattern template per implementare delle viste molto simili, le viste di view e di edit (utenti, comuni, province, regioni), in modo da avere uno schema da seguire e tenere il codice il più ordinato possibile.
-
 ## Scelte progettuali
 
 > #### Perchè JAVA?
@@ -668,6 +644,7 @@ L'aspetto della sincronizzazione in tempo reale è molto importante quando si pa
 Inoltre, Firebase offre due alternative: una soluzione basata su json (Realtime database), e una su documenti organizzati in raccolte (Firestore Cloud).
 
 Noi abbiamo scelto di utilizzare la seconda, **Firestore Cloud**, perchè molto comoda per l'organizazzione dei dati e la connessione con **models** (vedi pattern MVC) utilizzati nell'applicazione Java.
+
 
 Link alla dashboard per il [progetto di Firebase](https://console.firebase.google.com/u/0/project/elaborato-ingegneria/firestore/data~2Fusers~2FZ1hRKCsQ5xkWJnRA0HTK)
 
@@ -806,6 +783,9 @@ In questa fase gli sviluppatori hanno immesso nel sistema degli input (sia corre
 - **Verifica del corretto funzionamento della registrazione/modifica di un utente**: se i campi non sono completati nel modo corretto viene segnalato un errore tramite un alert dialog. Controllo anche per la corretta selezione del ruolo di appartenenza.
   Aggiunto un ulteriore controllo per l'immissione di un corretto *codice fiscale* per il comune attraverso regex:
 	-	``Pattern.compile("^[a-zA-Z]{6}[0-9]{2}[abcdehlmprstABCDEHLMPRST][0-9]{2}([a-zA-Z][0-9]{3})[a-zA-Z]$", Pattern.CASE_INSENSITIVE); ``
+
+- **Verifica del corretto funzionamento dell'inserimento dei contagi**: Per ogni utente competente vengono mostrati solo i comuni associati, se non vengono scelti almeno un comune e una data viene segnalato un errore tramite un alert dialog. Controllo che la somma delle segnalazioni per ogni malattia non sia maggiore del numero totale inserito per ciascuna di essa.
+- **Verifica del corretto funzionamento dell'inserimento dei decessi**: Controllo che sia selezionata almeno una provincia e un anno.
 
 Per ogni sezione sono stati fatti numerosi test inserndo dati non omogenei, lasciando campi vuoti, di tipologia errata, non congrui per verificare il comportamento dell'applicazione e il sollevamento di eventuali errori o eccezioni.
 Verificate eventuali risposte relative all'errore creato.
