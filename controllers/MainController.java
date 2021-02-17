@@ -22,12 +22,12 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class MainController implements Initializable, SelectViewCallback {
     private final ShowView showView = new ShowView();
-    // TODO: togliere quando finiti test
-    private Utente loggedUser = new Utente("mirandola", "giacomo", "mirgiacomo", "", RuoloUtente.ADMIN , "", null);
+    //private Utente loggedUser = new Utente("mirandola", "giacomo", "mirgiacomo", "", RuoloUtente.ADMIN , "", null);
 
     @FXML
     private JFXDrawer drawer;
@@ -39,6 +39,10 @@ public class MainController implements Initializable, SelectViewCallback {
     private AnchorPane root;
     @FXML
     private AnchorPane contentPane;
+    @FXML
+    private Text nomeCognomeText;
+    @FXML
+    private Text ruoloText;
 
     //private HamburgerBackArrowBasicTransition transition;
 
@@ -49,35 +53,28 @@ public class MainController implements Initializable, SelectViewCallback {
 
     public void loadView()
     {
-        // System.out.println(loggedUser);
-        if (loggedUser == null) {
+        if (LoggedUser.getLoggedUser() == null) {
             showLogin();
         } else {
             /*transition = new HamburgerBackArrowBasicTransition(hamburger);
             transition.setRate(1);*/
-
-            /*RuoloUtente ruoloUtente = loggedUser.getRuolo();
-            switch (ruoloUtente){
-                case ADMIN:
-                    System.out.println("ADMIN");
-                    break;
-                default:
-                    System.out.println("Sto cazzo");
-                    break;
-            }*/
             try {
                 // TODO: togliere la seguente riga, solo per debug
-                LoggedUser.setLoggedUser(loggedUser);
-
+                //LoggedUser.setLoggedUser(loggedUser);
                 FXMLLoader loader = showView.getLoader("SidePanel.fxml");
                 VBox box = loader.load();
 
                 SidePanelController controller = loader.getController();
-                controller.createSidePanel(loggedUser);
+                controller.createSidePanel(LoggedUser.getLoggedUser());
                 controller.setCallback(this);
 
                 drawer.setSidePane(box);
                 drawer.open();
+
+                Utente loggedUser = LoggedUser.getLoggedUser();
+                nomeCognomeText.setText(loggedUser.getNome() + " " + loggedUser.getCognome());
+                ruoloText.setText(loggedUser.getRuolo().toString());
+
             } catch (IOException ex) {
                 Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -150,11 +147,5 @@ public class MainController implements Initializable, SelectViewCallback {
     public void setLoggedUser(Utente user)
     {
         LoggedUser.setLoggedUser(user);
-        this.loggedUser = LoggedUser.getLoggedUser();
-    }
-
-    public Utente getLoggedUser()
-    {
-        return loggedUser;
     }
 }

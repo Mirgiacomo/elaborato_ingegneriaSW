@@ -6,6 +6,7 @@ import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -57,6 +58,8 @@ public class ViewRegioniController extends ViewController<Regione> implements In
                     capoluogoCol.setCellValueFactory(new PropertyValueFactory<>("capoluogo"));
 
                     tableRegioni.setItems(tableData);
+
+                    tableData.addListener((ListChangeListener<Regione>) change -> tableRegioni.refresh());
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }

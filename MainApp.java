@@ -1,6 +1,5 @@
 package elaborato_ingegneriaSW;
 
-import com.google.firebase.database.FirebaseDatabase;
 import elaborato_ingegneriaSW.controllers.MainController;
 import elaborato_ingegneriaSW.utils.ShowView;
 import javafx.application.Application;
@@ -45,17 +44,6 @@ public class MainApp extends Application {
      */
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        /*ProvinciaDaoImpl provinciaDao = new ProvinciaDaoImpl();
-        RegioneDaoImpl regioneDao = new RegioneDaoImpl();
-        ComuneDaoImpl comuneDao = new ComuneDaoImpl();
-
-        Regione regione = regioneDao.addItem(new Regione("Veneto", "Venezia", 18345));
-
-        provinciaDao.addItem(new Provincia("Venezia", 414.16, regione));
-        Provincia provincia = provinciaDao.addItem(new Provincia("Verona", 206.6, regione));
-
-        comuneDao.addItem(new Comune("023017", "Caldiero", "01/01/1900", 10.37, Territorio.PIANURA, false, provincia));*/
-
         launch(args);
     }
 

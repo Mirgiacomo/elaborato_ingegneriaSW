@@ -65,6 +65,7 @@ public class EditUtenteController extends EditController<Utente> implements Init
             for (Comune comune: comuni) {
                 comuniCheckComboBox.getItems().add(comune);
             }
+            comuniCheckComboBox.setDisable(true);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -132,7 +133,7 @@ public class EditUtenteController extends EditController<Utente> implements Init
     public void changeRuoloAction(ActionEvent event) {
         RuoloUtente ruolo = ruoloComboBox.getSelectionModel().getSelectedItem();
         if (ruolo != null) {
-            if (ruolo != RuoloUtente.PERSONALE_CONTAGI && ruolo != RuoloUtente.ADMIN) {
+            if (ruolo != RuoloUtente.PERSONALE_CONTAGI) {
                 comuniCheckComboBox.setDisable(true);
             } else {
                 comuniCheckComboBox.setDisable(false);
@@ -163,7 +164,7 @@ public class EditUtenteController extends EditController<Utente> implements Init
         cfTextField.setText(model.getCf());
         ruoloComboBox.getSelectionModel().select(model.getRuolo());
 
-        if (!model.getRuolo().equals(RuoloUtente.PERSONALE_CONTAGI) && !model.getRuolo().equals(RuoloUtente.ADMIN)) {
+        if (!model.getRuolo().equals(RuoloUtente.PERSONALE_CONTAGI)) {
             comuniCheckComboBox.setDisable(true);
         }
         if (!model.getComuniAssociati().isEmpty()) {

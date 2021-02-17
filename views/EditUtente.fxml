@@ -89,7 +89,7 @@
                         <Font name="Open Sans Regular" size="18.0" />
                      </font>
                   </JFXTextField>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usename" wrappingWidth="114.91089630126953" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="114.91089630126953" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font name="Open Sans Regular" size="20.0" />
                      </font>

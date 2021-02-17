@@ -6,6 +6,7 @@ import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,6 +71,8 @@ public class ViewUtentiController extends ViewController<Utente> implements Init
                         comuniAssociatiCol.prefWidthProperty().bind(tableUtenti.widthProperty().multiply(0.7));
 
                         tableUtenti.setItems(tableData);
+
+                        tableData.addListener((ListChangeListener<Utente>) change -> tableUtenti.refresh());
                     } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
                     }

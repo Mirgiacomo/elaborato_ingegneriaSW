@@ -6,6 +6,7 @@ import elaborato_ingegneriaSW.utils.EditButtonCell;
 import elaborato_ingegneriaSW.utils.Export;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,6 +70,8 @@ public class ViewComuniController extends ViewController<Comune> implements Init
                     provinciaCol.setCellValueFactory(new PropertyValueFactory<>("provincia"));
 
                     tableComuni.setItems(tableData);
+
+                    tableData.addListener((ListChangeListener<Comune>) change -> tableComuni.refresh());
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -80,7 +83,6 @@ public class ViewComuniController extends ViewController<Comune> implements Init
         Thread th = new Thread(task);
         th.setDaemon(true);
         th.start();
-
     }
 
     @Override
